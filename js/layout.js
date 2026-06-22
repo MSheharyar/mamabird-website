@@ -66,7 +66,7 @@
   </div>
   <div class="footer-bottom">
     <span>&copy; 2026 Three Baby Birdies &middot; Iris Scarfone. All rights reserved.</span>
-    <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">COPPA Compliance</a></div>
+    <div class="footer-bottom-links"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="coppa.html">COPPA Compliance</a></div>
   </div>
 </div>`;
 
