@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sign In / Register — Three Baby Birdies</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%); min-height:100vh; }
+.auth-page { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:var(--nav-h) var(--sp-md) var(--sp-lg); }
+.auth-wrap { display:grid; grid-template-columns:1fr 1fr; gap:0; max-width:900px; width:100%; box-shadow:var(--sh-lg); border-radius:var(--r-lg); overflow:hidden; }
+.auth-panel-left {
+  background:linear-gradient(150deg,var(--red-dark) 0%,var(--red) 55%,#E84343 100%);
+  padding:48px 40px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;
+  position:relative; overflow:hidden;
+}
+.auth-panel-left::before {
+  content:'🐦'; position:absolute; font-size:120px; opacity:.08; bottom:-20px; right:-10px; line-height:1;
+}
+.auth-panel-left::after {
+  content:'🐦'; position:absolute; font-size:60px; opacity:.1; top:20px; left:-10px; transform:rotate(-20deg);
+}
+.auth-panel-left h2 { color:#fff; margin-bottom:12px; }
+.auth-panel-left p  { color:rgba(255,255,255,.75); font-size:.95rem; margin-bottom:32px; }
+.auth-benefits { list-style:none; display:flex; flex-direction:column; gap:12px; width:100%; }
+.auth-benefit { display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.12); border-radius:var(--r-sm); padding:12px 16px; text-align:left; }
+.auth-benefit-icon { font-size:1.2rem; flex-shrink:0; }
+.auth-benefit-text { font-family:var(--font-display); font-size:.83rem; font-weight:600; color:#fff; }
+.auth-panel-right { background:#fff; padding:48px 40px; }
+.auth-tabs { display:flex; gap:0; margin-bottom:32px; border-bottom:2px solid var(--cream-dark); }
+.auth-tab {
+  flex:1; padding:12px; text-align:center; cursor:pointer;
+  font-family:var(--font-display); font-weight:700; font-size:.95rem; color:var(--light-text);
+  border-bottom:2px solid transparent; margin-bottom:-2px; transition:color .18s,border-color .18s;
+}
+.auth-tab.active { color:var(--sky-dark); border-bottom-color:var(--sky); }
+.auth-form { display:none; flex-direction:column; gap:16px; }
+.auth-form.active { display:flex; }
+.form-group { display:flex; flex-direction:column; gap:6px; }
+.form-label { font-family:var(--font-display); font-weight:700; font-size:.82rem; color:var(--dark); }
+.form-input {
+  padding:13px 16px; border-radius:var(--r-md); border:1.5px solid var(--cream-dark);
+  font-family:var(--font-body); font-size:.95rem; outline:none; transition:border-color .18s;
+  background:var(--cream); color:var(--dark);
+}
+.form-input:focus { border-color:var(--sky); background:#fff; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.role-toggle { display:flex; gap:8px; }
+.role-btn {
+  flex:1; padding:10px; border-radius:var(--r-md); border:1.5px solid var(--cream-dark);
+  background:var(--cream); font-family:var(--font-display); font-weight:700; font-size:.82rem;
+  color:var(--mid); cursor:pointer; transition:all .18s; text-align:center;
+}
+.role-btn.active { border-color:var(--sky); background:var(--sky-light); color:var(--sky-dark); }
+.form-submit { justify-content:center; margin-top:4px; }
+.form-footer { text-align:center; font-size:.82rem; color:var(--light-text); }
+.form-footer a { color:var(--sky-dark); font-weight:700; }
+.form-check { display:flex; align-items:flex-start; gap:10px; }
+.form-check input[type=checkbox] { margin-top:3px; accent-color:var(--sky); flex-shrink:0; }
+.form-check label { font-size:.8rem; color:var(--mid); }
+.coppa-notice {
+  background:var(--yellow-light); border:1px solid rgba(245,194,0,.35);
+  border-radius:var(--r-sm); padding:10px 14px;
+  font-size:.78rem; color:var(--brown-dark); font-family:var(--font-display); font-weight:600;
+}
+@media(max-width:700px){ .auth-wrap{grid-template-columns:1fr;} .auth-panel-left{display:none;} .form-row{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<div class="auth-page">
+  <div class="auth-wrap">
+    <div class="auth-panel-left">
+      <div style="margin-bottom:20px;"><i data-lucide="graduation-cap" style="width:56px;height:56px;color:#fff;"></i></div>
+      <h2>Chirpy's Classroom</h2>
+      <p>Join thousands of families learning with Chirpy and Mama Bird. Start your free 3-month trial today.</p>
+      <ul class="auth-benefits">
+        <li class="auth-benefit"><span class="auth-benefit-icon"><i data-lucide="gift" style="width:20px;height:20px;color:#fff;"></i></span><span class="auth-benefit-text">3 months free — no credit card needed</span></li>
+        <li class="auth-benefit"><span class="auth-benefit-icon"><i data-lucide="feather" style="width:20px;height:20px;color:#fff;"></i></span><span class="auth-benefit-text">Chirpy + Mama Bird in 6 subjects</span></li>
+        <li class="auth-benefit"><span class="auth-benefit-icon"><i data-lucide="bar-chart-2" style="width:20px;height:20px;color:#fff;"></i></span><span class="auth-benefit-text">Progress tracking for every child</span></li>
+        <li class="auth-benefit"><span class="auth-benefit-icon"><i data-lucide="clipboard-list" style="width:20px;height:20px;color:#fff;"></i></span><span class="auth-benefit-text">AI lesson plan generator for teachers</span></li>
+        <li class="auth-benefit"><span class="auth-benefit-icon"><i data-lucide="shield-check" style="width:20px;height:20px;color:#fff;"></i></span><span class="auth-benefit-text">COPPA-compliant &amp; child-safe</span></li>
+      </ul>
+    </div>
+    <div class="auth-panel-right">
+      <div class="auth-tabs">
+        <div class="auth-tab active" onclick="switchTab('login')">Sign In</div>
+        <div class="auth-tab" onclick="switchTab('register')">Create Account</div>
+      </div>
+      <form class="auth-form active" id="form-login" onsubmit="return false;">
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input class="form-input" type="email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="Your password" autocomplete="current-password">
+        </div>
+        <div style="text-align:right;margin-top:-8px;">
+          <a href="#" style="font-size:.8rem;color:var(--sky-dark);font-family:var(--font-display);font-weight:700;">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-sky form-submit btn-lg">Sign In to Chirpy's Classroom</button>
+        <div class="form-footer">Don't have an account? <a href="#" onclick="switchTab('register');return false;">Create one free →</a></div>
+      </form>
+      <form class="auth-form" id="form-register" onsubmit="return false;">
+        <div class="coppa-notice">
+          <i data-lucide="shield-check" style="width:14px;height:14px;"></i> COPPA notice: Child profiles are managed by parents or teachers. Children under 13 do not create their own accounts.
+        </div>
+        <div class="form-group">
+          <label class="form-label">I am a...</label>
+          <div class="role-toggle">
+            <button type="button" class="role-btn active" onclick="setRole(this,'parent')"><i data-lucide="users" style="width:16px;height:16px;"></i> Parent</button>
+            <button type="button" class="role-btn" onclick="setRole(this,'teacher')"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i> Teacher</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" placeholder="First name" autocomplete="given-name"></div>
+          <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" placeholder="Last name" autocomplete="family-name"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input class="form-input" type="email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="At least 8 characters" autocomplete="new-password">
+        </div>
+        <div class="form-check">
+          <input type="checkbox" id="agree">
+          <label for="agree">I agree to the <a href="#" style="color:var(--sky-dark);">Terms of Service</a> and <a href="#" style="color:var(--sky-dark);">Privacy Policy</a>. I understand that children's data is handled in accordance with COPPA.</label>
+        </div>
+        <button type="submit" class="btn btn-red form-submit btn-lg"><i data-lucide="sparkles" style="width:18px;height:18px;"></i> Start My Free 3-Month Trial</button>
+        <div class="form-footer">Already have an account? <a href="#" onclick="switchTab('login');return false;">Sign in →</a></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+const API = 'https://web-production-bcff5.up.railway.app';
+let selectedRole = 'parent';
+
+// Redirect if already logged in
+if (localStorage.getItem('mb_token')) window.location.href = 'chatbot.html';
+
+function switchTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='login')||(i===1&&tab==='register')));
+  document.getElementById('form-login').classList.toggle('active', tab==='login');
+  document.getElementById('form-register').classList.toggle('active', tab==='register');
+}
+function setRole(el, role) {
+  document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  selectedRole = role;
+}
+
+function showError(formId, msg) {
+  let el = document.getElementById(formId + '-error');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = formId + '-error';
+    el.style.cssText = 'background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:10px 14px;font-size:.83rem;color:#b91c1c;font-family:var(--font-display);font-weight:600;';
+    document.getElementById(formId).prepend(el);
+  }
+  el.textContent = msg;
+}
+
+document.getElementById('form-login').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const inputs = this.querySelectorAll('input');
+  const email = inputs[0].value.trim();
+  const password = inputs[1].value;
+  const btn = this.querySelector('button[type=submit]');
+  btn.textContent = 'Signing in…';
+  btn.disabled = true;
+  try {
+    const res = await fetch(API + '/auth/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({email, password})
+    });
+    const data = await res.json();
+    if (!res.ok) { showError('form-login', data.detail || 'Login failed. Check your email and password.'); btn.textContent='Sign In to Chirpy\'s Classroom'; btn.disabled=false; return; }
+    localStorage.setItem('mb_token', data.token);
+    localStorage.setItem('mb_user', JSON.stringify(data.user));
+    const next = new URLSearchParams(window.location.search).get('next');
+    window.location.href = next ? next + '.html' : 'chatbot.html';
+  } catch(err) {
+    showError('form-login', 'Connection error. Please try again.');
+    btn.textContent = 'Sign In to Chirpy\'s Classroom';
+    btn.disabled = false;
+  }
+});
+
+document.getElementById('form-register').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const inputs = this.querySelectorAll('input[type=text],input[type=email],input[type=password]');
+  const firstName = inputs[0].value.trim();
+  const lastName  = inputs[1].value.trim();
+  const email     = inputs[2].value.trim();
+  const password  = inputs[3].value;
+  const agreed    = document.getElementById('agree').checked;
+  if (!agreed) { showError('form-register', 'Please agree to the Terms of Service to continue.'); return; }
+  if (password.length < 8) { showError('form-register', 'Password must be at least 8 characters.'); return; }
+  const btn = this.querySelector('button[type=submit]');
+  btn.textContent = 'Creating account…';
+  btn.disabled = true;
+  try {
+    const res = await fetch(API + '/auth/signup', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({email, password, role: selectedRole})
+    });
+    const data = await res.json();
+    if (!res.ok) { showError('form-register', data.detail || 'Registration failed. Try a different email.'); btn.innerHTML='<i data-lucide="sparkles" style="width:18px;height:18px;"></i> Start My Free 3-Month Trial'; btn.disabled=false; return; }
+    // Auto-login after register
+    const loginRes = await fetch(API + '/auth/login', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({email, password})
+    });
+    const loginData = await loginRes.json();
+    if (loginRes.ok) {
+      localStorage.setItem('mb_token', loginData.token);
+      localStorage.setItem('mb_user', JSON.stringify(loginData.user));
+    }
+    window.location.href = 'chatbot.html';
+  } catch(err) {
+    showError('form-register', 'Connection error. Please try again.');
+    btn.innerHTML = '<i data-lucide="sparkles" style="width:18px;height:18px;"></i> Start My Free 3-Month Trial';
+    btn.disabled = false;
+  }
+});
+</script>
+</body></html>

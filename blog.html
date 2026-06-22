@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog — Three Baby Birdies</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.blog-card { background:#fff; border-radius:var(--r-md); overflow:hidden; box-shadow:var(--sh-sm); transition:transform .2s,box-shadow .2s; }
+.blog-card:hover { transform:translateY(-4px); box-shadow:var(--sh-md); }
+.blog-thumb { height:180px; display:flex; align-items:center; justify-content:center; font-size:4rem; }
+.blog-body { padding:24px; }
+.blog-tag {
+  display:inline-block; font-family:var(--font-display); font-size:.7rem; font-weight:700;
+  text-transform:uppercase; letter-spacing:.1em; padding:3px 12px;
+  border-radius:var(--r-full); margin-bottom:12px;
+}
+.blog-body h3 { margin-bottom:10px; font-size:1.05rem; }
+.blog-body p  { font-size:.88rem; color:var(--light-text); margin-bottom:16px; }
+.blog-meta { font-size:.75rem; color:var(--light-text); display:flex; align-items:center; gap:8px; }
+.blog-meta span { color:var(--cream-dark); }
+@media(max-width:760px){ .blog-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:480px){ .blog-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="section-label"><i data-lucide="newspaper" style="width:13px;height:13px;"></i> The Blog</span>
+    <h1>Read-aloud tips &amp;<br>family learning ideas</h1>
+    <p>Practical ideas for parents and teachers who believe that learning starts with a great story and a warm lap to sit in.</p>
+  </div>
+</div>
+
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:var(--sky-light);"><i data-lucide="book-open" style="width:64px;height:64px;color:var(--sky-dark);"></i></div>
+        <div class="blog-body">
+          <span class="blog-tag" style="background:var(--sky-light);color:var(--sky-dark);">Read-Aloud Tips</span>
+          <h3>7 ways to make read-aloud time irresistible for toddlers</h3>
+          <p>From voice acting to sound effects — simple tricks that turn any picture book into an event your child begs to repeat.</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> June 3, 2026 <span>·</span> 4 min read</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:var(--green-light);"><i data-lucide="graduation-cap" style="width:64px;height:64px;color:var(--green);"></i></div>
+        <div class="blog-body">
+          <span class="blog-tag" style="background:var(--green-light);color:var(--green);">Learning</span>
+          <h3>Why rhyming is the single best thing for early reading</h3>
+          <p>The research is clear: phonemic awareness predicts reading success more reliably than almost anything else. Here's the science.</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> May 28, 2026 <span>·</span> 6 min read</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:var(--yellow-light);"><i data-lucide="leaf" style="width:64px;height:64px;color:var(--brown-dark);"></i></div>
+        <div class="blog-body">
+          <span class="blog-tag" style="background:var(--yellow-light);color:var(--brown-dark);">Activities</span>
+          <h3>5 nature activities inspired by Three Baby Birdies</h3>
+          <p>From building a mini nest to bird-watching journals — hands-on activities that extend the book's world into real life.</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> May 20, 2026 <span>·</span> 5 min read</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:#fce8e8;"><i data-lucide="building-2" style="width:64px;height:64px;color:var(--red-dark);"></i></div>
+        <div class="blog-body">
+          <span class="blog-tag" style="background:#fce8e8;color:var(--red-dark);">For Teachers</span>
+          <h3>How to use Three Baby Birdies in a Kindergarten classroom</h3>
+          <p>A complete lesson plan guide — literacy goals, discussion prompts, follow-up activities, and assessment ideas.</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> May 12, 2026 <span>·</span> 8 min read</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:var(--cream-dark);"><i data-lucide="heart" style="width:64px;height:64px;color:var(--brown);"></i></div>
+        <div class="blog-body">
+          <span class="blog-tag" style="background:var(--cream-dark);color:var(--brown);">Family</span>
+          <h3>Teaching your baby to read — what we did with Ronald</h3>
+          <p>The posterboard method that started it all. Iris shares the full story of how Frank and she taught their son Ronald to read before he started school.</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> May 5, 2026 <span>·</span> 7 min read</div>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb" style="background:var(--sky-xlight);"><i data-lucide="bot" style="width:64px;height:64px;color:var(--sky-dark);"></i></div>
+        <div class="blog-body">
+          <span class="blog-tag" style="background:var(--sky-light);color:var(--sky-dark);">Announcement</span>
+          <h3>Introducing Chirpy's Classroom — AI learning comes to Three Baby Birdies</h3>
+          <p>We're launching an AI educational chatbot featuring Chirpy and Mama Bird. Here's what it does, who it's for, and how the free trial works.</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> June 7, 2026 <span>·</span> 3 min read</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--dark);text-align:center;">
+  <div class="container" style="max-width:520px;">
+    <h2 style="color:#fff;margin-bottom:12px;">Get posts delivered to you</h2>
+    <p style="color:rgba(255,255,255,.55);margin-bottom:24px;">New read-aloud tips, activity ideas, and family learning resources — straight to your inbox.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+      <input style="flex:1;min-width:200px;padding:14px 20px;border-radius:var(--r-full);border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.06);color:#fff;font-family:var(--font-body);font-size:.95rem;outline:none;" type="email" placeholder="your@email.com">
+      <button class="btn btn-sky">Subscribe</button>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body></html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>About — Three Baby Birdies</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-bottom:60px; }
+.team-card { background:#fff; border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--sh-md); }
+.team-card-top { height:240px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.team-card-top img { width:100%; height:100%; object-fit:cover; object-position:top; }
+.team-card-body { padding:28px; }
+.team-card-body h3 { margin-bottom:6px; }
+.team-card-body .role { font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--sky-dark); margin-bottom:12px; }
+.values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.value-card { background:#fff; border-radius:var(--r-md); padding:28px; box-shadow:var(--sh-sm); text-align:center; }
+.value-icon { font-size:2.2rem; margin-bottom:12px; }
+.value-card h3 { margin-bottom:8px; }
+@media(max-width:960px){ .team-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:560px){ .team-grid{grid-template-columns:1fr;} .values-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="book-heart" style="width:13px;height:13px;"></i> Our Story</span>
+    <h1>The family behind<br>the birdies</h1>
+    <p>A story about how a parent's love of reading became a children's book — and how one family turned a posterboard teaching method into a book that families now read at bedtime all over the world.</p>
+  </div>
+</div>
+
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-top" style="background:linear-gradient(135deg,var(--sky-light),var(--sky-xlight));">
+          <img src="assets/author-image.png" alt="Iris Scarfone">
+        </div>
+        <div class="team-card-body">
+          <h3>Iris Scarfone</h3>
+          <div class="role">Author</div>
+          <p>Iris has always believed that the love of reading begins at home. When her son Ronald was a baby, she and her husband Frank taught him to read by placing words on posterboards around the house — simple, common words first. That experience shaped her approach to writing for children: short sentences, repetition, rhythm, and illustrations that tell the story alongside the words.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-top" style="background:var(--cream-dark);">
+          <img src="assets/frank.jpg" alt="Frank Scarfone">
+        </div>
+        <div class="team-card-body">
+          <h3>Frank Scarfone</h3>
+          <div class="role">Co-Author · Educator</div>
+          <p>Frank Scarfone co-developed the at-home reading method that inspired Three Baby Birdies. Together with Iris, he surrounded their son Ronald with simple words on posterboards from infancy — creating an immersive language environment that helped Ronald read well before starting school. That philosophy of learning through environment and repetition is at the heart of every page of this book.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-card-top" style="background:linear-gradient(135deg,var(--green-light),#c0ddb8); display:flex; align-items:center; justify-content:center;">
+          <i data-lucide="palette" style="width:80px;height:80px;color:var(--green);opacity:0.6;"></i>
+        </div>
+        <div class="team-card-body">
+          <h3>Ronald Scarfone</h3>
+          <div class="role">Illustrator · Reading Teacher · Librarian</div>
+          <p>Iris's son Ronald illustrated Three Baby Birdies. After being taught to read at home, he went on to become a reading teacher and then a public librarian. He holds a Bachelor's degree in Art Education, a Master's in Reading Education, and a Master's in Library Science — making him uniquely suited to illustrate a book designed to help children understand stories through pictures as much as words.</p>
+          <div class="credentials" style="margin-top:16px;">
+            <span class="cred-tag"><i data-lucide="image" style="width:13px;height:13px;"></i> B.A. Art Education</span>
+            <span class="cred-tag"><i data-lucide="book-open" style="width:13px;height:13px;"></i> M.S. Reading Education</span>
+            <span class="cred-tag"><i data-lucide="library" style="width:13px;height:13px;"></i> M.L.S. Library Science</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:700px;margin:0 auto;text-align:center;margin-bottom:60px;">
+      <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="lightbulb" style="width:13px;height:13px;"></i> Our Philosophy</span>
+      <h2 style="margin:12px 0;">Reading begins at home</h2>
+      <p>Frank and Iris Scarfone started with posterboards. Words like "mommy," "daddy," "cat," and "dog" went up on the walls of their home when Ronald was still a baby. By making words part of the environment — visible, repeated, connected to real things — they helped Ronald build a relationship with language before he could even hold a book.</p>
+      <p style="margin-top:16px;">Three Baby Birdies carries that same philosophy into a storybook: short, rhythmic sentences, repetition that builds familiarity, and illustrations that depict exactly what the words describe — so a child can follow the story through the pictures even before they can read a word.</p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon"><i data-lucide="repeat-2" style="width:36px;height:36px;color:var(--sky-dark);"></i></div>
+        <h3>Repetition</h3>
+        <p>Repetition in language builds pattern recognition. Children learn to predict what comes next — a key step toward reading fluency.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i data-lucide="music" style="width:36px;height:36px;color:var(--sky-dark);"></i></div>
+        <h3>Rhythm</h3>
+        <p>Rhyming, rhythmic text makes read-alouds fun and memorable. Children who enjoy being read to become children who want to read.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon"><i data-lucide="image" style="width:36px;height:36px;color:var(--sky-dark);"></i></div>
+        <h3>Visual storytelling</h3>
+        <p>Illustrations that match the text help children connect words to meaning — building vocabulary through context, not memorization.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--sky-light);text-align:center;">
+  <div class="container" style="max-width:600px;">
+    <span class="section-label"><i data-lucide="book-open" style="width:13px;height:13px;"></i> Read the book</span>
+    <h2 style="margin:12px 0;">See the philosophy in action</h2>
+    <p>Every page of Three Baby Birdies was written with these principles in mind. Pick up a copy and experience it with a child you love.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px;">
+      <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-red"><i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Buy on Amazon</a>
+      <a href="book.html" class="btn btn-outline"><i data-lucide="pen-line" style="width:16px;height:16px;"></i> Get a Signed Copy</a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body></html>

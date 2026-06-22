@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing — Chirpy's Classroom</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.pricing-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; margin-bottom:60px; }
+.plan-card { background:#fff; border-radius:var(--r-lg); padding:28px 22px; box-shadow:var(--sh-sm); position:relative; border:2px solid transparent; display:flex; flex-direction:column; }
+.plan-card.featured { border-color:var(--sky); box-shadow:0 8px 32px rgba(110,180,212,.2); }
+.plan-badge { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--sky); color:#fff; font-family:var(--font-display); font-weight:700; font-size:.72rem; padding:4px 16px; border-radius:var(--r-full); white-space:nowrap; }
+.plan-icon { font-size:2rem; margin-bottom:12px; }
+.plan-name { font-family:var(--font-display); font-weight:700; font-size:1rem; color:var(--dark); margin-bottom:4px; }
+.plan-price { font-family:var(--font-display); font-weight:700; font-size:2.2rem; color:var(--dark); line-height:1; }
+.plan-price sup { font-size:1.1rem; vertical-align:super; }
+.plan-price sub { font-size:.85rem; font-weight:500; color:var(--light-text); }
+.plan-desc { font-size:.8rem; color:var(--light-text); margin:10px 0 18px; }
+.plan-divider { height:1px; background:var(--cream-dark); margin-bottom:18px; }
+.plan-features { list-style:none; display:flex; flex-direction:column; gap:9px; flex:1; margin-bottom:22px; }
+.plan-features li { font-size:.82rem; color:var(--mid); display:flex; gap:7px; align-items:flex-start; }
+.plan-features li.yes::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+.plan-features li.no  { opacity:.45; }
+.plan-features li.no::before  { content:'—'; color:var(--light-text); flex-shrink:0; }
+.faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.faq-item { background:#fff; border-radius:var(--r-md); padding:24px; box-shadow:var(--sh-sm); }
+.faq-item h3 { font-size:.95rem; margin-bottom:8px; }
+.faq-item p  { font-size:.85rem; color:var(--light-text); }
+@media(max-width:960px){ .pricing-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:560px){ .pricing-grid{grid-template-columns:1fr;} .faq-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="section-label"><i data-lucide="tag" style="width:13px;height:13px;"></i> Pricing</span>
+    <h1>Start free.<br>Upgrade when you're ready.</h1>
+    <p>Every account starts with a 3-month free trial — full access, no credit card needed. Upgrade only when your trial ends.</p>
+  </div>
+</div>
+
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="pricing-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:60px;">
+      <!-- Free -->
+      <div class="plan-card-v2">
+        <div class="plan-head ph-free">
+          <div class="plan-head-icon">🎁</div>
+          <div class="plan-head-name">Free Trial</div>
+          <div class="plan-head-price" style="font-size:2rem;">$0</div>
+          <div class="plan-head-period">3 months free · No card needed</div>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features-v2">
+            <li class="yes">3 child profiles</li>
+            <li class="yes">100 messages per child</li>
+            <li class="yes">All 6 subjects</li>
+            <li class="yes">Chirpy + Mama Bird</li>
+            <li class="yes">Progress tracking</li>
+            <li class="no">Lesson plan generator</li>
+            <li class="no">PDF exports</li>
+          </ul>
+          <a href="login.html" class="btn btn-outline btn-sm" style="justify-content:center;">Start Free →</a>
+        </div>
+      </div>
+
+      <!-- Individual -->
+      <div class="plan-card-v2 featured">
+        <div class="plan-badge-v2">Most Popular</div>
+        <div class="plan-head ph-ind">
+          <div class="plan-head-icon">🐦</div>
+          <div class="plan-head-name">Individual</div>
+          <div class="plan-head-price"><sup style="font-size:1.1rem;">$</sup>9.99</div>
+          <div class="plan-head-period">per month · billed monthly</div>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features-v2">
+            <li class="yes">3 child profiles</li>
+            <li class="yes">400 messages per child</li>
+            <li class="yes">All 6 subjects</li>
+            <li class="yes">Chirpy + Mama Bird</li>
+            <li class="yes">Progress dashboard</li>
+            <li class="yes">Lesson plan generator</li>
+            <li class="no">PDF exports</li>
+          </ul>
+          <button id="btn-individual" onclick="startCheckout('individual')" class="btn btn-sky btn-sm" style="justify-content:center;width:100%;border:none;cursor:pointer;">Get Started →</button>
+        </div>
+      </div>
+
+      <!-- Premium -->
+      <div class="plan-card-v2">
+        <div class="plan-head ph-prem">
+          <div class="plan-head-icon">🪺</div>
+          <div class="plan-head-name">Premium</div>
+          <div class="plan-head-price"><sup style="font-size:1.1rem;">$</sup>19.99</div>
+          <div class="plan-head-period">per month · larger families</div>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features-v2">
+            <li class="yes">Unlimited child profiles</li>
+            <li class="yes">1,000 messages per child</li>
+            <li class="yes">All 6 subjects</li>
+            <li class="yes">Chirpy + Mama Bird</li>
+            <li class="yes">Progress dashboard</li>
+            <li class="yes">Lesson plan generator</li>
+            <li class="yes">PDF progress exports</li>
+          </ul>
+          <button id="btn-premium" onclick="startCheckout('premium')" class="btn btn-sm" style="justify-content:center;width:100%;border:none;cursor:pointer;background:var(--purple);color:#fff;">Get Started →</button>
+        </div>
+      </div>
+
+      <!-- Classroom -->
+      <div class="plan-card-v2">
+        <div class="plan-head ph-class">
+          <div class="plan-head-icon">🏫</div>
+          <div class="plan-head-name">Classroom</div>
+          <div class="plan-head-price"><sup style="font-size:1.1rem;">$</sup>29.99</div>
+          <div class="plan-head-period">per month · up to 30 students</div>
+        </div>
+        <div class="plan-body">
+          <ul class="plan-features-v2">
+            <li class="yes">30 student profiles</li>
+            <li class="yes">200 messages per student</li>
+            <li class="yes">All 6 subjects</li>
+            <li class="yes">Classroom dashboard</li>
+            <li class="yes">Teacher lesson plans</li>
+            <li class="yes">Per-student PDF exports</li>
+            <li class="yes">Parent email summaries</li>
+          </ul>
+          <button id="btn-classroom" onclick="startCheckout('classroom')" class="btn btn-dark btn-sm" style="justify-content:center;width:100%;border:none;cursor:pointer;">Get Started →</button>
+        </div>
+      </div>
+    </div>
+    <div class="section-header" style="margin-bottom:32px;">
+      <span class="section-label"><i data-lucide="help-circle" style="width:13px;height:13px;"></i> Questions</span>
+      <h2>Frequently asked</h2>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item"><h3>Do I need a credit card for the free trial?</h3><p>No. Your 3-month free trial starts the moment you create an account. No payment info needed until you choose to upgrade.</p></div>
+      <div class="faq-item"><h3>What happens when the trial ends?</h3><p>You'll see a friendly screen from Chirpy explaining the options. Your child's progress data is saved for 90 days, so nothing is lost if you decide to upgrade later.</p></div>
+      <div class="faq-item"><h3>Can I cancel any time?</h3><p>Yes, always. Cancel from your account settings with one click. No questions asked, no penalty, no run-around.</p></div>
+      <div class="faq-item"><h3>Is this COPPA-compliant?</h3><p>Yes. Children under 13 do not create their own accounts — all child profiles are created and managed by a parent or teacher. Read our Privacy Policy for full details.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--sky-light);text-align:center;">
+  <div class="container" style="max-width:540px;">
+    <div style="margin-bottom:16px;"><i data-lucide="graduation-cap" style="width:48px;height:48px;color:var(--sky-dark);"></i></div>
+    <h2 style="margin-bottom:12px;">Ready to start?</h2>
+    <p>Join thousands of families learning with Chirpy and Mama Bird. Your first 3 months are completely free.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px;">
+      <a href="login.html" class="btn btn-red btn-lg">Start Free Trial →</a>
+      <a href="chatbot.html" class="btn btn-outline">Try the Demo First</a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+const API = 'https://web-production-bcff5.up.railway.app';
+const SITE = 'https://mamabird-chirpy.netlify.app';
+
+// After redirect from login with a pending plan, auto-trigger checkout
+const pendingPlan = sessionStorage.getItem('pending_plan');
+if (pendingPlan && localStorage.getItem('mb_token')) {
+  sessionStorage.removeItem('pending_plan');
+  startCheckout(pendingPlan);
+}
+
+async function startCheckout(plan) {
+  const token = localStorage.getItem('mb_token');
+  if (!token) {
+    sessionStorage.setItem('pending_plan', plan);
+    window.location.href = 'login.html?next=pricing';
+    return;
+  }
+  const btn = document.getElementById('btn-' + plan);
+  const orig = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = 'Redirecting to payment…'; btn.style.opacity = '.7'; btn.style.pointerEvents = 'none'; }
+  try {
+    const res = await fetch(API + '/payments/create-checkout-session', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
+      body: JSON.stringify({
+        plan,
+        success_url: SITE + '/payment-success.html',
+        cancel_url:  SITE + '/pricing.html'
+      })
+    });
+    const data = await res.json();
+    if (res.ok && data.checkout_url) {
+      window.location.href = data.checkout_url;
+    } else {
+      alert('Could not start checkout. Please try again.');
+      if (btn) { btn.textContent = orig; btn.style.opacity = ''; btn.style.pointerEvents = ''; }
+    }
+  } catch(e) {
+    alert('Connection error. Please try again.');
+    if (btn) { btn.textContent = orig; btn.style.opacity = ''; btn.style.pointerEvents = ''; }
+  }
+}
+</script>
+</body></html>

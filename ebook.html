@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Download the eBook — Three Baby Birdies</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.ebook-page { padding-top:var(--nav-h); min-height:100vh; background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%); }
+.ebook-hero { max-width:var(--max-w); margin:0 auto; padding:72px var(--sp-md) 0; display:grid; grid-template-columns:1.1fr 1fr; gap:80px; align-items:center; }
+.ebook-cover-3d { position:relative; display:flex; justify-content:center; }
+.ebook-cover-3d img { width:280px; border-radius:var(--r-md); box-shadow:var(--sh-lg),-12px 16px 48px rgba(74,154,184,.25); transition:transform .4s; }
+.ebook-cover-3d img:hover { transform:rotate(-4deg) scale(1.03); }
+.ebook-spine { position:absolute; left:calc(50% - 154px); top:6px; bottom:6px; width:16px; background:var(--sky-dark); border-radius:4px 0 0 4px; }
+.float-badge { position:absolute; top:-12px; right:calc(50% - 152px); background:var(--yellow); color:var(--brown-dark); font-family:var(--font-display); font-weight:700; font-size:.8rem; padding:7px 16px; border-radius:var(--r-full); box-shadow:var(--sh-sm); white-space:nowrap; }
+.float-secure { position:absolute; bottom:24px; left:calc(50% - 172px); background:#fff; font-family:var(--font-display); font-weight:700; font-size:.75rem; padding:8px 14px; border-radius:var(--r-full); box-shadow:var(--sh-sm); color:var(--mid); display:flex; align-items:center; gap:6px; white-space:nowrap; }
+.ebook-info .section-label { margin-bottom:var(--sp-sm); }
+.ebook-info h1 { font-size:clamp(2rem,4vw,3rem); margin-bottom:16px; }
+.price-row { display:flex; align-items:baseline; gap:12px; margin-bottom:8px; }
+.price-now { font-family:var(--font-display); font-weight:700; font-size:3rem; color:var(--dark); line-height:1; }
+.price-was { font-family:var(--font-display); font-weight:600; font-size:1.1rem; color:var(--light-text); text-decoration:line-through; }
+.price-save { background:var(--yellow); color:var(--brown-dark); font-family:var(--font-display); font-weight:700; font-size:.78rem; padding:4px 12px; border-radius:var(--r-full); }
+.what-inside { margin:28px 0; }
+.what-inside h3 { font-size:.95rem; margin-bottom:14px; }
+.inside-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.inside-list li { display:flex; align-items:center; gap:10px; font-size:.92rem; color:var(--mid); }
+.inside-list li::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+.buy-btn { width:100%; padding:18px; font-size:1.05rem; justify-content:center; margin-bottom:12px; }
+.trust-row { display:flex; gap:20px; flex-wrap:wrap; }
+.trust-item { display:flex; align-items:center; gap:6px; font-size:.78rem; color:var(--light-text); font-family:var(--font-display); }
+#checkout-err { display:none; background:#fef2f2; border:1px solid #fca5a5; border-radius:var(--r-sm); padding:10px 14px; font-size:.83rem; color:#b91c1c; font-family:var(--font-display); font-weight:600; margin-top:12px; }
+
+/* Preview section */
+.preview-section { background:#fff; }
+.preview-pages { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.preview-card { border-radius:var(--r-md); overflow:hidden; box-shadow:var(--sh-sm); position:relative; }
+.preview-card img { width:100%; display:block; aspect-ratio:.75; object-fit:cover; background:var(--sky-xlight); }
+.preview-label { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,.6)); padding:16px 12px 10px; color:#fff; font-family:var(--font-display); font-weight:700; font-size:.82rem; }
+.preview-blur { filter:blur(6px); }
+
+/* Compare section */
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.compare-card { border-radius:var(--r-md); padding:28px; }
+.compare-card.ours { background:var(--sky-xlight); border:2px solid var(--sky); }
+.compare-card.theirs { background:var(--cream); border:2px solid var(--cream-dark); }
+.compare-title { font-family:var(--font-display); font-weight:700; font-size:1rem; margin-bottom:14px; }
+.compare-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.compare-list li { font-size:.85rem; color:var(--mid); display:flex; gap:8px; }
+.compare-list li.yes::before { content:'✓'; color:var(--green); font-weight:700; }
+.compare-list li.no::before  { content:'✗'; color:var(--red); font-weight:700; }
+
+@media(max-width:960px){ .ebook-hero{grid-template-columns:1fr; gap:48px;} .ebook-cover-3d{order:-1;} .preview-pages{grid-template-columns:1fr 1fr;} .compare-grid{grid-template-columns:1fr;} }
+@media(max-width:560px){ .preview-pages{grid-template-columns:1fr;} .price-now{font-size:2.4rem;} }
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<!-- HERO -->
+<div class="ebook-page">
+  <div class="ebook-hero">
+    <!-- Book cover 3D -->
+    <div class="ebook-cover-3d float">
+      <div class="ebook-spine"></div>
+      <img src="assets/frontpage.png" alt="Three Baby Birdies eBook cover">
+      <div class="float-badge"><i data-lucide="zap" style="width:12px;height:12px;"></i> Instant Download</div>
+      <div class="float-secure"><i data-lucide="shield-check" style="width:13px;height:13px;color:var(--green);"></i> Secure · No account needed</div>
+    </div>
+
+    <!-- Purchase info -->
+    <div class="ebook-info">
+      <span class="section-label"><i data-lucide="download" style="width:13px;height:13px;"></i> Digital eBook</span>
+      <h1>Three Baby Birdies<br><span style="color:var(--sky-dark);">— Full Illustrated Story</span></h1>
+      <p>The complete, beautifully illustrated story of Chirpy and his siblings — as a high-quality PDF you can read on any device, print for your little one, or keep forever in your digital library.</p>
+
+      <div class="price-row" style="margin-top:20px;">
+        <div class="price-now">$4.99</div>
+        <div class="price-was">$9.99</div>
+        <div class="price-save">50% OFF</div>
+      </div>
+      <div style="font-size:.82rem;color:var(--light-text);margin-bottom:24px;font-family:var(--font-display);">One-time purchase · Instant PDF delivery · Keep forever</div>
+
+      <div class="what-inside">
+        <h3>What's inside:</h3>
+        <ul class="inside-list">
+          <li>Full 32-page illustrated story — PDF format</li>
+          <li>Printable high-resolution pages (300 DPI)</li>
+          <li>Read on iPad, Kindle, phone, or computer</li>
+          <li>Same story as the Amazon Kindle edition</li>
+          <li>Perfect for bedtime, storytime &amp; read-alouds</li>
+        </ul>
+      </div>
+
+      <button class="btn btn-red buy-btn" id="buy-btn" onclick="startEbookCheckout()">
+        <i data-lucide="download" style="width:18px;height:18px;"></i> Download for $4.99 — Instant Access
+      </button>
+
+      <div class="trust-row">
+        <span class="trust-item"><i data-lucide="shield-check" style="width:13px;height:13px;color:var(--green);"></i> Secure payment via Stripe</span>
+        <span class="trust-item"><i data-lucide="download" style="width:13px;height:13px;color:var(--sky-dark);"></i> Instant download after payment</span>
+        <span class="trust-item"><i data-lucide="refresh-cw" style="width:13px;height:13px;color:var(--orange);"></i> 30-day money-back guarantee</span>
+      </div>
+      <div id="checkout-err"></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT'S INSIDE PREVIEW -->
+<section class="section preview-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label"><i data-lucide="eye" style="width:13px;height:13px;"></i> Preview</span>
+      <h2>A peek inside the story</h2>
+      <p>Warm, rhythmic language and illustrations your little ones will love.</p>
+    </div>
+    <div class="preview-pages">
+      <div class="preview-card reveal">
+        <div style="background:linear-gradient(135deg,#D6EDF8,#C8E6F5);aspect-ratio:.75;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;">
+          <div style="font-size:4rem;">🐦🐦🐦</div>
+          <div style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--sky-dark);margin-top:12px;">Three Baby Birdies</div>
+          <div style="font-size:.85rem;color:var(--mid);margin-top:8px;font-style:italic;">"Chirp chirp chirp,<br>little birds in the nest..."</div>
+        </div>
+        <div class="preview-label">Cover Page</div>
+      </div>
+      <div class="preview-card reveal">
+        <div style="background:linear-gradient(135deg,var(--sky-xlight),#E8F5FB);aspect-ratio:.75;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;filter:blur(4px);">
+          <div style="font-size:3rem;">☁️🌤️</div>
+          <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--sky-dark);margin-top:12px;">Blue sky above...</div>
+          <div style="font-size:.82rem;color:var(--mid);margin-top:8px;font-style:italic;">"Flap your wings and try to fly,<br>it is just as easy as pie."</div>
+        </div>
+        <div class="preview-label">Page 8 (preview blurred)</div>
+      </div>
+      <div class="preview-card reveal">
+        <div style="background:linear-gradient(135deg,#FFF8E1,#FFF3CC);aspect-ratio:.75;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;filter:blur(4px);">
+          <div style="font-size:3rem;">☀️🌿</div>
+          <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--brown);margin-top:12px;">A warm sun shines...</div>
+          <div style="font-size:.82rem;color:var(--mid);margin-top:8px;font-style:italic;">"Tweet tweet tweet,<br>the birdies all sing..."</div>
+        </div>
+        <div class="preview-label">Page 18 (preview blurred)</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <button class="btn btn-red btn-lg" onclick="startEbookCheckout()"><i data-lucide="download" style="width:18px;height:18px;"></i> Get Full Story — $4.99</button>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label"><i data-lucide="layers" style="width:13px;height:13px;"></i> Why our PDF?</span>
+      <h2>Our eBook vs. Amazon Kindle</h2>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card ours reveal">
+        <div class="compare-title">🐦 Three Baby Birdies PDF — $4.99</div>
+        <ul class="compare-list">
+          <li class="yes">Works on ANY device — no Kindle required</li>
+          <li class="yes">Printable pages (300 DPI)</li>
+          <li class="yes">Works offline, forever</li>
+          <li class="yes">Email it to family &amp; teachers</li>
+          <li class="yes">Signed by Iris (optional upgrade)</li>
+          <li class="yes">30-day money-back guarantee</li>
+        </ul>
+      </div>
+      <div class="compare-card theirs reveal">
+        <div class="compare-title">📱 Amazon Kindle Edition</div>
+        <ul class="compare-list">
+          <li class="yes">Available on Kindle app</li>
+          <li class="no">Requires Kindle or Kindle app</li>
+          <li class="no">Not printable</li>
+          <li class="no">Tied to your Amazon account</li>
+          <li class="no">Can't share with others</li>
+          <li class="no">Amazon controls the file</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--sky-light);">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label"><i data-lucide="star" style="width:13px;height:13px;"></i> What families say</span>
+      <h2>Loved by little readers</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">Downloaded the PDF and printed it for my daughter — she carries it everywhere. The illustrations are so warm and beautiful.</p><div class="t-author"><div class="t-avatar" style="background:var(--sky);">ML</div><div><div class="t-name">Maria L.</div><div class="t-role">Parent · Miami, FL</div></div></div></div>
+      <div class="t-card reveal"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">Read it on my iPad at bedtime every night. The rhyming rhythm is so easy to follow — my 3-year-old memorised the whole thing!</p><div class="t-author"><div class="t-avatar" style="background:var(--green);">JT</div><div><div class="t-name">Jamie T.</div><div class="t-role">Parent · Austin, TX</div></div></div></div>
+      <div class="t-card reveal"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">Gifted this to my sister's kids. The PDF was super convenient and they both love it. Simple but so sweet.</p><div class="t-author"><div class="t-avatar" style="background:var(--brown);">RK</div><div><div class="t-name">Rachel K.</div><div class="t-role">Aunt · Vancouver, BC</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section" style="background:linear-gradient(135deg,var(--sky-dark),var(--sky));text-align:center;">
+  <div class="container" style="max-width:560px;">
+    <div style="font-size:3rem;margin-bottom:16px;">🐦</div>
+    <h2 style="color:#fff;margin-bottom:12px;">Ready to read?</h2>
+    <p style="color:rgba(255,255,255,.8);margin-bottom:28px;">Instant PDF download. Works on every device. Beloved by children and families worldwide.</p>
+    <button class="btn btn-yellow btn-lg" onclick="startEbookCheckout()" style="justify-content:center;">
+      <i data-lucide="download" style="width:18px;height:18px;"></i> Download for $4.99 — Instant Access
+    </button>
+    <div style="margin-top:14px;font-size:.78rem;color:rgba(255,255,255,.5);font-family:var(--font-display);">
+      Secure payment · Instant delivery · 30-day guarantee
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+const API = 'https://web-production-bcff5.up.railway.app';
+const SITE = 'https://mamabird-chirpy.netlify.app';
+
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+async function startEbookCheckout() {
+  const btn = document.getElementById('buy-btn');
+  const errEl = document.getElementById('checkout-err');
+  if (btn) { btn.disabled = true; btn.textContent = 'Redirecting to payment…'; }
+  errEl.style.display = 'none';
+  try {
+    const res = await fetch(API + '/payments/ebook-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        success_url: SITE + '/ebook-download.html',
+        cancel_url:  SITE + '/ebook.html',
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.detail || 'Payment setup failed');
+    window.location.href = data.checkout_url;
+  } catch (err) {
+    errEl.style.display = 'block';
+    errEl.textContent = '⚠️ ' + (err.message || 'Could not start payment. Please try again.');
+    if (btn) { btn.disabled = false; btn.innerHTML = '<i data-lucide="download" style="width:18px;height:18px;"></i> Download for $4.99 — Instant Access'; if (window.lucide) lucide.createIcons({nodes:[btn]}); }
+  }
+}
+</script>
+</body>
+</html>

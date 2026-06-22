@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Welcome to Chirpy's Classroom! — Three Baby Birdies</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--sky-light) 40%,var(--cream)); min-height:100vh; }
+.success-page { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:var(--nav-h) var(--sp-md) var(--sp-lg); }
+.success-card {
+  background:#fff; border-radius:var(--r-lg); padding:56px 48px;
+  max-width:560px; width:100%; text-align:center; box-shadow:var(--sh-lg);
+}
+.success-icon {
+  width:80px; height:80px; border-radius:50%;
+  background:linear-gradient(135deg,var(--sky-light),var(--green-light));
+  display:flex; align-items:center; justify-content:center;
+  font-size:2.5rem; margin:0 auto 24px;
+  animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes popIn { from{transform:scale(0);opacity:0} to{transform:scale(1);opacity:1} }
+.success-card h1 { font-size:1.8rem; margin-bottom:12px; color:var(--dark); }
+.success-card p  { color:var(--light-text); margin-bottom:8px; font-size:.95rem; }
+.success-details {
+  background:var(--cream); border-radius:var(--r-md); padding:20px 24px;
+  margin:28px 0; text-align:left; display:flex; flex-direction:column; gap:12px;
+}
+.success-detail { display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-size:.85rem; font-weight:600; color:var(--dark); }
+.success-detail-icon { width:32px; height:32px; border-radius:50%; background:var(--sky-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.success-actions { display:flex; flex-direction:column; gap:12px; margin-top:8px; }
+@media(max-width:560px){ .success-card{padding:36px 24px;} }
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<div class="success-page">
+  <div class="success-card">
+    <div class="success-icon">🎉</div>
+    <h1>Welcome to the nest!</h1>
+    <p>Your subscription is now active. Chirpy and Mama Bird are ready to start learning with your family.</p>
+    <p style="font-size:.82rem;">A confirmation email is on its way to <strong id="user-email">your inbox</strong>.</p>
+
+    <div class="success-details">
+      <div class="success-detail">
+        <div class="success-detail-icon"><i data-lucide="check" style="width:16px;height:16px;color:var(--green);"></i></div>
+        <span>Subscription activated</span>
+      </div>
+      <div class="success-detail">
+        <div class="success-detail-icon"><i data-lucide="feather" style="width:16px;height:16px;color:var(--sky-dark);"></i></div>
+        <span>Full access to Chirpy + Mama Bird</span>
+      </div>
+      <div class="success-detail">
+        <div class="success-detail-icon"><i data-lucide="bar-chart-2" style="width:16px;height:16px;color:var(--sky-dark);"></i></div>
+        <span>Progress dashboard unlocked</span>
+      </div>
+      <div class="success-detail">
+        <div class="success-detail-icon"><i data-lucide="clipboard-list" style="width:16px;height:16px;color:var(--sky-dark);"></i></div>
+        <span>Lesson plan generator ready</span>
+      </div>
+    </div>
+
+    <div class="success-actions">
+      <a href="chatbot.html" class="btn btn-sky btn-lg" style="justify-content:center;">
+        <i data-lucide="graduation-cap" style="width:18px;height:18px;"></i> Start Learning with Chirpy
+      </a>
+      <a href="index.html" class="btn btn-outline btn-sm" style="justify-content:center;">Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+const user = JSON.parse(localStorage.getItem('mb_user') || 'null');
+if (user && user.email) document.getElementById('user-email').textContent = user.email;
+if (!localStorage.getItem('mb_token')) window.location.href = 'login.html';
+</script>
+</body></html>

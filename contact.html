@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact — Three Baby Birdies</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.contact-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:64px; align-items:start; }
+.contact-info-card { background:#fff; border-radius:var(--r-lg); padding:32px; box-shadow:var(--sh-sm); margin-bottom:20px; }
+.contact-info-item { display:flex; gap:16px; align-items:flex-start; margin-bottom:24px; }
+.contact-info-item:last-child { margin-bottom:0; }
+.contact-info-icon { width:44px;height:44px;border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0; }
+.contact-info-label { font-family:var(--font-display);font-weight:700;font-size:.8rem;color:var(--light-text);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px; }
+.contact-info-val { font-family:var(--font-display);font-weight:600;font-size:.95rem;color:var(--dark); }
+.contact-form-card { background:#fff; border-radius:var(--r-lg); padding:36px; box-shadow:var(--sh-sm); }
+.form-group { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+.form-label { font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--dark); }
+.form-input,.form-textarea {
+  padding:13px 16px; border-radius:var(--r-md); border:1.5px solid var(--cream-dark);
+  font-family:var(--font-body); font-size:.95rem; outline:none; transition:border-color .18s;
+  background:var(--cream); color:var(--dark); width:100%;
+}
+.form-input:focus,.form-textarea:focus { border-color:var(--sky); background:#fff; }
+.form-textarea { resize:vertical; min-height:120px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.reason-pills { display:flex; flex-wrap:wrap; gap:8px; }
+.reason-pill {
+  padding:6px 14px; border-radius:var(--r-full); border:1.5px solid var(--cream-dark);
+  background:var(--cream); font-family:var(--font-display); font-weight:600; font-size:.8rem;
+  color:var(--mid); cursor:pointer; transition:all .18s;
+}
+.reason-pill.active { border-color:var(--sky); color:var(--sky-dark); background:var(--sky-light); }
+@media(max-width:860px){ .contact-grid{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="section-label"><i data-lucide="mail" style="width:13px;height:13px;"></i> Get in Touch</span>
+    <h1>Say hello to<br>the birdies</h1>
+    <p>Questions about the book, school visit requests, signed copies, or Chirpy's Classroom — we'd love to hear from you.</p>
+  </div>
+</div>
+
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-card">
+          <div class="contact-info-item">
+            <div class="contact-info-icon" style="background:var(--sky-light);"><i data-lucide="mail" style="width:22px;height:22px;color:var(--sky-dark);"></i></div>
+            <div><div class="contact-info-label">Email</div><div class="contact-info-val">iris@threebabybirdies.com</div></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon" style="background:var(--green-light);"><i data-lucide="map-pin" style="width:22px;height:22px;color:var(--green);"></i></div>
+            <div><div class="contact-info-label">Availability</div><div class="contact-info-val">Available Nationwide<br><span style="font-size:.82rem;color:var(--light-text);">School visits by request</span></div></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon" style="background:var(--yellow-light);"><i data-lucide="clock" style="width:22px;height:22px;color:var(--brown);"></i></div>
+            <div><div class="contact-info-label">Response Time</div><div class="contact-info-val">Within 2 business days</div></div>
+          </div>
+        </div>
+        <div class="contact-info-card">
+          <h3 style="margin-bottom:16px;font-size:1rem;">Common requests</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span><i data-lucide="pen-line" style="width:16px;height:16px;color:var(--sky-dark);"></i></span><span style="font-size:.88rem;color:var(--mid);">Order a signed copy of the book</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span><i data-lucide="building-2" style="width:16px;height:16px;color:var(--sky-dark);"></i></span><span style="font-size:.88rem;color:var(--mid);">Request a school or library visit</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span><i data-lucide="package" style="width:16px;height:16px;color:var(--sky-dark);"></i></span><span style="font-size:.88rem;color:var(--mid);">Bulk orders for classrooms</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span><i data-lucide="newspaper" style="width:16px;height:16px;color:var(--sky-dark);"></i></span><span style="font-size:.88rem;color:var(--mid);">Press and media enquiries</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start;"><span><i data-lucide="graduation-cap" style="width:16px;height:16px;color:var(--sky-dark);"></i></span><span style="font-size:.88rem;color:var(--mid);">Chirpy's Classroom support</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-card">
+        <h3 style="margin-bottom:20px;">Send a message</h3>
+        <div class="form-group">
+          <label class="form-label">What's this about?</label>
+          <div class="reason-pills">
+            <button type="button" class="reason-pill active" onclick="setReason(this)"><i data-lucide="pen-line" style="width:13px;height:13px;"></i> Signed Copy</button>
+            <button type="button" class="reason-pill" onclick="setReason(this)"><i data-lucide="building-2" style="width:13px;height:13px;"></i> School Visit</button>
+            <button type="button" class="reason-pill" onclick="setReason(this)"><i data-lucide="package" style="width:13px;height:13px;"></i> Bulk Order</button>
+            <button type="button" class="reason-pill" onclick="setReason(this)"><i data-lucide="graduation-cap" style="width:13px;height:13px;"></i> Chirpy's Classroom</button>
+            <button type="button" class="reason-pill" onclick="setReason(this)"><i data-lucide="newspaper" style="width:13px;height:13px;"></i> Press</button>
+            <button type="button" class="reason-pill" onclick="setReason(this)"><i data-lucide="message-circle" style="width:13px;height:13px;"></i> Other</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" placeholder="First name"></div>
+          <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" placeholder="Last name"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email" placeholder="you@example.com"></div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell Iris what's on your mind..."></textarea></div>
+        <button class="btn btn-red" style="width:100%;justify-content:center;" type="button"><i data-lucide="send" style="width:16px;height:16px;"></i> Send Message</button>
+        <p style="text-align:center;font-size:.78rem;color:var(--light-text);margin-top:12px;">We typically reply within 2 business days.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>function setReason(el){ document.querySelectorAll('.reason-pill').forEach(p=>p.classList.remove('active')); el.classList.add('active'); }</script>
+</body></html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Download Your eBook — Three Baby Birdies</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%); min-height:100vh; }
+.dl-page { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:var(--nav-h) var(--sp-md) var(--sp-lg); }
+.dl-card { background:#fff; border-radius:var(--r-lg); box-shadow:var(--sh-lg); max-width:560px; width:100%; overflow:hidden; }
+.dl-head { padding:40px; text-align:center; }
+.dl-head-success { background:linear-gradient(135deg,#4A8B3F,#2D6A27); }
+.dl-head-loading { background:linear-gradient(135deg,var(--sky),var(--sky-dark)); }
+.dl-head-error   { background:linear-gradient(135deg,#CC2929,#A82020); }
+.dl-icon { font-size:3.5rem; margin-bottom:12px; }
+.dl-title { font-family:var(--font-display); font-weight:700; font-size:1.5rem; color:#fff; margin-bottom:6px; }
+.dl-sub   { font-size:.88rem; color:rgba(255,255,255,.75); }
+.dl-body  { padding:40px; }
+.dl-book-row { display:flex; align-items:center; gap:20px; background:var(--cream); border-radius:var(--r-md); padding:16px 20px; margin-bottom:28px; }
+.dl-book-cover { width:64px; border-radius:8px; box-shadow:var(--sh-sm); }
+.dl-book-title { font-family:var(--font-display); font-weight:700; font-size:1rem; color:var(--dark); }
+.dl-book-meta  { font-size:.78rem; color:var(--light-text); margin-top:3px; }
+.dl-btn { width:100%; padding:16px; font-size:1rem; justify-content:center; margin-bottom:14px; }
+.dl-instructions { background:var(--sky-xlight); border-radius:var(--r-sm); padding:16px 18px; }
+.dl-instructions h4 { font-size:.88rem; margin-bottom:8px; }
+.dl-instructions ol  { padding-left:18px; font-size:.82rem; color:var(--mid); display:flex; flex-direction:column; gap:6px; }
+#loading-state, #success-state, #error-state { display:none; }
+.spinner { width:40px; height:40px; border:4px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 12px; }
+@keyframes spin { to { transform:rotate(360deg); } }
+</style>
+</head>
+<body>
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<div class="dl-page">
+  <div class="dl-card">
+
+    <!-- LOADING STATE -->
+    <div id="loading-state">
+      <div class="dl-head dl-head-loading">
+        <div class="spinner"></div>
+        <div class="dl-title">Verifying your payment…</div>
+        <div class="dl-sub">This takes just a moment</div>
+      </div>
+      <div class="dl-body" style="text-align:center;color:var(--light-text);font-size:.88rem;">
+        Please wait while we confirm your purchase with Stripe.
+      </div>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="success-state">
+      <div class="dl-head dl-head-success">
+        <div class="dl-icon">🎉</div>
+        <div class="dl-title">Payment confirmed!</div>
+        <div class="dl-sub">Your copy of Three Baby Birdies is ready to download</div>
+      </div>
+      <div class="dl-body">
+        <div class="dl-book-row">
+          <img src="assets/frontpage.png" alt="Three Baby Birdies" class="dl-book-cover">
+          <div>
+            <div class="dl-book-title">Three Baby Birdies</div>
+            <div class="dl-book-meta">By Iris &amp; Ronald Scarfone · Full Illustrated Story · PDF</div>
+          </div>
+        </div>
+        <a id="download-btn" href="#" class="btn btn-red btn-lg dl-btn" download="Three-Baby-Birdies.pdf">
+          <i data-lucide="download" style="width:18px;height:18px;"></i> Download Your eBook (PDF)
+        </a>
+        <div class="dl-instructions">
+          <h4>📱 How to open your eBook:</h4>
+          <ol>
+            <li><strong>iPhone/iPad:</strong> Tap Download → tap the PDF → tap Share → "Books" or "Save to Files"</li>
+            <li><strong>Android:</strong> Tap Download → open from Downloads → any PDF reader works</li>
+            <li><strong>Computer:</strong> File downloads automatically — open with any PDF viewer</li>
+            <li><strong>Print it:</strong> Open the PDF and choose "Print" — all pages print at full quality</li>
+          </ol>
+        </div>
+        <div style="margin-top:20px;text-align:center;font-size:.8rem;color:var(--light-text);">
+          A receipt was sent to your email. For support: <a href="mailto:iris@threebabybirdies.com" style="color:var(--sky-dark);">iris@threebabybirdies.com</a>
+        </div>
+        <div style="margin-top:20px;border-top:1px solid var(--cream-dark);padding-top:20px;text-align:center;">
+          <div style="font-family:var(--font-display);font-weight:700;font-size:.88rem;margin-bottom:10px;color:var(--dark);">While you're here — try Chirpy's free AI classroom:</div>
+          <a href="chatbot.html" class="btn btn-sky btn-sm" style="margin-right:8px;"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Meet Chirpy</a>
+          <a href="pricing.html" class="btn btn-outline btn-sm">See Plans</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div id="error-state">
+      <div class="dl-head dl-head-error">
+        <div class="dl-icon">⚠️</div>
+        <div class="dl-title" id="error-title">Payment not found</div>
+        <div class="dl-sub" id="error-sub">We couldn't verify your purchase</div>
+      </div>
+      <div class="dl-body" style="text-align:center;">
+        <p style="color:var(--mid);margin-bottom:24px;" id="error-msg">
+          If you completed payment, please contact us and we'll send your eBook directly.
+        </p>
+        <a href="mailto:iris@threebabybirdies.com?subject=eBook%20download%20issue" class="btn btn-red btn-lg dl-btn">
+          <i data-lucide="mail" style="width:18px;height:18px;"></i> Email us for help
+        </a>
+        <a href="ebook.html" class="btn btn-outline dl-btn" style="margin-top:0;">← Back to eBook page</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer id="footer"></footer>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+const API = 'https://web-production-bcff5.up.railway.app';
+
+function show(id) {
+  ['loading-state','success-state','error-state'].forEach(s => {
+    document.getElementById(s).style.display = (s === id) ? 'block' : 'none';
+  });
+}
+
+async function verifyAndUnlock() {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+
+  if (!sessionId) {
+    show('error-state');
+    document.getElementById('error-title').textContent = 'No payment session found';
+    document.getElementById('error-msg').textContent = 'This page requires a valid Stripe session. Please purchase the eBook first.';
+    return;
+  }
+
+  show('loading-state');
+
+  try {
+    const res = await fetch(`${API}/payments/ebook-verify?session_id=${encodeURIComponent(sessionId)}`);
+    const data = await res.json();
+
+    if (!res.ok || !data.verified) {
+      show('error-state');
+      document.getElementById('error-title').textContent = data.detail || 'Payment not verified';
+      document.getElementById('error-sub').textContent = 'Please contact us if you believe this is an error.';
+      return;
+    }
+
+    // Payment verified — set download URL
+    if (data.download_url) {
+      document.getElementById('download-btn').href = data.download_url;
+    }
+    show('success-state');
+    if (window.lucide) lucide.createIcons();
+
+  } catch (err) {
+    show('error-state');
+    document.getElementById('error-title').textContent = 'Connection error';
+    document.getElementById('error-msg').textContent = 'Could not reach the server. Please try again or email us.';
+  }
+}
+
+verifyAndUnlock();
+</script>
+</body>
+</html>

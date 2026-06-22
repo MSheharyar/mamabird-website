@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Three Baby Birdies — A Read-Aloud Story by Iris Scarfone</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ---- HOME-ONLY STYLES ---- */
+#hero {
+  min-height:100vh; padding-top:var(--nav-h);
+  position:relative; overflow:hidden; display:flex; align-items:center;
+  background:linear-gradient(155deg,#D6EDF8 0%,#E8F5FB 30%,var(--cream) 65%);
+}
+.hero-bg { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.hero-inner {
+  display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+  padding:80px var(--sp-md) 60px; max-width:var(--max-w); margin:0 auto; width:100%;
+}
+.hero-rhyme {
+  font-family:var(--font-display); font-size:.95rem; font-weight:600; color:var(--sky-dark);
+  background:rgba(110,180,212,.12); border-left:3px solid var(--sky);
+  padding:12px 18px; border-radius:0 var(--r-sm) var(--r-sm) 0;
+  margin-bottom:var(--sp-md); font-style:italic; line-height:1.65;
+}
+.hero-rhyme small { display:block; margin-top:6px; font-size:.7rem; opacity:.55; font-style:normal; }
+.hero-title .accent { color:var(--sky-dark); }
+.hero-sub   { max-width:460px; margin-bottom:var(--sp-md); }
+.hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:var(--sp-md); }
+.hero-badges  { display:flex; flex-wrap:wrap; gap:8px; }
+.hero-badge {
+  display:inline-flex; align-items:center; gap:6px; padding:5px 14px;
+  background:rgba(255,255,255,.9); border:1px solid rgba(155,107,53,.15);
+  border-radius:var(--r-full); font-family:var(--font-display); font-weight:600;
+  font-size:.82rem; color:var(--mid);
+}
+.scroll-cue { display:flex; align-items:center; gap:10px; margin-top:40px;
+  font-family:var(--font-display); font-size:.78rem; font-weight:600; color:var(--light-text); }
+
+/* Book 3D mockup */
+.hero-book-col { display:flex; justify-content:center; align-items:center; }
+.book-3d { position:relative; width:255px; transition:transform .4s ease; }
+.book-3d:hover { transform:rotate(-3deg) scale(1.02); }
+.book-spine {
+  position:absolute; left:-15px; top:6px; bottom:6px; width:15px;
+  background:var(--sky-dark); border-radius:4px 0 0 4px; box-shadow:-3px 0 10px rgba(0,0,0,.15);
+}
+.book-cover {
+  width:100%; border-radius:var(--r-md); overflow:hidden;
+  box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);
+  border:3px solid rgba(255,255,255,.5);
+  aspect-ratio:.72;
+}
+.book-float {
+  position:absolute; font-family:var(--font-display); font-weight:700;
+  font-size:.75rem; padding:7px 16px; border-radius:var(--r-full);
+  box-shadow:var(--sh-md); white-space:nowrap;
+}
+.book-float-top{ top:-14px; right:-24px; background:var(--yellow); color:var(--brown-dark); }
+.book-float-bot{ bottom:20px; left:-32px; background:#fff; color:var(--dark); border:1px solid var(--cream-dark); }
+
+/* Book section */
+.book-grid { display:grid; grid-template-columns:1fr 1.5fr; gap:80px; align-items:center; }
+.book-col-display { display:flex; justify-content:center; }
+
+/* About */
+.about-grid { display:grid; grid-template-columns:1.3fr 1fr; gap:80px; align-items:center; }
+.author-photo-frame { position:relative; display:inline-block; }
+.author-photo-box {
+  width:285px; height:330px; border-radius:var(--r-lg);
+  overflow:hidden; box-shadow:var(--sh-md);
+}
+.author-accent { position:absolute; inset:0; border:3px solid var(--yellow); border-radius:var(--r-lg); transform:translate(10px,10px); z-index:-1; }
+
+/* Testimonials */
+.t-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+
+/* Newsletter */
+.nl-section { background:var(--dark); }
+.nl-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.nl-left h2 { color:#fff; margin-bottom:12px; }
+.nl-left p  { color:rgba(255,255,255,.55); }
+.incentive-pill {
+  display:inline-flex; align-items:center; gap:8px;
+  background:rgba(245,194,0,.12); border:1px solid rgba(245,194,0,.25);
+  border-radius:var(--r-full); padding:7px 16px;
+  font-family:var(--font-display); font-weight:700; font-size:.78rem;
+  color:var(--yellow); margin-bottom:20px;
+}
+.nl-form { display:flex; flex-direction:column; gap:12px; }
+.nl-input {
+  padding:15px 20px; border-radius:var(--r-full);
+  border:1.5px solid rgba(255,255,255,.1); background:rgba(255,255,255,.06);
+  color:#fff; font-family:var(--font-body); font-size:1rem; outline:none;
+  transition:border-color .18s;
+}
+.nl-input::placeholder { color:rgba(255,255,255,.3); }
+.nl-input:focus { border-color:var(--sky); }
+.nl-fine { font-size:.75rem; color:rgba(255,255,255,.3); margin-top:4px; }
+
+/* Responsive */
+@media(max-width:960px){
+  .hero-inner { grid-template-columns:1fr; gap:40px; text-align:center; }
+  .hero-book-col { order:-1; }
+  .hero-sub,.hero-actions,.hero-badges,.scroll-cue { margin-left:auto; margin-right:auto; justify-content:center; }
+  .book-grid   { grid-template-columns:1fr; gap:40px; }
+  .book-col-display { order:-1; }
+  .about-grid  { grid-template-columns:1fr; gap:40px; }
+  .author-photo-frame { order:-1; }
+  .t-grid      { grid-template-columns:1fr; }
+  .nl-grid     { grid-template-columns:1fr; gap:40px; }
+}
+@media(max-width:560px){
+  .hero-actions { flex-direction:column; }
+  .btn { width:100%; justify-content:center; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <!-- Animated gradient blobs -->
+    <div class="blob" style="width:420px;height:420px;background:#6EB4D4;opacity:.22;top:-100px;left:-80px;animation-duration:10s;"></div>
+    <div class="blob" style="width:320px;height:320px;background:#F5C200;opacity:.15;top:80px;right:-60px;animation-duration:13s;animation-delay:-4s;"></div>
+    <div class="blob" style="width:250px;height:250px;background:#7C3AED;opacity:.12;bottom:20px;left:35%;animation-duration:11s;animation-delay:-2s;"></div>
+    <!-- Floating birds -->
+    <div class="float" style="position:absolute;top:18%;left:12%;font-size:1.6rem;opacity:.55;animation-duration:3.8s;">🐦</div>
+    <div class="float float-d1" style="position:absolute;top:25%;right:18%;font-size:1.2rem;opacity:.45;animation-duration:4.5s;">🐦</div>
+    <div class="float float-d2" style="position:absolute;bottom:28%;left:28%;font-size:1rem;opacity:.35;animation-duration:5.2s;">🐦</div>
+    <div class="float" style="position:absolute;top:45%;right:8%;font-size:2rem;opacity:.25;animation-duration:3.2s;">🪺</div>
+  </div>
+  <div class="hero-inner">
+    <div>
+      <div class="badge-ai" style="margin-bottom:16px;"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> NEW — Chirpy's AI Classroom is live!</div>
+      <div class="hero-rhyme">"Chirp chirp chirp. Flap your wings and try to fly.<br>It is just as easy as easy as pie."<small>— from Three Baby Birdies</small></div>
+      <h1 class="hero-title" style="margin-bottom:16px;">A nest of wonder<br><span class="accent">for little readers.</span></h1>
+      <p class="hero-sub">Three little red birds, a bright blue sky, and a warm sun — a gentle rhyming story made for bedtime, story time, and curious little ones. Now with an AI learning companion for ages 2–8.</p>
+      <div class="hero-actions">
+        <a href="chatbot.html" class="btn btn-red"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i> Try Chirpy Free</a>
+        <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-outline"><i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Buy the Book</a>
+      </div>
+      <div class="hero-badges">
+        <span class="hero-badge"><i data-lucide="feather" style="width:14px;height:14px;"></i> Little Birds</span>
+        <span class="hero-badge"><i data-lucide="sun" style="width:14px;height:14px;"></i> Sky &amp; Sun</span>
+        <span class="hero-badge"><i data-lucide="volume-2" style="width:14px;height:14px;"></i> Read-Aloud</span>
+        <span class="hero-badge"><i data-lucide="star" style="width:14px;height:14px;"></i> Ages 2–6</span>
+        <span class="hero-badge" style="background:var(--purple-light);border-color:rgba(124,58,237,.2);color:var(--purple);"><i data-lucide="bot" style="width:14px;height:14px;"></i> AI Tutor</span>
+      </div>
+      <div class="scroll-cue" style="margin-top:28px;"><div class="scroll-dot"></div>Scroll to explore</div>
+    </div>
+    <div class="hero-book-col">
+      <div style="position:relative;">
+        <div class="book-3d float" style="animation-duration:4s;">
+          <div class="book-spine"></div>
+          <div class="book-cover">
+            <img src="assets/frontpage.png" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+          <div class="book-float book-float-top"><i data-lucide="star" style="width:12px;height:12px;"></i> Ages 2–6</div>
+          <div class="book-float book-float-bot"><i data-lucide="graduation-cap" style="width:12px;height:12px;"></i> + AI Classroom</div>
+        </div>
+        <!-- Chirpy mini card floating beside book -->
+        <div class="glass-card float float-d1" style="position:absolute;right:-40px;bottom:40px;padding:12px 16px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);display:flex;align-items:center;gap:10px;white-space:nowrap;animation-duration:5s;">
+          <span style="font-size:1.4rem;">🐦</span>
+          <div>
+            <div style="font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--dark);">Chirpy says hi!</div>
+            <div style="font-size:.7rem;color:var(--sky-dark);">● Online &amp; ready to teach</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK SECTION -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="book-grid">
+      <div class="book-col-display">
+        <div style="position:relative;display:inline-block;">
+          <div style="position:absolute;left:-14px;top:8px;bottom:8px;width:14px;background:var(--sky-dark);border-radius:4px 0 0 4px;box-shadow:-3px 0 10px rgba(0,0,0,.15);"></div>
+          <img src="assets/frontpage.png" alt="Three Baby Birdies book cover"
+               style="width:280px;border-radius:var(--r-md);box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);border:3px solid rgba(255,255,255,.6);display:block;">
+          <div class="book-float" style="top:-14px;right:-24px;background:var(--yellow);color:var(--brown-dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;"><i data-lucide="star" style="width:12px;height:12px;"></i> Ages 2–6</div>
+          <div class="book-float" style="bottom:20px;left:-32px;background:#fff;color:var(--dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;border:1px solid var(--cream-dark);"><i data-lucide="volume-2" style="width:12px;height:12px;"></i> Read-Aloud</div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</span>
+        <h2 style="margin-bottom:16px;">Three little birds,<br>one big adventure.</h2>
+        <p style="margin-bottom:20px;">A cheerful tale of three little red birds in their nest — bright blue sky, fluffy clouds, warm sun above. Rhythmic, rhyming language that makes every read-aloud a joy.</p>
+        <div class="meta-grid">
+          <div class="meta-chip"><div class="meta-chip-label">Age Range</div><div class="meta-chip-val">Ages 2–6</div></div>
+          <div class="meta-chip"><div class="meta-chip-label">Style</div><div class="meta-chip-val">Rhyming</div></div>
+          <div class="meta-chip"><div class="meta-chip-label">Reading Level</div><div class="meta-chip-val">Beginner</div></div>
+          <div class="meta-chip"><div class="meta-chip-label">Language</div><div class="meta-chip-val">English</div></div>
+        </div>
+        <div class="format-pills">
+          <span class="format-pill"><i data-lucide="smartphone" style="width:13px;height:13px;"></i> Kindle eBook</span>
+          <span class="format-pill"><i data-lucide="book" style="width:13px;height:13px;"></i> Paperback</span>
+          <span class="format-pill"><i data-lucide="pen-line" style="width:13px;height:13px;"></i> Signed Copy</span>
+        </div>
+        <div class="buy-stack">
+          <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-yellow"><i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Buy Kindle eBook on Amazon</a>
+          <a href="book.html" class="btn btn-outline"><i data-lucide="pen-line" style="width:16px;height:16px;"></i> Order a Signed Paperback</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-wrap" style="overflow:hidden;padding:14px 0;background:var(--purple);">
+  <div class="marquee-track">
+    <span class="marquee-item">🐦 <span>Chirpy's Classroom</span></span>
+    <span class="marquee-item">✏️ <span>Spelling</span></span>
+    <span class="marquee-item">🎵 <span>Rhyming</span></span>
+    <span class="marquee-item">🔢 <span>Math</span></span>
+    <span class="marquee-item">📝 <span>Grammar</span></span>
+    <span class="marquee-item">🧩 <span>Puzzles</span></span>
+    <span class="marquee-item">📖 <span>Stories</span></span>
+    <span class="marquee-item">🪺 <span>Mama Bird</span></span>
+    <span class="marquee-item">⭐ <span>Free 3-month trial</span></span>
+    <span class="marquee-item">🐦 <span>Chirpy's Classroom</span></span>
+    <span class="marquee-item">✏️ <span>Spelling</span></span>
+    <span class="marquee-item">🎵 <span>Rhyming</span></span>
+    <span class="marquee-item">🔢 <span>Math</span></span>
+    <span class="marquee-item">📝 <span>Grammar</span></span>
+    <span class="marquee-item">🧩 <span>Puzzles</span></span>
+    <span class="marquee-item">📖 <span>Stories</span></span>
+    <span class="marquee-item">🪺 <span>Mama Bird</span></span>
+    <span class="marquee-item">⭐ <span>Free 3-month trial</span></span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<section style="background:linear-gradient(135deg,var(--dark) 0%,#3D1F12 100%);padding:0;">
+  <div class="stats-bar">
+    <div class="stat-item reveal"><div class="stat-number">6</div><div class="stat-label">Learning Subjects</div></div>
+    <div class="stat-item reveal"><div class="stat-number">2</div><div class="stat-label">AI Characters</div></div>
+    <div class="stat-item reveal"><div class="stat-number">3mo</div><div class="stat-label">Free Trial</div></div>
+    <div class="stat-item reveal"><div class="stat-number">100%</div><div class="stat-label">COPPA Safe</div></div>
+  </div>
+</section>
+
+<!-- AI CLASSROOM SECTION -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="badge-ai" style="display:inline-flex;margin-bottom:12px;"><i data-lucide="sparkles" style="width:13px;height:13px;"></i> Chirpy's Classroom</div>
+      <h2>Six subjects. Two characters.<br>One joyful AI classroom.</h2>
+      <p style="max-width:520px;margin:12px auto 0;">Let Chirpy and Mama Bird guide your child through spelling, rhyming, math, and more — all powered by Claude AI, all designed for ages 2–8.</p>
+    </div>
+
+    <!-- Subject tiles grid -->
+    <div class="subject-tiles" style="margin-bottom:56px;">
+      <a href="chatbot.html?subject=spelling" class="subject-tile tile-sky reveal">
+        <span class="subject-tile-emoji">✏️</span>
+        <div class="subject-tile-name">Spelling</div>
+        <div class="subject-tile-desc">Words, letters & phonics</div>
+      </a>
+      <a href="chatbot.html?subject=rhyming" class="subject-tile tile-green reveal">
+        <span class="subject-tile-emoji">🎵</span>
+        <div class="subject-tile-name">Rhyming</div>
+        <div class="subject-tile-desc">Phonemic awareness fun</div>
+      </a>
+      <a href="chatbot.html?subject=math" class="subject-tile tile-red reveal">
+        <span class="subject-tile-emoji">🔢</span>
+        <div class="subject-tile-name">Math</div>
+        <div class="subject-tile-desc">Numbers & bird math</div>
+      </a>
+      <a href="chatbot.html?subject=grammar" class="subject-tile tile-yellow reveal">
+        <span class="subject-tile-emoji">📝</span>
+        <div class="subject-tile-name">Grammar</div>
+        <div class="subject-tile-desc">Sentences & words</div>
+      </a>
+      <a href="chatbot.html?subject=puzzles" class="subject-tile tile-purple reveal">
+        <span class="subject-tile-emoji">🧩</span>
+        <div class="subject-tile-name">Puzzles</div>
+        <div class="subject-tile-desc">Riddles & word games</div>
+      </a>
+      <a href="chatbot.html?subject=stories" class="subject-tile tile-orange reveal">
+        <span class="subject-tile-emoji">📖</span>
+        <div class="subject-tile-name">Stories</div>
+        <div class="subject-tile-desc">Creative writing & comprehension</div>
+      </a>
+    </div>
+
+    <!-- Feature cards 3-up -->
+    <div class="feature-cards-3">
+      <div class="fcard reveal">
+        <div class="fcard-head c-sky">
+          <div class="fcard-icon">🐦</div>
+          <div><div class="fcard-title">Meet Chirpy</div><div class="fcard-sub">For kids ages 2–8</div></div>
+        </div>
+        <div class="fcard-body">
+          <p>Chirpy is a playful, encouraging AI bird who makes learning feel like a game. Every question gets a warm "tweet tweet!" of encouragement — never a harsh correction.</p>
+        </div>
+      </div>
+      <div class="fcard reveal">
+        <div class="fcard-head c-green">
+          <div class="fcard-icon">🪺</div>
+          <div><div class="fcard-title">Mama Bird</div><div class="fcard-sub">For parents & teachers</div></div>
+        </div>
+        <div class="fcard-body">
+          <p>Mama Bird helps parents and teachers with lesson plans, progress reports, and guided questions — generating day-by-day plans in seconds from any subject.</p>
+        </div>
+      </div>
+      <div class="fcard reveal">
+        <div class="fcard-head c-purple">
+          <div class="fcard-icon">📊</div>
+          <div><div class="fcard-title">Progress Tracking</div><div class="fcard-sub">See every step forward</div></div>
+        </div>
+        <div class="fcard-body">
+          <p>Visual dashboards, badge achievements, and PDF progress exports let you celebrate every milestone. Parents get a full picture of their child's learning journey.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;">
+      <a href="chatbot.html" class="btn btn-red btn-lg"><i data-lucide="graduation-cap" style="width:18px;height:18px;"></i> Start Free Trial — No Card Needed</a>
+      <div style="margin-top:12px;font-size:.82rem;color:var(--light-text);font-family:var(--font-display);">3 months free · All 6 subjects · Chirpy + Mama Bird included</div>
+    </div>
+  </div>
+</section>
+
+<!-- eBOOK PROMO SECTION -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="ebook-promo reveal">
+      <div style="position:relative;z-index:1;">
+        <div class="ebook-promo-label"><i data-lucide="download" style="width:12px;height:12px;"></i> Digital Download</div>
+        <div class="ebook-promo-title">Get the Three Baby Birdies<br>eBook — straight to your device</div>
+        <div class="ebook-promo-sub">Download the full illustrated story as a beautiful PDF. Read it on any tablet, phone, or computer. Instant access after purchase.</div>
+        <div class="ebook-price">$4.99 <small>$9.99</small></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
+          <a href="ebook.html" class="btn btn-yellow btn-lg"><i data-lucide="download" style="width:18px;height:18px;"></i> Download the eBook</a>
+          <a href="book.html" class="btn btn-ghost">Get a Signed Copy →</a>
+        </div>
+        <div style="margin-top:16px;display:flex;gap:16px;flex-wrap:wrap;">
+          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="shield-check" style="width:13px;height:13px;"></i> Secure payment</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="download" style="width:13px;height:13px;"></i> Instant PDF delivery</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="device-mobile" style="width:13px;height:13px;"></i> Works on any device</span>
+        </div>
+      </div>
+      <div class="ebook-cover-wrap">
+        <img src="assets/frontpage.png" alt="Three Baby Birdies eBook" class="ebook-cover-img">
+        <div style="position:absolute;top:-12px;right:-12px;background:var(--yellow);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:.75rem;color:var(--brown-dark);text-align:center;line-height:1.2;">50%<br>OFF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SNIPPET -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="user" style="width:14px;height:14px;"></i> About the Author</span>
+        <h2 style="margin-bottom:16px;">Iris &amp; Frank Scarfone</h2>
+        <p style="margin-bottom:16px;">Iris Scarfone and her husband Frank have always believed the love of reading begins at home. When their son Ronald was a baby, they taught him to read by placing words on posterboards around the house.</p>
+        <p style="margin-bottom:20px;">That hands-on philosophy became the heartbeat of Three Baby Birdies — short, rhythmic language with illustrations that let young children follow and understand the story on their own terms.</p>
+        <div class="credentials">
+          <span class="cred-tag"><i data-lucide="palette" style="width:13px;height:13px;"></i> Illustrated by Ronald Scarfone</span>
+          <span class="cred-tag"><i data-lucide="book-open" style="width:13px;height:13px;"></i> M.S. Reading Education</span>
+          <span class="cred-tag"><i data-lucide="library" style="width:13px;height:13px;"></i> M.L.S. Library Science</span>
+          <span class="cred-tag"><i data-lucide="image" style="width:13px;height:13px;"></i> B.A. Art Education</span>
+        </div>
+        <a href="about.html" class="btn btn-red" style="display:inline-flex;"><i data-lucide="user" style="width:16px;height:16px;"></i> Meet the Author</a>
+      </div>
+      <div style="display:flex;justify-content:center;">
+        <div class="author-photo-frame">
+          <div class="author-photo-box">
+            <img src="assets/author-image.png" alt="Iris Scarfone" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+          </div>
+          <div class="author-accent"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT CTA BANNER -->
+<section class="section" style="background:linear-gradient(135deg,var(--sky-dark) 0%,var(--sky) 100%);">
+  <div class="container" style="text-align:center;">
+    <div style="margin-bottom:16px;"><i data-lucide="graduation-cap" style="width:48px;height:48px;color:#fff;"></i></div>
+    <h2 style="color:#fff;margin-bottom:12px;">Meet Chirpy's Classroom</h2>
+    <p style="color:rgba(255,255,255,.8);max-width:520px;margin:0 auto 28px;">Our new AI-powered learning chatbot lets children learn spelling, math, rhyming, and more with Chirpy and Mama Bird as their guides. Free 3-month trial.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+      <a href="chatbot.html" class="btn btn-yellow"><i data-lucide="sparkles" style="width:16px;height:16px;"></i> Try Chirpy Free</a>
+      <a href="pricing.html" class="btn btn-ghost">See Pricing</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--sky-light);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label" style="background:rgba(110,180,212,.2);color:var(--sky-dark);"><i data-lucide="star" style="width:13px;height:13px;"></i> Reader Reviews</span>
+      <h2>What families are saying</h2>
+    </div>
+    <div class="t-grid">
+      <div class="t-card"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">My 4-year-old asks for this every single night. The rhyming makes it so easy for her to follow along — she loves pointing at the birds.</p><div class="t-author"><div class="t-avatar" style="background:var(--sky);">SL</div><div><div class="t-name">Sarah L.</div><div class="t-role">Parent · Toronto, ON</div></div></div></div>
+      <div class="t-card"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">Perfect for classroom read-alouds. My Kindergarten students were clapping along within two pages. Wonderful addition to our library.</p><div class="t-author"><div class="t-avatar" style="background:var(--green);">MR</div><div><div class="t-name">Ms. Rivera</div><div class="t-role">Kindergarten Teacher · Chicago, IL</div></div></div></div>
+      <div class="t-card"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">Bought this as a gift and ended up reading it with my own kids too. Warm, perfectly-paced, and the illustrations tell the story just as well as the words.</p><div class="t-author"><div class="t-avatar" style="background:var(--brown);">JK</div><div><div class="t-name">James K.</div><div class="t-role">Parent · Seattle, WA</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section nl-section">
+  <div class="container">
+    <div class="nl-grid">
+      <div class="nl-left">
+        <div class="incentive-pill"><i data-lucide="gift" style="width:14px;height:14px;"></i> Free printable activity sheet when you subscribe</div>
+        <h2>Stay in touch<br>with the birdies</h2>
+        <p style="margin-top:12px;">Read-aloud tips, nature activities for little ones, updates on new stories — delivered to your inbox. No spam, ever.</p>
+      </div>
+      <div>
+        <div class="nl-form">
+          <input class="nl-input" type="text" placeholder="Your first name">
+          <input class="nl-input" type="email" placeholder="Your email address">
+          <button class="btn btn-sky" style="justify-content:center;"><i data-lucide="feather" style="width:16px;height:16px;"></i> Join the Flock — It's Free</button>
+        </div>
+        <p class="nl-fine">Unsubscribe any time. We respect your inbox like a bird respects its nest.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Subject tile links — pass subject to chatbot
+document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
+  a.addEventListener('click', e => {
+    const subj = new URLSearchParams(a.search).get('subject');
+    if (subj) sessionStorage.setItem('chatbot_subject', subj);
+  });
+});
+</script>
+</body></html>

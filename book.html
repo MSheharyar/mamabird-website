@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Book — Three Baby Birdies</title>
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.book-hero-grid { display:grid; grid-template-columns:1fr 1.6fr; gap:72px; align-items:start; padding-top:72px; }
+.book-3d-wrap { position:relative; display:flex; justify-content:center; }
+.book-mockup-lg {
+  width:300px; position:relative;
+  filter:drop-shadow(0 32px 64px rgba(44,24,16,.2));
+  transform:perspective(1000px) rotateY(-6deg);
+  transition:transform .4s;
+}
+.book-mockup-lg:hover { transform:perspective(1000px) rotateY(-1deg); }
+.book-spine-lg {
+  position:absolute; left:-18px; top:6px; bottom:6px; width:18px;
+  background:var(--sky-dark); border-radius:4px 0 0 4px;
+}
+.book-cover-lg {
+  width:100%; border-radius:var(--r-lg); overflow:hidden;
+  box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);
+  border:3px solid rgba(255,255,255,.4);
+  aspect-ratio:.72;
+}
+.buy-box { background:#fff; border-radius:var(--r-md); padding:28px; box-shadow:var(--sh-md); margin-top:24px; }
+.price-tag { font-family:var(--font-display); font-weight:700; font-size:1.5rem; color:var(--dark); margin-bottom:4px; }
+.price-note { font-size:.8rem; color:var(--light-text); margin-bottom:20px; }
+.excerpt-box {
+  background:linear-gradient(135deg,var(--sky-light),var(--sky-xlight));
+  border-radius:var(--r-lg); padding:40px; text-align:center; margin:48px 0;
+}
+.excerpt-text {
+  font-family:var(--font-display); font-size:1.4rem; font-weight:600;
+  color:var(--dark); line-height:1.7; margin-bottom:16px;
+}
+.spread-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
+.spread-card {
+  background:#fff; border-radius:var(--r-md); padding:24px 20px;
+  box-shadow:var(--sh-sm); text-align:center;
+}
+.spread-card .page-art { font-size:3rem; margin-bottom:12px; }
+.spread-card p { font-family:var(--font-display); font-size:.95rem; font-weight:600; font-style:italic; color:var(--dark); }
+@media(max-width:900px){ .book-hero-grid{grid-template-columns:1fr;} .spread-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:560px){ .spread-grid{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<div style="padding-top:var(--nav-h);background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--sky-light) 30%,var(--cream) 70%);padding-bottom:80px;">
+  <div class="container">
+    <div class="book-hero-grid">
+      <div>
+        <div class="book-3d-wrap">
+          <div class="book-mockup-lg">
+            <div class="book-spine-lg"></div>
+            <div class="book-cover-lg">
+              <img src="assets/frontpage.png" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;">
+            </div>
+          </div>
+        </div>
+        <div class="buy-box">
+          <div class="price-tag">Available Now</div>
+          <div class="price-note">Kindle eBook · Paperback · Signed Copy</div>
+          <div class="buy-stack">
+            <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-yellow" style="justify-content:center;"><i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Buy Kindle eBook on Amazon</a>
+            <a href="contact.html" class="btn btn-outline" style="justify-content:center;"><i data-lucide="pen-line" style="width:16px;height:16px;"></i> Order a Signed Paperback</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <span class="section-label"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</span>
+        <h1 style="margin:12px 0 20px;">Three Baby<br>Birdies</h1>
+        <p style="margin-bottom:16px;">Written by <strong>Iris Scarfone</strong> and illustrated by <strong>Ronald Scarfone</strong>, Three Baby Birdies is a cheerful, rhythmic tale following three little red birds in their nest on a tree branch — with a bright blue sky, fluffy clouds, and a warm sun shining above.</p>
+        <p style="margin-bottom:24px;">Written in rhyming language that makes every read-aloud a joy, and illustrated so young children can follow and understand the story on their own terms. Perfect for bedtime, story time, and classroom read-alouds.</p>
+        <div class="meta-grid">
+          <div class="meta-chip"><div class="meta-chip-label">Age Range</div><div class="meta-chip-val">Ages 2–6</div></div>
+          <div class="meta-chip"><div class="meta-chip-label">Style</div><div class="meta-chip-val">Rhyming Read-Aloud</div></div>
+          <div class="meta-chip"><div class="meta-chip-label">Reading Level</div><div class="meta-chip-val">Pre-Reader / Beginner</div></div>
+          <div class="meta-chip"><div class="meta-chip-label">Language</div><div class="meta-chip-val">English</div></div>
+          <div class="meta-chip"><div class="meta-chip-label">Format</div><div class="meta-chip-val">eBook + Paperback</div></div>
+          <div class="meta-chip"><div class="meta-chip-label">Publisher</div><div class="meta-chip-val">Independent</div></div>
+        </div>
+        <div class="format-pills">
+          <span class="format-pill"><i data-lucide="smartphone" style="width:13px;height:13px;"></i> Kindle eBook</span>
+          <span class="format-pill"><i data-lucide="book" style="width:13px;height:13px;"></i> Paperback</span>
+          <span class="format-pill"><i data-lucide="pen-line" style="width:13px;height:13px;"></i> Signed Copy</span>
+          <span class="format-pill"><i data-lucide="building-2" style="width:13px;height:13px;"></i> School Orders</span>
+        </div>
+        <div style="background:var(--cream);border-radius:var(--r-md);padding:20px;margin-top:8px;">
+          <p style="font-size:.88rem;color:var(--light-text);font-style:italic;">"Perfect for bedtime, story time, and little readers who love nature and gentle adventures."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Excerpt -->
+<section class="section" style="background:#fff;">
+  <div class="container" style="max-width:800px;">
+    <div class="section-header">
+      <span class="section-label"><i data-lucide="quote" style="width:13px;height:13px;"></i> A taste of the story</span>
+      <h2>Listen to the rhythm</h2>
+    </div>
+    <div class="excerpt-box">
+      <div class="excerpt-text">
+        "Chirp chirp chirp.<br>
+        Flap your wings and try to fly.<br>
+        It is just as easy<br>
+        as easy as pie."
+      </div>
+      <p style="font-size:.85rem;color:var(--sky-dark);">— from Three Baby Birdies by Iris Scarfone</p>
+    </div>
+    <div class="spread-grid">
+      <div class="spread-card"><div class="page-art"><i data-lucide="egg" style="width:48px;height:48px;color:var(--brown);"></i></div><p>"Three little birds sat in their nest, on a branch up high, above all the rest."</p></div>
+      <div class="spread-card"><div class="page-art"><i data-lucide="sun" style="width:48px;height:48px;color:var(--yellow);"></i></div><p>"A bright blue sky, a warm yellow sun — the three baby birdies knew spring had begun."</p></div>
+      <div class="spread-card"><div class="page-art"><i data-lucide="feather" style="width:48px;height:48px;color:var(--sky-dark);"></i></div><p>"Chirp chirp chirp, said the first little bird. The sweetest of songs that was ever heard."</p></div>
+    </div>
+    <p style="text-align:center;margin-top:20px;font-size:.85rem;color:var(--light-text);">Sample text for illustration purposes. Final book text may vary.</p>
+  </div>
+</section>
+
+<!-- Why this book -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="lightbulb" style="width:13px;height:13px;"></i> Why parents love it</span>
+      <h2>Built for the way children learn</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="repeat-2" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Repetition</h3><p style="font-size:.88rem;">Builds pattern recognition and word familiarity through repetition children enjoy.</p></div>
+      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="music" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Rhyme</h3><p style="font-size:.88rem;">Rhythmic language makes read-alouds fun and helps children predict what comes next.</p></div>
+      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="image" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Visual match</h3><p style="font-size:.88rem;">Illustrations depict exactly what the text describes — connecting words to images.</p></div>
+      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="clock" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Right length</h3><p style="font-size:.88rem;">Short enough to hold a young child's attention from first page to last, every time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--sky-light);text-align:center;">
+  <div class="container" style="max-width:560px;">
+    <div style="margin-bottom:16px;"><i data-lucide="feather" style="width:48px;height:48px;color:var(--sky-dark);"></i></div>
+    <h2 style="margin-bottom:12px;">Ready to read together?</h2>
+    <p>Pick up a copy today and make it part of your bedtime routine, classroom library, or gift bag.</p>
+    <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px;">
+      <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-red"><i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Buy on Amazon</a>
+      <a href="contact.html" class="btn btn-outline"><i data-lucide="pen-line" style="width:16px;height:16px;"></i> Get a Signed Copy</a>
+    </div>
+  </div>
+</section>
+
+<footer id="footer"></footer>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+</body></html>
