@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin Dashboard — Three Baby Birdies</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --red:#CC2929;--red-dark:#A81E1E;--red-light:#FDECEA;
+  --sky:#6EB4D4;--sky-dark:#3A8BB0;--sky-light:#E8F4FA;
+  --green:#4A8B3F;--green-light:#EDF7EC;
+  --yellow:#F5C200;--yellow-light:#FFFAEB;
+  --purple:#7C3AED;--purple-light:#F5F0FF;
+  --dark:#1A1A2E;--mid:#6B7280;--light:#9CA3AF;
+  --cream:#FDF8F3;--cream-dark:#F0E8DE;--white:#fff;
+  --font-display:'Quicksand',sans-serif;--font-body:'Nunito',sans-serif;
+  --r-sm:8px;--r-md:12px;--r-lg:20px;--r-full:999px;
+  --sh-sm:0 2px 8px rgba(0,0,0,.06);--sh-md:0 4px 20px rgba(0,0,0,.08);
+}
+body{font-family:var(--font-body);background:var(--cream);color:var(--dark);min-height:100vh;}
+
+/* ── HEADER ── */
+.admin-header{
+  background:linear-gradient(135deg,var(--red-dark),var(--red));
+  padding:0 24px;height:60px;display:flex;align-items:center;gap:14px;
+  position:sticky;top:0;z-index:100;
+}
+.header-logo{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:1rem;color:#fff;}
+.header-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:var(--font-display);font-weight:700;font-size:.72rem;padding:4px 12px;border-radius:var(--r-full);}
+.header-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.header-email{font-size:.78rem;color:rgba(255,255,255,.75);font-family:var(--font-display);}
+.btn-logout{padding:7px 16px;border-radius:var(--r-full);border:1.5px solid rgba(255,255,255,.35);background:none;color:#fff;font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;transition:background .18s;}
+.btn-logout:hover{background:rgba(255,255,255,.15);}
+
+/* ── LAYOUT ── */
+.admin-body{max-width:1100px;margin:0 auto;padding:28px 16px 60px;}
+.section-title{font-family:var(--font-display);font-weight:700;font-size:.8rem;color:var(--mid);text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+
+/* ── STATS ROW ── */
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:28px;}
+.stat-card{background:#fff;border-radius:var(--r-lg);padding:20px 16px;box-shadow:var(--sh-sm);text-align:center;border-top:3px solid var(--cream-dark);}
+.stat-card.c-red{border-top-color:var(--red);}
+.stat-card.c-sky{border-top-color:var(--sky);}
+.stat-card.c-green{border-top-color:var(--green);}
+.stat-card.c-yellow{border-top-color:var(--yellow);}
+.stat-card.c-purple{border-top-color:var(--purple);}
+.stat-val{font-family:var(--font-display);font-weight:700;font-size:1.6rem;color:var(--dark);margin-bottom:4px;}
+.stat-lbl{font-size:.7rem;color:var(--mid);font-family:var(--font-display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+
+/* ── NAV TABS ── */
+.admin-tabs{display:flex;gap:4px;background:#fff;padding:5px;border-radius:var(--r-full);box-shadow:var(--sh-sm);margin-bottom:24px;width:fit-content;}
+.admin-tab{padding:8px 20px;border-radius:var(--r-full);border:none;font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--mid);cursor:pointer;background:none;transition:all .18s;}
+.admin-tab.active{background:var(--red);color:#fff;}
+.admin-panel{display:none;}
+.admin-panel.active{display:block;}
+
+/* ── PARENT TABLE ── */
+.parent-table-wrap{background:#fff;border-radius:var(--r-lg);box-shadow:var(--sh-sm);overflow:hidden;}
+.table-search{padding:16px 20px;border-bottom:1px solid var(--cream-dark);display:flex;gap:12px;align-items:center;}
+.search-input{padding:9px 16px;border-radius:var(--r-full);border:1.5px solid var(--cream-dark);font-family:var(--font-body);font-size:.88rem;outline:none;width:260px;background:var(--cream);}
+.search-input:focus{border-color:var(--sky);}
+.filter-sel{padding:9px 16px;border-radius:var(--r-full);border:1.5px solid var(--cream-dark);font-family:var(--font-display);font-weight:600;font-size:.82rem;background:var(--cream);color:var(--dark);outline:none;cursor:pointer;}
+table{width:100%;border-collapse:collapse;}
+thead{background:var(--cream);}
+th{padding:10px 16px;font-family:var(--font-display);font-weight:700;font-size:.75rem;color:var(--mid);text-align:left;text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid var(--cream-dark);}
+td{padding:12px 16px;font-size:.85rem;border-bottom:1px solid var(--cream-dark);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr.parent-row{cursor:pointer;}
+tr.parent-row:hover td{background:var(--cream);}
+.status-pill{display:inline-block;padding:3px 10px;border-radius:var(--r-full);font-family:var(--font-display);font-weight:700;font-size:.72rem;}
+.pill-trial{background:var(--sky-light);color:var(--sky-dark);}
+.pill-active{background:var(--green-light);color:var(--green);}
+.pill-cancelled{background:var(--red-light);color:var(--red);}
+.pill-grace{background:var(--yellow-light);color:#92600a;}
+/* Child rows */
+.child-rows{display:none;}
+.child-rows.open{display:table-row-group;}
+.child-row td{background:#fafafa;padding:10px 16px 10px 40px;font-size:.82rem;}
+.child-name-cell{font-family:var(--font-display);font-weight:700;color:var(--dark);}
+
+/* Actions */
+.action-btns{display:flex;gap:6px;}
+.btn-ext{padding:5px 12px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:none;color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.72rem;cursor:pointer;white-space:nowrap;}
+.btn-ext:hover{background:var(--sky-light);}
+.btn-cancel-sub{padding:5px 12px;border-radius:var(--r-full);border:1.5px solid #fca5a5;background:none;color:var(--red);font-family:var(--font-display);font-weight:700;font-size:.72rem;cursor:pointer;white-space:nowrap;}
+.btn-cancel-sub:hover{background:var(--red-light);}
+
+/* ── USAGE ── */
+.usage-wrap{background:#fff;border-radius:var(--r-lg);padding:24px;box-shadow:var(--sh-sm);}
+.usage-totals{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;}
+.usage-card{background:var(--cream);border-radius:var(--r-md);padding:20px;text-align:center;}
+.usage-val{font-family:var(--font-display);font-weight:700;font-size:1.6rem;color:var(--dark);}
+.usage-lbl{font-size:.75rem;color:var(--mid);font-family:var(--font-display);font-weight:600;text-transform:uppercase;margin-top:4px;}
+.daily-table{width:100%;border-collapse:collapse;}
+.daily-table th{font-family:var(--font-display);font-weight:700;font-size:.75rem;color:var(--mid);text-align:left;padding:8px 12px;text-transform:uppercase;letter-spacing:.05em;border-bottom:2px solid var(--cream-dark);}
+.daily-table td{padding:10px 12px;font-size:.85rem;border-bottom:1px solid var(--cream-dark);}
+.daily-table tr:last-child td{border-bottom:none;}
+
+/* Loading */
+.loading-bar{text-align:center;padding:40px;color:var(--mid);font-family:var(--font-display);font-weight:600;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);padding:12px 24px;border-radius:var(--r-full);font-family:var(--font-display);font-weight:700;font-size:.85rem;color:#fff;z-index:500;opacity:0;transition:opacity .3s;pointer-events:none;}
+.toast.success{background:var(--green);}
+.toast.error{background:var(--red);}
+.toast.show{opacity:1;}
+
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr);}table{font-size:.78rem;}}
+@media(max-width:600px){.stats-grid{grid-template-columns:1fr 1fr;}.admin-tabs{flex-wrap:wrap;border-radius:var(--r-lg);}th{display:none;}}
+</style>
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="header-logo">🐦 Three Baby Birdies</div>
+  <div class="header-badge">🔐 Admin Dashboard</div>
+  <div class="header-right">
+    <span class="header-email" id="admin-email">—</span>
+    <button class="btn-logout" onclick="logout()">Log out</button>
+  </div>
+</header>
+
+<div class="admin-body">
+  <!-- Stats -->
+  <div class="section-title">📊 System Overview</div>
+  <div class="stats-grid">
+    <div class="stat-card c-red"><div class="stat-val" id="st-users">—</div><div class="stat-lbl">Total Users</div></div>
+    <div class="stat-card c-sky"><div class="stat-val" id="st-trial">—</div><div class="stat-lbl">On Trial</div></div>
+    <div class="stat-card c-green"><div class="stat-val" id="st-active">—</div><div class="stat-lbl">Paid Active</div></div>
+    <div class="stat-card c-yellow"><div class="stat-val" id="st-children">—</div><div class="stat-lbl">Child Profiles</div></div>
+    <div class="stat-card c-purple"><div class="stat-val" id="st-sessions">—</div><div class="stat-lbl">Total Sessions</div></div>
+    <div class="stat-card"><div class="stat-val" id="st-cost">—</div><div class="stat-lbl">API Cost / Mo</div></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="switchTab('users',this)">👨‍👩‍👧 Parents &amp; Children</button>
+    <button class="admin-tab" onclick="switchTab('usage',this)">📈 Usage &amp; Costs</button>
+  </div>
+
+  <!-- Users panel -->
+  <div class="admin-panel active" id="panel-users">
+    <div class="parent-table-wrap">
+      <div class="table-search">
+        <input class="search-input" type="text" placeholder="🔍 Search by email…" oninput="filterTable(this.value)">
+        <select class="filter-sel" onchange="filterStatus(this.value)">
+          <option value="">All statuses</option>
+          <option value="trial">Trial</option>
+          <option value="active">Active</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div id="users-table-wrap"><div class="loading-bar">Loading users…</div></div>
+    </div>
+  </div>
+
+  <!-- Usage panel -->
+  <div class="admin-panel" id="panel-usage">
+    <div class="usage-wrap">
+      <div class="usage-totals">
+        <div class="usage-card"><div class="usage-val" id="u-msgs">—</div><div class="usage-lbl">Messages (30 days)</div></div>
+        <div class="usage-card"><div class="usage-val" id="u-cost">—</div><div class="usage-lbl">API Cost (30 days)</div></div>
+      </div>
+      <div class="section-title">Daily Breakdown</div>
+      <div id="daily-table-wrap"><div class="loading-bar">Loading usage data…</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = 'https://web-production-bcff5.up.railway.app';
+const token = localStorage.getItem('mb_token');
+const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
+
+// Auth guard — must be admin
+if (!token || !user) { window.location.href = 'login.html'; }
+if (user && user.role !== 'admin') { window.location.href = 'app.html'; }
+
+document.getElementById('admin-email').textContent = user?.email || '';
+
+let allParents = [];
+let filterQ    = '';
+let filterSt   = '';
+
+async function init() {
+  await Promise.all([loadStats(), loadParents(), loadUsage()]);
+}
+
+async function loadStats() {
+  try {
+    const res  = await api('GET', '/admin/stats');
+    const data = await res.json();
+    document.getElementById('st-users').textContent    = data.total_users ?? '—';
+    document.getElementById('st-trial').textContent    = data.trial_users ?? '—';
+    document.getElementById('st-active').textContent   = data.active_subscribers ?? '—';
+    document.getElementById('st-children').textContent = data.total_children ?? '—';
+    document.getElementById('st-sessions').textContent = data.total_sessions ?? '—';
+    document.getElementById('st-cost').textContent     = data.api_cost_this_month != null ? '$' + data.api_cost_this_month.toFixed(4) : '—';
+  } catch(e) { showToast('Could not load stats', 'error'); }
+}
+
+async function loadParents() {
+  try {
+    const res  = await api('GET', '/admin/parents-detailed');
+    const data = await res.json();
+    allParents = data.parents || [];
+    renderTable();
+  } catch(e) {
+    document.getElementById('users-table-wrap').innerHTML = '<div class="loading-bar">Could not load users.</div>';
+  }
+}
+
+function renderTable() {
+  const parents = allParents.filter(p => {
+    const matchQ  = !filterQ  || p.email.toLowerCase().includes(filterQ.toLowerCase());
+    const matchSt = !filterSt || p.subscription_status === filterSt;
+    return matchQ && matchSt;
+  });
+
+  if (!parents.length) {
+    document.getElementById('users-table-wrap').innerHTML = '<div class="loading-bar">No users found.</div>';
+    return;
+  }
+
+  let html = `<table><thead><tr>
+    <th>Email</th><th>Role</th><th>Status</th><th>Plan</th><th>Children</th><th>Sessions</th><th>Accuracy</th><th>Trial Ends</th><th>Actions</th>
+  </tr></thead><tbody id="parents-tbody">`;
+
+  parents.forEach((p, i) => {
+    const totalSess = p.children.reduce((s,c) => s + c.total_sessions, 0);
+    const totalQ    = p.children.reduce((s,c) => s + c.total_questions, 0);
+    const totalC    = p.children.reduce((s,c) => s + c.total_correct, 0);
+    const acc       = totalQ ? Math.round(totalC/totalQ*100*10)/10 : 0;
+    const statusCls = p.subscription_status === 'active' ? 'pill-active' : p.subscription_status === 'cancelled' ? 'pill-cancelled' : p.subscription_status === 'grace' || p.subscription_status === 'grace_period' ? 'pill-grace' : 'pill-trial';
+    const trialDate = p.trial_ends_at ? p.trial_ends_at.slice(0,10) : '—';
+    const hasChildren = p.children && p.children.length > 0;
+
+    html += `<tr class="parent-row" onclick="toggleChildren('children-${i}')">
+      <td><strong>${p.email}</strong></td>
+      <td>${p.role || '—'}</td>
+      <td><span class="status-pill ${statusCls}">${p.subscription_status || '—'}</span></td>
+      <td>${p.subscription_plan || 'trial'}</td>
+      <td>${p.children.length}</td>
+      <td>${totalSess}</td>
+      <td>${acc}%</td>
+      <td style="font-size:.78rem;">${trialDate}</td>
+      <td><div class="action-btns">
+        <button class="btn-ext" onclick="event.stopPropagation();extendTrial('${p.id}')">+7 days</button>
+        <button class="btn-cancel-sub" onclick="event.stopPropagation();cancelSub('${p.id}')">Cancel</button>
+      </div></td>
+    </tr>`;
+
+    if (hasChildren) {
+      html += `<tr><td colspan="9" style="padding:0;">
+        <table style="width:100%;border-collapse:collapse;" id="children-${i}">
+          <thead style="display:none;"><tr><th></th></tr></thead>
+          <tbody style="display:none;" id="children-body-${i}">`;
+      p.children.forEach(c => {
+        const cAcc = c.accuracy_pct ?? 0;
+        const lastActive = c.last_active ? c.last_active.slice(0,10) : '—';
+        html += `<tr class="child-row">
+          <td style="width:36px;padding-left:24px;">👤</td>
+          <td class="child-name-cell">${c.child_name}</td>
+          <td style="font-size:.78rem;color:var(--mid);">Age ${c.age || '?'} · ${c.grade || '—'}</td>
+          <td>${c.total_sessions} sessions</td>
+          <td>${c.messages_used} msgs</td>
+          <td>${cAcc}% accuracy</td>
+          <td>${c.badges_earned} badges</td>
+          <td style="font-size:.75rem;color:var(--mid);">Last: ${lastActive}</td>
+          <td></td>
+        </tr>`;
+      });
+      html += `</tbody></table></td></tr>`;
+    }
+  });
+
+  html += '</tbody></table>';
+  document.getElementById('users-table-wrap').innerHTML = html;
+}
+
+function toggleChildren(id) {
+  const bodyId = id.replace('children-', 'children-body-');
+  const body = document.getElementById(bodyId);
+  if (!body) return;
+  body.style.display = body.style.display === 'none' || !body.style.display ? 'table-row-group' : 'none';
+}
+
+function filterTable(q)  { filterQ = q;  renderTable(); }
+function filterStatus(s) { filterSt = s; renderTable(); }
+
+async function extendTrial(userId) {
+  if (!confirm('Extend trial by 7 days?')) return;
+  try {
+    const res = await api('PUT', '/admin/users/' + userId + '/extend-trial', { days: 7 });
+    if (res.ok) { showToast('Trial extended by 7 days', 'success'); await loadParents(); }
+    else { const d = await res.json(); showToast(d.detail || 'Failed', 'error'); }
+  } catch(e) { showToast('Request failed', 'error'); }
+}
+
+async function cancelSub(userId) {
+  if (!confirm('Cancel this subscription? This cannot be undone easily.')) return;
+  try {
+    const res = await api('PUT', '/admin/users/' + userId + '/cancel');
+    if (res.ok) { showToast('Subscription cancelled', 'success'); await loadParents(); }
+    else { const d = await res.json(); showToast(d.detail || 'Failed', 'error'); }
+  } catch(e) { showToast('Request failed', 'error'); }
+}
+
+async function loadUsage() {
+  try {
+    const res  = await api('GET', '/admin/usage');
+    const data = await res.json();
+    document.getElementById('u-msgs').textContent = data.totals?.messages ?? '—';
+    document.getElementById('u-cost').textContent = data.totals?.cost_usd != null ? '$' + data.totals.cost_usd.toFixed(4) : '—';
+
+    const daily = data.daily || [];
+    if (!daily.length) {
+      document.getElementById('daily-table-wrap').innerHTML = '<div class="loading-bar">No usage data yet.</div>';
+      return;
+    }
+    let html = `<table class="daily-table"><thead><tr><th>Date</th><th>Messages</th><th>API Cost (USD)</th></tr></thead><tbody>`;
+    [...daily].reverse().forEach(row => {
+      html += `<tr><td>${row.date}</td><td>${row.messages}</td><td>$${row.cost_usd.toFixed(4)}</td></tr>`;
+    });
+    html += '</tbody></table>';
+    document.getElementById('daily-table-wrap').innerHTML = html;
+  } catch(e) {
+    document.getElementById('daily-table-wrap').innerHTML = '<div class="loading-bar">Could not load usage.</div>';
+  }
+}
+
+function switchTab(tab, el) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+}
+
+function api(method, path, body) {
+  const opts = { method, headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token } };
+  if (body) opts.body = JSON.stringify(body);
+  return fetch(API + path, opts);
+}
+
+function logout() {
+  localStorage.removeItem('mb_token');
+  localStorage.removeItem('mb_user');
+  window.location.href = 'login.html';
+}
+
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  setTimeout(() => t.className = 'toast ' + type, 3000);
+}
+
+init();
+</script>
+</body>
+</html>
