@@ -211,7 +211,7 @@
           <!-- Chirpy opening message -->
           <div class="msg chirpy" id="opening-msg">
             <div class="msg-avatar" style="background:var(--sky-light);">🐦</div>
-            <div class="msg-bubble">Tweet tweet! 🐦 Hi there! I'm Chirpy! I'm SO excited to learn with you today! Let's practice <strong>spelling</strong>! 🌟<br><br>Here's your first word — listen carefully:<br><br><strong>C-A-T</strong> 🐱 — can you spell it back to me?</div>
+            <div class="msg-bubble">Tweet tweet! 🐦 Hi there! I'm Chirpy, your real AI spelling tutor! I'm SO excited to learn with you today! 🌟<br><br>Here's your first word — listen carefully:<br><br><strong>C-A-T</strong> 🐱 — can you spell it back to me?</div>
           </div>
         </div>
 
@@ -221,7 +221,7 @@
         </div>
       </div>
       <p style="text-align:center;font-size:.75rem;color:var(--light-text);margin-top:10px;padding-bottom:4px;">
-        <i data-lucide="sparkles" style="width:13px;height:13px;"></i> This is a live demo — try typing "CAT" and press Enter
+        <i data-lucide="sparkles" style="width:13px;height:13px;"></i> Real AI · Powered by Claude · 4 free messages · No signup needed
       </p>
     </div>
   </div>
@@ -370,6 +370,27 @@
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
+<style>
+.upsell-bubble {
+  background:linear-gradient(135deg,#fff 0%,var(--sky-xlight) 100%);
+  border:1.5px solid var(--sky); max-width:100%;
+}
+.upsell-bubble .upsell-cta {
+  display:flex; flex-direction:column; gap:8px; margin-top:14px;
+}
+.upsell-bubble .upsell-btn {
+  display:block; text-align:center; background:var(--red); color:#fff;
+  padding:11px 16px; border-radius:var(--r-full); font-family:var(--font-display);
+  font-weight:700; font-size:.85rem; text-decoration:none;
+  transition:background .18s,transform .12s;
+}
+.upsell-bubble .upsell-btn:hover { background:var(--red-dark); transform:scale(1.02); }
+.upsell-bubble .upsell-link {
+  display:block; text-align:center; font-size:.78rem; color:var(--sky-dark);
+  font-family:var(--font-display); font-weight:700;
+}
+.locked-pill { opacity:.55; cursor:not-allowed !important; }
+</style>
 <script>
 // Scroll reveal
 const revealObs = new IntersectionObserver(entries => {
@@ -385,217 +406,208 @@ if (_preSubj) {
   if (_pill) setTimeout(() => setSubject(_pill, _preSubj.charAt(0).toUpperCase() + _preSubj.slice(1)), 200);
 }
 
-/* ---- CHATBOT DEMO LOGIC ---- */
+/* ---- REAL CHATBOT DEMO ---- */
 const API = 'https://web-production-bcff5.up.railway.app';
+const DEMO_LIMIT = 4; // user messages before upsell
+let demoCount = 0;
+let demoHistory = []; // [{role, content}] sent with each request for context
 let currentChar = 'chirpy';
-let currentSubject = 'Spelling';
+let isBusy = false;
+
 const chatBody = document.getElementById('chat-body');
 
-// Auth state
+// Logged-in users belong in app.html
 const mb_token = localStorage.getItem('mb_token');
 const mb_user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
-let mb_child_id   = localStorage.getItem('mb_child_id') || null;
-let mb_session_id = null;
-let isLiveMode = false;
-
-// Logged-in users belong in app.html — redirect them away from the public demo
 if (mb_token && mb_user) {
   window.location.replace(mb_user.role === 'admin' ? 'admin.html' : 'app.html');
 }
 
-function logout() {
-  localStorage.removeItem('mb_token');
-  localStorage.removeItem('mb_user');
-  localStorage.removeItem('mb_child_id');
-  window.location.reload();
-}
-
-async function initLiveMode() {
-  isLiveMode = true;
-  // Get or create a demo child profile
-  if (!mb_child_id) {
-    try {
-      const res = await fetch(API + '/profiles/', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json','Authorization':'Bearer '+mb_token},
-        body: JSON.stringify({child_name:'My Child',age:8,grade:'Grade 3',learning_style:'visual',subjects_of_interest:['spelling','math','rhyming']})
-      });
-      const data = await res.json();
-      if (res.ok && data.profile) {
-        mb_child_id = data.profile.id;
-        localStorage.setItem('mb_child_id', mb_child_id);
-      }
-    } catch(e) { /* fall back to demo mode */ isLiveMode = false; }
+// Lock non-Spelling pills with a tooltip
+document.querySelectorAll('.subject-pill').forEach(pill => {
+  if (!pill.textContent.trim().toLowerCase().startsWith('spelling')) {
+    pill.classList.add('locked-pill');
+    pill.title = 'Sign up free to unlock all 6 subjects';
   }
-}
+});
 
-const responses = {
-  chirpy: {
-    'Spelling': [
-      (msg) => {
-        if(msg.toUpperCase().includes('CAT')) return "Tweet tweet! YES!! 🎉 C-A-T — you got it PERFECT! You're SO smart! ⭐⭐⭐\n\nOkay, next word! Ready?\n\n🐦 B-I-R-D — can you spell it?";
-        return "Hmm, not quite — but that's okay! Let's try again 💪\n\nThe word is C-A-T 🐱 — that's three letters: C... A... T. You've got this! 🌟";
-      },
-      (msg) => {
-        if(msg.toUpperCase().includes('BIRD')) return "🎊 BIRD! You spelled it perfectly! B-I-R-D! Just like ME! 🐦\n\nYou're doing AMAZING! One more?\n\n✨ S-U-N — spell it for me!";
-        return "So close! 🐦 Remember: B-I-R-D. Say each letter out loud — B... I... R... D. Try again!";
-      }
-    ],
-    'Rhyming': [
-      () => "Tweet tweet! 🎵 I LOVE rhyming! Let's play!\n\nWhat rhymes with CAT? 🐱\n\n(Hint: think of a big fuzzy creature, or a place you sit!)",
-      (msg) => msg.toLowerCase().match(/bat|hat|mat|rat|sat|fat|flat|that|chat|pat/) ? "🎉 Yes!! That rhymes perfectly with CAT! You're a rhyming STAR! ⭐\n\nOkay — what rhymes with BIRD? 🐦" : "Hmm, try again! Something that rhymes with CAT ends in the same sound — AT. Like... b-AT, or h-AT! 🎩"
-    ],
-    'Math': [
-      () => "Tweet tweet! 🔢 Math time!\n\nChirpy and her friends found some eggs! 🥚🥚🥚\n\nThere are 3 eggs in one nest and 4 eggs in another nest.\n\nHow many eggs altogether? 🐣",
-      (msg) => msg.match(/7|seven/) ? "🎉 YES! 3 + 4 = 7! You counted ALL the eggs! 🥚🥚🥚🥚🥚🥚🥚 Amazing! ⭐⭐⭐\n\nNext one: Chirpy had 10 seeds. She ate 3. How many are left? 🌱" : "Let's count together! 🥚🥚🥚 (1, 2, 3) plus 🥚🥚🥚🥚 (4, 5, 6, 7). How many is that?"
-    ],
-    'Grammar': [
-      () => "Tweet tweet! ✏️ Let's learn about NOUNS!\n\nA noun is a person, place, or THING!\n\nIs 'BIRD' a noun? Type yes or no! 🐦",
-      (msg) => msg.toLowerCase().includes('yes') ? "🎊 YES! BIRD is absolutely a noun — it's a thing! And a living thing at that! Great job! 🌟\n\nNow — is 'FLYING' a noun? Careful now! 🤔" : "Hmm, actually — BIRD is a noun! It's a thing (a living thing). Remember: nouns are people, places, or things! Try again: is 'BIRD' a noun?"
-    ],
-    'Puzzles': [
-      () => "Tweet tweet! 🧩 Puzzle time!\n\nI have wings but I'm not a bird. I have a flame but I'm not a fire. I flutter in the breeze but I'm not a flag.\n\nWhat am I? 🤔",
-      (msg) => msg.toLowerCase().includes('butterfly') ? "🦋 YES!! A BUTTERFLY!! You're SO smart! 🎉⭐🎊\n\nOkay, here's another one:\n\nI have a head and a tail, but no body. What am I? 🪙" : "Great guess! Here's a hint — it's an insect with colorful wings... 🌈🪲 What could it be?"
-    ],
-    'Stories': [
-      () => "Tweet tweet! 📖 Let's write a story together!\n\nOnce upon a time, there was a little bird named Tweet who was afraid to fly for the very first time.\n\n🐦 What do you think happened next? Tell me!",
-      (msg) => `Oh I LOVE that! ✨ "${msg.slice(0,60)}${msg.length>60?'...':''}" — what a wonderful idea! 🌟\n\nYou're such a creative storyteller! Keep going — what happened after that?`
-    ]
-  },
-  mama: {
-    'Spelling': [
-      () => "Good morning! 🌿 I'm Mama Bird, and I'm so glad you're here to learn today.\n\nLet's begin with a gentle spelling exercise. I'll give you a word, use it in a sentence, and then ask you to spell it back to me.\n\n🐣 Our word is: NEST\n\n'The mama bird built a cozy NEST for her babies.'\n\nCan you spell that word for me?",
-      (msg) => msg.toUpperCase().includes('NEST') ? "Beautifully done! 🪺 N-E-S-T. You've spelled it perfectly.\n\nA nest is such a special word — it means home, warmth, and safety. Just like learning — it's always better when it feels like home.\n\n🌿 Shall we try another word?" : "Almost there. 🌿 Let's try once more — sound it out with me: N... E... S... T. Four letters. You can do it."
-    ]
-  }
-};
-
-let msgIndex = 0;
-
-function addMsg(type, text, avatarChar) {
+function addMsg(type, html) {
   const div = document.createElement('div');
   div.className = `msg ${type}`;
-  const avatar = type === 'user' ? '👤' : (currentChar === 'chirpy' ? '🐦' : '🪺');
-  const avatarBg = type === 'user' ? 'var(--sky)' : (currentChar === 'chirpy' ? 'var(--sky-light)' : 'var(--green-light)');
-  div.innerHTML = `<div class="msg-avatar" style="background:${avatarBg};">${avatar}</div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`;
+  const avatar = type === 'user' ? '👤' : '🐦';
+  const avatarBg = type === 'user' ? 'var(--sky)' : 'var(--sky-light)';
+  div.innerHTML = `<div class="msg-avatar" style="background:${avatarBg};">${avatar}</div><div class="msg-bubble${type==='chirpy'?' upsell-bubble':''}" style="${type==='chirpy'?'background:#fff;border:none;':''}">${html}</div>`;
   chatBody.appendChild(div);
   chatBody.scrollTop = chatBody.scrollHeight;
+  return div;
+}
+
+function addChirpyMsg(html) {
+  const div = document.createElement('div');
+  div.className = 'msg chirpy';
+  div.innerHTML = `<div class="msg-avatar" style="background:var(--sky-light);">🐦</div><div class="msg-bubble">${html}</div>`;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+  return div;
 }
 
 function showTyping() {
   const div = document.createElement('div');
-  div.className = `msg ${currentChar}`;
+  div.className = 'msg chirpy';
   div.id = 'typing-indicator';
-  const avatarBg = currentChar === 'chirpy' ? 'var(--sky-light)' : 'var(--green-light)';
-  const avatar   = currentChar === 'chirpy' ? '🐦' : '🪺';
-  div.innerHTML = `<div class="msg-avatar" style="background:${avatarBg};">${avatar}</div><div class="msg-bubble"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+  div.innerHTML = `<div class="msg-avatar" style="background:var(--sky-light);">🐦</div><div class="msg-bubble"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
   chatBody.appendChild(div);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
+function removeTyping() {
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+
+function showUpsell() {
+  const div = document.createElement('div');
+  div.className = 'msg chirpy';
+  div.innerHTML = `<div class="msg-avatar" style="background:var(--sky-light);">🐦</div>
+    <div class="msg-bubble upsell-bubble">
+      <strong>Tweet tweet! 🐦 You're doing SO well!</strong><br><br>
+      That's your free preview for today. Create a free account to keep going — 3 months free, no card needed!<br><br>
+      <div class="upsell-cta">
+        <a href="login.html" class="upsell-btn">🎉 Start Free — No Card Needed</a>
+        <a href="pricing.html" class="upsell-link">See all plans →</a>
+      </div>
+    </div>`;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+  // Disable input
+  const inp = document.getElementById('chat-input');
+  inp.disabled = true;
+  inp.placeholder = 'Sign up free to keep chatting with Chirpy!';
+  document.querySelector('.chat-send').disabled = true;
+}
+
 async function sendMsg() {
+  if (isBusy) return;
   const input = document.getElementById('chat-input');
   const text  = input.value.trim();
   if (!text) return;
-  addMsg('user', text);
+
+  // Hard cap — shouldn't be reachable since input is disabled, but just in case
+  if (demoCount >= DEMO_LIMIT) { showUpsell(); return; }
+
+  // Add user message
+  const userDiv = document.createElement('div');
+  userDiv.className = 'msg user';
+  userDiv.innerHTML = `<div class="msg-avatar" style="background:var(--sky);">👤</div><div class="msg-bubble">${text.replace(/</g,'&lt;')}</div>`;
+  chatBody.appendChild(userDiv);
+  chatBody.scrollTop = chatBody.scrollHeight;
   input.value = '';
+
+  isBusy = true;
   showTyping();
 
-  if (isLiveMode && mb_token && mb_child_id) {
-    // Real API call
-    try {
-      const res = await fetch(API + '/chat', {
-        method: 'POST',
-        headers: {'Content-Type':'application/json','Authorization':'Bearer '+mb_token},
-        body: JSON.stringify({
-          message: text,
-          child_profile_id: mb_child_id,
-          character: currentChar,
-          subject: currentSubject.toLowerCase(),
-          session_id: mb_session_id
-        })
-      });
+  try {
+    const res = await fetch(API + '/chat/demo', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ message: text, history: demoHistory })
+    });
+    removeTyping();
+
+    if (res.ok) {
       const data = await res.json();
-      const t = document.getElementById('typing-indicator');
-      if (t) t.remove();
-      if (res.ok) {
-        mb_session_id = data.session_id;
-        addMsg(currentChar, data.response);
-        if (data.new_badges && data.new_badges.length) {
-          data.new_badges.forEach(b => addMsg(currentChar, `🏅 You earned a badge: <strong>${b.badge_name}</strong>!`));
-        }
-      } else {
-        addMsg(currentChar, "Hmm, something went wrong. Please try again! 🐦");
-      }
-    } catch(e) {
-      const t = document.getElementById('typing-indicator');
-      if (t) t.remove();
-      addMsg(currentChar, "Connection hiccup! Please try again. 🐦");
+      const reply = data.response || "Tweet tweet! 🐦 Let's keep going!";
+      addChirpyMsg(reply.replace(/\n/g,'<br>'));
+      // Update history for next turn
+      demoHistory.push({ role: 'user', content: text });
+      demoHistory.push({ role: 'assistant', content: reply });
+    } else {
+      addChirpyMsg("Hmm, something went wrong — please try again! 🐦");
     }
-    return;
+  } catch(e) {
+    removeTyping();
+    addChirpyMsg("Connection hiccup — please check your internet and try again. 🐦");
   }
 
-  // Demo mode (no login)
-  setTimeout(() => {
-    const t = document.getElementById('typing-indicator');
-    if (t) t.remove();
-    const charResponses = responses[currentChar]?.[currentSubject];
-    if (charResponses) {
-      const respFn = charResponses[Math.min(msgIndex, charResponses.length - 1)];
-      const reply  = respFn(text);
-      addMsg(currentChar, reply);
-      msgIndex = Math.min(msgIndex + 1, charResponses.length - 1);
-    } else {
-      addMsg(currentChar, currentChar === 'chirpy'
-        ? "Tweet tweet! 🐦 That's so interesting! Let's keep practicing — you're doing GREAT! ⭐"
-        : "Wonderful effort! 🌿 Every step forward is a step worth celebrating.");
-    }
-  }, 1000 + Math.random() * 600);
+  isBusy = false;
+  demoCount++;
+
+  if (demoCount >= DEMO_LIMIT) {
+    showUpsell();
+  }
 }
 
 function switchChar(char) {
+  // Mama Bird is behind a signup wall on this public demo
+  if (char === 'mama') {
+    chatBody.innerHTML = '';
+    demoCount = 0; demoHistory = [];
+    const div = document.createElement('div');
+    div.className = 'msg chirpy';
+    div.innerHTML = `<div class="msg-avatar" style="background:var(--green-light);">🪺</div>
+      <div class="msg-bubble upsell-bubble">
+        <strong>🌿 Mama Bird is available with a free account!</strong><br><br>
+        Sign up to unlock Mama Bird, lesson plan generation, all 6 subjects, and progress tracking.<br><br>
+        <div class="upsell-cta">
+          <a href="login.html" class="upsell-btn" style="background:var(--green);">Start Free — 3 Months, No Card</a>
+          <a href="pricing.html" class="upsell-link">See all plans →</a>
+        </div>
+      </div>`;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return;
+  }
   currentChar = char;
-  msgIndex = 0;
-  // Update v2 char cards
+  // Update card UI
   document.getElementById('btn-chirpy').className = 'char-card-v2' + (char === 'chirpy' ? ' active-chirpy' : '');
   document.getElementById('btn-mama').className   = 'char-card-v2' + (char === 'mama'   ? ' active-mama'   : '');
   const cc = document.getElementById('chirpy-check');
   const mc = document.getElementById('mama-check');
-  if (cc) cc.setAttribute('data-lucide', char === 'chirpy' ? 'check-circle-2' : 'circle');
-  if (mc) mc.setAttribute('data-lucide', char === 'mama'   ? 'check-circle-2' : 'circle');
-  if (cc) cc.style.color = char === 'chirpy' ? 'var(--sky-dark)' : 'var(--light-text)';
-  if (mc) mc.style.color = char === 'mama'   ? 'var(--green)' : 'var(--light-text)';
+  if (cc) { cc.setAttribute('data-lucide', char === 'chirpy' ? 'check-circle-2' : 'circle'); cc.style.color = char === 'chirpy' ? 'var(--sky-dark)' : 'var(--light-text)'; }
+  if (mc) { mc.setAttribute('data-lucide', char === 'mama' ? 'check-circle-2' : 'circle'); mc.style.color = char === 'mama' ? 'var(--green)' : 'var(--light-text)'; }
   if (window.lucide) lucide.createIcons();
   const topbarAvatar = document.getElementById('topbar-avatar');
-  topbarAvatar.innerHTML = char === 'chirpy'
-    ? '<i data-lucide="feather" style="width:20px;height:20px;color:var(--sky-dark);"></i>'
-    : '<i data-lucide="heart" style="width:20px;height:20px;color:var(--green);"></i>';
+  topbarAvatar.innerHTML = '<i data-lucide="feather" style="width:20px;height:20px;color:var(--sky-dark);"></i>';
   if (window.lucide) lucide.createIcons({ nodes: [topbarAvatar] });
-  document.getElementById('topbar-name').textContent   = char === 'chirpy' ? 'Chirpy' : 'Mama Bird';
-  // Reset chat
+  document.getElementById('topbar-name').textContent = 'Chirpy';
+  // Reset state
+  demoCount = 0; demoHistory = [];
   chatBody.innerHTML = '';
-  const openings = {
-    chirpy: "Tweet tweet! 🐦 Hi! I'm Chirpy! Let's learn together — it's going to be SO much fun! 🌟\n\nWhat would you like to practice today? Pick a subject above!",
-    mama:   "Good day! 🌿 I'm Mama Bird. I'm here to help you learn in a calm, encouraging space.\n\nChoose a subject above and we'll begin together, at whatever pace feels right for you. 🪺"
-  };
-  addMsg(char, openings[char]);
+  const inp = document.getElementById('chat-input');
+  inp.disabled = false; inp.placeholder = 'Type your answer...';
+  document.querySelector('.chat-send').disabled = false;
+  addChirpyMsg("Tweet tweet! 🐦 I'm Chirpy! Let's keep practicing <strong>Spelling</strong> — you're going to do GREAT! ⭐<br><br>Ready for a word?");
 }
 
 function setSubject(el, subj) {
+  // Only Spelling is unlocked in the demo
+  if (subj !== 'Spelling') {
+    chatBody.innerHTML = '';
+    demoCount = 0; demoHistory = [];
+    const div = document.createElement('div');
+    div.className = 'msg chirpy';
+    div.innerHTML = `<div class="msg-avatar" style="background:var(--sky-light);">🐦</div>
+      <div class="msg-bubble upsell-bubble">
+        <strong>Tweet tweet! 🐦 I love ${subj}!</strong><br><br>
+        ${subj} is available with a free account — along with all 5 other subjects. Sign up in seconds, no card needed!<br><br>
+        <div class="upsell-cta">
+          <a href="login.html" class="upsell-btn">Start Free — No Card Needed</a>
+          <a href="pricing.html" class="upsell-link">See all plans →</a>
+        </div>
+      </div>`;
+    chatBody.appendChild(div);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    return;
+  }
+  // Reset Spelling demo
   document.querySelectorAll('.subject-pill').forEach(p => p.classList.remove('active'));
   el.classList.add('active');
-  currentSubject = subj;
-  msgIndex = 0;
+  demoCount = 0; demoHistory = [];
   chatBody.innerHTML = '';
-  const charResponses = responses[currentChar]?.[subj];
-  if (charResponses) {
-    addMsg(currentChar, charResponses[0]());
-    msgIndex = 1;
-  } else {
-    addMsg(currentChar, currentChar === 'chirpy'
-      ? `Tweet tweet! Let's practice ${subj}! 🐦 I'll ask you some questions — ready? ⭐`
-      : `Let's explore ${subj} together. 🌿 I'll guide you through it gently, step by step.`);
-  }
+  const inp = document.getElementById('chat-input');
+  inp.disabled = false; inp.placeholder = 'Type your answer...';
+  document.querySelector('.chat-send').disabled = false;
+  addChirpyMsg("Tweet tweet! ✏️ Let's practice <strong>Spelling</strong>! 🐦<br><br>I'll give you a word, and you spell it back to me. Ready? Here's your first one:<br><br><strong>🐱 C-A-T</strong> — can you spell it?");
 }
 </script>
 </body></html>
