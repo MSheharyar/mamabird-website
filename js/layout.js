@@ -117,15 +117,16 @@
   const token = localStorage.getItem('mb_token');
   const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
   if (token && user) {
+    // Determine correct app destination by role
+    const appDest = user.role === 'admin' ? 'admin.html' : 'app.html';
     const cta = document.querySelector('.nav-cta');
     if (cta) {
-      cta.outerHTML = `<span style="display:flex;align-items:center;gap:10px;">
-        <a href="chatbot.html" class="nav-cta" style="background:var(--green);">My Classroom</a>
-        <a href="#" onclick="localStorage.clear();window.location.href='index.html';return false;" style="font-family:var(--font-display);font-size:.8rem;font-weight:700;color:var(--light-text);text-decoration:none;">Sign out</a>
-      </span>`;
+      // Sign out is removed from public nav — child cannot log out from here.
+      // Parent must use the PIN-protected Sign out inside the app.
+      cta.outerHTML = `<a href="${appDest}" class="nav-cta" style="background:var(--green);">My Classroom →</a>`;
     }
     const mobCta = document.querySelector('.mob-cta');
-    if (mobCta) mobCta.outerHTML = `<a href="chatbot.html" class="mob-cta" style="background:var(--green);">My Classroom</a>`;
+    if (mobCta) mobCta.outerHTML = `<a href="${appDest}" class="mob-cta" style="background:var(--green);">My Classroom →</a>`;
   }
 
 })();

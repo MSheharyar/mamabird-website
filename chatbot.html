@@ -398,13 +398,9 @@ let mb_child_id   = localStorage.getItem('mb_child_id') || null;
 let mb_session_id = null;
 let isLiveMode = false;
 
-// Add auth bar if logged in
+// Logged-in users belong in app.html — redirect them away from the public demo
 if (mb_token && mb_user) {
-  const bar = document.createElement('div');
-  bar.style.cssText = 'position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #e5e7eb;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;z-index:999;font-family:var(--font-display);font-size:.82rem;box-shadow:0 -2px 12px rgba(0,0,0,.06);';
-  bar.innerHTML = `<span style="color:var(--mid);">🟢 Logged in as <strong>${mb_user.email}</strong> — chatting with real Chirpy AI</span><button onclick="logout()" style="border:none;background:none;color:var(--sky-dark);font-family:var(--font-display);font-weight:700;cursor:pointer;font-size:.82rem;">Sign out</button>`;
-  document.body.appendChild(bar);
-  initLiveMode();
+  window.location.replace(mb_user.role === 'admin' ? 'admin.html' : 'app.html');
 }
 
 function logout() {
