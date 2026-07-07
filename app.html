@@ -283,7 +283,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
       <button class="btn-logout" onclick="logout()">✕ Log out</button>
     </div>
     <!-- Lock / Unlock button always visible -->
-    <button class="btn-lock" id="btn-lock" onclick="handleLockClick()" title="Parent controls">🔒</button>
+    <button class="btn-lock" id="btn-lock" onclick="handleLockClick()" title="Parent controls — set/enter a PIN to reach the Dashboard & Log out">🔒 Parent</button>
   </div>
 </header>
 
@@ -452,7 +452,12 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 const API   = 'https://web-production-bcff5.up.railway.app';
 const token = localStorage.getItem('mb_token');
 const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
-if (!token || !user) window.location.href = 'login.html';
+function mbTokenValid(t){ try { const p=t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); const pad=p.length%4?'='.repeat(4-(p.length%4)):''; return JSON.parse(atob(p+pad)).exp*1000>Date.now(); } catch(e){ return false; } }
+if (!token || !user || !mbTokenValid(token)) {
+  // No session, or an expired token — clear any stale keys and force a real login.
+  ['mb_token','mb_user','mb_child_id'].forEach(k=>localStorage.removeItem(k));
+  window.location.href = 'login.html';
+}
 
 let currentChar    = 'chirpy';
 let currentSubject = 'spelling';
@@ -607,7 +612,7 @@ function unlock() {
   isUnlocked = true;
   document.getElementById('parent-controls').classList.remove('locked');
   document.getElementById('btn-lock').classList.add('unlocked');
-  document.getElementById('btn-lock').textContent = '🔓';
+  document.getElementById('btn-lock').textContent = '🔓 Parent';
   // Auto-relock after 3 minutes of unlocked state
   clearTimeout(lockTimer);
   lockTimer = setTimeout(lock, 3 * 60 * 1000);
@@ -618,7 +623,7 @@ function lock() {
   clearTimeout(lockTimer);
   document.getElementById('parent-controls').classList.add('locked');
   document.getElementById('btn-lock').classList.remove('unlocked');
-  document.getElementById('btn-lock').textContent = '🔒';
+  document.getElementById('btn-lock').textContent = '🔒 Parent';
   // Close dashboard if open
   document.getElementById('dash-panel').classList.remove('open');
 }

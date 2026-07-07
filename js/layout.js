@@ -113,9 +113,22 @@
     setTimeout(() => el.classList.add('loaded'), 300);
   });
 
-  // Swap nav CTA based on auth state
-  const token = localStorage.getItem('mb_token');
-  const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
+  // Swap nav CTA based on auth state — only when a valid, UNEXPIRED JWT is present.
+  function mbTokenValid(t) {
+    try {
+      const p = t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
+      const pad = p.length % 4 ? '='.repeat(4 - (p.length % 4)) : '';
+      return JSON.parse(atob(p + pad)).exp * 1000 > Date.now();
+    } catch (e) { return false; }
+  }
+  let token = localStorage.getItem('mb_token');
+  let user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
+  if (token && !mbTokenValid(token)) {
+    // Stale/expired session left in localStorage — clear it so the nav shows
+    // "Sign In / Join Free" instead of a misleading "My Classroom".
+    ['mb_token', 'mb_user', 'mb_child_id'].forEach(k => localStorage.removeItem(k));
+    token = null; user = null;
+  }
   if (token && user) {
     // Determine correct app destination by role
     const appDest = user.role === 'admin' ? 'admin.html' : 'app.html';
