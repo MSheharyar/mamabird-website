@@ -34,7 +34,19 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--dark);
   cursor:pointer;position:relative;
 }
-.profile-chip select{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;border:none;appearance:none;}
+.profile-menu{
+  display:none;position:absolute;top:calc(100% + 6px);left:0;min-width:230px;
+  background:#fff;border:1px solid var(--cream-dark);border-radius:var(--r-md);
+  box-shadow:var(--sh-md);padding:6px;z-index:120;cursor:default;
+}
+.profile-menu.open{display:block;}
+.pm-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;cursor:pointer;font-size:.85rem;font-weight:600;color:var(--dark);}
+.pm-item:hover{background:var(--cream);}
+.pm-item.active{background:var(--sky-light);color:var(--sky-dark);}
+.pm-grow{margin-right:auto;}
+.pm-del{border:none;background:none;cursor:pointer;color:var(--light);font-size:.9rem;padding:2px 5px;border-radius:6px;line-height:1;}
+.pm-del:hover{color:var(--red);background:var(--red-light);}
+.pm-add{color:var(--green);}
 .header-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
 
 /* Parent controls — hidden in child mode */
@@ -55,9 +67,10 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 
 /* Lock button — always visible */
 .btn-lock{
-  width:36px;height:36px;border-radius:50%;border:1.5px solid var(--cream-dark);
-  background:#fff;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;
-  transition:border-color .18s,background .18s;flex-shrink:0;
+  padding:7px 14px;border-radius:var(--r-full);border:1.5px solid var(--cream-dark);
+  background:#fff;cursor:pointer;font-size:.82rem;font-family:var(--font-display);font-weight:700;color:var(--mid);
+  display:inline-flex;align-items:center;gap:5px;white-space:nowrap;flex-shrink:0;
+  transition:border-color .18s,background .18s;
 }
 .btn-lock:hover{border-color:var(--red);background:var(--red-light);}
 .btn-lock.unlocked{border-color:var(--green);background:var(--green-light);}
@@ -268,12 +281,11 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   </div>
 
   <!-- Profile selector chip -->
-  <div class="profile-chip" id="profile-chip-wrap">
+  <div class="profile-chip" id="profile-chip-wrap" onclick="toggleProfileMenu(event)">
     <span>👤</span>
     <span id="profile-chip-label">Loading…</span>
-    <select id="profile-select" onchange="switchProfile(this.value)">
-      <option value="">Loading…</option>
-    </select>
+    <span style="font-size:.7rem;opacity:.55;">▾</span>
+    <div class="profile-menu" id="profile-menu" onclick="event.stopPropagation()"></div>
   </div>
 
   <div class="header-right">
@@ -675,30 +687,17 @@ async function loadProfiles() {
     const res  = await api('GET', '/profiles/');
     const data = await res.json();
     profiles   = data.profiles || [];
-    const sel  = document.getElementById('profile-select');
-    sel.innerHTML = '';
     if (!profiles.length) {
-      sel.innerHTML = '<option value="">+ Add Profile</option>';
       document.getElementById('profile-chip-label').textContent = 'Add Profile';
+      renderProfileMenu();
       openCreateModal();
       return;
     }
-    profiles.forEach(p => {
-      const o = document.createElement('option');
-      o.value = p.id;
-      o.textContent = p.child_name + (p.grade ? ' · ' + p.grade : '');
-      sel.appendChild(o);
-    });
-    const add = document.createElement('option');
-    add.value = '__add__'; add.textContent = '+ Add Child'; sel.appendChild(add);
-
-    if (currentChildId && profiles.find(p => p.id === currentChildId)) {
-      sel.value = currentChildId;
-    } else {
+    if (!(currentChildId && profiles.find(p => p.id === currentChildId))) {
       currentChildId = profiles[0].id;
       localStorage.setItem('mb_child_id', currentChildId);
-      sel.value = currentChildId;
     }
+    renderProfileMenu();
     updateChip();
   } catch(e) { showToast('Could not load profiles', 'error'); }
 }
@@ -708,17 +707,45 @@ function updateChip() {
   document.getElementById('profile-chip-label').textContent = p ? p.child_name + (p.grade ? ' · ' + p.grade : '') : '—';
   const d = document.getElementById('dash-child-chip');
   if (d) d.textContent = '👤 ' + (p ? p.child_name : '—');
+  const jb = document.getElementById('join-class-btn');
+  if (jb && user && user.role === 'parent') {
+    jb.textContent = (p && p.classroom_name) ? ('🎓 ' + p.classroom_name) : '🎓 Join Class';
+  }
+}
+
+function renderProfileMenu(){
+  const menu = document.getElementById('profile-menu');
+  if (!menu) return;
+  menu.innerHTML = profiles.map(p => `
+    <div class="pm-item ${p.id===currentChildId?'active':''}" onclick="selectProfile('${p.id}',event)">
+      <span>🐣</span>
+      <span class="pm-grow">${p.child_name}${p.grade?' · '+p.grade:''}${p.classroom_name?' · 🎓 '+p.classroom_name:''}</span>
+      <button class="pm-del" title="Delete profile" onclick="deleteProfile('${p.id}',event)">🗑</button>
+    </div>`).join('') +
+    `<div class="pm-item pm-add" onclick="selectProfile('__add__',event)"><span>➕</span><span class="pm-grow">Add Child</span></div>`;
+}
+function toggleProfileMenu(ev){ if(ev) ev.stopPropagation(); const m=document.getElementById('profile-menu'); if(m) m.classList.toggle('open'); }
+function closeProfileMenu(){ const m=document.getElementById('profile-menu'); if(m) m.classList.remove('open'); }
+document.addEventListener('click', closeProfileMenu);
+function selectProfile(id, ev){ if(ev) ev.stopPropagation(); closeProfileMenu(); switchProfile(id); }
+async function deleteProfile(id, ev){
+  if(ev) ev.stopPropagation();
+  const p = profiles.find(x => x.id === id);
+  if(!confirm('Delete '+(p?p.child_name:'this')+"'s profile? This can't be undone.")) return;
+  try{
+    const res = await api('DELETE','/profiles/'+id);
+    if(res.ok){ if(currentChildId===id){ currentChildId=null; localStorage.removeItem('mb_child_id'); } showToast('Profile deleted','success'); await loadProfiles(); }
+    else { const d = await res.json(); showToast(d.detail||'Could not delete','error'); }
+  }catch(e){ showToast('Could not delete','error'); }
 }
 
 function switchProfile(id) {
-  if (id === '__add__') {
-    document.getElementById('profile-select').value = currentChildId || '';
-    openCreateModal(); return;
-  }
+  if (id === '__add__') { openCreateModal(); return; }
   currentChildId = id;
   localStorage.setItem('mb_child_id', id);
   sessionId = null;
   updateChip();
+  renderProfileMenu();
   renderWelcome();
 }
 
@@ -935,7 +962,7 @@ async function createProfile() {
     if (res.ok) {
       closeCreateModal(); await loadProfiles();
       currentChildId=data.profile.id; localStorage.setItem('mb_child_id',currentChildId);
-      document.getElementById('profile-select').value=currentChildId;
+      renderProfileMenu();
       updateChip(); showToast('Profile created for '+name+'!','success'); renderWelcome();
     } else showToast(data.detail||'Could not create profile','error');
   } catch(e){showToast('Could not create profile','error');}
