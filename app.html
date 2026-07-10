@@ -336,7 +336,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
         <div class="topbar-name" id="topbar-name">Chirpy</div>
         <div class="topbar-status"><span class="topbar-dot"></span> Online · <span id="topbar-subj">Spelling</span></div>
       </div>
-      <button id="change-subj-btn" onclick="showSubjectPicker()" style="margin-left:auto;padding:6px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:var(--sky-light);color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;">🔄 Subject</button>
+      <button id="change-subj-btn" onclick="changeSubjectClick()" style="margin-left:auto;padding:6px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:var(--sky-light);color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;">🔄 Subject</button>
     </div>
     <div class="chat-msgs" id="chat-msgs"></div>
     <div class="chat-input-row">
@@ -505,6 +505,8 @@ if (user && user.role === 'teacher') {
 
 let currentChar    = 'chirpy';
 let currentSubject = 'spelling';
+let subjectStarted = false;
+let pendingAfterUnlock = null;
 let currentChildId = localStorage.getItem('mb_child_id') || null;
 let sessionId      = null;
 let profiles       = [];
@@ -663,6 +665,7 @@ function unlock() {
   // Auto-relock after 3 minutes of unlocked state
   clearTimeout(lockTimer);
   lockTimer = setTimeout(lock, 3 * 60 * 1000);
+  if (pendingAfterUnlock) { const f = pendingAfterUnlock; pendingAfterUnlock = null; setTimeout(f, 200); }
 }
 
 function lock() {
@@ -767,9 +770,10 @@ function switchProfile(id) {
 // ─── CHAT ─────────────────────────────────────────────────────────────────────
 function renderWelcome() {
   document.getElementById('chat-msgs').innerHTML = '';
+  subjectStarted = false;
   const openings = {
-    chirpy: 'Tweet tweet! 🐦 Hi there! I\'m Chirpy! I\'m SO excited to learn with you today!\n\nLet\'s practice <strong>' + cap(currentSubject) + '</strong>! 🌟 Ready? Let\'s go!',
-    mama:   'Good day! 🌿 I\'m Mama Bird. I\'m here to support your learning journey.\n\nToday we\'ll work on <strong>' + cap(currentSubject) + '</strong>. Let\'s begin at your own pace. 🪺',
+    chirpy: 'Tweet tweet! 🐦 Hi there! I\'m Chirpy! I\'m SO excited to learn with you today! 🌟',
+    mama:   'Good day! 🌿 I\'m Mama Bird. I\'m here to support your learning journey. Let\'s begin at your own pace. 🪺',
   };
   addMsg(currentChar, openings[currentChar]);
   showSubjectPicker();
@@ -795,8 +799,18 @@ function showSubjectPicker() {
     `<div class="msg-bubble">Which one would you like to learn? 🌟<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">${btns}</div></div>`;
   msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
 }
+function changeSubjectClick() {
+  if (subjectStarted && !isUnlocked) { requireParentPin(showSubjectPicker); return; }
+  showSubjectPicker();
+}
+function requireParentPin(cb) {
+  if (isUnlocked) { cb(); return; }
+  pendingAfterUnlock = cb;
+  openPinModal();
+}
 function pickSubject(subj) {
-  currentSubject = subj; sessionId = null;
+  if (subjectStarted && !isUnlocked) { requireParentPin(() => pickSubject(subj)); return; }
+  currentSubject = subj; sessionId = null; subjectStarted = false;
   document.getElementById('topbar-subj').textContent = cap(subj);
   document.querySelectorAll('.subj-chip').forEach(c => c.classList.remove('active'));
   const pill = [...document.querySelectorAll('.subj-chip')].find(c => (c.getAttribute('onclick')||'').includes("'"+subj+"'"));
@@ -833,7 +847,7 @@ async function sendMsg() {
   const input = document.getElementById('chat-input');
   const text  = input.value.trim();
   if (!text) return;
-  addMsg('user', text); input.value = ''; showTyping();
+  addMsg('user', text); input.value = ''; subjectStarted = true; showTyping();
   try {
     const body = { message: text, character: currentChar, subject: currentSubject };
     if (currentChildId) body.child_profile_id = currentChildId;
