@@ -284,16 +284,16 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   <div class="profile-chip" id="profile-chip-wrap" onclick="toggleProfileMenu(event)">
     <span>👤</span>
     <span id="profile-chip-label">Loading…</span>
-    <span style="font-size:.7rem;opacity:.55;">▾</span>
+    <span id="profile-caret" style="font-size:.7rem;opacity:.55;display:none;">▾</span>
     <div class="profile-menu" id="profile-menu" onclick="event.stopPropagation()"></div>
   </div>
 
   <div class="header-right">
     <a id="teacher-back" href="teacher.html" style="display:none;padding:7px 14px;border-radius:999px;border:1.5px solid #6EB4D4;color:#3A8BB0;font-family:var(--font-display);font-weight:700;font-size:.78rem;text-decoration:none;">← My Classroom</a>
-    <button id="join-class-btn" onclick="openJoinModal()" style="display:none;padding:7px 14px;border-radius:999px;border:1.5px solid #4A8B3F;color:#4A8B3F;background:none;font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;">🎓 Join Class</button>
     <!-- Parent controls — hidden until PIN entered -->
     <div class="parent-controls locked" id="parent-controls">
       <button class="btn-dashboard" onclick="openDashboard()">📊 Dashboard</button>
+      <button id="class-btn" onclick="handleClassBtn()" style="display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r-full);border:1.5px solid #4A8B3F;background:var(--green-light);color:#4A8B3F;font-family:var(--font-display);font-weight:700;font-size:.82rem;cursor:pointer;white-space:nowrap;">🎓 Join Class</button>
       <button class="btn-logout" onclick="logout()">✕ Log out</button>
     </div>
     <!-- Lock / Unlock button always visible -->
@@ -500,11 +500,6 @@ if (user && user.role === 'teacher') {
     const tb = document.getElementById('teacher-back');
     if (tb) tb.style.display = 'inline-block';
   });
-} else if (user && user.role === 'parent') {
-  window.addEventListener('DOMContentLoaded', () => {
-    const jb = document.getElementById('join-class-btn');
-    if (jb) jb.style.display = 'inline-block';
-  });
 }
 
 let currentChar    = 'chirpy';
@@ -661,6 +656,9 @@ function unlock() {
   document.getElementById('parent-controls').classList.remove('locked');
   document.getElementById('btn-lock').classList.add('unlocked');
   document.getElementById('btn-lock').textContent = '🔓 Parent';
+  const c=document.getElementById('profile-caret'); if(c) c.style.display='inline';
+  document.getElementById('profile-chip-wrap').style.cursor='pointer';
+  updateClassBtn();
   // Auto-relock after 3 minutes of unlocked state
   clearTimeout(lockTimer);
   lockTimer = setTimeout(lock, 3 * 60 * 1000);
@@ -672,6 +670,9 @@ function lock() {
   document.getElementById('parent-controls').classList.add('locked');
   document.getElementById('btn-lock').classList.remove('unlocked');
   document.getElementById('btn-lock').textContent = '🔒 Parent';
+  const c=document.getElementById('profile-caret'); if(c) c.style.display='none';
+  document.getElementById('profile-chip-wrap').style.cursor='default';
+  closeProfileMenu();
   // Close dashboard if open
   document.getElementById('dash-panel').classList.remove('open');
 }
@@ -707,10 +708,23 @@ function updateChip() {
   document.getElementById('profile-chip-label').textContent = p ? p.child_name + (p.grade ? ' · ' + p.grade : '') : '—';
   const d = document.getElementById('dash-child-chip');
   if (d) d.textContent = '👤 ' + (p ? p.child_name : '—');
-  const jb = document.getElementById('join-class-btn');
-  if (jb && user && user.role === 'parent') {
-    jb.textContent = (p && p.classroom_name) ? ('🎓 ' + p.classroom_name) : '🎓 Join Class';
+  updateClassBtn();
+}
+function updateClassBtn(){
+  const cb = document.getElementById('class-btn');
+  if(!cb) return;
+  const p = profiles.find(x => x.id === currentChildId);
+  if (p && p.classroom_name) {
+    cb.textContent = '🚪 Leave ' + p.classroom_name;
+    cb.style.borderColor = '#CC2929'; cb.style.color = '#CC2929'; cb.style.background = 'var(--red-light)';
+  } else {
+    cb.textContent = '🎓 Join Class';
+    cb.style.borderColor = '#4A8B3F'; cb.style.color = '#4A8B3F'; cb.style.background = 'var(--green-light)';
   }
+}
+function handleClassBtn(){
+  const p = profiles.find(x => x.id === currentChildId);
+  if (p && p.classroom_name) leaveClass(p.id); else openJoinModal();
 }
 
 function renderProfileMenu(){
@@ -724,7 +738,7 @@ function renderProfileMenu(){
     </div>`).join('') +
     `<div class="pm-item pm-add" onclick="selectProfile('__add__',event)"><span>➕</span><span class="pm-grow">Add Child</span></div>`;
 }
-function toggleProfileMenu(ev){ if(ev) ev.stopPropagation(); const m=document.getElementById('profile-menu'); if(m) m.classList.toggle('open'); }
+function toggleProfileMenu(ev){ if(ev) ev.stopPropagation(); if(!isUnlocked){ return; } const m=document.getElementById('profile-menu'); if(m) m.classList.toggle('open'); }
 function closeProfileMenu(){ const m=document.getElementById('profile-menu'); if(m) m.classList.remove('open'); }
 document.addEventListener('click', closeProfileMenu);
 function selectProfile(id, ev){ if(ev) ev.stopPropagation(); closeProfileMenu(); switchProfile(id); }
