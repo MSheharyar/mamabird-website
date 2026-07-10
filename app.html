@@ -278,6 +278,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 
   <div class="header-right">
     <a id="teacher-back" href="teacher.html" style="display:none;padding:7px 14px;border-radius:999px;border:1.5px solid #6EB4D4;color:#3A8BB0;font-family:var(--font-display);font-weight:700;font-size:.78rem;text-decoration:none;">← My Classroom</a>
+    <button id="join-class-btn" onclick="openJoinModal()" style="display:none;padding:7px 14px;border-radius:999px;border:1.5px solid #4A8B3F;color:#4A8B3F;background:none;font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;">🎓 Join Class</button>
     <!-- Parent controls — hidden until PIN entered -->
     <div class="parent-controls locked" id="parent-controls">
       <button class="btn-dashboard" onclick="openDashboard()">📊 Dashboard</button>
@@ -447,6 +448,27 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   </div>
 </div>
 
+<!-- Join class modal -->
+<div class="modal-overlay" id="join-modal">
+  <div class="modal-card">
+    <div class="modal-title">🎓 Join a Class</div>
+    <p style="font-size:.85rem;color:#666;margin-bottom:14px;">Enter the class code your child's teacher gave you.</p>
+    <div class="form-group" style="margin-bottom:12px;">
+      <label class="form-label">Child</label>
+      <select class="form-ctrl" id="join-child" onchange="updateJoinCurrent()"></select>
+    </div>
+    <div id="join-current" style="font-size:.8rem;color:#666;margin-bottom:12px;"></div>
+    <div class="form-group" style="margin-bottom:12px;">
+      <label class="form-label">Class code</label>
+      <input class="form-ctrl" id="join-code" type="text" placeholder="e.g. SRG8T3" style="text-transform:uppercase;letter-spacing:2px;">
+    </div>
+    <div class="modal-btn-row">
+      <button class="btn-cancel" onclick="closeJoinModal()">Cancel</button>
+      <button class="btn-create" onclick="submitJoin()">Join Class</button>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -465,6 +487,11 @@ if (user && user.role === 'teacher') {
   window.addEventListener('DOMContentLoaded', () => {
     const tb = document.getElementById('teacher-back');
     if (tb) tb.style.display = 'inline-block';
+  });
+} else if (user && user.role === 'parent') {
+  window.addEventListener('DOMContentLoaded', () => {
+    const jb = document.getElementById('join-class-btn');
+    if (jb) jb.style.display = 'inline-block';
   });
 }
 
@@ -915,6 +942,42 @@ async function createProfile() {
 }
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
+function openJoinModal(){
+  const sel=document.getElementById('join-child');
+  sel.innerHTML=profiles.map(p=>`<option value="${p.id}">${p.child_name}</option>`).join('');
+  sel.value=(currentChildId && profiles.find(p=>p.id===currentChildId)) ? currentChildId : (profiles[0] && profiles[0].id || '');
+  document.getElementById('join-code').value='';
+  updateJoinCurrent();
+  document.getElementById('join-modal').classList.add('open');
+}
+function closeJoinModal(){ document.getElementById('join-modal').classList.remove('open'); }
+function updateJoinCurrent(){
+  const id=document.getElementById('join-child').value;
+  const p=profiles.find(x=>x.id===id);
+  const el=document.getElementById('join-current');
+  if(p && p.classroom_name){ el.innerHTML='Currently in: <strong>'+p.classroom_name+'</strong> · <a href="#" style="color:#CC2929;font-weight:700;text-decoration:none;" onclick="leaveClass(\''+p.id+'\');return false;">Leave class</a>'; }
+  else { el.textContent='Not enrolled in a class yet.'; }
+}
+async function submitJoin(){
+  const child=document.getElementById('join-child').value;
+  const code=document.getElementById('join-code').value.trim().toUpperCase();
+  if(!code){ showToast('Enter a class code','error'); return; }
+  try{
+    const res=await api('POST','/classrooms/join',{join_code:code,child_profile_id:child});
+    const data=await res.json();
+    if(res.ok){ showToast('Joined '+((data.classroom&&data.classroom.name)||'class')+'!','success'); closeJoinModal(); await loadProfiles(); }
+    else { showToast((data.detail&&data.detail.message)||data.detail||'Could not join','error'); }
+  }catch(e){ showToast('Could not join class','error'); }
+}
+async function leaveClass(child){
+  if(!confirm('Leave this class? Your child stays in your account.')) return;
+  try{
+    const res=await api('POST','/classrooms/leave',{child_profile_id:child});
+    if(res.ok){ showToast('Left the class','success'); closeJoinModal(); await loadProfiles(); }
+    else { showToast('Could not leave','error'); }
+  }catch(e){ showToast('Could not leave','error'); }
+}
+
 function api(method,path,body){
   const opts={method,headers:{'Content-Type':'application/json','Authorization':'Bearer '+token}};
   if (body) opts.body=JSON.stringify(body);

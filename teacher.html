@@ -124,6 +124,7 @@ tr:last-child td{border-bottom:none;}
       <button class="btn btn-ghost" style="color:var(--red);border-color:#fca5a5;" onclick="deleteClass()">Delete</button>
     </div>
 
+    <div id="d-code" class="row" style="margin:-4px 0 14px;flex-wrap:wrap;gap:8px;"></div>
     <div class="stats" id="d-stats"></div>
 
     <div class="row" style="margin-top:22px;margin-bottom:10px;">
@@ -250,6 +251,7 @@ async function openClass(c){
   document.getElementById('view-list').style.display='none';
   document.getElementById('view-detail').style.display='block';
   document.getElementById('d-name').textContent = c.name + (c.grade_level? ' · '+c.grade_level : '');
+  renderCode();
   document.getElementById('d-stats').innerHTML='<div class="loading-bar" style="width:100%;">Loading class data…</div>';
   document.getElementById('d-roster').innerHTML=''; document.getElementById('d-subjects').innerHTML=''; document.getElementById('d-lessons').innerHTML='';
   try{
@@ -259,6 +261,21 @@ async function openClass(c){
   }catch(e){ document.getElementById('d-stats').innerHTML='<div class="loading-bar">Could not load class data.</div>'; }
 }
 function refreshDetail(){ if(active) openClass(active); }
+
+function renderCode(){
+  const el=document.getElementById('d-code');
+  el.innerHTML = `<span style="font-family:var(--font-display);font-weight:700;font-size:.8rem;color:var(--mid);">🔑 Class join code:</span>
+    <span id="code-val" style="font-family:monospace;font-weight:700;font-size:1.05rem;letter-spacing:3px;background:var(--sky-light);color:var(--sky-dark);padding:5px 14px;border-radius:8px;">${esc(active.join_code||'—')}</span>
+    <button class="btn btn-ghost" onclick="copyCode()">Copy</button>
+    <button class="btn btn-ghost" onclick="regenCode()">Regenerate</button>
+    <span style="font-size:.75rem;color:var(--mid);flex-basis:100%;">Share this code with parents so they can enroll their own child in this class.</span>`;
+}
+function copyCode(){ if(navigator.clipboard){ navigator.clipboard.writeText(active.join_code||'').then(()=>showToast('Code copied','success')); } }
+async function regenCode(){
+  if(!confirm('Generate a new code? The current code will stop working immediately.')) return;
+  const r=await api('POST',`/classrooms/${active.id}/regenerate-code`);
+  if(r.ok){ active.join_code=r.data.join_code; renderCode(); showToast('New code generated','success'); } else showToast(errMsg(r),'error');
+}
 
 function renderDetail(a){
   const t = a.totals||{}, students=a.students||[], subs=a.subject_breakdown||{};
@@ -271,16 +288,16 @@ function renderDetail(a){
   // roster
   let rows = students.length ? students.map(s=>`
     <tr>
-      <td><strong>🐣 ${esc(s.child_name)}</strong></td>
+      <td><strong>🐣 ${esc(s.child_name)}</strong>${s.joined?' <span style="font-size:.62rem;background:var(--yellow-light);color:#92600a;padding:2px 7px;border-radius:999px;font-weight:700;vertical-align:middle;">parent-joined</span>':''}</td>
       <td>${esc(s.grade)||'—'}</td>
       <td>${s.sessions}</td>
       <td style="font-weight:700;color:${accColor(s.avg_score)}">${s.avg_score}%</td>
       <td>${s.badges}</td>
       <td style="white-space:nowrap;">
-        <button class="btn btn-sky" onclick="teach('${s.id}')">▶ Teach</button>
+        ${s.joined?'<span style="font-size:.72rem;color:var(--mid);">Parent-managed</span>':`<button class="btn btn-sky" onclick="teach('${s.id}')">▶ Teach</button>`}
         <button class="btn btn-mini" onclick="removeStudent('${s.id}','${esc(s.child_name)}')">Remove</button>
       </td>
-    </tr>`).join('') : '<tr><td colspan="6" style="color:var(--mid);">No students yet — add one to get started.</td></tr>';
+    </tr>`).join('') : '<tr><td colspan="6" style="color:var(--mid);">No students yet — add one, or share the join code so a parent can enroll their child.</td></tr>';
   document.getElementById('d-roster').innerHTML = `<table><thead><tr>
     <th>Student</th><th>Grade</th><th>Sessions</th><th>Accuracy</th><th>Badges</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
 
