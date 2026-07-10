@@ -131,7 +131,7 @@
   }
   if (token && user) {
     // Determine correct app destination by role
-    const appDest = user.role === 'admin' ? 'admin.html' : 'app.html';
+    const appDest = user.role === 'admin' ? 'admin.html' : user.role === 'teacher' ? 'teacher.html' : 'app.html';
     const cta = document.querySelector('.nav-cta');
     if (cta) {
       // Sign out is removed from public nav — child cannot log out from here.

@@ -277,6 +277,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   </div>
 
   <div class="header-right">
+    <a id="teacher-back" href="teacher.html" style="display:none;padding:7px 14px;border-radius:999px;border:1.5px solid #6EB4D4;color:#3A8BB0;font-family:var(--font-display);font-weight:700;font-size:.78rem;text-decoration:none;">← My Classroom</a>
     <!-- Parent controls — hidden until PIN entered -->
     <div class="parent-controls locked" id="parent-controls">
       <button class="btn-dashboard" onclick="openDashboard()">📊 Dashboard</button>
@@ -457,6 +458,14 @@ if (!token || !user || !mbTokenValid(token)) {
   // No session, or an expired token — clear any stale keys and force a real login.
   ['mb_token','mb_user','mb_child_id'].forEach(k=>localStorage.removeItem(k));
   window.location.href = 'login.html';
+}
+
+// Teachers arrive here via "Teach as student" — give them a way back to the classroom
+if (user && user.role === 'teacher') {
+  window.addEventListener('DOMContentLoaded', () => {
+    const tb = document.getElementById('teacher-back');
+    if (tb) tb.style.display = 'inline-block';
+  });
 }
 
 let currentChar    = 'chirpy';

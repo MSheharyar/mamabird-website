@@ -146,10 +146,12 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
 const API = 'https://web-production-bcff5.up.railway.app';
 let selectedRole = 'parent';
 
+function roleHome(role){ return role === 'admin' ? 'admin.html' : role === 'teacher' ? 'teacher.html' : 'app.html'; }
+
 // Redirect if already logged in
 if (localStorage.getItem('mb_token')) {
   const _u = JSON.parse(localStorage.getItem('mb_user') || '{}');
-  window.location.href = _u.role === 'admin' ? 'admin.html' : 'app.html';
+  window.location.href = roleHome(_u.role);
 }
 
 function switchTab(tab) {
@@ -194,8 +196,7 @@ document.getElementById('form-login').addEventListener('submit', async function(
     localStorage.setItem('mb_user', JSON.stringify(data.user));
     const next = new URLSearchParams(window.location.search).get('next');
     if (next) { window.location.href = next + '.html'; }
-    else if (data.user.role === 'admin') { window.location.href = 'admin.html'; }
-    else { window.location.href = 'app.html'; }
+    else { window.location.href = roleHome(data.user.role); }
   } catch(err) {
     showError('form-login', 'Connection error. Please try again.');
     btn.textContent = 'Sign In to Chirpy\'s Classroom';
@@ -235,7 +236,7 @@ document.getElementById('form-register').addEventListener('submit', async functi
       localStorage.setItem('mb_token', loginData.token);
       localStorage.setItem('mb_user', JSON.stringify(loginData.user));
     }
-    window.location.href = 'app.html';
+    window.location.href = roleHome(loginData && loginData.user && loginData.user.role);
   } catch(err) {
     showError('form-register', 'Connection error. Please try again.');
     btn.innerHTML = '<i data-lucide="sparkles" style="width:18px;height:18px;"></i> Start My Free 3-Month Trial';
