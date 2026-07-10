@@ -810,13 +810,31 @@ function requireParentPin(cb) {
 }
 function pickSubject(subj) {
   if (subjectStarted && !isUnlocked) { requireParentPin(() => pickSubject(subj)); return; }
-  currentSubject = subj; sessionId = null; subjectStarted = false;
+  currentSubject = subj; sessionId = null;
   document.getElementById('topbar-subj').textContent = cap(subj);
   document.querySelectorAll('.subj-chip').forEach(c => c.classList.remove('active'));
   const pill = [...document.querySelectorAll('.subj-chip')].find(c => (c.getAttribute('onclick')||'').includes("'"+subj+"'"));
   if (pill) pill.classList.add('active');
   const picker = document.getElementById('subject-picker'); if (picker) picker.remove();
-  addMsg(currentChar, `Yay — let's do <strong>${cap(subj)}</strong>! 🌟 Type your first answer whenever you're ready!`);
+  startLesson(subj);
+}
+function startLesson(subj) {
+  showTyping();
+  const body = { message: "I'm ready — please ask me my first question!", character: currentChar, subject: subj };
+  if (currentChildId) body.child_profile_id = currentChildId;
+  api('POST', '/chat', body).then(r => r.json()).then(data => {
+    const t = document.getElementById('typing'); if (t) t.remove();
+    if (data && data.response) {
+      sessionId = data.session_id; subjectStarted = true;
+      addMsg(currentChar, data.response);
+      if (data.new_badges && data.new_badges.length) data.new_badges.forEach(b => addMsg(null, `${b.badge_emoji||'🏅'} <strong>New badge: ${b.badge_name}</strong>`, true));
+    } else {
+      addMsg(currentChar, `Yay — let's do <strong>${cap(subj)}</strong>! 🌟 Type your first answer whenever you're ready!`);
+    }
+  }).catch(() => {
+    const t = document.getElementById('typing'); if (t) t.remove();
+    addMsg(currentChar, `Yay — let's do <strong>${cap(subj)}</strong>! 🌟 Type your first answer whenever you're ready!`);
+  });
 }
 
 function addMsg(type, html, isBadge) {
