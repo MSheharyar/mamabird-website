@@ -320,7 +320,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
     </button>
   </div>
 
-  <div class="subject-row">
+  <div class="subject-row" style="display:none;">
     <button class="subj-chip active" onclick="setSubject(this,'spelling')">✏️ Spelling</button>
     <button class="subj-chip" onclick="setSubject(this,'math')">🔢 Math</button>
     <button class="subj-chip" onclick="setSubject(this,'rhyming')">🎵 Rhyming</button>
@@ -336,6 +336,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
         <div class="topbar-name" id="topbar-name">Chirpy</div>
         <div class="topbar-status"><span class="topbar-dot"></span> Online · <span id="topbar-subj">Spelling</span></div>
       </div>
+      <button id="change-subj-btn" onclick="showSubjectPicker()" style="margin-left:auto;padding:6px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:var(--sky-light);color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;">🔄 Subject</button>
     </div>
     <div class="chat-msgs" id="chat-msgs"></div>
     <div class="chat-input-row">
@@ -771,9 +772,38 @@ function renderWelcome() {
     mama:   'Good day! 🌿 I\'m Mama Bird. I\'m here to support your learning journey.\n\nToday we\'ll work on <strong>' + cap(currentSubject) + '</strong>. Let\'s begin at your own pace. 🪺',
   };
   addMsg(currentChar, openings[currentChar]);
+  showSubjectPicker();
 }
 
 function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+const SUBJECTS = [
+  ['spelling','✏️ Spelling'], ['math','🔢 Math'], ['rhyming','🎵 Rhyming'],
+  ['grammar','📝 Grammar'], ['puzzles','🧩 Puzzles'], ['literature','📖 Literature'],
+];
+function showSubjectPicker() {
+  const msgs = document.getElementById('chat-msgs');
+  const old = document.getElementById('subject-picker'); if (old) old.remove();
+  const div = document.createElement('div');
+  div.id = 'subject-picker'; div.className = 'msg ' + currentChar;
+  const avBg = currentChar === 'chirpy' ? 'var(--sky-light)' : 'var(--green-light)';
+  const av   = currentChar === 'chirpy' ? '🐦' : '🪺';
+  const btns = SUBJECTS.map(([k,label]) =>
+    `<button onclick="pickSubject('${k}')" style="padding:9px 15px;border-radius:14px;border:1.5px solid var(--cream-dark);background:#fff;color:var(--dark);font-family:var(--font-display);font-weight:700;font-size:.85rem;cursor:pointer;">${label}</button>`
+  ).join('');
+  div.innerHTML = `<div class="msg-av" style="background:${avBg};">${av}</div>` +
+    `<div class="msg-bubble">Which one would you like to learn? 🌟<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">${btns}</div></div>`;
+  msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
+}
+function pickSubject(subj) {
+  currentSubject = subj; sessionId = null;
+  document.getElementById('topbar-subj').textContent = cap(subj);
+  document.querySelectorAll('.subj-chip').forEach(c => c.classList.remove('active'));
+  const pill = [...document.querySelectorAll('.subj-chip')].find(c => (c.getAttribute('onclick')||'').includes("'"+subj+"'"));
+  if (pill) pill.classList.add('active');
+  const picker = document.getElementById('subject-picker'); if (picker) picker.remove();
+  addMsg(currentChar, `Yay — let's do <strong>${cap(subj)}</strong>! 🌟 Type your first answer whenever you're ready!`);
+}
 
 function addMsg(type, html, isBadge) {
   const msgs = document.getElementById('chat-msgs');
