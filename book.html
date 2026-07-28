@@ -9,7 +9,7 @@
 .book-hero-grid { display:grid; grid-template-columns:1fr 1.6fr; gap:72px; align-items:start; padding-top:72px; }
 .book-3d-wrap { position:relative; display:flex; justify-content:center; }
 .book-mockup-lg {
-  width:300px; position:relative;
+  width:300px; max-width:100%; position:relative;
   filter:drop-shadow(0 32px 64px rgba(44,24,16,.2));
   transform:perspective(1000px) rotateY(-6deg);
   transition:transform .4s;
@@ -132,7 +132,7 @@
       <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="lightbulb" style="width:13px;height:13px;"></i> Why parents love it</span>
       <h2>Built for the way children learn</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;">
       <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="repeat-2" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Repetition</h3><p style="font-size:.88rem;">Builds pattern recognition and word familiarity through repetition children enjoy.</p></div>
       <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="music" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Rhyme</h3><p style="font-size:.88rem;">Rhythmic language makes read-alouds fun and helps children predict what comes next.</p></div>
       <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="image" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Visual match</h3><p style="font-size:.88rem;">Illustrations depict exactly what the text describes — connecting words to images.</p></div>

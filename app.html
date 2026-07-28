@@ -24,7 +24,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .app-header{
   background:#fff;border-bottom:1px solid var(--cream-dark);padding:0 20px;
   height:58px;display:flex;align-items:center;gap:14px;flex-shrink:0;
-  box-shadow:var(--sh-sm);z-index:50;
+  box-shadow:var(--sh-sm);z-index:50;position:relative;
 }
 .header-logo{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--dark);}
 .header-logo-bird{width:30px;height:30px;background:var(--red);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;}
@@ -51,7 +51,8 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 
 /* Parent controls — hidden in child mode */
 .parent-controls{display:flex;align-items:center;gap:8px;transition:opacity .2s;}
-.parent-controls.locked{opacity:0;pointer-events:none;position:absolute;}
+/* Anchored inside the header so the hidden bar never stretches the page width on mobile */
+.parent-controls.locked{opacity:0;pointer-events:none;position:absolute;right:16px;top:11px;}
 .btn-dashboard{
   display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r-full);
   background:var(--green);color:#fff;font-family:var(--font-display);font-weight:700;
@@ -268,7 +269,14 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .toast.success{background:var(--green);}.toast.error{background:var(--red);}
 .toast.show{opacity:1;}
 
-@media(max-width:600px){.stats-row{grid-template-columns:1fr 1fr;}.form-row{grid-template-columns:1fr;}.char-tab-sub{display:none;}}
+@media(max-width:600px){.stats-row{grid-template-columns:1fr 1fr;}.form-row{grid-template-columns:1fr;}.char-tab-sub{display:none;}
+  .app-header{padding:0 12px;gap:8px;}
+  .header-logo-text{display:none;}
+  .parent-controls{gap:6px;}
+  .btn-dashboard,.btn-logout{padding:7px 11px;font-size:.75rem;white-space:nowrap;}
+  .profile-chip{max-width:150px;}
+  #profile-chip-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+}
 </style>
 </head>
 <body>
@@ -277,7 +285,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <header class="app-header">
   <div class="header-logo">
     <div class="header-logo-bird">🐦</div>
-    MamaBird &amp; Chirpy
+    <span class="header-logo-text">MamaBird &amp; Chirpy</span>
   </div>
 
   <!-- Profile selector chip -->

@@ -93,7 +93,7 @@ p  { font-size:1.05rem; color:var(--mid); line-height:1.75; }
   padding:14px 28px; border-radius:var(--r-full);
   font-family:var(--font-display); font-weight:700; font-size:1rem;
   border:none; transition:background .18s,transform .18s,box-shadow .18s;
-  white-space:nowrap; cursor:pointer;
+  white-space:nowrap; cursor:pointer; max-width:100%;
 }
 .btn:hover { transform:translateY(-2px); }
 .btn-red    { background:var(--red);    color:#fff; }
@@ -326,6 +326,11 @@ svg.lucide {
   .section { padding:60px 0; }
   .footer-grid { grid-template-columns:1fr; gap:24px; }
   .footer-bottom { flex-direction:column; text-align:center; }
+  /* Long-labelled buttons must wrap instead of overflowing the viewport */
+  .btn { white-space:normal; text-align:center; }
+  .btn-lg { padding:14px 22px; font-size:1rem; }
+  /* Decorative floating badges hang off the edge on phones — hide them */
+  .float-badge, .float-secure, .book-float { display:none !important; }
 }
 
 /* ============================================================
