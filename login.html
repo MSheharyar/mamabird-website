@@ -33,7 +33,7 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
   font-family:var(--font-display); font-weight:700; font-size:.95rem; color:var(--light-text);
   border-bottom:2px solid transparent; margin-bottom:-2px; transition:color .18s,border-color .18s;
 }
-.auth-tab.active { color:var(--sky-dark); border-bottom-color:var(--sky); }
+.auth-tab.active { color:var(--red); border-bottom-color:var(--red); }
 .auth-form { display:none; flex-direction:column; gap:16px; }
 .auth-form.active { display:flex; }
 .form-group { display:flex; flex-direction:column; gap:6px; }
@@ -43,7 +43,7 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
   font-family:var(--font-body); font-size:.95rem; outline:none; transition:border-color .18s;
   background:var(--cream); color:var(--dark);
 }
-.form-input:focus { border-color:var(--sky); background:#fff; }
+.form-input:focus { border-color:var(--red); background:#fff; }
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .role-toggle { display:flex; gap:8px; }
 .role-btn {
@@ -51,12 +51,12 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
   background:var(--cream); font-family:var(--font-display); font-weight:700; font-size:.82rem;
   color:var(--mid); cursor:pointer; transition:all .18s; text-align:center;
 }
-.role-btn.active { border-color:var(--sky); background:var(--sky-light); color:var(--sky-dark); }
+.role-btn.active { border-color:var(--red); background:#FDECEA; color:var(--red-dark); }
 .form-submit { justify-content:center; margin-top:4px; }
 .form-footer { text-align:center; font-size:.82rem; color:var(--light-text); }
-.form-footer a { color:var(--sky-dark); font-weight:700; }
+.form-footer a { color:var(--red); font-weight:700; }
 .form-check { display:flex; align-items:flex-start; gap:10px; }
-.form-check input[type=checkbox] { margin-top:3px; accent-color:var(--sky); flex-shrink:0; }
+.form-check input[type=checkbox] { margin-top:3px; accent-color:var(--red); flex-shrink:0; }
 .form-check label { font-size:.8rem; color:var(--mid); }
 .coppa-notice {
   background:var(--yellow-light); border:1px solid rgba(245,194,0,.35);
@@ -101,9 +101,9 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
           <input class="form-input" type="password" placeholder="Your password" autocomplete="current-password">
         </div>
         <div style="text-align:right;margin-top:-8px;">
-          <a href="#" style="font-size:.8rem;color:var(--sky-dark);font-family:var(--font-display);font-weight:700;">Forgot password?</a>
+          <a href="#" style="font-size:.8rem;color:var(--red);font-family:var(--font-display);font-weight:700;">Forgot password?</a>
         </div>
-        <button type="submit" class="btn btn-sky form-submit btn-lg">Sign In to Chirpy's Classroom</button>
+        <button type="submit" class="btn btn-red form-submit btn-lg">Sign In to Chirpy's Classroom</button>
         <div class="form-footer">Don't have an account? <a href="#" onclick="switchTab('register');return false;">Create one free →</a></div>
       </form>
       <form class="auth-form" id="form-register" onsubmit="return false;">
@@ -131,7 +131,7 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
         </div>
         <div class="form-check">
           <input type="checkbox" id="agree">
-          <label for="agree">I agree to the <a href="#" style="color:var(--sky-dark);">Terms of Service</a> and <a href="#" style="color:var(--sky-dark);">Privacy Policy</a>. I understand that children's data is handled in accordance with COPPA.</label>
+          <label for="agree">I agree to the <a href="#" style="color:var(--red);">Terms of Service</a> and <a href="#" style="color:var(--red);">Privacy Policy</a>. I understand that children's data is handled in accordance with COPPA.</label>
         </div>
         <button type="submit" class="btn btn-red form-submit btn-lg"><i data-lucide="sparkles" style="width:18px;height:18px;"></i> Start My Free 3-Month Trial</button>
         <div class="form-footer">Already have an account? <a href="#" onclick="switchTab('login');return false;">Sign in →</a></div>
