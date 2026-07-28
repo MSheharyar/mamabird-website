@@ -493,7 +493,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <div class="toast" id="toast"></div>
 
 <script>
-const API   = 'https://web-production-bcff5.up.railway.app';
+const API   = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');
 const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
 function mbTokenValid(t){ try { const p=t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); const pad=p.length%4?'='.repeat(4-(p.length%4)):''; return JSON.parse(atob(p+pad)).exp*1000>Date.now(); } catch(e){ return false; } }
