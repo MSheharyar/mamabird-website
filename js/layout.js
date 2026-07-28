@@ -8,7 +8,7 @@
 (function () {
 
   const NAV_INNER = `<div class="nav-inner">
-  <a href="index.html" class="nav-logo"><div class="nav-logo-icon" style="background:var(--red);box-shadow:0 2px 8px rgba(204,41,41,0.4);">🐦</div>Three Baby Birdies</a>
+  <a href="index.html" class="nav-logo"><div class="nav-logo-icon" style="background:var(--red);box-shadow:0 2px 8px rgba(204,41,41,0.4);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>Three Baby Birdies</a>
   <ul class="nav-links">
     <li><a href="index.html"><i data-lucide="home" style="width:14px;height:14px;"></i> Home</a></li>
     <li><a href="about.html"><i data-lucide="user" style="width:14px;height:14px;"></i> About</a></li>
@@ -27,7 +27,7 @@
 <a href="book.html"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</a>
 <a href="blog.html"><i data-lucide="newspaper" style="width:14px;height:14px;"></i> Blog</a>
 <a href="chatbot.html"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Chirpy's Classroom</a>
-<a href="ebook.html"><i data-lucide="download" style="width:14px;height:14px;"></i> eBook — $4.99</a>
+<a href="ebook.html"><i data-lucide="download" style="width:14px;height:14px;"></i> eBook</a>
 <a href="contact.html"><i data-lucide="mail" style="width:14px;height:14px;"></i> Contact</a>
 <a href="login.html" class="mob-cta">Sign In / Join Free</a>`;
 
@@ -90,18 +90,23 @@
   `;
   document.head.appendChild(floatStyle);
 
+  // Consistent vector bird (Lucide) — renders identically on every OS, unlike the
+  // 🐦 emoji which each platform draws in its own colour/style.
+  const BIRD_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:block;"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg>`;
+
   const birds = [
-    { emoji:'🐦', top:'14%', left:'2%',  size:'1.5rem', anim:'pg-float-a 4.2s ease-in-out infinite', delay:'0s'   },
-    { emoji:'🐦', top:'28%', right:'2%', size:'1.1rem', anim:'pg-float-b 5.1s ease-in-out infinite', delay:'.8s'  },
-    { emoji:'🪺', top:'62%', left:'1%',  size:'1.3rem', anim:'pg-float-c 6s ease-in-out infinite',   delay:'1.4s' },
-    { emoji:'🐦', top:'75%', right:'2%', size:'1.0rem', anim:'pg-float-a 4.8s ease-in-out infinite', delay:'.4s'  },
+    { top:'14%', left:'2%',  size:'1.5rem', anim:'pg-float-a 4.2s ease-in-out infinite', delay:'0s'   },
+    { top:'28%', right:'2%', size:'1.1rem', anim:'pg-float-b 5.1s ease-in-out infinite', delay:'.8s'  },
+    { top:'62%', left:'1%',  size:'1.3rem', anim:'pg-float-c 6s ease-in-out infinite',   delay:'1.4s' },
+    { top:'75%', right:'2%', size:'1.0rem', anim:'pg-float-a 4.8s ease-in-out infinite', delay:'.4s'  },
   ];
   birds.forEach(b => {
     const el = document.createElement('div');
     el.className = 'pg-bird';
-    el.textContent = b.emoji;
+    el.innerHTML = BIRD_SVG;
     el.style.cssText = `
       font-size:${b.size};
+      color:rgba(204,41,41,.5);
       top:${b.top || 'auto'};
       bottom:${b.bottom || 'auto'};
       left:${b.left || 'auto'};
