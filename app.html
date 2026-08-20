@@ -460,7 +460,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
       <input class="form-ctrl" id="new-name" type="text" placeholder="e.g. Emma, Lily, Noah">
     </div>
     <div class="form-row">
-      <div class="form-group"><label class="form-label">Age (optional)</label><input class="form-ctrl" id="new-age" type="number" min="2" max="14" placeholder="6"></div>
+      <div class="form-group"><label class="form-label">Age</label><input class="form-ctrl" id="new-age" type="number" min="2" max="12" placeholder="6" required><div style="font-size:.75rem;color:var(--light-text);margin-top:5px;">Chirpy uses this to pitch every question and word at the right level.</div></div>
       <div class="form-group"><label class="form-label">Grade (optional)</label><input class="form-ctrl" id="new-grade" type="text" placeholder="Grade 1"></div>
     </div>
     <div class="modal-btn-row">
@@ -841,7 +841,7 @@ function startLesson(subj) {
     if (data && data.response) {
       sessionId = data.session_id; subjectStarted = true;
       addMsg(currentChar, data.response);
-      if (data.new_badges && data.new_badges.length) data.new_badges.forEach(b => addMsg(null, `${b.badge_emoji||'🏅'} <strong>New badge: ${b.badge_name}</strong>`, true));
+      if (data.new_badges && data.new_badges.length) data.new_badges.forEach(b => { const d=badgeDisplay(b); addMsg(null, `${d.emoji} <strong>New badge: ${d.name}</strong>`, true); });
     } else {
       addMsg(currentChar, `Yay — let's do <strong>${cap(subj)}</strong>! 🌟 Type your first answer whenever you're ready!`);
     }
@@ -891,7 +891,7 @@ async function sendMsg() {
     if (res.ok) {
       sessionId = data.session_id;
       addMsg(currentChar, data.response);
-      if (data.new_badges?.length) data.new_badges.forEach(b => addMsg(null, `${b.badge_emoji||'🏅'} <strong>New badge: ${b.badge_name}</strong>`, true));
+      if (data.new_badges?.length) data.new_badges.forEach(b => { const d=badgeDisplay(b); addMsg(null, `${d.emoji} <strong>New badge: ${d.name}</strong>`, true); });
       if (data.correct !== undefined) addMsg(null, data.correct ? '✅ <strong>Correct! +1 point</strong>' : '❌ Not quite — keep trying!', true);
     } else {
       const m = data.detail || '';
@@ -973,10 +973,32 @@ function renderOverview(data) {
   wrap.innerHTML=html;
 }
 
+// Badge art and wording, keyed by badge_type. Rendered from the type rather than
+// the row's stored badge_name/badge_emoji, because those strings were written into
+// each row at the moment it was awarded — mapping here means renaming a badge
+// updates every badge already earned, with no database backfill. Kept identical to
+// _badgeCatalogue in the mobile app's badges_screen.dart.
+const BADGE_CATALOGUE = {
+  first_session:  { emoji: '🐣', name: 'First Peep!' },
+  perfect_score:  { emoji: '⭐',     name: 'All Correct!' },
+  five_correct:   { emoji: '🐦', name: 'Five Feathers' },
+  ten_correct:    { emoji: '🌈', name: 'Ten Feathers' },
+  subject_master: { emoji: '🏅', name: 'Star' },
+  streak_3:       { emoji: '🎉', name: 'Three in a Row!' },
+};
+
+function badgeDisplay(b) {
+  const e = BADGE_CATALOGUE[b.badge_type];
+  if (!e) return { emoji: b.badge_emoji || '🏅', name: b.badge_name || 'Badge' };
+  // Subject badges read "Spelling Star", so keep the server's fuller wording.
+  const name = b.badge_type === 'subject_master' && b.badge_name ? b.badge_name : e.name;
+  return { emoji: e.emoji, name };
+}
+
 function renderBadges(badges) {
   const g=document.getElementById('badges-grid');
-  if (!badges.length){g.innerHTML='<p class="no-data">No badges yet!</p>';return;}
-  g.innerHTML=badges.map(b=>`<div class="badge-card"><div class="badge-emoji">${b.badge_emoji||'🏅'}</div><div class="badge-name">${b.badge_name}</div><div class="badge-date">${b.earned_at?b.earned_at.slice(0,10):''}</div></div>`).join('');
+  if (!badges.length){g.innerHTML='<p class="no-data">🥚 No badges yet! Chat with Chirpy to get your first one.</p>';return;}
+  g.innerHTML=badges.map(b=>{const d=badgeDisplay(b);return `<div class="badge-card"><div class="badge-emoji">${d.emoji}</div><div class="badge-name">${d.name}</div><div class="badge-date">${b.earned_at?b.earned_at.slice(0,10):''}</div></div>`;}).join('');
 }
 
 async function loadPlans() {
@@ -1049,6 +1071,8 @@ async function createProfile() {
   const age=parseInt(document.getElementById('new-age').value)||null;
   const grade=document.getElementById('new-grade').value.trim()||null;
   if (!name){showToast('Enter a nickname','error');return;}
+  // Chirpy's whole reading level keys off this, so don't let it through blank.
+  if (!age||age<2||age>12){showToast("Enter your child's age (2-12)",'error');return;}
   try {
     const res=await api('POST','/profiles/',{child_name:name,age,grade});
     const data=await res.json();
