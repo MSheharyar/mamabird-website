@@ -26,7 +26,14 @@
 .hero-rhyme small { display:block; margin-top:6px; font-size:.7rem; opacity:.55; font-style:normal; }
 .hero-title .accent { color:var(--sky-dark); }
 .hero-sub   { max-width:460px; margin-bottom:var(--sp-md); }
-.hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:var(--sp-md); }
+.hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:14px; }
+.hero-retailers {
+  max-width:460px; margin-bottom:var(--sp-md);
+  font-family:var(--font-display); font-weight:600; font-size:.82rem;
+  color:var(--light-text); line-height:1.7;
+}
+.hero-retailers a { color:var(--mid); text-decoration:underline; text-underline-offset:2px; }
+.hero-retailers a:hover { color:var(--red); }
 .hero-badges  { display:flex; flex-wrap:wrap; gap:8px; }
 .hero-badge {
   display:inline-flex; align-items:center; gap:6px; padding:5px 14px;
@@ -102,7 +109,7 @@
 @media(max-width:960px){
   .hero-inner { grid-template-columns:1fr; gap:40px; text-align:center; }
   .hero-book-col { order:-1; }
-  .hero-sub,.hero-actions,.hero-badges,.scroll-cue { margin-left:auto; margin-right:auto; justify-content:center; }
+  .hero-sub,.hero-actions,.hero-retailers,.hero-badges,.scroll-cue { margin-left:auto; margin-right:auto; justify-content:center; }
   .book-grid   { grid-template-columns:1fr; gap:40px; }
   .book-col-display { order:-1; }
   .about-grid  { grid-template-columns:1fr; gap:40px; }
@@ -133,7 +140,7 @@
     <div class="float" style="position:absolute;top:18%;left:12%;font-size:1.6rem;opacity:.55;animation-duration:3.8s;">🐦</div>
     <div class="float float-d1" style="position:absolute;top:25%;right:18%;font-size:1.2rem;opacity:.45;animation-duration:4.5s;">🐦</div>
     <div class="float float-d2" style="position:absolute;bottom:28%;left:28%;font-size:1rem;opacity:.35;animation-duration:5.2s;">🐦</div>
-    <div class="float" style="position:absolute;top:45%;right:8%;font-size:2rem;opacity:.25;animation-duration:3.2s;">🪺</div>
+    <div class="float" style="position:absolute;top:45%;right:8%;font-size:2rem;opacity:.25;animation-duration:3.2s;color:var(--green);"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
   </div>
   <div class="hero-inner">
     <div>
@@ -143,7 +150,12 @@
       <p class="hero-sub">Three little red birds, a bright blue sky, and a warm sun — a gentle rhyming story made for bedtime, story time, and curious little ones. Now with an AI learning companion for ages 2–8.</p>
       <div class="hero-actions">
         <a href="chatbot.html" class="btn btn-red"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i> Try Chirpy Free</a>
-        <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-outline"><i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Buy the Book</a>
+        <a href="ebook.html" class="btn btn-outline"><i data-lucide="download" style="width:16px;height:16px;"></i> Get the eBook</a>
+      </div>
+      <div class="hero-retailers">
+        Instant PDF download, or <a href="book.html">order a signed paperback</a>.<br>
+        <!-- TODO: link "Barnes &amp; Noble" once Iris supplies the retailer URL. -->
+        Also available at <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" target="_blank" rel="noopener">Amazon</a> and Barnes &amp; Noble.
       </div>
       <div class="hero-badges">
         <span class="hero-badge"><i data-lucide="feather" style="width:14px;height:14px;"></i> Little Birds</span>
@@ -224,7 +236,7 @@
     <span class="marquee-item">📝 <span>Grammar</span></span>
     <span class="marquee-item">🧩 <span>Puzzles</span></span>
     <span class="marquee-item">📖 <span>Stories</span></span>
-    <span class="marquee-item">🪺 <span>Mama Bird</span></span>
+    <span class="marquee-item"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg> <span>Mama Bird</span></span>
     <span class="marquee-item">⭐ <span>Free 3-month trial</span></span>
     <span class="marquee-item">🐦 <span>Chirpy's Classroom</span></span>
     <span class="marquee-item">✏️ <span>Spelling</span></span>
@@ -233,7 +245,7 @@
     <span class="marquee-item">📝 <span>Grammar</span></span>
     <span class="marquee-item">🧩 <span>Puzzles</span></span>
     <span class="marquee-item">📖 <span>Stories</span></span>
-    <span class="marquee-item">🪺 <span>Mama Bird</span></span>
+    <span class="marquee-item"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg> <span>Mama Bird</span></span>
     <span class="marquee-item">⭐ <span>Free 3-month trial</span></span>
   </div>
 </div>
@@ -295,7 +307,7 @@
     <div class="feature-cards-3">
       <div class="fcard reveal">
         <div class="fcard-head c-sky">
-          <div class="fcard-icon">🐦</div>
+          <div class="fcard-icon" style="color:#fff;"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
           <div><div class="fcard-title">Meet Chirpy</div><div class="fcard-sub">For kids ages 2–8</div></div>
         </div>
         <div class="fcard-body">
@@ -304,7 +316,7 @@
       </div>
       <div class="fcard reveal">
         <div class="fcard-head c-green">
-          <div class="fcard-icon">🪺</div>
+          <div class="fcard-icon" style="color:#fff;"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
           <div><div class="fcard-title">Mama Bird</div><div class="fcard-sub">For parents & teachers</div></div>
         </div>
         <div class="fcard-body">
@@ -313,7 +325,7 @@
       </div>
       <div class="fcard reveal">
         <div class="fcard-head c-purple">
-          <div class="fcard-icon">📊</div>
+          <div class="fcard-icon" style="color:#fff;"><i data-lucide="bar-chart-3" class="vbird"></i></div>
           <div><div class="fcard-title">Progress Tracking</div><div class="fcard-sub">See every step forward</div></div>
         </div>
         <div class="fcard-body">

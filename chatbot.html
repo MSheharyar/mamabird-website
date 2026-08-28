@@ -138,8 +138,28 @@
 .plan-features li { font-size:.82rem; color:var(--mid); display:flex; gap:7px; align-items:flex-start; }
 .plan-features li::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
 
-@media(max-width:1020px){ .chat-hero-inner{grid-template-columns:1fr;} .features-grid{grid-template-columns:1fr 1fr;} .pricing-grid{grid-template-columns:1fr 1fr;} }
-@media(max-width:560px){ .features-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} }
+/* "How each subject helps" — the explanatory content behind each subject tile */
+.subject-detail-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:56px; }
+.sdetail {
+  background:var(--cream); border:1px solid var(--cream-dark); border-radius:var(--r-md);
+  padding:22px 22px 20px; border-top:3px solid var(--sd); text-align:left;
+  display:flex; flex-direction:column; width:100%; cursor:pointer;
+  font-family:var(--font-body);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.sdetail:hover { transform:translateY(-3px); box-shadow:var(--sh-md); }
+.sdetail-name {
+  font-family:var(--font-display); font-weight:700; font-size:1.02rem;
+  color:var(--sd); margin-bottom:8px;
+}
+.sdetail p { font-size:.85rem; line-height:1.65; color:var(--mid); margin:0; }
+.sdetail-try {
+  margin-top:14px; font-family:var(--font-display); font-weight:700;
+  font-size:.78rem; color:var(--sd);
+}
+
+@media(max-width:1020px){ .chat-hero-inner{grid-template-columns:1fr;} .features-grid{grid-template-columns:1fr 1fr;} .pricing-grid{grid-template-columns:1fr 1fr;} .subject-detail-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:560px){ .features-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} .subject-detail-grid{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
@@ -158,7 +178,7 @@
       <p style="font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--mid);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">Choose your guide</p>
       <div class="char-cards-v2" id="char-cards">
         <button class="char-card-v2 active-chirpy" id="btn-chirpy" onclick="switchChar('chirpy')" style="border:none;text-align:left;cursor:pointer;">
-          <div class="char-avatar chirpy-av">🐦</div>
+          <div class="char-avatar chirpy-av" style="color:var(--sky-dark);"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
           <div>
             <div class="char-name">Chirpy</div>
             <div class="char-role">Playful · Perfect for kids</div>
@@ -166,7 +186,7 @@
           <div style="margin-left:auto;"><i data-lucide="check-circle-2" style="width:18px;height:18px;color:var(--sky-dark);" id="chirpy-check"></i></div>
         </button>
         <button class="char-card-v2" id="btn-mama" onclick="switchChar('mama')" style="border:none;text-align:left;cursor:pointer;">
-          <div class="char-avatar mama-av">🪺</div>
+          <div class="char-avatar mama-av" style="color:var(--green);"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
           <div>
             <div class="char-name">Mama Bird</div>
             <div class="char-role">Nurturing · For parents & teachers</div>
@@ -269,25 +289,63 @@
       </button>
     </div>
 
+    <!-- How each subject helps -->
+    <div class="section-header reveal" style="margin-bottom:28px;">
+      <h2 style="font-size:1.6rem;">How each subject helps your child</h2>
+      <p style="max-width:600px;margin:12px auto 0;">Chirpy doesn't quiz — it plays. Every subject is a back-and-forth conversation pitched at your child's level, with hints instead of corrections, so a wrong answer is just the next turn in the game.</p>
+    </div>
+    <div class="subject-detail-grid">
+      <button class="sdetail reveal" style="--sd:var(--sky-dark);" onclick="setSubject(document.querySelector('.subject-pill'),'Spelling');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name">Spelling</div>
+        <p>Chirpy sounds a word out one letter at a time, then asks your child to try it back. A wrong letter gets a hint — "listen for the buzzy sound in the middle" — not a red mark. Words get longer as your child gets steadier, so it stays just hard enough to feel like a win.</p>
+        <div class="sdetail-try">Try Spelling with Chirpy →</div>
+      </button>
+      <button class="sdetail reveal" style="--sd:var(--green);" onclick="setSubject(document.querySelectorAll('.subject-pill')[1],'Rhyming');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name">Rhyming</div>
+        <p>"What rhymes with nest?" Rhyme games train the ear for the sound patterns that reading is built on. Chirpy happily accepts silly and made-up words, because at this age hearing the pattern matters far more than landing on a real one.</p>
+        <div class="sdetail-try">Try Rhyming with Chirpy →</div>
+      </button>
+      <button class="sdetail reveal" style="--sd:var(--red);" onclick="setSubject(document.querySelectorAll('.subject-pill')[2],'Math');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name">Math</div>
+        <p>Counting, number recognition and first addition — always tied to something a child can picture, like three birds and two worms. Chirpy works through the problem alongside them instead of waiting for an answer, so numbers stay concrete rather than abstract.</p>
+        <div class="sdetail-try">Try Math with Chirpy →</div>
+      </button>
+      <button class="sdetail reveal" style="--sd:var(--brown);" onclick="setSubject(document.querySelectorAll('.subject-pill')[3],'Grammar');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name">Grammar</div>
+        <p>Capital letters, periods and word order, taught inside sentences your child makes up rather than as drills. Chirpy rebuilds their sentence with them, so the rule arrives attached to their own words — which is the version they remember.</p>
+        <div class="sdetail-try">Try Grammar with Chirpy →</div>
+      </button>
+      <button class="sdetail reveal" style="--sd:var(--purple);" onclick="setSubject(document.querySelectorAll('.subject-pill')[4],'Puzzles');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name">Puzzles</div>
+        <p>Riddles, odd-one-out and word games that stretch vocabulary and reasoning while feeling entirely like play. These are the ones for days when a child won't sit still for a lesson — they're still learning, they just don't call it that.</p>
+        <div class="sdetail-try">Try Puzzles with Chirpy →</div>
+      </button>
+      <button class="sdetail reveal" style="--sd:var(--orange);" onclick="setSubject(document.querySelectorAll('.subject-pill')[5],'Stories');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name">Stories</div>
+        <p>Chirpy asks what happened, what might happen next, and why a character did what they did — then invites your child to invent their own ending. Retelling a story is what turns reading the words into understanding them.</p>
+        <div class="sdetail-try">Try Stories with Chirpy →</div>
+      </button>
+    </div>
+
     <!-- Feature cards row -->
     <div class="feature-cards-3">
       <div class="fcard reveal">
         <div class="fcard-head c-sky">
-          <div class="fcard-icon">🐦</div>
+          <div class="fcard-icon" style="color:#fff;"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
           <div><div class="fcard-title">Chirpy — For Kids</div><div class="fcard-sub">Playful AI learning companion</div></div>
         </div>
         <div class="fcard-body"><p>Spelling, rhyming, math, grammar, puzzles — Chirpy turns every lesson into a game. "Tweet tweet! Great try! Now let's spell it together!" No child ever feels wrong.</p></div>
       </div>
       <div class="fcard reveal">
         <div class="fcard-head c-green">
-          <div class="fcard-icon">🪺</div>
+          <div class="fcard-icon" style="color:#fff;"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
           <div><div class="fcard-title">Mama Bird — For Parents</div><div class="fcard-sub">Lesson plans & guidance</div></div>
         </div>
         <div class="fcard-body"><p>Ask Mama Bird anything: "Make a 5-day Grade 1 spelling plan" and get a structured, ready-to-use lesson plan in seconds. Perfect for homeschoolers and classroom teachers.</p></div>
       </div>
       <div class="fcard reveal">
         <div class="fcard-head c-purple">
-          <div class="fcard-icon">📊</div>
+          <div class="fcard-icon" style="color:#fff;"><i data-lucide="bar-chart-3" class="vbird"></i></div>
           <div><div class="fcard-title">Smart Progress</div><div class="fcard-sub">Badges, dashboards & PDF exports</div></div>
         </div>
         <div class="fcard-body"><p>Every session is tracked. Parents see subjects practiced, streaks, and improvement trends. Children earn badges for milestones. Export a PDF progress report any time.</p></div>
@@ -559,7 +617,7 @@ function switchChar(char) {
     demoCount = 0; demoHistory = [];
     const div = document.createElement('div');
     div.className = 'msg chirpy';
-    div.innerHTML = `<div class="msg-avatar" style="background:var(--green-light);">🪺</div>
+    div.innerHTML = `<div class="msg-avatar" style="background:var(--green-light);color:var(--green);"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
       <div class="msg-bubble upsell-bubble">
         <strong>🌿 Mama Bird is available with a free account!</strong><br><br>
         Sign up to unlock Mama Bird, lesson plan generation, all 6 subjects, and progress tracking.<br><br>
