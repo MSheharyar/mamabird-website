@@ -104,6 +104,20 @@
 .nl-input::placeholder { color:rgba(255,255,255,.3); }
 .nl-input:focus { border-color:var(--sky); }
 .nl-fine { font-size:.75rem; color:rgba(255,255,255,.3); margin-top:4px; }
+.nl-label {
+  font-family:var(--font-display); font-weight:700; font-size:.78rem;
+  color:rgba(255,255,255,.62); margin-bottom:-6px; padding-left:4px;
+}
+.nl-opt { font-weight:600; color:rgba(255,255,255,.32); }
+.nl-input:focus-visible { outline:2px solid var(--sky); outline-offset:2px; }
+.nl-input[aria-invalid="true"] { border-color:var(--red); }
+#nl-submit[disabled] { opacity:.6; cursor:progress; }
+.nl-status {
+  font-size:.85rem; font-weight:700; font-family:var(--font-display);
+  margin-top:2px; padding-left:4px;
+}
+.nl-status.ok  { color:#8FD48A; }
+.nl-status.err { color:#FF9E96; }
 
 /* Responsive */
 @media(max-width:960px){
@@ -357,7 +371,7 @@
         <div style="margin-top:16px;display:flex;gap:16px;flex-wrap:wrap;">
           <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="shield-check" style="width:13px;height:13px;"></i> Secure payment</span>
           <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="download" style="width:13px;height:13px;"></i> Instant PDF delivery</span>
-          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="device-mobile" style="width:13px;height:13px;"></i> Works on any device</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="smartphone" style="width:13px;height:13px;"></i> Works on any device</span>
         </div>
       </div>
       <div class="ebook-cover-wrap">
@@ -388,7 +402,7 @@
       <div style="display:flex;justify-content:center;">
         <div class="author-photo-frame">
           <div class="author-photo-box">
-            <img src="assets/author-image.png" alt="Iris Scarfone" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+            <img src="assets/author-image.jpg" alt="Iris Scarfone" style="width:100%;height:100%;object-fit:cover;object-position:top;">
           </div>
           <div class="author-accent"></div>
         </div>
@@ -410,17 +424,53 @@
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- INSIDE THE BOOK -->
 <section class="section" style="background:var(--sky-light);">
   <div class="container">
     <div class="section-header">
-      <span class="section-label" style="background:rgba(110,180,212,.2);color:var(--sky-dark);"><i data-lucide="star" style="width:13px;height:13px;"></i> Reader Reviews</span>
-      <h2>What families are saying</h2>
+      <span class="section-label" style="background:rgba(110,180,212,.2);color:var(--sky-dark);"><i data-lucide="book-open" style="width:13px;height:13px;"></i> Inside the Book</span>
+      <h2>Written to be read out loud</h2>
+      <p style="max-width:540px;margin:12px auto 0;">A short rhyming story for ages 2&ndash;6, written by Iris Scarfone and illustrated by Ronald Scarfone.</p>
     </div>
     <div class="t-grid">
-      <div class="t-card"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">My 4-year-old asks for this every single night. The rhyming makes it so easy for her to follow along — she loves pointing at the birds.</p><div class="t-author"><div class="t-avatar" style="background:var(--sky);">SL</div><div><div class="t-name">Sarah L.</div><div class="t-role">Parent · Toronto, ON</div></div></div></div>
-      <div class="t-card"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">Perfect for classroom read-alouds. My Kindergarten students were clapping along within two pages. Wonderful addition to our library.</p><div class="t-author"><div class="t-avatar" style="background:var(--green);">MR</div><div><div class="t-name">Ms. Rivera</div><div class="t-role">Kindergarten Teacher · Chicago, IL</div></div></div></div>
-      <div class="t-card"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">Bought this as a gift and ended up reading it with my own kids too. Warm, perfectly-paced, and the illustrations tell the story just as well as the words.</p><div class="t-author"><div class="t-avatar" style="background:var(--brown);">JK</div><div><div class="t-name">James K.</div><div class="t-role">Parent · Seattle, WA</div></div></div></div>
+
+      <div class="t-card">
+        <div class="t-quote">&ldquo;</div>
+        <p class="t-text" style="font-family:var(--font-display);font-weight:600;color:var(--dark);font-size:1rem;">Chirp chirp chirp. Flap your wings and try to fly.<br>It is just as easy as easy as pie.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:var(--sky);"><i data-lucide="music" style="width:16px;height:16px;"></i></div>
+          <div>
+            <div class="t-name">A refrain they can predict</div>
+            <div class="t-role">The rhyme repeats, so children join in</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <p class="t-text">Short pages and a steady rhythm mean the whole story fits inside one bedtime. Written for the years before a child reads alone &mdash; when the reading is something you do together.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:var(--green);"><i data-lucide="volume-2" style="width:16px;height:16px;"></i></div>
+          <div>
+            <div class="t-name">Built for read-aloud</div>
+            <div class="t-role">Ages 2&ndash;6</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <p class="t-text">Three little red birds, a bright blue sky and a warm sun &mdash; hand-illustrated so a child who cannot read yet can still follow every page of the story on their own.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:var(--brown);"><i data-lucide="palette" style="width:16px;height:16px;"></i></div>
+          <div>
+            <div class="t-name">Illustrated by hand</div>
+            <div class="t-role">Art by Ronald Scarfone</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" target="_blank" rel="noopener" class="btn btn-outline"><i data-lucide="star" style="width:16px;height:16px;"></i> Read reader reviews on Amazon</a>
     </div>
   </div>
 </section>
@@ -430,24 +480,27 @@
   <div class="container">
     <div class="nl-grid">
       <div class="nl-left">
-        <div class="incentive-pill"><i data-lucide="gift" style="width:14px;height:14px;"></i> Free printable activity sheet when you subscribe</div>
+        <div class="incentive-pill"><i data-lucide="mail" style="width:14px;height:14px;"></i> Read-aloud tips, about once a month</div>
         <h2>Stay in touch<br>with the birdies</h2>
-        <p style="margin-top:12px;">Read-aloud tips, nature activities for little ones, updates on new stories — delivered to your inbox. No spam, ever.</p>
+        <p style="margin-top:12px;">Read-aloud tips, nature activities for little ones, and word when a new story is out. We email rarely and never share your address.</p>
       </div>
       <div>
-        <div class="nl-form">
-          <input class="nl-input" type="text" placeholder="Your first name">
-          <input class="nl-input" type="email" placeholder="Your email address">
-          <button class="btn btn-sky" style="justify-content:center;"><i data-lucide="feather" style="width:16px;height:16px;"></i> Join the Flock — It's Free</button>
-        </div>
-        <p class="nl-fine">Unsubscribe any time. We respect your inbox like a bird respects its nest.</p>
+        <form class="nl-form" id="nl-form" novalidate>
+          <label class="nl-label" for="nl-name">First name <span class="nl-opt">(optional)</span></label>
+          <input class="nl-input" id="nl-name" name="first_name" type="text" autocomplete="given-name" maxlength="50" placeholder="Your first name">
+          <label class="nl-label" for="nl-email">Email address</label>
+          <input class="nl-input" id="nl-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+          <button class="btn btn-sky" id="nl-submit" type="submit" style="justify-content:center;"><i data-lucide="feather" style="width:16px;height:16px;"></i> Join the Flock &mdash; It&rsquo;s Free</button>
+          <p class="nl-status" id="nl-status" role="status" aria-live="polite" hidden></p>
+        </form>
+        <p class="nl-fine">We&rsquo;ll only email you about Three Baby Birdies, and you can unsubscribe at any time.</p>
       </div>
     </div>
   </div>
 </section>
 
 <footer id="footer"></footer>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
 <script>
@@ -464,5 +517,62 @@ document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
     if (subj) sessionStorage.setItem('chatbot_subject', subj);
   });
 });
+
+// Newsletter signup -> POST /leads/subscribe
+(function () {
+  const API    = 'https://api.threebabybirdies.com';
+  const form   = document.getElementById('nl-form');
+  const email  = document.getElementById('nl-email');
+  const name   = document.getElementById('nl-name');
+  const button = document.getElementById('nl-submit');
+  const status = document.getElementById('nl-status');
+  if (!form) return;
+
+  function say(message, kind) {
+    status.textContent = message;
+    status.className = 'nl-status ' + kind;
+    status.hidden = false;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (!email.value.trim() || !email.checkValidity()) {
+      email.setAttribute('aria-invalid', 'true');
+      email.focus();
+      say('Please enter an email address we can reach you at.', 'err');
+      return;
+    }
+    email.removeAttribute('aria-invalid');
+
+    button.disabled = true;
+    say('Signing you up\u2026', 'ok');
+
+    try {
+      const res = await fetch(API + '/leads/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email.value.trim(),
+          first_name: name.value.trim() || null,
+          source: 'homepage_newsletter'
+        })
+      });
+
+      if (res.ok) {
+        form.reset();
+        say('You\u2019re on the list \u2014 welcome to the flock!', 'ok');
+      } else if (res.status === 429) {
+        say('That\u2019s a few tries in a row. Give it a minute and try again.', 'err');
+      } else {
+        say('We couldn\u2019t save that just now. Please try again in a moment.', 'err');
+      }
+    } catch (err) {
+      say('We couldn\u2019t reach the server. Check your connection and try again.', 'err');
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
 </script>
 </body></html>
