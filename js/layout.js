@@ -36,7 +36,9 @@
     <div class="footer-brand">
       <h3><i data-lucide="feather" style="width:16px;height:16px;margin-right:4px;"></i>Three Baby Birdies</h3>
       <p>Stories that bring blue skies, a warm sun, and three little red birds to young readers. Written by Iris Scarfone, illustrated by Ronald Scarfone.</p>
-      <div class="social-row"><a class="social-icon" href="#">f</a><a class="social-icon" href="#">in</a><a class="social-icon" href="#">p</a><a class="social-icon" href="#">&#9654;</a></div>
+      <!-- Social row removed: the four icons were placeholder glyphs pointing at href="#".
+           Restore it here once Iris supplies the real profile URLs. The .social-row /
+           .social-icon styles are still in css/main.css, ready to use. -->
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
