@@ -15,10 +15,12 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
   position:relative; overflow:hidden;
 }
 .auth-panel-left::before {
-  content:'🐦'; position:absolute; font-size:120px; opacity:.08; bottom:-20px; right:-10px; line-height:1;
+  content:''; position:absolute; width:150px; height:148px; opacity:.10; bottom:-20px; right:-10px;
+  background:url('assets/chirpy.png') no-repeat center/contain;
 }
 .auth-panel-left::after {
-  content:'🐦'; position:absolute; font-size:60px; opacity:.1; top:20px; left:-10px; transform:rotate(-20deg);
+  content:''; position:absolute; width:76px; height:75px; opacity:.12; top:20px; left:-10px; transform:rotate(-20deg);
+  background:url('assets/birdie-left.png') no-repeat center/contain;
 }
 .auth-panel-left h2 { color:#fff; margin-bottom:12px; }
 .auth-panel-left p  { color:rgba(255,255,255,.75); font-size:.95rem; margin-bottom:32px; }

@@ -171,7 +171,7 @@
     <!-- LEFT: Intro + controls -->
     <div class="chat-hero-left">
       <div class="badge-ai" style="margin-bottom:12px;"><i data-lucide="sparkles" style="width:13px;height:13px;"></i> AI-Powered Learning · Free 3-Month Trial</div>
-      <h1 style="margin-top:0;font-size:clamp(2rem,4vw,3rem);">Learning that feels<br><span style="color:var(--sky-dark);">like play 🐦</span></h1>
+      <h1 style="margin-top:0;font-size:clamp(2rem,4vw,3rem);">Learning that feels<br><span style="color:var(--sky-dark);">like play</span></h1>
       <p style="margin-bottom:24px;">Let Chirpy and Mama Bird guide your child through spelling, rhyming, math, and more. Warm, encouraging AI voices — never robotic, always joyful.</p>
 
       <!-- Character cards v2 -->
@@ -230,7 +230,7 @@
         <div class="chat-body" id="chat-body">
           <!-- Chirpy opening message -->
           <div class="msg chirpy" id="opening-msg">
-            <div class="msg-avatar" style="background:var(--sky-light);">🐦</div>
+            <div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div>
             <div class="msg-bubble">Tweet tweet! 🐦 Hi there! I'm Chirpy, your real AI spelling tutor! I'm SO excited to learn with you today! 🌟<br><br>Here's your first word — listen carefully:<br><br><strong>C-A-T</strong> 🐱 — can you spell it back to me?</div>
           </div>
         </div>
@@ -502,7 +502,7 @@ document.querySelectorAll('.subject-pill').forEach(pill => {
 function addMsg(type, html) {
   const div = document.createElement('div');
   div.className = `msg ${type}`;
-  const avatar = type === 'user' ? '👤' : '🐦';
+  const avatar = type === 'user' ? '👤' : '<img src="assets/chirpy.png" alt="Chirpy" class="mascot">';
   const avatarBg = type === 'user' ? 'var(--sky)' : 'var(--sky-light)';
   div.innerHTML = `<div class="msg-avatar" style="background:${avatarBg};">${avatar}</div><div class="msg-bubble${type==='chirpy'?' upsell-bubble':''}" style="${type==='chirpy'?'background:#fff;border:none;':''}">${html}</div>`;
   chatBody.appendChild(div);
@@ -513,7 +513,7 @@ function addMsg(type, html) {
 function addChirpyMsg(html) {
   const div = document.createElement('div');
   div.className = 'msg chirpy';
-  div.innerHTML = `<div class="msg-avatar" style="background:var(--sky-light);">🐦</div><div class="msg-bubble">${html}</div>`;
+  div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div><div class="msg-bubble">${html}</div>`;
   chatBody.appendChild(div);
   chatBody.scrollTop = chatBody.scrollHeight;
   return div;
@@ -523,7 +523,7 @@ function showTyping() {
   const div = document.createElement('div');
   div.className = 'msg chirpy';
   div.id = 'typing-indicator';
-  div.innerHTML = `<div class="msg-avatar" style="background:var(--sky-light);">🐦</div><div class="msg-bubble"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+  div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div><div class="msg-bubble"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
   chatBody.appendChild(div);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
@@ -538,7 +538,7 @@ function showUpsell() {
   demoExhausted = true;
   const div = document.createElement('div');
   div.className = 'msg chirpy';
-  div.innerHTML = `<div class="msg-avatar" style="background:var(--sky-light);">🐦</div>
+  div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div>
     <div class="msg-bubble upsell-bubble">
       <strong>Tweet tweet! 🐦 You're doing SO well!</strong><br><br>
       That's your free preview for today. Create a free account to keep going — 3 months free, no card needed!<br><br>
@@ -659,7 +659,7 @@ function setSubject(el, subj) {
     demoCount = 0; demoHistory = [];
     const div = document.createElement('div');
     div.className = 'msg chirpy';
-    div.innerHTML = `<div class="msg-avatar" style="background:var(--sky-light);">🐦</div>
+    div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div>
       <div class="msg-bubble upsell-bubble">
         <strong>Tweet tweet! 🐦 I love ${subj}!</strong><br><br>
         ${subj} is available with a free account — along with all 5 other subjects. Sign up in seconds, no card needed!<br><br>

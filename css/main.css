@@ -509,3 +509,15 @@ svg.lucide {
   .subject-tiles { grid-template-columns:1fr; }
   .ebook-promo { padding:36px 24px; }
 }
+
+
+/* ---- Mascot (Chirpy / Mama Bird, cut from the book cover) ----
+   Source art is ~140px wide, so never render these above ~140 CSS px --
+   past that they go soft. Busts, not full bodies: the birds sit in a nest
+   on the cover and there is no art of them anywhere else. */
+.mascot { display:block; width:100%; height:auto; user-select:none; -webkit-user-drag:none; }
+.mascot-badge {
+  border-radius:50%; overflow:hidden; flex-shrink:0;
+  background:var(--sky-xlight); display:flex; align-items:flex-end; justify-content:center;
+}
+.mascot-badge .mascot { width:118%; margin-bottom:-8%; }
