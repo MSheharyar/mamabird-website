@@ -160,6 +160,7 @@
 
 @media(max-width:1020px){ .chat-hero-inner{grid-template-columns:1fr;} .features-grid{grid-template-columns:1fr 1fr;} .pricing-grid{grid-template-columns:1fr 1fr;} .subject-detail-grid{grid-template-columns:1fr 1fr;} }
 @media(max-width:560px){ .features-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} .subject-detail-grid{grid-template-columns:1fr;} }
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
 </style>
 </head>
 <body>
@@ -220,7 +221,7 @@
     <div>
       <div class="chat-window-wrap">
         <div class="chat-topbar">
-          <div class="chat-topbar-avatar" id="topbar-avatar"><i data-lucide="feather" style="width:20px;height:20px;color:var(--sky-dark);"></i></div>
+          <div class="chat-topbar-avatar mascot-badge" id="topbar-avatar"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div>
           <div>
             <div class="chat-topbar-name" id="topbar-name">Chirpy</div>
             <div class="chat-topbar-status">● Online · Spelling</div>
@@ -236,12 +237,13 @@
         </div>
 
         <div class="chat-input-row">
-          <input class="chat-input" id="chat-input" type="text" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')sendMsg()">
-          <button class="chat-send" onclick="sendMsg()">➤</button>
+          <label class="sr-only" for="chat-input">Type your answer to Chirpy</label>
+          <input class="chat-input" id="chat-input" type="text" autocomplete="off" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')sendMsg()">
+          <button class="chat-send" onclick="sendMsg()" aria-label="Send message"><i data-lucide="send" style="width:17px;height:17px;"></i></button>
         </div>
       </div>
       <p style="text-align:center;font-size:.75rem;color:var(--light-text);margin-top:10px;padding-bottom:4px;">
-        <i data-lucide="sparkles" style="width:13px;height:13px;"></i> Real AI · Powered by Claude · 4 free messages · No signup needed
+        <i data-lucide="sparkles" style="width:13px;height:13px;"></i> Real AI · Powered by Claude · <span id="msg-left">4 free messages</span> · No signup needed
       </p>
     </div>
   </div>
@@ -596,6 +598,11 @@ async function sendMsg() {
       demoHistory.push({ role: 'user', content: text });
       demoHistory.push({ role: 'assistant', content: reply });
       // Backend tells us how many messages remain
+      if (typeof data.remaining === 'number') {
+        var left = document.getElementById('msg-left');
+        if (left) left.textContent = data.remaining === 1
+          ? '1 free message left' : data.remaining + ' free messages left';
+      }
       if (typeof data.remaining === 'number' && data.remaining <= 0) {
         showUpsell();
       }
@@ -640,8 +647,7 @@ function switchChar(char) {
   if (mc) { mc.setAttribute('data-lucide', char === 'mama' ? 'check-circle-2' : 'circle'); mc.style.color = char === 'mama' ? 'var(--green)' : 'var(--light-text)'; }
   if (window.lucide) lucide.createIcons();
   const topbarAvatar = document.getElementById('topbar-avatar');
-  topbarAvatar.innerHTML = '<i data-lucide="feather" style="width:20px;height:20px;color:var(--sky-dark);"></i>';
-  if (window.lucide) lucide.createIcons({ nodes: [topbarAvatar] });
+  topbarAvatar.innerHTML = '<img src="assets/chirpy.png" alt="Chirpy" class="mascot">';
   document.getElementById('topbar-name').textContent = 'Chirpy';
   // Reset state
   demoHistory = []; demoExhausted = false;
