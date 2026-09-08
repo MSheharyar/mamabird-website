@@ -95,6 +95,23 @@
   font-family:var(--font-display); font-weight:700; font-size:.78rem;
   color:var(--yellow); margin-bottom:20px;
 }
+.hero-play { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:18px 0 4px; }
+.play-link {
+  display:inline-flex; align-items:center; gap:9px; padding:0; border:none; background:none;
+  font-family:var(--font-display); font-weight:700; font-size:.95rem; color:var(--sky-dark);
+  cursor:pointer; transition:color .18s;
+}
+.play-link:hover { color:var(--red); }
+.play-link:hover .play-dot { background:var(--red); transform:scale(1.08); }
+.play-link:focus-visible { outline:3px solid var(--yellow); outline-offset:3px; border-radius:var(--r-sm); }
+.play-dot {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; border-radius:50%; background:var(--sky-dark); color:#fff;
+  transition:background .18s, transform .18s;
+}
+.hero-play-note { font-size:.78rem; color:var(--light-text); }
+@media(max-width:960px){ .hero-play { justify-content:center; } }
+@media (prefers-reduced-motion: reduce) { .play-link:hover .play-dot { transform:none; } }
 .nl-form { display:flex; flex-direction:column; gap:12px; }
 .nl-input {
   padding:15px 20px; border-radius:var(--r-full);
@@ -167,6 +184,13 @@
         <a href="chatbot.html" class="btn btn-red"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i> Try Chirpy Free</a>
         <a href="ebook.html" class="btn btn-outline"><i data-lucide="download" style="width:16px;height:16px;"></i> Get the eBook</a>
       </div>
+      <p class="hero-play">
+        <button type="button" class="play-link" data-play-game>
+          <span class="play-dot"><i data-lucide="play" style="width:11px;height:11px;"></i></span>
+          Play Chirpy&rsquo;s First Flight
+        </button>
+        <span class="hero-play-note">Free &middot; no sign-up</span>
+      </p>
       <div class="hero-retailers">
         Instant PDF download, or <a href="book.html">order a signed paperback</a>.<br>
         <!-- TODO: link "Barnes &amp; Noble" once Iris supplies the retailer URL. -->
@@ -288,7 +312,7 @@
         <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="gamepad-2" style="width:14px;height:14px;"></i> Free Game</span>
         <h2 style="margin-bottom:12px;">Help Chirpy learn to fly</h2>
         <p style="margin-bottom:22px;max-width:460px;">The moment from the book, as a game your child can play. Tap to flap, slip between the branches, and see how far Chirpy gets. No sign-in, no adverts &mdash; it just runs in the browser.</p>
-        <button type="button" class="btn btn-red" id="playGame"><i data-lucide="play" style="width:16px;height:16px;"></i> Play Chirpy&rsquo;s First Flight</button>
+        <button type="button" class="btn btn-red" data-play-game><i data-lucide="play" style="width:16px;height:16px;"></i> Play Chirpy&rsquo;s First Flight</button>
       </div>
     </div>
   </div>
@@ -609,11 +633,11 @@ document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
 
 // Game modal — mounts the shared module on first open, then keeps it.
 (function () {
-  var openBtn = document.getElementById('playGame');
+  var openBtns= document.querySelectorAll('[data-play-game]');
   var modal   = document.getElementById('gameModal');
   var closeBtn= document.getElementById('gameClose');
   var stage   = document.getElementById('gameStage');
-  if (!openBtn || !modal || !stage || !window.ChirpyFlight) return;
+  if (!openBtns.length || !modal || !stage || !window.ChirpyFlight) return;
 
   var game = null, lastFocus = null;
 
@@ -637,7 +661,9 @@ document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
-  openBtn.addEventListener('click', open);
+  Array.prototype.forEach.call(openBtns, function (b) {
+    b.addEventListener('click', open);
+  });
   closeBtn.addEventListener('click', close);
 
   // Clicking the backdrop closes; clicking the game itself must not.
