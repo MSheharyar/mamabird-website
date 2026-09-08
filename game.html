@@ -5,72 +5,13 @@
 <title>Chirpy's First Flight — Three Baby Birdies</title>
 <meta name="description" content="A gentle flying game for little ones. Help Chirpy flap between the branches — free to play, nothing to sign up for.">
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/game.css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 .game-hero { padding-top:var(--nav-h); background:linear-gradient(160deg,var(--sky-xlight) 0%,var(--sky-light) 45%,var(--cream) 100%); }
 .game-hero-inner { max-width:var(--max-w); margin:0 auto; padding:56px var(--sp-md) var(--sp-lg); }
-
 .game-layout { display:grid; grid-template-columns:minmax(0,420px) 1fr; gap:var(--sp-lg); align-items:start; }
 
-/* ---- Stage ---- */
-.stage-wrap { position:relative; }
-.stage {
-  position:relative; width:100%; aspect-ratio:420/640;
-  border-radius:var(--r-lg); overflow:hidden;
-  box-shadow:var(--sh-lg); border:4px solid #fff;
-  background:var(--sky-light);
-}
-#game { display:block; width:100%; height:100%; touch-action:manipulation; }
-#game:focus-visible { outline:3px solid var(--yellow); outline-offset:3px; }
-
-/* Overlay panels sit on the canvas */
-.panel {
-  position:absolute; inset:0; display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:14px; text-align:center;
-  padding:24px; background:rgba(44,24,16,.42);
-  backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
-}
-.panel[hidden] { display:none; }
-.panel-card {
-  background:rgba(253,248,240,.97); border-radius:var(--r-lg);
-  padding:26px 24px; max-width:300px; box-shadow:var(--sh-md);
-}
-.panel-card h2 { font-size:1.35rem; margin-bottom:8px; }
-.panel-card p  { font-size:.9rem; margin-bottom:16px; }
-.panel-rhyme {
-  font-family:var(--font-display); font-weight:600; font-size:.9rem;
-  color:var(--sky-dark); line-height:1.5; margin-bottom:14px;
-}
-.panel-bird { width:74px; margin:0 auto 10px; }
-
-.score-line { display:flex; gap:18px; justify-content:center; margin-bottom:18px; }
-.score-box { background:var(--sky-xlight); border-radius:var(--r-md); padding:10px 18px; min-width:88px; }
-.score-box .n {
-  font-family:var(--font-display); font-weight:700; font-size:1.7rem;
-  color:var(--dark); line-height:1; font-variant-numeric:tabular-nums;
-}
-.score-box .k {
-  font-family:var(--font-display); font-weight:700; font-size:.62rem;
-  letter-spacing:.11em; text-transform:uppercase; color:var(--light-text); margin-top:5px;
-}
-
-/* Live score while flying */
-.hud {
-  position:absolute; top:16px; left:0; right:0; text-align:center;
-  font-family:var(--font-display); font-weight:700; font-size:2.4rem;
-  color:#fff; text-shadow:0 3px 0 rgba(44,24,16,.28); pointer-events:none;
-  font-variant-numeric:tabular-nums;
-}
-.hud[hidden] { display:none; }
-
-.tap-hint {
-  position:absolute; left:0; right:0; bottom:22px; text-align:center;
-  font-family:var(--font-display); font-weight:700; font-size:.82rem;
-  color:#fff; text-shadow:0 2px 6px rgba(44,24,16,.5); pointer-events:none;
-}
-.tap-hint[hidden] { display:none; }
-
-/* ---- Side column ---- */
 .how-card { background:#fff; border-radius:var(--r-lg); padding:26px; box-shadow:var(--sh-sm); margin-bottom:var(--sp-md); }
 .how-card h3 { margin-bottom:14px; }
 .how-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
@@ -80,31 +21,15 @@
   border-radius:var(--r-sm); padding:5px 10px; min-width:42px; text-align:center;
   font-family:var(--font-display); font-weight:700; font-size:.72rem;
 }
-.speed-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
-.speed-btn {
-  border:2px solid var(--cream-dark); background:#fff; color:var(--mid);
-  border-radius:var(--r-full); padding:8px 18px;
-  font-family:var(--font-display); font-weight:700; font-size:.82rem;
-  transition:border-color .18s,background .18s,color .18s;
-}
-.speed-btn:hover { border-color:var(--sky); }
-.speed-btn[aria-pressed="true"] { background:var(--sky); border-color:var(--sky); color:#fff; }
-.speed-btn:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
-
 .parent-note {
   background:var(--green-light); border-radius:var(--r-md); padding:18px 20px;
   font-size:.85rem; color:var(--mid); display:flex; gap:12px; align-items:flex-start;
 }
 .parent-note strong { color:var(--dark); font-family:var(--font-display); }
 
-.sr-only {
-  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
-  overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0;
-}
-
 @media(max-width:900px){
   .game-layout { grid-template-columns:1fr; gap:var(--sp-md); }
-  .stage-wrap { max-width:420px; margin:0 auto; }
+  #stage { max-width:420px; margin:0 auto; }
 }
 </style>
 </head>
@@ -122,54 +47,9 @@
     </div>
 
     <div class="game-layout">
+      <!-- The game module renders itself in here -->
+      <div id="stage"></div>
 
-      <!-- ---------- Stage ---------- -->
-      <div class="stage-wrap">
-        <div class="stage">
-          <canvas id="game" width="420" height="640"
-                  role="img" aria-label="Chirpy's First Flight — a flying game. Press space or tap to flap."></canvas>
-
-          <div class="hud" id="hud" hidden>0</div>
-          <p class="tap-hint" id="tapHint" hidden>Tap or press space to flap</p>
-
-          <!-- Ready -->
-          <div class="panel" id="panelReady">
-            <div class="panel-card">
-              <img src="assets/chirpy.png" alt="" class="panel-bird mascot">
-              <p class="panel-rhyme">&ldquo;Chirp chirp chirp. Flap your wings and try to fly.<br>It is just as easy as easy as pie.&rdquo;</p>
-              <button class="btn btn-red" id="btnStart" style="justify-content:center;width:100%;">
-                <i data-lucide="play" style="width:16px;height:16px;"></i> Start flying
-              </button>
-            </div>
-          </div>
-
-          <!-- Finished -->
-          <div class="panel" id="panelOver" hidden>
-            <div class="panel-card">
-              <h2 id="overTitle">Nice flying!</h2>
-              <p id="overMsg">You made it past three branches.</p>
-              <div class="score-line">
-                <div class="score-box"><div class="n" id="finalScore">0</div><div class="k">Branches</div></div>
-                <div class="score-box"><div class="n" id="bestScore">0</div><div class="k">Best</div></div>
-              </div>
-              <button class="btn btn-red" id="btnAgain" style="justify-content:center;width:100%;">
-                <i data-lucide="rotate-ccw" style="width:16px;height:16px;"></i> Fly again
-              </button>
-            </div>
-          </div>
-
-          <!-- Paused (tab hidden / window blurred) -->
-          <div class="panel" id="panelPaused" hidden>
-            <div class="panel-card">
-              <h2>Paused</h2>
-              <p style="margin-bottom:0;">Tap the nest to carry on.</p>
-            </div>
-          </div>
-        </div>
-        <p class="sr-only" id="live" role="status" aria-live="polite"></p>
-      </div>
-
-      <!-- ---------- Side ---------- -->
       <div>
         <div class="how-card">
           <h3>How to play</h3>
@@ -178,14 +58,7 @@
             <li><span class="how-key">Space</span><span>Or press the space bar on a keyboard.</span></li>
             <li><span class="how-key">&uarr;</span><span>The up arrow works too.</span></li>
           </ul>
-          <div style="margin-top:22px;">
-            <h3 style="font-size:.95rem;margin-bottom:8px;">Speed</h3>
-            <p style="font-size:.85rem;margin-bottom:0;">Start gentle. Move up when it feels too easy.</p>
-            <div class="speed-row" role="group" aria-label="Game speed">
-              <button class="speed-btn" data-speed="gentle" aria-pressed="true">Gentle</button>
-              <button class="speed-btn" data-speed="brisk" aria-pressed="false">Brisk</button>
-            </div>
-          </div>
+          <p style="font-size:.85rem;margin-top:18px;margin-bottom:0;">Start on <strong>Gentle</strong>. Switch to <strong>Brisk</strong> when that feels too easy &mdash; the buttons are on the start screen.</p>
         </div>
 
         <div class="parent-note">
@@ -197,7 +70,6 @@
           <a href="chatbot.html" class="btn btn-sky"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i> Meet Chirpy in the Classroom</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -206,389 +78,8 @@
 <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
+<script src="js/game.js"></script>
 <script>
-/* ============================================================
-   Chirpy's First Flight
-   Plain canvas, no libraries. Logical resolution is 420x640 and
-   every number below is in those units.
-
-   Tuned for the book's audience (2-8), which is the whole reason it
-   does not play like Flappy Bird: gravity is low, the gaps are wide,
-   the hitbox is smaller than Chirpy looks, and touching the sky
-   ceiling nudges you back down instead of ending the run.
-   ============================================================ */
-(function () {
-  'use strict';
-
-  var canvas = document.getElementById('game');
-  if (!canvas || !canvas.getContext) return;
-  var ctx = canvas.getContext('2d');
-
-  var W = 420, H = 640, GROUND = 78;
-  var SKY_H = H - GROUND;
-
-  // ---- tuning -------------------------------------------------
-  // A flap has to roughly cancel one tap-interval of falling, or the bird
-  // just climbs to the ceiling on any steady rhythm and dies on the first
-  // branch. Balance point is T = -2*flap/gravity, i.e. the tap rate that
-  // holds altitude: ~0.46s here, a relaxed rate for small hands.
-  var SPEEDS = {
-    gentle: { scroll: 108, gap: 218, spacing: 300, gravity: 1250, flap: -290, ramp: 0.7 },
-    brisk:  { scroll: 142, gap: 190, spacing: 268, gravity: 1500, flap: -330, ramp: 1.4 }
-  };
-  var mode = 'gentle';
-  var tune = SPEEDS[mode];
-
-  var BIRD_X = 116;
-  var BIRD_R = 15;          // collision radius, deliberately under the art
-  var BIRD_DRAW = 46;       // drawn width
-  var MAX_FALL = 520;
-
-  // ---- state --------------------------------------------------
-  var STATE = { READY: 0, PLAYING: 1, OVER: 2, PAUSED: 3 };
-  var state = STATE.READY;
-  var bird, branches, clouds, score, best, scrollX, elapsed, flapAnim, shake;
-
-  var el = {
-    hud:       document.getElementById('hud'),
-    hint:      document.getElementById('tapHint'),
-    ready:     document.getElementById('panelReady'),
-    over:      document.getElementById('panelOver'),
-    paused:    document.getElementById('panelPaused'),
-    start:     document.getElementById('btnStart'),
-    again:     document.getElementById('btnAgain'),
-    finalScore:document.getElementById('finalScore'),
-    bestScore: document.getElementById('bestScore'),
-    overTitle: document.getElementById('overTitle'),
-    overMsg:   document.getElementById('overMsg'),
-    live:      document.getElementById('live')
-  };
-
-  // ---- best score (this device only) --------------------------
-  function readBest() {
-    try { return parseInt(localStorage.getItem('tbb_flight_best'), 10) || 0; }
-    catch (e) { return 0; }        // private mode, blocked storage
-  }
-  function writeBest(v) {
-    try { localStorage.setItem('tbb_flight_best', String(v)); } catch (e) {}
-  }
-  best = readBest();
-
-  // ---- sprite -------------------------------------------------
-  var sprite = new Image();
-  var spriteReady = false;
-  sprite.onload = function () { spriteReady = true; };
-  sprite.src = 'assets/chirpy.png';
-
-  // ---- setup --------------------------------------------------
-  function resetWorld() {
-    bird = { y: SKY_H * 0.42, v: 0, rot: 0 };
-    branches = [];
-    score = 0; scrollX = 0; elapsed = 0; flapAnim = 0; shake = 0;
-    for (var i = 0; i < 3; i++) addBranch(W + 160 + i * tune.spacing);
-    clouds = [];
-    for (var c = 0; c < 5; c++) {
-      clouds.push({
-        x: Math.random() * W, y: 40 + Math.random() * (SKY_H * 0.5),
-        s: 0.5 + Math.random() * 0.6, sp: 8 + Math.random() * 12
-      });
-    }
-  }
-
-  function addBranch(x) {
-    // Keep the gap away from the very top and the ground so there is
-    // always a comfortable way through.
-    var margin = 92;
-    var gap = tune.gap;
-    var centre = margin + Math.random() * (SKY_H - gap - margin * 2) + gap / 2;
-    branches.push({ x: x, centre: centre, gap: gap, passed: false });
-  }
-
-  // ---- input --------------------------------------------------
-  function flap() {
-    if (state === STATE.READY) { start(); return; }
-    if (state === STATE.PAUSED) { resume(); return; }
-    if (state !== STATE.PLAYING) return;
-    bird.v = tune.flap;
-    flapAnim = 1;
-  }
-
-  function start() {
-    resetWorld();
-    state = STATE.PLAYING;
-    el.ready.hidden = true; el.over.hidden = true; el.paused.hidden = true;
-    el.hud.hidden = false; el.hud.textContent = '0';
-    el.hint.hidden = false;
-    canvas.focus();
-  }
-
-  function resume() {
-    if (state !== STATE.PAUSED) return;
-    state = STATE.PLAYING;
-    el.paused.hidden = true;
-    last = performance.now(); acc = 0;
-  }
-
-  function pause() {
-    if (state !== STATE.PLAYING) return;
-    state = STATE.PAUSED;
-    el.paused.hidden = false;
-  }
-
-  function gameOver() {
-    state = STATE.OVER;
-    shake = 1;
-    if (score > best) { best = score; writeBest(best); }
-    el.hud.hidden = true;
-    el.hint.hidden = true;
-    el.finalScore.textContent = score;
-    el.bestScore.textContent = best;
-
-    // Never scold a five-year-old for losing.
-    var title, msg;
-    if (score === 0)      { title = 'Good try!';      msg = 'Tap a little sooner to lift Chirpy up.'; }
-    else if (score < 4)   { title = 'Nice flying!';   msg = 'You got past ' + score + (score === 1 ? ' branch.' : ' branches.'); }
-    else if (score < 10)  { title = 'Great flapping!';msg = score + ' branches — Chirpy is getting the hang of it.'; }
-    else                  { title = 'Wonderful!';     msg = score + ' branches. Chirpy can really fly now.'; }
-    el.overTitle.textContent = title;
-    el.overMsg.textContent = msg;
-    el.live.textContent = title + ' ' + msg + ' Best ' + best + '.';
-    el.over.hidden = false;
-    el.again.focus();
-  }
-
-  canvas.addEventListener('pointerdown', function (e) { e.preventDefault(); flap(); });
-  canvas.setAttribute('tabindex', '0');
-  canvas.addEventListener('keydown', function (e) {
-    if (e.code === 'Space' || e.code === 'ArrowUp' || e.key === ' ' || e.key === 'ArrowUp') {
-      e.preventDefault(); flap();
-    }
-  });
-  document.addEventListener('keydown', function (e) {
-    if (state !== STATE.PLAYING) return;
-    if (e.code === 'Space' || e.code === 'ArrowUp') { e.preventDefault(); flap(); }
-  });
-  el.start.addEventListener('click', start);
-  el.again.addEventListener('click', start);
-  el.paused.addEventListener('pointerdown', resume);
-
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) pause();
-  });
-  window.addEventListener('blur', pause);
-
-  Array.prototype.forEach.call(document.querySelectorAll('.speed-btn'), function (b) {
-    b.addEventListener('click', function () {
-      mode = b.getAttribute('data-speed');
-      tune = SPEEDS[mode];
-      Array.prototype.forEach.call(document.querySelectorAll('.speed-btn'), function (o) {
-        o.setAttribute('aria-pressed', String(o === b));
-      });
-      // Restart so the new speed applies from a fair starting point.
-      state = STATE.READY;
-      resetWorld();
-      el.over.hidden = true; el.paused.hidden = true; el.hud.hidden = true;
-      el.hint.hidden = true; el.ready.hidden = false;
-      el.live.textContent = 'Speed set to ' + mode + '.';
-    });
-  });
-
-  // ---- update -------------------------------------------------
-  function update(dt) {
-    if (state !== STATE.PLAYING) {
-      // Clouds keep drifting on the menus so the scene feels alive.
-      for (var c = 0; c < clouds.length; c++) {
-        clouds[c].x -= clouds[c].sp * dt * 0.4;
-        if (clouds[c].x < -90) { clouds[c].x = W + 60; clouds[c].y = 40 + Math.random() * (SKY_H * 0.5); }
-      }
-      if (shake > 0) shake = Math.max(0, shake - dt * 3);
-      return;
-    }
-
-    elapsed += dt;
-    var speed = tune.scroll + Math.min(elapsed * tune.ramp, 34);
-
-    bird.v = Math.min(bird.v + tune.gravity * dt, MAX_FALL);
-    bird.y += bird.v * dt;
-
-    // Ceiling nudges rather than kills.
-    if (bird.y < BIRD_R + 4) { bird.y = BIRD_R + 4; bird.v = Math.max(bird.v, 40); }
-
-    bird.rot = Math.max(-0.42, Math.min(1.05, bird.v / 620));
-    if (flapAnim > 0) flapAnim = Math.max(0, flapAnim - dt * 5);
-
-    scrollX += speed * dt;
-
-    for (var i = 0; i < branches.length; i++) {
-      var b = branches[i];
-      b.x -= speed * dt;
-      if (!b.passed && b.x + 26 < BIRD_X - BIRD_R) {
-        b.passed = true; score++;
-        el.hud.textContent = String(score);
-        if (score === 1) el.hint.hidden = true;
-      }
-    }
-    while (branches.length && branches[0].x < -90) branches.shift();
-    var lastB = branches[branches.length - 1];
-    if (lastB && lastB.x < W - tune.spacing) addBranch(lastB.x + tune.spacing);
-
-    for (var k = 0; k < clouds.length; k++) {
-      clouds[k].x -= clouds[k].sp * dt;
-      if (clouds[k].x < -90) { clouds[k].x = W + 60; clouds[k].y = 40 + Math.random() * (SKY_H * 0.5); }
-    }
-
-    // Ground.
-    if (bird.y + BIRD_R >= SKY_H) { bird.y = SKY_H - BIRD_R; gameOver(); return; }
-
-    // Branches. Circle vs the two rectangles.
-    for (var j = 0; j < branches.length; j++) {
-      var br = branches[j];
-      if (br.x + 26 < BIRD_X - BIRD_R || br.x - 26 > BIRD_X + BIRD_R) continue;
-      var top = br.centre - br.gap / 2, bot = br.centre + br.gap / 2;
-      if (bird.y - BIRD_R < top || bird.y + BIRD_R > bot) { gameOver(); return; }
-    }
-  }
-
-  // ---- drawing ------------------------------------------------
-  function roundRect(x, y, w, h, r) {
-    ctx.beginPath();
-    ctx.moveTo(x + r, y);
-    ctx.arcTo(x + w, y, x + w, y + h, r);
-    ctx.arcTo(x + w, y + h, x, y + h, r);
-    ctx.arcTo(x, y + h, x, y, r);
-    ctx.arcTo(x, y, x + w, y, r);
-    ctx.closePath();
-  }
-
-  function drawCloud(x, y, s) {
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath();
-    ctx.arc(x, y, 20 * s, 0, Math.PI * 2);
-    ctx.arc(x + 22 * s, y + 5 * s, 15 * s, 0, Math.PI * 2);
-    ctx.arc(x - 21 * s, y + 6 * s, 13 * s, 0, Math.PI * 2);
-    ctx.arc(x + 6 * s, y - 13 * s, 15 * s, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = 'rgba(200,230,245,.85)';
-    roundRect(x - 33 * s, y + 8 * s, 66 * s, 11 * s, 6 * s);
-    ctx.fill();
-  }
-
-  // A branch across the frame, with leaf clusters — the tree from the
-  // book cover rather than a green pipe.
-  function drawBranch(x, yTop, yBot) {
-    var w = 52;
-    var lx = x - w / 2;
-
-    function limb(y0, y1, fromTop) {
-      ctx.fillStyle = '#9B6B35';
-      roundRect(lx, y0, w, y1 - y0, 12);
-      ctx.fill();
-      // bark shading
-      ctx.fillStyle = 'rgba(107,69,32,.55)';
-      roundRect(lx + w - 15, y0, 15, y1 - y0, 10);
-      ctx.fill();
-      // the knuckle at the open end
-      var ky = fromTop ? y1 : y0;
-      ctx.fillStyle = '#8A5C2C';
-      roundRect(lx - 7, ky - (fromTop ? 20 : 0), w + 14, 20, 9);
-      ctx.fill();
-      // leaves around the knuckle
-      var dir = fromTop ? -1 : 1;
-      for (var i = -1; i <= 1; i++) {
-        var cxp = x + i * 22;
-        var cyp = ky + dir * 6 + (i === 0 ? dir * 8 : 0);
-        ctx.fillStyle = i === 0 ? '#4A8B3F' : '#5FAD54';
-        ctx.beginPath();
-        ctx.ellipse(cxp, cyp, 15, 10, i * 0.5, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    limb(-14, yTop, true);
-    limb(yBot, SKY_H + 10, false);
-  }
-
-  function drawBird() {
-    var squash = 1 + flapAnim * 0.12;
-    ctx.save();
-    ctx.translate(BIRD_X, bird.y);
-    ctx.rotate(bird.rot * 0.5);
-    ctx.scale(1, squash);
-    if (spriteReady) {
-      var w = BIRD_DRAW;
-      var h = w * (sprite.height / sprite.width);
-      ctx.drawImage(sprite, -w / 2, -h / 2 - 2, w, h);
-    } else {
-      ctx.fillStyle = '#DC3B2A';
-      ctx.beginPath(); ctx.arc(0, 0, BIRD_R + 4, 0, Math.PI * 2); ctx.fill();
-    }
-    ctx.restore();
-  }
-
-  function render() {
-    ctx.save();
-    if (shake > 0) ctx.translate((Math.random() - 0.5) * 7 * shake, (Math.random() - 0.5) * 7 * shake);
-
-    // Sky
-    var sky = ctx.createLinearGradient(0, 0, 0, SKY_H);
-    sky.addColorStop(0, '#6EB4D4');
-    sky.addColorStop(1, '#C4E4F4');
-    ctx.fillStyle = sky;
-    ctx.fillRect(0, 0, W, SKY_H);
-
-    for (var i = 0; i < clouds.length; i++) drawCloud(clouds[i].x, clouds[i].y, clouds[i].s);
-
-    for (var j = 0; j < branches.length; j++) {
-      var b = branches[j];
-      drawBranch(b.x, b.centre - b.gap / 2, b.centre + b.gap / 2);
-    }
-
-    drawBird();
-
-    // Ground: grass over nest-coloured earth, scrolling with the world
-    ctx.fillStyle = '#7CB86E';
-    ctx.fillRect(0, SKY_H, W, 16);
-    ctx.fillStyle = '#BA9435';
-    ctx.fillRect(0, SKY_H + 16, W, GROUND - 16);
-    ctx.fillStyle = 'rgba(107,69,32,.20)';
-    for (var g = -1; g < 10; g++) {
-      var gx = ((g * 54) - (scrollX % 54));
-      roundRect(gx, SKY_H + 26, 34, 9, 4);
-      ctx.fill();
-    }
-    ctx.fillStyle = 'rgba(44,24,16,.10)';
-    ctx.fillRect(0, SKY_H, W, 3);
-
-    ctx.restore();
-  }
-
-  // ---- loop (fixed step, so 120Hz screens don't run double speed) ----
-  var STEP = 1 / 60, acc = 0, last = performance.now();
-  function frame(now) {
-    var dt = (now - last) / 1000;
-    last = now;
-    if (dt > 0.25) dt = 0.25;      // came back from a hidden tab
-    acc += dt;
-    var guard = 0;
-    while (acc >= STEP && guard++ < 5) { update(STEP); acc -= STEP; }
-    render();
-    requestAnimationFrame(frame);
-  }
-
-  // ---- crisp on high-DPI screens ------------------------------
-  function fitBackingStore() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = W * dpr;
-    canvas.height = H * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.imageSmoothingQuality = 'high';
-  }
-  window.addEventListener('resize', fitBackingStore);
-
-  fitBackingStore();
-  resetWorld();
-  el.bestScore.textContent = best;
-  requestAnimationFrame(frame);
-})();
+  ChirpyFlight.create(document.getElementById('stage'));
 </script>
 </body></html>

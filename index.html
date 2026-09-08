@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Three Baby Birdies — A Read-Aloud Story by Iris Scarfone</title>
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/game.css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ---- HOME-ONLY STYLES ---- */
@@ -93,23 +94,6 @@
   border-radius:var(--r-full); padding:7px 16px;
   font-family:var(--font-display); font-weight:700; font-size:.78rem;
   color:var(--yellow); margin-bottom:20px;
-}
-.game-banner {
-  display:grid; grid-template-columns:240px 1fr; gap:var(--sp-lg); align-items:center;
-  background:linear-gradient(135deg,var(--sky-xlight) 0%,var(--sky-light) 100%);
-  border-radius:var(--r-lg); padding:var(--sp-lg);
-}
-.game-banner-art {
-  position:relative; height:190px; border-radius:var(--r-md);
-  background:linear-gradient(180deg,#6EB4D4 0%,#C4E4F4 100%);
-  display:flex; align-items:center; justify-content:center; overflow:hidden;
-}
-.gb-branch { position:absolute; width:34px; background:var(--brown); border-radius:10px; }
-.gb-branch-a { right:34px; top:-10px;    height:62px; }
-.gb-branch-b { right:34px; bottom:-10px; height:76px; }
-@media(max-width:760px){
-  .game-banner { grid-template-columns:1fr; gap:var(--sp-md); padding:var(--sp-md); text-align:center; }
-  .game-banner p { margin-left:auto; margin-right:auto; }
 }
 .nl-form { display:flex; flex-direction:column; gap:12px; }
 .nl-input {
@@ -288,6 +272,25 @@
     <div class="stat-item reveal"><div class="stat-number">2</div><div class="stat-label">AI Characters</div></div>
     <div class="stat-item reveal"><div class="stat-number">3mo</div><div class="stat-label">Free Trial</div></div>
     <div class="stat-item reveal"><div class="stat-number">100%</div><div class="stat-label">COPPA Safe</div></div>
+  </div>
+</section>
+
+<!-- GAME BANNER -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="game-banner">
+      <div class="game-banner-art" aria-hidden="true">
+        <img src="assets/chirpy.png" alt="" class="mascot float" style="width:96px;">
+        <span class="gb-branch gb-branch-a"></span>
+        <span class="gb-branch gb-branch-b"></span>
+      </div>
+      <div>
+        <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="gamepad-2" style="width:14px;height:14px;"></i> Free Game</span>
+        <h2 style="margin-bottom:12px;">Help Chirpy learn to fly</h2>
+        <p style="margin-bottom:22px;max-width:460px;">The moment from the book, as a game your child can play. Tap to flap, slip between the branches, and see how far Chirpy gets. No sign-in, no adverts &mdash; it just runs in the browser.</p>
+        <button type="button" class="btn btn-red" id="playGame"><i data-lucide="play" style="width:16px;height:16px;"></i> Play Chirpy&rsquo;s First Flight</button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -492,25 +495,6 @@
   </div>
 </section>
 
-<!-- GAME BANNER -->
-<section class="section" style="background:#fff;">
-  <div class="container">
-    <div class="game-banner">
-      <div class="game-banner-art" aria-hidden="true">
-        <img src="assets/chirpy.png" alt="" class="mascot float" style="width:96px;">
-        <span class="gb-branch gb-branch-a"></span>
-        <span class="gb-branch gb-branch-b"></span>
-      </div>
-      <div>
-        <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="gamepad-2" style="width:14px;height:14px;"></i> Free Game</span>
-        <h2 style="margin-bottom:12px;">Help Chirpy learn to fly</h2>
-        <p style="margin-bottom:22px;max-width:460px;">The moment from the book, as a game your child can play. Tap to flap, slip between the branches, and see how far Chirpy gets. No sign-in, no adverts &mdash; it just runs in the browser.</p>
-        <a href="game.html" class="btn btn-red"><i data-lucide="play" style="width:16px;height:16px;"></i> Play Chirpy&rsquo;s First Flight</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- NEWSLETTER -->
 <section class="section nl-section">
   <div class="container">
@@ -536,9 +520,21 @@
 </section>
 
 <footer id="footer"></footer>
+<div class="cf-modal" id="gameModal" hidden role="dialog" aria-modal="true" aria-labelledby="gameModalTitle">
+  <div class="cf-modal-inner">
+    <div class="cf-modal-bar">
+      <p class="cf-modal-title" id="gameModalTitle">Chirpy&rsquo;s First Flight</p>
+      <button type="button" class="cf-close" id="gameClose" aria-label="Close the game">&#10005;</button>
+    </div>
+    <div id="gameStage"></div>
+    <p class="cf-modal-foot"><a href="game.html">Open the game on its own page</a></p>
+  </div>
+</div>
+
 <script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
+<script src="js/game.js"></script>
 <script>
 // Scroll reveal
 const observer = new IntersectionObserver(entries => {
@@ -608,6 +604,57 @@ document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
     } finally {
       button.disabled = false;
     }
+  });
+})();
+
+// Game modal — mounts the shared module on first open, then keeps it.
+(function () {
+  var openBtn = document.getElementById('playGame');
+  var modal   = document.getElementById('gameModal');
+  var closeBtn= document.getElementById('gameClose');
+  var stage   = document.getElementById('gameStage');
+  if (!openBtn || !modal || !stage || !window.ChirpyFlight) return;
+
+  var game = null, lastFocus = null;
+
+  function open() {
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('cf-locked');
+    if (!game) {
+      game = ChirpyFlight.create(stage);
+      if (window.lucide) lucide.createIcons();
+    } else {
+      game.reset();
+    }
+    closeBtn.focus();
+  }
+
+  function close() {
+    if (game) game.pause();
+    modal.hidden = true;
+    document.body.classList.remove('cf-locked');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  openBtn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+
+  // Clicking the backdrop closes; clicking the game itself must not.
+  modal.addEventListener('pointerdown', function (e) {
+    if (e.target === modal) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key !== 'Tab') return;
+    // Keep tabbing inside the dialog.
+    var items = modal.querySelectorAll('button, a[href], canvas[tabindex]');
+    if (!items.length) return;
+    var first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
 })();
 </script>
