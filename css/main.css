@@ -255,6 +255,13 @@ footer { background:#1A0F0A; padding:64px var(--sp-md) 32px; }
 }
 
 /* Testimonial cards */
+/* The cards below are laid out by .t-grid. It used to live in index.html's
+   own <style>, so every other page using these cards got them at full
+   container width, one per row. It belongs with the card rules. */
+.t-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+@media(max-width:900px){ .t-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:620px){ .t-grid { grid-template-columns:1fr; } }
+
 .t-card { background:#fff; border-radius:var(--r-md); padding:28px; box-shadow:var(--sh-sm); display:flex; flex-direction:column; }
 .t-quote { font-size:2.8rem; color:var(--sky); opacity:.3; font-family:Georgia,serif; line-height:1; margin-bottom:4px; }
 .t-stars { display:flex; gap:2px; color:var(--yellow); font-size:.9rem; margin-bottom:12px; }
