@@ -13,7 +13,6 @@
     <li><a href="about.html"><i data-lucide="user" style="width:14px;height:14px;"></i> About</a></li>
     <li><a href="book.html"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</a></li>
     <li><a href="chatbot.html"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Chirpy's Classroom</a></li>
-    <li><a href="ebook.html"><i data-lucide="download" style="width:14px;height:14px;"></i> eBook</a></li>
     <li><a href="contact.html"><i data-lucide="mail" style="width:14px;height:14px;"></i> Contact</a></li>
     <li><a href="login.html" class="nav-cta">Sign In / Join Free</a></li>
   </ul>
@@ -27,7 +26,6 @@
 <a href="chatbot.html"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Chirpy's Classroom</a>
 <a href="quiz.html"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> Find Your Starting Point</a>
 <a href="game.html"><i data-lucide="gamepad-2" style="width:14px;height:14px;"></i> Play the Game</a>
-<a href="ebook.html"><i data-lucide="download" style="width:14px;height:14px;"></i> eBook</a>
 <a href="contact.html"><i data-lucide="mail" style="width:14px;height:14px;"></i> Contact</a>
 <a href="login.html" class="mob-cta">Sign In / Join Free</a>`;
 
@@ -57,7 +55,6 @@
         <li><a href="game.html">🎮 Play Chirpy's First Flight</a></li>
         <li><a href="chatbot.html">Try the Chatbot</a></li>
         <li><a href="pricing.html">Pricing &amp; Plans</a></li>
-        <li><a href="ebook.html">📖 Download eBook</a></li>
         <li><a href="login.html">Sign In</a></li>
         <li><a href="login.html">Create Account</a></li>
       </ul>

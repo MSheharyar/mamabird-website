@@ -1,0 +1,2 @@
+# Netlify equivalent of the .htaccess rule (Netlify ignores .htaccess).
+/ebook.html  /book.html  301

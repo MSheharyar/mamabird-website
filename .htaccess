@@ -1,0 +1,3 @@
+# Hostinger/Apache. The eBook page was folded into The Book; keep any
+# existing advert, email or bookmark pointing at it working.
+Redirect 301 /ebook.html /book.html
