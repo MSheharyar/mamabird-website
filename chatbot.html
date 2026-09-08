@@ -178,7 +178,7 @@
       <p style="font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--mid);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">Choose your guide</p>
       <div class="char-cards-v2" id="char-cards">
         <button class="char-card-v2 active-chirpy" id="btn-chirpy" onclick="switchChar('chirpy')" style="border:none;text-align:left;cursor:pointer;">
-          <div class="char-avatar chirpy-av" style="color:var(--sky-dark);"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
+          <div class="char-avatar chirpy-av mascot-badge" style="color:var(--sky-dark);"><img src="assets/chirpy.png" alt="" class="mascot"></div>
           <div>
             <div class="char-name">Chirpy</div>
             <div class="char-role">Playful · Perfect for kids</div>
@@ -186,7 +186,7 @@
           <div style="margin-left:auto;"><i data-lucide="check-circle-2" style="width:18px;height:18px;color:var(--sky-dark);" id="chirpy-check"></i></div>
         </button>
         <button class="char-card-v2" id="btn-mama" onclick="switchChar('mama')" style="border:none;text-align:left;cursor:pointer;">
-          <div class="char-avatar mama-av" style="color:var(--green);"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
+          <div class="char-avatar mama-av mascot-badge" style="color:var(--green);"><img src="assets/mamabird.png" alt="" class="mascot"></div>
           <div>
             <div class="char-name">Mama Bird</div>
             <div class="char-role">Nurturing · For parents & teachers</div>
@@ -331,14 +331,14 @@
     <div class="feature-cards-3">
       <div class="fcard reveal">
         <div class="fcard-head c-sky">
-          <div class="fcard-icon" style="color:#fff;"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
+          <div class="fcard-icon mascot-badge" style="color:#fff;"><img src="assets/chirpy.png" alt="" class="mascot"></div>
           <div><div class="fcard-title">Chirpy — For Kids</div><div class="fcard-sub">Playful AI learning companion</div></div>
         </div>
         <div class="fcard-body"><p>Spelling, rhyming, math, grammar, puzzles — Chirpy turns every lesson into a game. "Tweet tweet! Great try! Now let's spell it together!" No child ever feels wrong.</p></div>
       </div>
       <div class="fcard reveal">
         <div class="fcard-head c-green">
-          <div class="fcard-icon" style="color:#fff;"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
+          <div class="fcard-icon mascot-badge" style="color:#fff;"><img src="assets/mamabird.png" alt="" class="mascot"></div>
           <div><div class="fcard-title">Mama Bird — For Parents</div><div class="fcard-sub">Lesson plans & guidance</div></div>
         </div>
         <div class="fcard-body"><p>Ask Mama Bird anything: "Make a 5-day Grade 1 spelling plan" and get a structured, ready-to-use lesson plan in seconds. Perfect for homeschoolers and classroom teachers.</p></div>
@@ -617,7 +617,7 @@ function switchChar(char) {
     demoCount = 0; demoHistory = [];
     const div = document.createElement('div');
     div.className = 'msg chirpy';
-    div.innerHTML = `<div class="msg-avatar" style="background:var(--green-light);color:var(--green);"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
+    div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--green-light);color:var(--green);"><img src="assets/chirpy.png" alt="" class="mascot"></div>
       <div class="msg-bubble upsell-bubble">
         <strong>🌿 Mama Bird is available with a free account!</strong><br><br>
         Sign up to unlock Mama Bird, lesson plan generation, all 6 subjects, and progress tracking.<br><br>

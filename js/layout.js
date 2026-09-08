@@ -82,45 +82,6 @@
   const footer = document.getElementById('footer');
   if (footer) footer.innerHTML = FOOTER_INNER;
 
-  // Inject floating birds on every page (fixed, low z-index, no interaction)
-  const floatStyle = document.createElement('style');
-  floatStyle.textContent = `
-    .pg-bird { position:fixed; pointer-events:none; z-index:0; user-select:none; opacity:0; transition:opacity 1s; }
-    .pg-bird.loaded { opacity:1; }
-    @keyframes pg-float-a { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-14px) rotate(4deg);} }
-    @keyframes pg-float-b { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-10px) rotate(-5deg);} }
-    @keyframes pg-float-c { 0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-18px) rotate(6deg);} }
-  `;
-  document.head.appendChild(floatStyle);
-
-  // Consistent vector bird (Lucide) — renders identically on every OS, unlike the
-  // 🐦 emoji which each platform draws in its own colour/style.
-  const BIRD_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;display:block;"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg>`;
-
-  const birds = [
-    { top:'14%', left:'2%',  size:'1.5rem', anim:'pg-float-a 4.2s ease-in-out infinite', delay:'0s'   },
-    { top:'28%', right:'2%', size:'1.1rem', anim:'pg-float-b 5.1s ease-in-out infinite', delay:'.8s'  },
-    { top:'62%', left:'1%',  size:'1.3rem', anim:'pg-float-c 6s ease-in-out infinite',   delay:'1.4s' },
-    { top:'75%', right:'2%', size:'1.0rem', anim:'pg-float-a 4.8s ease-in-out infinite', delay:'.4s'  },
-  ];
-  birds.forEach(b => {
-    const el = document.createElement('div');
-    el.className = 'pg-bird';
-    el.innerHTML = BIRD_SVG;
-    el.style.cssText = `
-      font-size:${b.size};
-      color:rgba(204,41,41,.5);
-      top:${b.top || 'auto'};
-      bottom:${b.bottom || 'auto'};
-      left:${b.left || 'auto'};
-      right:${b.right || 'auto'};
-      animation:${b.anim};
-      animation-delay:${b.delay};
-    `;
-    document.body.appendChild(el);
-    setTimeout(() => el.classList.add('loaded'), 300);
-  });
-
   // Swap nav CTA based on auth state — only when a valid, UNEXPIRED JWT is present.
   function mbTokenValid(t) {
     try {
