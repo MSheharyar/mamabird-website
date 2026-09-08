@@ -94,6 +94,23 @@
   font-family:var(--font-display); font-weight:700; font-size:.78rem;
   color:var(--yellow); margin-bottom:20px;
 }
+.game-banner {
+  display:grid; grid-template-columns:240px 1fr; gap:var(--sp-lg); align-items:center;
+  background:linear-gradient(135deg,var(--sky-xlight) 0%,var(--sky-light) 100%);
+  border-radius:var(--r-lg); padding:var(--sp-lg);
+}
+.game-banner-art {
+  position:relative; height:190px; border-radius:var(--r-md);
+  background:linear-gradient(180deg,#6EB4D4 0%,#C4E4F4 100%);
+  display:flex; align-items:center; justify-content:center; overflow:hidden;
+}
+.gb-branch { position:absolute; width:34px; background:var(--brown); border-radius:10px; }
+.gb-branch-a { right:34px; top:-10px;    height:62px; }
+.gb-branch-b { right:34px; bottom:-10px; height:76px; }
+@media(max-width:760px){
+  .game-banner { grid-template-columns:1fr; gap:var(--sp-md); padding:var(--sp-md); text-align:center; }
+  .game-banner p { margin-left:auto; margin-right:auto; }
+}
 .nl-form { display:flex; flex-direction:column; gap:12px; }
 .nl-input {
   padding:15px 20px; border-radius:var(--r-full);
@@ -471,6 +488,25 @@
     </div>
     <div style="text-align:center;margin-top:36px;">
       <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" target="_blank" rel="noopener" class="btn btn-outline"><i data-lucide="star" style="width:16px;height:16px;"></i> Read reader reviews on Amazon</a>
+    </div>
+  </div>
+</section>
+
+<!-- GAME BANNER -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="game-banner">
+      <div class="game-banner-art" aria-hidden="true">
+        <img src="assets/chirpy.png" alt="" class="mascot float" style="width:96px;">
+        <span class="gb-branch gb-branch-a"></span>
+        <span class="gb-branch gb-branch-b"></span>
+      </div>
+      <div>
+        <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="gamepad-2" style="width:14px;height:14px;"></i> Free Game</span>
+        <h2 style="margin-bottom:12px;">Help Chirpy learn to fly</h2>
+        <p style="margin-bottom:22px;max-width:460px;">The moment from the book, as a game your child can play. Tap to flap, slip between the branches, and see how far Chirpy gets. No sign-in, no adverts &mdash; it just runs in the browser.</p>
+        <a href="game.html" class="btn btn-red"><i data-lucide="play" style="width:16px;height:16px;"></i> Play Chirpy&rsquo;s First Flight</a>
+      </div>
     </div>
   </div>
 </section>

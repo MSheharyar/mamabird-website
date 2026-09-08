@@ -53,6 +53,7 @@
     <div class="footer-col">
       <h4>Chirpy's Classroom</h4>
       <ul class="footer-links">
+        <li><a href="game.html">🎮 Play Chirpy's First Flight</a></li>
         <li><a href="chatbot.html">Try the Chatbot</a></li>
         <li><a href="pricing.html">Pricing &amp; Plans</a></li>
         <li><a href="ebook.html">📖 Download eBook</a></li>
