@@ -10,10 +10,8 @@
   const NAV_INNER = `<div class="nav-inner">
   <a href="index.html" class="nav-logo"><div class="nav-logo-icon" style="background:var(--red);box-shadow:0 2px 8px rgba(204,41,41,0.4);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>Three Baby Birdies</a>
   <ul class="nav-links">
-    <li><a href="index.html"><i data-lucide="home" style="width:14px;height:14px;"></i> Home</a></li>
     <li><a href="about.html"><i data-lucide="user" style="width:14px;height:14px;"></i> About</a></li>
     <li><a href="book.html"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</a></li>
-    <li><a href="blog.html"><i data-lucide="newspaper" style="width:14px;height:14px;"></i> Blog</a></li>
     <li><a href="chatbot.html"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Chirpy's Classroom</a></li>
     <li><a href="ebook.html"><i data-lucide="download" style="width:14px;height:14px;"></i> eBook</a></li>
     <li><a href="contact.html"><i data-lucide="mail" style="width:14px;height:14px;"></i> Contact</a></li>
@@ -27,6 +25,7 @@
 <a href="book.html"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</a>
 <a href="blog.html"><i data-lucide="newspaper" style="width:14px;height:14px;"></i> Blog</a>
 <a href="chatbot.html"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Chirpy's Classroom</a>
+<a href="game.html"><i data-lucide="gamepad-2" style="width:14px;height:14px;"></i> Play the Game</a>
 <a href="ebook.html"><i data-lucide="download" style="width:14px;height:14px;"></i> eBook</a>
 <a href="contact.html"><i data-lucide="mail" style="width:14px;height:14px;"></i> Contact</a>
 <a href="login.html" class="mob-cta">Sign In / Join Free</a>`;

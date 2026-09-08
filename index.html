@@ -94,6 +94,69 @@
   font-family:var(--font-display); font-weight:700; font-size:.78rem;
   color:var(--yellow); margin-bottom:20px;
 }
+/* ---- Objection block ---- */
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:900px; margin:0 auto; }
+.compare-card { border-radius:var(--r-lg); padding:30px 28px; }
+.compare-card h3 { font-size:1.05rem; margin-bottom:4px; }
+.compare-kicker {
+  font-family:var(--font-display); font-weight:700; font-size:.68rem;
+  letter-spacing:.12em; text-transform:uppercase; margin-bottom:14px;
+}
+.cc-before { background:#FBF0EE; border:1.5px solid #EBD4CF; }
+.cc-before .compare-kicker { color:#B4675A; }
+.cc-after  { background:var(--green-light); border:1.5px solid #BBD9B6; }
+.cc-after .compare-kicker { color:var(--green); }
+.compare-list { list-style:none; display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+.compare-list li { display:flex; gap:10px; align-items:flex-start; font-size:.92rem; line-height:1.55; color:var(--mid); }
+.compare-list i { flex-shrink:0; margin-top:3px; }
+
+/* ---- Session preview ---- */
+.session-wrap { max-width:620px; margin:0 auto; }
+.session-window {
+  background:#fff; border-radius:var(--r-lg); box-shadow:var(--sh-md);
+  overflow:hidden; border:1px solid var(--cream-dark);
+}
+.session-bar {
+  display:flex; align-items:center; gap:10px; padding:12px 18px;
+  background:var(--sky-xlight); border-bottom:1px solid var(--cream-dark);
+}
+.session-bar .mascot-badge { width:30px; height:30px; }
+.session-who { font-family:var(--font-display); font-weight:700; font-size:.88rem; color:var(--dark); }
+.session-sub { font-size:.7rem; color:var(--green); font-weight:600; }
+.session-body { padding:22px 18px; display:flex; flex-direction:column; gap:14px; }
+.sm { display:flex; gap:10px; align-items:flex-end; max-width:86%; }
+.sm-kid { align-self:flex-end; flex-direction:row-reverse; }
+.sm .mascot-badge { width:28px; height:28px; }
+.sm-kid-av {
+  width:28px; height:28px; border-radius:50%; background:var(--yellow-light);
+  display:flex; align-items:center; justify-content:center; font-size:.8rem; flex-shrink:0;
+}
+.sm-bubble { padding:11px 15px; border-radius:var(--r-md); font-size:.92rem; line-height:1.55; }
+.sm-bot { background:var(--sky-xlight); color:var(--dark); border-bottom-left-radius:5px; }
+.sm-kid .sm-bubble { background:var(--red); color:#fff; border-bottom-right-radius:5px; }
+.session-note {
+  text-align:center; font-size:.75rem; color:var(--light-text);
+  padding:0 18px 18px;
+}
+
+/* ---- Sticky CTA (small screens only) ---- */
+.sticky-cta { display:none; }
+@media(max-width:760px){
+  .compare-grid { grid-template-columns:1fr; }
+  .sticky-cta {
+    display:flex; position:fixed; left:0; right:0; bottom:0; z-index:900;
+    align-items:center; gap:12px; padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(253,248,240,.97); border-top:1px solid var(--cream-dark);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    box-shadow:0 -4px 18px rgba(44,24,16,.10);
+  }
+  .sticky-cta .mascot { width:34px; flex-shrink:0; }
+  .sticky-cta-text { flex:1; min-width:0; }
+  .sticky-cta-text b { display:block; font-family:var(--font-display); font-size:.82rem; color:var(--dark); }
+  .sticky-cta-text span { font-size:.68rem; color:var(--light-text); }
+  .sticky-cta .btn { padding:10px 18px; font-size:.85rem; }
+  body { padding-bottom:74px; }
+}
 .hero-play { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:18px 0 4px; }
 .play-link {
   display:inline-flex; align-items:center; gap:9px; padding:0; border:none; background:none;
@@ -396,6 +459,95 @@
   </div>
 </section>
 
+<!-- OBJECTION / COMPARISON -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label" style="background:var(--green-light);color:var(--green);"><i data-lucide="shield-check" style="width:13px;height:13px;"></i> The real question</span>
+      <h2>You didn&rsquo;t want another screen.<br>You wanted them learning.</h2>
+      <p style="max-width:540px;margin:12px auto 0;">Fair. Most things aimed at small children are built to hold their attention, not to teach them anything. Here is the difference, plainly.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card cc-before">
+        <div class="compare-kicker">Passive screen time</div>
+        <h3>The app decides</h3>
+        <ul class="compare-list">
+          <li><i data-lucide="x" style="width:16px;height:16px;color:#B4675A;"></i><span>Something else always starts playing.</span></li>
+          <li><i data-lucide="x" style="width:16px;height:16px;color:#B4675A;"></i><span>Your child watches rather than answers.</span></li>
+          <li><i data-lucide="x" style="width:16px;height:16px;color:#B4675A;"></i><span>You find out what they saw afterwards, if at all.</span></li>
+          <li><i data-lucide="x" style="width:16px;height:16px;color:#B4675A;"></i><span>Adverts are how it pays for itself.</span></li>
+        </ul>
+      </div>
+
+      <div class="compare-card cc-after">
+        <div class="compare-kicker">Chirpy&rsquo;s Classroom</div>
+        <h3>Your child decides</h3>
+        <ul class="compare-list">
+          <li><i data-lucide="check" style="width:16px;height:16px;color:var(--green);"></i><span>Nothing happens until your child asks a question.</span></li>
+          <li><i data-lucide="check" style="width:16px;height:16px;color:var(--green);"></i><span>Answers are written for the age you set &mdash; 2 to 8.</span></li>
+          <li><i data-lucide="check" style="width:16px;height:16px;color:var(--green);"></i><span>Every session is saved for you to read later.</span></li>
+          <li><i data-lucide="check" style="width:16px;height:16px;color:var(--green);"></i><span>No feed, no adverts, and leaving needs your PIN.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:26px;font-size:.85rem;color:var(--light-text);">
+      How we handle children&rsquo;s data is set out in our <a href="coppa.html" style="color:var(--sky-dark);text-decoration:underline;">COPPA notice</a>.
+    </p>
+  </div>
+</section>
+
+<!-- WHAT A SESSION LOOKS LIKE -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label"><i data-lucide="message-circle" style="width:13px;height:13px;"></i> What a session looks like</span>
+      <h2>See it before you sign up</h2>
+      <p style="max-width:520px;margin:12px auto 0;">Chirpy never just gives the answer. It gets your child to the next letter themselves.</p>
+    </div>
+
+    <div class="session-wrap">
+      <div class="session-window">
+        <div class="session-bar">
+          <span class="mascot-badge"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></span>
+          <div>
+            <div class="session-who">Chirpy</div>
+            <div class="session-sub">&#9679; Spelling &middot; age 5</div>
+          </div>
+        </div>
+        <div class="session-body">
+          <div class="sm">
+            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot"></span>
+            <div class="sm-bubble sm-bot">Tweet tweet! Which word shall we try?</div>
+          </div>
+          <div class="sm sm-kid">
+            <span class="sm-kid-av">&#128118;</span>
+            <div class="sm-bubble">how do you spell elephant</div>
+          </div>
+          <div class="sm">
+            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot"></span>
+            <div class="sm-bubble sm-bot">Ooh, a big one! Let&rsquo;s do it together. It starts <strong>E &mdash; L &mdash; E</strong>&hellip; what sound comes next?</div>
+          </div>
+          <div class="sm sm-kid">
+            <span class="sm-kid-av">&#128118;</span>
+            <div class="sm-bubble">f</div>
+          </div>
+          <div class="sm">
+            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot"></span>
+            <div class="sm-bubble sm-bot">Your ears are exactly right &mdash; it <em>does</em> say f! This word is sneaky though: it uses <strong>p</strong> and <strong>h</strong> together to make that sound. E-L-E-<strong>P-H</strong>&hellip; you&rsquo;re nearly there!</div>
+          </div>
+        </div>
+        <p class="session-note">An example of the kind of exchange Chirpy has. Your child&rsquo;s own sessions are saved to your dashboard.</p>
+      </div>
+
+      <div style="text-align:center;margin-top:28px;">
+        <a href="chatbot.html" class="btn btn-red"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i> Try it with your own question</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- eBOOK PROMO SECTION -->
 <section class="section" style="background:#fff;">
   <div class="container">
@@ -541,6 +693,15 @@
 </section>
 
 <footer id="footer"></footer>
+<div class="sticky-cta">
+  <img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot">
+  <div class="sticky-cta-text">
+    <b>Chirpy&rsquo;s Classroom</b>
+    <span>Free for 3 months &middot; no card needed</span>
+  </div>
+  <a href="chatbot.html" class="btn btn-red">Try free</a>
+</div>
+
 <div class="cf-modal" id="gameModal" hidden role="dialog" aria-modal="true" aria-labelledby="gameModalTitle">
   <div class="cf-modal-inner">
     <div class="cf-modal-bar">
