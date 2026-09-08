@@ -25,6 +25,7 @@
 <a href="book.html"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</a>
 <a href="blog.html"><i data-lucide="newspaper" style="width:14px;height:14px;"></i> Blog</a>
 <a href="chatbot.html"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Chirpy's Classroom</a>
+<a href="quiz.html"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> Find Your Starting Point</a>
 <a href="game.html"><i data-lucide="gamepad-2" style="width:14px;height:14px;"></i> Play the Game</a>
 <a href="ebook.html"><i data-lucide="download" style="width:14px;height:14px;"></i> eBook</a>
 <a href="contact.html"><i data-lucide="mail" style="width:14px;height:14px;"></i> Contact</a>
@@ -52,6 +53,7 @@
     <div class="footer-col">
       <h4>Chirpy's Classroom</h4>
       <ul class="footer-links">
+        <li><a href="quiz.html">Find your starting point</a></li>
         <li><a href="game.html">🎮 Play Chirpy's First Flight</a></li>
         <li><a href="chatbot.html">Try the Chatbot</a></li>
         <li><a href="pricing.html">Pricing &amp; Plans</a></li>

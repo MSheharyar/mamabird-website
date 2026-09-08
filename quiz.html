@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Find your child's starting point — Three Baby Birdies</title>
+<meta name="description" content="Four questions, about a minute. Chirpy works out where your child should start and which subject to open first.">
+<link rel="stylesheet" href="css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body { background:var(--cream); }
+.quiz-page { min-height:100vh; padding:calc(var(--nav-h) + 40px) var(--sp-md) 60px; }
+.quiz-shell { max-width:600px; margin:0 auto; }
+
+/* progress */
+.q-progress { display:flex; gap:6px; justify-content:center; margin-bottom:34px; }
+.q-pip { height:5px; width:44px; border-radius:var(--r-full); background:var(--cream-dark); transition:background .3s; }
+.q-pip.done { background:var(--sky); }
+.q-pip.now  { background:var(--red); }
+
+/* host */
+.q-host { display:flex; flex-direction:column; align-items:center; margin-bottom:22px; }
+.q-host-card {
+  display:inline-flex; align-items:center; gap:11px;
+  background:#fff; border-radius:var(--r-full); padding:8px 20px 8px 8px; box-shadow:var(--sh-sm);
+}
+.q-host-card .mascot-badge { width:42px; height:42px; }
+.q-host-name { font-family:var(--font-display); font-weight:700; font-size:.92rem; color:var(--dark); }
+.q-host-role { font-size:.7rem; color:var(--light-text); }
+
+.q-bubble {
+  position:relative; background:#fff; border-radius:var(--r-md);
+  padding:14px 20px; margin-top:14px; box-shadow:var(--sh-sm);
+  font-family:var(--font-display); font-weight:600; font-size:.95rem; color:var(--mid);
+  min-height:24px; max-width:100%;
+}
+.q-bubble::before {
+  content:''; position:absolute; top:-7px; left:50%; transform:translateX(-50%) rotate(45deg);
+  width:14px; height:14px; background:#fff;
+}
+.q-caret { display:inline-block; width:2px; height:1em; background:var(--sky); vertical-align:-2px; animation:q-blink 1s steps(2) infinite; }
+@keyframes q-blink { 0%,50%{opacity:1;} 51%,100%{opacity:0;} }
+
+/* question */
+.q-title { text-align:center; margin-bottom:26px; }
+.q-title h1 { font-size:clamp(1.5rem,3.6vw,2.05rem); }
+.q-title p  { font-size:.9rem; margin-top:8px; }
+
+.q-options { display:flex; flex-direction:column; gap:12px; }
+.q-opt {
+  display:flex; align-items:center; gap:14px; width:100%; text-align:left;
+  background:#fff; border:2px solid var(--cream-dark); border-radius:var(--r-lg);
+  padding:16px 20px; font-family:var(--font-body); font-size:1rem; color:var(--dark);
+  transition:border-color .16s, box-shadow .16s, transform .16s;
+}
+.q-opt:hover { border-color:var(--sky); transform:translateY(-1px); box-shadow:var(--sh-sm); }
+.q-opt:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
+.q-opt[aria-pressed="true"] { border-color:var(--red); background:#FFF7F6; }
+.q-opt-emoji { font-size:1.3rem; width:28px; text-align:center; flex-shrink:0; }
+.q-opt-label { flex:1; font-family:var(--font-display); font-weight:700; font-size:.98rem; }
+.q-opt-note  { display:block; font-family:var(--font-body); font-weight:400; font-size:.78rem; color:var(--light-text); margin-top:2px; }
+.q-radio {
+  width:22px; height:22px; border-radius:50%; border:2px solid var(--cream-dark);
+  flex-shrink:0; position:relative; transition:border-color .16s;
+}
+.q-opt[aria-pressed="true"] .q-radio { border-color:var(--red); }
+.q-opt[aria-pressed="true"] .q-radio::after {
+  content:''; position:absolute; inset:4px; border-radius:50%; background:var(--red);
+}
+
+.q-actions { display:flex; gap:12px; align-items:center; margin-top:26px; }
+.q-back {
+  background:none; border:none; color:var(--light-text);
+  font-family:var(--font-display); font-weight:700; font-size:.88rem; padding:8px 4px;
+}
+.q-back:hover { color:var(--dark); }
+.q-back:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; border-radius:var(--r-sm); }
+.q-back[hidden] { display:none; }
+.q-next { margin-left:auto; }
+.q-next[disabled] { opacity:.45; cursor:not-allowed; }
+
+/* email step + result */
+.q-field { display:flex; flex-direction:column; gap:8px; margin-bottom:6px; }
+.q-label { font-family:var(--font-display); font-weight:700; font-size:.82rem; color:var(--mid); }
+.q-input {
+  padding:15px 18px; border-radius:var(--r-md); border:2px solid var(--cream-dark);
+  background:#fff; font-family:var(--font-body); font-size:1rem; color:var(--dark); outline:none;
+}
+.q-input:focus { border-color:var(--sky); }
+.q-input[aria-invalid="true"] { border-color:var(--red); }
+.q-fine { font-size:.74rem; color:var(--light-text); line-height:1.5; margin-top:10px; }
+.q-status { font-family:var(--font-display); font-weight:700; font-size:.85rem; margin-top:10px; }
+.q-status.err { color:var(--red); }
+.q-status.ok  { color:var(--green); }
+
+.q-result-card {
+  background:#fff; border-radius:var(--r-lg); box-shadow:var(--sh-md);
+  padding:30px 26px; text-align:center;
+}
+.q-result-sub { font-size:.9rem; margin-bottom:20px; }
+.q-chips { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:22px; }
+.q-chip {
+  background:var(--sky-xlight); color:var(--sky-dark); border-radius:var(--r-full);
+  padding:7px 15px; font-family:var(--font-display); font-weight:700; font-size:.8rem;
+}
+.q-plan {
+  background:var(--green-light); border-radius:var(--r-md); padding:16px 18px;
+  font-size:.88rem; color:var(--mid); margin-bottom:22px; text-align:left;
+}
+.q-plan strong { font-family:var(--font-display); color:var(--dark); }
+
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .q-opt:hover { transform:none; }
+  .q-caret { animation:none; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav"></nav>
+<div id="mob-menu"></div>
+
+<main class="quiz-page">
+  <div class="quiz-shell">
+
+    <div class="q-progress" id="pips" aria-hidden="true"></div>
+
+    <div class="q-host">
+      <div class="q-host-card">
+        <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot"></span>
+        <div>
+          <div class="q-host-name">Chirpy</div>
+          <div class="q-host-role">Your child&rsquo;s learning companion</div>
+        </div>
+      </div>
+      <p class="q-bubble" id="bubble"></p>
+    </div>
+
+    <div id="step"></div>
+    <p class="sr-only" role="status" aria-live="polite" id="live"></p>
+
+  </div>
+</main>
+
+<footer id="footer"></footer>
+<script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/main.js"></script>
+<script>
+/* ============================================================
+   Starting-point quiz.
+
+   Four questions then an email step. The answers are not a
+   personality test — each one maps onto something the product
+   genuinely uses: the age sets Chirpy's reading level, the subject
+   decides which tile opens first, and the reading stage picks the
+   starting difficulty. Nothing here promises a feature that does
+   not exist.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  var API = 'https://api.threebabybirdies.com';
+
+  var STEPS = [
+    {
+      key: 'age',
+      says: 'Hello! Let me find the right place to start.',
+      title: 'How old is your little one?',
+      note: 'This sets how Chirpy talks and how hard the questions are.',
+      options: [
+        { v: '2-3', e: '🌱', label: '2 to 3 years old', note: 'Sounds, colours and first words' },
+        { v: '4-5', e: '⭐', label: '4 to 5 years old', note: 'Letters, rhymes and counting' },
+        { v: '6-7', e: '⚡', label: '6 to 7 years old', note: 'Sounding out and simple sums' },
+        { v: '8',   e: '🚀', label: '8 years old', note: 'Reading alone and longer puzzles' }
+      ]
+    },
+    {
+      key: 'subject',
+      says: 'Good. What shall we open first?',
+      title: 'What would you like them to work on?',
+      note: 'You can switch any time — all six are always there.',
+      options: [
+        { v: 'spelling', e: '✏️', label: 'Spelling' },
+        { v: 'rhyming',  e: '🎵', label: 'Rhyming' },
+        { v: 'math',     e: '🔢', label: 'Numbers' },
+        { v: 'grammar',  e: '📝', label: 'Grammar' },
+        { v: 'puzzles',  e: '🧩', label: 'Puzzles' },
+        { v: 'stories',  e: '📖', label: 'Stories' }
+      ]
+    },
+    {
+      key: 'reading',
+      says: 'Nearly there.',
+      title: 'How is reading going right now?',
+      note: 'Be honest — it only changes where Chirpy begins.',
+      options: [
+        { v: 'not-yet',  e: '🌿', label: 'Not reading yet', note: 'Listens to stories, knows some letters' },
+        { v: 'sounding', e: '🔤', label: 'Sounding words out', note: 'Getting there, needs a hand' },
+        { v: 'simple',   e: '📚', label: 'Reads simple books', note: 'Confident with short words' },
+        { v: 'fluent',   e: '🌟', label: 'Reads well alone', note: 'Ready for a challenge' }
+      ]
+    },
+    {
+      key: 'when',
+      says: 'Last one, easy one.',
+      title: 'When would you use it?',
+      note: 'Just so we suggest a sensible session length.',
+      options: [
+        { v: 'bedtime',   e: '🌙', label: 'Wind-down before bed' },
+        { v: 'afternoon', e: '☀️', label: 'After nursery or school' },
+        { v: 'weekend',   e: '🎨', label: 'Weekends, longer stretches' },
+        { v: 'class',     e: '🏫', label: 'In a classroom' }
+      ]
+    }
+  ];
+
+  var SUBJECT_LABEL = {
+    spelling: 'Spelling', rhyming: 'Rhyming', math: 'Numbers',
+    grammar: 'Grammar', puzzles: 'Puzzles', stories: 'Stories'
+  };
+  var AGE_LABEL = { '2-3': 'age 2–3', '4-5': 'age 4–5', '6-7': 'age 6–7', '8': 'age 8' };
+  var READING_LABEL = {
+    'not-yet': 'listening, not reading yet', 'sounding': 'sounding words out',
+    'simple': 'reading simple books', 'fluent': 'reading well alone'
+  };
+
+  var answers = {};
+  var i = 0;                       // 0..STEPS.length-1, then email, then result
+  var EMAIL_STEP = STEPS.length;
+  var RESULT_STEP = STEPS.length + 1;
+
+  var elStep   = document.getElementById('step');
+  var elBubble = document.getElementById('bubble');
+  var elPips   = document.getElementById('pips');
+  var elLive   = document.getElementById('live');
+
+  var reduceMotion = window.matchMedia &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- Chirpy "speaking" ----
+  var typeTimer = null;
+  function say(text) {
+    clearInterval(typeTimer);
+    if (reduceMotion) { elBubble.textContent = text; return; }
+    elBubble.textContent = '';
+    var caret = document.createElement('span');
+    caret.className = 'q-caret';
+    elBubble.appendChild(caret);
+    var n = 0;
+    typeTimer = setInterval(function () {
+      n++;
+      elBubble.textContent = text.slice(0, n);
+      elBubble.appendChild(caret);
+      if (n >= text.length) { clearInterval(typeTimer); caret.remove(); }
+    }, 26);
+  }
+
+  function pips() {
+    var total = STEPS.length + 1;
+    var html = '';
+    for (var k = 0; k < total; k++) {
+      var cls = k < i ? 'done' : (k === i ? 'now' : '');
+      html += '<span class="q-pip ' + cls + '"></span>';
+    }
+    elPips.innerHTML = html;
+  }
+
+  function esc(t) {
+    return String(t).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // ---- rendering ----
+  function renderQuestion() {
+    var s = STEPS[i];
+    say(s.says);
+    var html = '<div class="q-title"><h1>' + esc(s.title) + '</h1><p>' + esc(s.note) + '</p></div>';
+    html += '<div class="q-options" role="group" aria-label="' + esc(s.title) + '">';
+    s.options.forEach(function (o) {
+      var on = answers[s.key] === o.v;
+      html += '<button type="button" class="q-opt" data-v="' + esc(o.v) + '" aria-pressed="' + on + '">' +
+              '<span class="q-opt-emoji" aria-hidden="true">' + o.e + '</span>' +
+              '<span class="q-opt-label">' + esc(o.label) +
+              (o.note ? '<span class="q-opt-note">' + esc(o.note) + '</span>' : '') +
+              '</span><span class="q-radio" aria-hidden="true"></span></button>';
+    });
+    html += '</div><div class="q-actions">' +
+            '<button type="button" class="q-back"' + (i === 0 ? ' hidden' : '') + '>&larr; Back</button>' +
+            '<button type="button" class="btn btn-red q-next"' +
+            (answers[s.key] ? '' : ' disabled') + '>Next</button></div>';
+    elStep.innerHTML = html;
+
+    elStep.querySelectorAll('.q-opt').forEach(function (b) {
+      b.addEventListener('click', function () {
+        answers[s.key] = b.getAttribute('data-v');
+        elStep.querySelectorAll('.q-opt').forEach(function (o) {
+          o.setAttribute('aria-pressed', String(o === b));
+        });
+        elStep.querySelector('.q-next').disabled = false;
+        // Picking an answer moves on; a Next button is still there for
+        // anyone who wants to change their mind first.
+        setTimeout(next, 260);
+      });
+    });
+    elStep.querySelector('.q-next').addEventListener('click', next);
+    var back = elStep.querySelector('.q-back');
+    if (back) back.addEventListener('click', prev);
+
+    elLive.textContent = 'Question ' + (i + 1) + ' of ' + (STEPS.length + 1) + '. ' + s.title;
+    var first = elStep.querySelector('.q-opt');
+    if (first) first.focus();
+  }
+
+  function renderEmail() {
+    say('Done! Where shall I send it?');
+    elStep.innerHTML =
+      '<div class="q-title"><h1>Where shall we send the plan?</h1>' +
+      '<p>We will email your starting point so you have it to hand.</p></div>' +
+      '<form id="qform" novalidate>' +
+        '<div class="q-field"><label class="q-label" for="qname">First name <span style="font-weight:400;color:var(--light-text);">(optional)</span></label>' +
+        '<input class="q-input" id="qname" type="text" autocomplete="given-name" maxlength="50" placeholder="Your first name"></div>' +
+        '<div class="q-field"><label class="q-label" for="qmail">Email address</label>' +
+        '<input class="q-input" id="qmail" type="email" autocomplete="email" required placeholder="you@example.com"></div>' +
+        '<p class="q-status" id="qstatus" role="status" aria-live="polite" hidden></p>' +
+        '<div class="q-actions"><button type="button" class="q-back">&larr; Back</button>' +
+        '<button type="submit" class="btn btn-red q-next">See the plan</button></div>' +
+        '<p class="q-fine">We email rarely, never share your address, and you can unsubscribe at any time. ' +
+        'No card is needed to start.</p>' +
+      '</form>';
+
+    elStep.querySelector('.q-back').addEventListener('click', prev);
+    elStep.querySelector('#qform').addEventListener('submit', submit);
+    elLive.textContent = 'Last step. Your email address.';
+    elStep.querySelector('#qmail').focus();
+  }
+
+  function submit(e) {
+    e.preventDefault();
+    var mail = elStep.querySelector('#qmail');
+    var name = elStep.querySelector('#qname');
+    var status = elStep.querySelector('#qstatus');
+    var btn = elStep.querySelector('.q-next');
+
+    function tell(msg, kind) {
+      status.textContent = msg; status.className = 'q-status ' + kind; status.hidden = false;
+    }
+
+    if (!mail.value.trim() || !mail.checkValidity()) {
+      mail.setAttribute('aria-invalid', 'true'); mail.focus();
+      tell('Please enter an email address we can reach you at.', 'err');
+      return;
+    }
+    mail.removeAttribute('aria-invalid');
+    btn.disabled = true;
+    tell('One moment…', 'ok');
+
+    fetch(API + '/leads/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: mail.value.trim(),
+        first_name: name.value.trim() || null,
+        source: 'quiz'
+      })
+    }).catch(function () { /* shown below */ })
+      .then(function (res) {
+        // The plan is worked out here, not on the server, so a failed
+        // signup must not cost someone the answer they just earned.
+        if (!res || !res.ok) {
+          try { sessionStorage.setItem('tbb_quiz_pending', mail.value.trim()); } catch (err) {}
+        }
+        i = RESULT_STEP;
+        render();
+      });
+  }
+
+  function renderResult() {
+    say('Here is where I would start.');
+    var subj = answers.subject || 'spelling';
+    var age = answers.age || '4-5';
+    var classroom = answers.when === 'class';
+
+    var plan = classroom
+      ? '<strong>Classroom</strong> &mdash; you mentioned a class, and that plan covers a whole group with one login rather than one child.'
+      : '<strong>Free for 3 months</strong> &mdash; every subject, no card needed. Most families never need more than the Individual plan after that.';
+
+    var length = answers.when === 'bedtime'
+      ? 'Short sessions, ten minutes or so, work best before bed.'
+      : (answers.when === 'weekend'
+          ? 'Longer weekend sessions are fine &mdash; Chirpy keeps going as long as your child does.'
+          : 'Fifteen minutes after school is plenty to start.');
+
+    elStep.innerHTML =
+      '<div class="q-result-card">' +
+        '<img src="assets/chirpy.png" alt="" class="mascot" style="width:76px;margin:0 auto 14px;">' +
+        '<h1 style="font-size:1.45rem;margin-bottom:8px;">Start with ' + esc(SUBJECT_LABEL[subj]) + '</h1>' +
+        '<p class="q-result-sub">Set up for ' + esc(AGE_LABEL[age]) + ', ' + esc(READING_LABEL[answers.reading] || 'just starting out') + '. ' + length + '</p>' +
+        '<div class="q-chips">' +
+          '<span class="q-chip">' + esc(AGE_LABEL[age]) + '</span>' +
+          '<span class="q-chip">' + esc(SUBJECT_LABEL[subj]) + ' first</span>' +
+          '<span class="q-chip">All 6 subjects included</span>' +
+        '</div>' +
+        '<div class="q-plan">' + plan + '</div>' +
+        '<a href="chatbot.html?subject=' + encodeURIComponent(subj) + '" class="btn btn-red" style="width:100%;justify-content:center;">Start with ' + esc(SUBJECT_LABEL[subj]) + '</a>' +
+        '<p style="margin-top:14px;font-size:.8rem;"><a href="pricing.html" style="color:var(--sky-dark);text-decoration:underline;">See what the plans include</a></p>' +
+      '</div>';
+
+    // Carry the choice into the classroom the same way the subject tiles do.
+    try { sessionStorage.setItem('chatbot_subject', subj); } catch (e) {}
+
+    elLive.textContent = 'Your plan: start with ' + SUBJECT_LABEL[subj] + '.';
+    if (window.lucide) lucide.createIcons();
+  }
+
+  function render() {
+    pips();
+    if (i < STEPS.length) renderQuestion();
+    else if (i === EMAIL_STEP) renderEmail();
+    else renderResult();
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
+  function next() {
+    if (i < STEPS.length && !answers[STEPS[i].key]) return;
+    if (i >= RESULT_STEP) return;
+    i++; render();
+  }
+  function prev() { if (i > 0) { i--; render(); } }
+
+  render();
+})();
+</script>
+</body></html>
