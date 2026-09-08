@@ -395,10 +395,10 @@ svg.lucide {
 .fcard:hover { transform:translateY(-5px); box-shadow:var(--sh-md); }
 .fcard-head { padding:28px 24px; display:flex; align-items:center; gap:14px; }
 .fcard-icon { width:52px; height:52px; border-radius:14px; background:rgba(255,255,255,.2); display:flex; align-items:center; justify-content:center; font-size:1.7rem; flex-shrink:0; }
-/* Vector bird, sized to the surrounding font-size. Used wherever a bird icon is
-   needed: the 🪺 nest emoji (Emoji 14) has no glyph on older Windows/Android and
-   renders as an empty box, so Mama Bird is drawn rather than typed. Chirpy uses
-   the same mark — the two are told apart by their container colour, as elsewhere. */
+/* Vector bird, sized to the surrounding font-size. Now only the logo mark in
+   js/layout.js (nav and footer heading) -- everywhere the page shows a
+   character it uses the real art cut from the book cover instead. The mark
+   stays for the logo because a photo-style bust does not read at 20px. */
 .vbird { width:1em; height:1em; display:block; flex-shrink:0; }
 .fcard-title { font-family:var(--font-display); font-weight:700; font-size:1.05rem; color:#fff; }
 .fcard-sub   { font-size:.75rem; color:rgba(255,255,255,.72); margin-top:2px; }
