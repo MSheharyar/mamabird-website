@@ -28,7 +28,13 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
 .auth-benefit { display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.12); border-radius:var(--r-sm); padding:12px 16px; text-align:left; }
 .auth-benefit-icon { font-size:1.2rem; flex-shrink:0; }
 .auth-benefit-text { font-family:var(--font-display); font-size:.83rem; font-weight:600; color:#fff; }
-.auth-panel-right { background:#fff; padding:48px 40px; }
+.auth-panel-right {
+  background:#fff; padding:48px 40px;
+  display:flex; flex-direction:column; justify-content:center;
+}
+/* Sign In is much shorter than Create Account. Reserving a little height
+   stops the card resizing as you flip between the two tabs. */
+.auth-forms { min-height:330px; }
 .auth-tabs { display:flex; gap:0; margin-bottom:32px; border-bottom:2px solid var(--cream-dark); }
 .auth-tab {
   flex:1; padding:12px; text-align:center; cursor:pointer;
@@ -67,6 +73,7 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
 }
 @media(max-width:700px){ .auth-wrap{grid-template-columns:1fr;} .auth-panel-left{display:none;} .form-row{grid-template-columns:1fr;} }
 @media(max-width:560px){ .auth-page{padding-left:16px;padding-right:16px;} .auth-panel-right{padding:32px 22px;} .auth-tabs{gap:0;} }
+.hp-field { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 </style>
 <!-- SEO / social / icons -->
 <meta name="description" content="Sign in to Chirpy's Classroom, or create a free account.">
@@ -115,6 +122,7 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
         <div class="auth-tab active" onclick="switchTab('login')">Sign In</div>
         <div class="auth-tab" onclick="switchTab('register')">Create Account</div>
       </div>
+      <div class="auth-forms">
       <form class="auth-form active" id="form-login" onsubmit="return false;">
         <div class="form-group">
           <label class="form-label">Email address</label>
@@ -125,11 +133,25 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
           <input class="form-input" type="password" placeholder="Your password" autocomplete="current-password" aria-label="Password">
         </div>
         <div style="text-align:right;margin-top:-8px;">
-          <a href="#" style="font-size:.8rem;color:var(--red);font-family:var(--font-display);font-weight:700;">Forgot password?</a>
+          <a href="#" onclick="switchTab('forgot');return false;" style="font-size:.8rem;color:var(--red);font-family:var(--font-display);font-weight:700;">Forgot password?</a>
         </div>
         <button type="submit" class="btn btn-red form-submit btn-lg">Sign In to Chirpy's Classroom</button>
         <div class="form-footer">Don't have an account? <a href="#" onclick="switchTab('register');return false;">Create one free →</a></div>
       </form>
+      <form class="auth-form" id="form-forgot" onsubmit="return false;">
+        <p style="font-size:.9rem;color:var(--mid);margin:0 0 4px;">
+          Enter the email address on your account and we&rsquo;ll send a link to choose a new password.
+          The link works once and lasts an hour.
+        </p>
+        <div class="form-group">
+          <label class="form-label" for="fp-email">Email address</label>
+          <input class="form-input" id="fp-email" type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address">
+        </div>
+        <div class="hp-field" aria-hidden="true"><label>Leave blank<input type="text" id="fp-site" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn-red" type="button" id="fp-send" style="width:100%;justify-content:center;">Send the reset link</button>
+        <div class="form-footer">Remembered it? <a href="#" onclick="switchTab('login');return false;">Sign in &rarr;</a></div>
+      </form>
+
       <form class="auth-form" id="form-register" onsubmit="return false;">
         <div class="coppa-notice">
           <i data-lucide="shield-check" style="width:14px;height:14px;"></i> COPPA notice: Child profiles are managed by parents or teachers. Children under 13 do not create their own accounts.
@@ -160,6 +182,7 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
         <button type="submit" class="btn btn-red form-submit btn-lg"><i data-lucide="sparkles" style="width:18px;height:18px;"></i> Start My Free 3-Month Trial</button>
         <div class="form-footer">Already have an account? <a href="#" onclick="switchTab('login');return false;">Sign in →</a></div>
       </form>
+      </div>
     </div>
   </div>
 </div>
@@ -183,6 +206,8 @@ function switchTab(tab) {
   document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='login')||(i===1&&tab==='register')));
   document.getElementById('form-login').classList.toggle('active', tab==='login');
   document.getElementById('form-register').classList.toggle('active', tab==='register');
+  var fp = document.getElementById('form-forgot');
+  if (fp) fp.classList.toggle('active', tab==='forgot');
 }
 function setRole(el, role) {
   document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
@@ -268,5 +293,33 @@ document.getElementById('form-register').addEventListener('submit', async functi
     btn.disabled = false;
   }
 });
+</script>
+<script>
+// The endpoint answers identically whether or not the address has an
+// account, so this must not say anything more specific than it does.
+(function () {
+  var btn = document.getElementById('fp-send');
+  if (!btn) return;
+  btn.addEventListener('click', async function () {
+    if (document.getElementById('fp-site').value) return;      // honeypot
+    var email = document.getElementById('fp-email');
+    if (!email.value.trim() || !email.checkValidity()) {
+      showError('form-forgot', 'Please enter the email address on your account.');
+      email.focus(); return;
+    }
+    btn.disabled = true;
+    try {
+      await fetch(API + '/auth/forgot-password', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.value.trim() })
+      });
+    } catch (e) { /* answer the same either way */ }
+    showError('form-forgot',
+      'If that address has an account, a reset link is on its way. Check your inbox — and the spam folder.');
+    var box = document.getElementById('form-forgot-error');
+    if (box) { box.style.background = 'var(--green-light)'; box.style.color = 'var(--green)'; }
+    btn.disabled = false;
+  });
+})();
 </script>
 </body></html>

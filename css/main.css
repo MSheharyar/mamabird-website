@@ -65,7 +65,10 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-img { display: block; max-width: 100%; }
+/* height:auto is not optional once images carry width/height attributes:
+   the attribute sets a presentational height, max-width shrinks the width,
+   and without this every image stretches vertically. */
+img { display: block; max-width: 100%; height: auto; }
 a { text-decoration: none; color: inherit; }
 button { font-family: inherit; cursor: pointer; }
 

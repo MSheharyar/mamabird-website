@@ -8,5 +8,6 @@ Disallow: /admin.html
 Disallow: /teacher.html
 Disallow: /ebook-download.html
 Disallow: /payment-success.html
+Disallow: /reset-password.html
 
 Sitemap: https://threebabybirdies.com/sitemap.xml
