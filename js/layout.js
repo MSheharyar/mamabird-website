@@ -1,5 +1,5 @@
 /* ============================================================
-   THREE BABY BIRDIES — layout.js
+   THREE BABY BIRDIES, layout.js
    Injects shared nav and footer HTML on every page.
    Runs synchronously (placed before main.js at end of <body>)
    so main.js DOMContentLoaded can wire events on injected elements.
@@ -10,29 +10,29 @@
   const NAV_INNER = `<div class="nav-inner">
   <a href="index.html" class="nav-logo"><div class="nav-logo-icon" style="background:var(--red);box-shadow:0 2px 8px rgba(204,41,41,0.4);"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>Three Baby Birdies</a>
   <ul class="nav-links">
-    <li><a href="about.html"><i data-lucide="user" style="width:14px;height:14px;"></i> About</a></li>
-    <li><a href="book.html"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</a></li>
-    <li><a href="chatbot.html"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Chirpy's Classroom</a></li>
-    <li><a href="contact.html"><i data-lucide="mail" style="width:14px;height:14px;"></i> Contact</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="book.html">The Book</a></li>
+    <li><a href="chatbot.html">Chirpy's Classroom</a></li>
+    <li><a href="contact.html">Contact</a></li>
     <li><a href="login.html" class="nav-cta">Sign In / Join Free</a></li>
   </ul>
   <button class="nav-ham" id="ham" aria-label="Open menu">☰</button>
 </div>`;
 
-  const MOB_LINKS = `<a href="index.html"><i data-lucide="home" style="width:14px;height:14px;"></i> Home</a>
-<a href="about.html"><i data-lucide="user" style="width:14px;height:14px;"></i> About</a>
-<a href="book.html"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</a>
-<a href="blog.html"><i data-lucide="newspaper" style="width:14px;height:14px;"></i> Blog</a>
-<a href="chatbot.html"><i data-lucide="graduation-cap" style="width:14px;height:14px;"></i> Chirpy's Classroom</a>
-<a href="quiz.html"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> Find Your Starting Point</a>
-<a href="game.html"><i data-lucide="gamepad-2" style="width:14px;height:14px;"></i> Play the Game</a>
-<a href="contact.html"><i data-lucide="mail" style="width:14px;height:14px;"></i> Contact</a>
+  const MOB_LINKS = `<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="book.html">The Book</a>
+<a href="blog.html">Blog</a>
+<a href="chatbot.html">Chirpy's Classroom</a>
+<a href="quiz.html">Find Your Starting Point</a>
+<a href="game.html">Play the Game</a>
+<a href="contact.html">Contact</a>
 <a href="login.html" class="mob-cta">Sign In / Join Free</a>`;
 
   const FOOTER_INNER = `<div class="footer-inner">
   <div class="footer-grid">
     <div class="footer-brand">
-      <h3><i data-lucide="feather" style="width:16px;height:16px;margin-right:4px;"></i>Three Baby Birdies</h3>
+      <h3>Three Baby Birdies</h3>
       <p>Stories that bring blue skies, a warm sun, and three little red birds to young readers. Written by Iris Scarfone, illustrated by Ronald Scarfone.</p>
       <!-- Social row removed: the four icons were placeholder glyphs pointing at href="#".
            Restore it here once Iris supplies the real profile URLs. The .social-row /
@@ -41,18 +41,18 @@
     <div class="footer-col">
       <h4>Quick Links</h4>
       <ul class="footer-links">
-        <li><a href="index.html"><i data-lucide="home" style="width:14px;height:14px;"></i> Home</a></li>
-        <li><a href="about.html"><i data-lucide="user" style="width:14px;height:14px;"></i> About</a></li>
-        <li><a href="book.html"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</a></li>
-        <li><a href="blog.html"><i data-lucide="newspaper" style="width:14px;height:14px;"></i> Blog</a></li>
-        <li><a href="contact.html"><i data-lucide="mail" style="width:14px;height:14px;"></i> Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="book.html">The Book</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Chirpy's Classroom</h4>
       <ul class="footer-links">
         <li><a href="quiz.html">Find your starting point</a></li>
-        <li><a href="game.html">🎮 Play Chirpy's First Flight</a></li>
+        <li><a href="game.html">Play Chirpy's First Flight</a></li>
         <li><a href="chatbot.html">Try the Chatbot</a></li>
         <li><a href="pricing.html">Pricing &amp; Plans</a></li>
         <li><a href="login.html">Sign In</a></li>
@@ -61,8 +61,8 @@
     </div>
     <div class="footer-col">
       <h4>Contact</h4>
-      <div class="footer-contact-line"><span class="footer-contact-icon"><i data-lucide="mail" style="width:15px;height:15px;"></i></span><span>iris@threebabybirdies.com</span></div>
-      <div class="footer-contact-line"><span class="footer-contact-icon"><i data-lucide="map-pin" style="width:15px;height:15px;"></i></span><span>Available Nationwide</span></div>
+      <div class="footer-contact-line"><span>iris@threebabybirdies.com</span></div>
+      <div class="footer-contact-line"><span>Available Nationwide</span></div>
     </div>
   </div>
   <div class="footer-bottom">
@@ -80,7 +80,7 @@
   const footer = document.getElementById('footer');
   if (footer) footer.innerHTML = FOOTER_INNER;
 
-  // Swap nav CTA based on auth state — only when a valid, UNEXPIRED JWT is present.
+  // Swap nav CTA based on auth state, only when a valid, UNEXPIRED JWT is present.
   function mbTokenValid(t) {
     try {
       const p = t.split('.')[1].replace(/-/g, '+').replace(/_/g, '/');
@@ -91,7 +91,7 @@
   let token = localStorage.getItem('mb_token');
   let user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
   if (token && !mbTokenValid(token)) {
-    // Stale/expired session left in localStorage — clear it so the nav shows
+    // Stale/expired session left in localStorage, clear it so the nav shows
     // "Sign In / Join Free" instead of a misleading "My Classroom".
     ['mb_token', 'mb_user', 'mb_child_id'].forEach(k => localStorage.removeItem(k));
     token = null; user = null;
@@ -101,7 +101,7 @@
     const appDest = user.role === 'admin' ? 'admin.html' : user.role === 'teacher' ? 'teacher.html' : 'app.html';
     const cta = document.querySelector('.nav-cta');
     if (cta) {
-      // Sign out is removed from public nav — child cannot log out from here.
+      // Sign out is removed from public nav, child cannot log out from here.
       // Parent must use the PIN-protected Sign out inside the app.
       cta.outerHTML = `<a href="${appDest}" class="nav-cta" style="background:var(--green);">My Classroom →</a>`;
     }

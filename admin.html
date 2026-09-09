@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Admin Dashboard — Three Baby Birdies</title>
+<title>Admin Dashboard, Three Baby Birdies</title>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -11,12 +11,11 @@
   --sky:#6EB4D4;--sky-dark:#3A8BB0;--sky-light:#E8F4FA;
   --green:#4A8B3F;--green-light:#EDF7EC;
   --yellow:#F5C200;--yellow-light:#FFFAEB;
-  --purple:#7C3AED;--purple-light:#F5F0FF;
   --dark:#1A1A2E;--mid:#6B7280;--light:#9CA3AF;
   --cream:#FDF8F3;--cream-dark:#F0E8DE;--white:#fff;
   --font-display:'Quicksand',sans-serif;--font-body:'Nunito',sans-serif;
   --r-sm:8px;--r-md:12px;--r-lg:20px;--r-full:999px;
-  --sh-sm:0 2px 8px rgba(0,0,0,.06);--sh-md:0 4px 20px rgba(0,0,0,.08);
+  --sh-sm:0 2px 8px rgba(0,0,0.06);--sh-md:0 4px 20px rgba(0,0,0.08);
 }
 body{font-family:var(--font-body);background:var(--cream);color:var(--dark);min-height:100vh;}
 
@@ -27,11 +26,11 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);min-
   position:sticky;top:0;z-index:100;
 }
 .header-logo{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:1rem;color:#fff;}
-.header-badge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:var(--font-display);font-weight:700;font-size:.72rem;padding:4px 12px;border-radius:var(--r-full);}
+.header-badge{background:rgba(255,255,255.15);border:1px solid rgba(255,255,255.25);color:#fff;font-family:var(--font-display);font-weight:700;font-size:.72rem;padding:4px 12px;border-radius:var(--r-full);}
 .header-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
-.header-email{font-size:.78rem;color:rgba(255,255,255,.75);font-family:var(--font-display);}
-.btn-logout{padding:7px 16px;border-radius:var(--r-full);border:1.5px solid rgba(255,255,255,.35);background:none;color:#fff;font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;transition:background .18s;}
-.btn-logout:hover{background:rgba(255,255,255,.15);}
+.header-email{font-size:.78rem;color:rgba(255,255,255.75);font-family:var(--font-display);}
+.btn-logout{padding:7px 16px;border-radius:var(--r-full);border:1.5px solid rgba(255,255,255.35);background:none;color:#fff;font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;transition:background .18s;}
+.btn-logout:hover{background:rgba(255,255,255.15);}
 
 /* ── LAYOUT ── */
 .admin-body{max-width:1100px;margin:0 auto;padding:28px 16px 60px;}
@@ -44,7 +43,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);min-
 .stat-card.c-sky{border-top-color:var(--sky);}
 .stat-card.c-green{border-top-color:var(--green);}
 .stat-card.c-yellow{border-top-color:var(--yellow);}
-.stat-card.c-purple{border-top-color:var(--purple);}
+.stat-card.c-purple{border-top-color:var(--brown);}
 .stat-val{font-family:var(--font-display);font-weight:700;font-size:1.6rem;color:var(--dark);margin-bottom:4px;}
 .stat-lbl{font-size:.7rem;color:var(--mid);font-family:var(--font-display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
 
@@ -113,7 +112,7 @@ tr.parent-row:hover td{background:var(--cream);}
 <meta name="robots" content="noindex, nofollow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
-<meta property="og:title" content="Admin Dashboard — Three Baby Birdies">
+<meta property="og:title" content="Admin Dashboard, Three Baby Birdies">
 <meta property="og:description" content="Admin.">
 <meta property="og:url" content="https://threebabybirdies.com/admin.html">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
@@ -121,7 +120,7 @@ tr.parent-row:hover td{background:var(--cream);}
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Admin Dashboard — Three Baby Birdies">
+<meta name="twitter:title" content="Admin Dashboard, Three Baby Birdies">
 <meta name="twitter:description" content="Admin.">
 <meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -135,37 +134,37 @@ tr.parent-row:hover td{background:var(--cream);}
 <h1 class="visually-hidden">Three Baby Birdies admin</h1>
 
 <header class="admin-header">
-  <div class="header-logo">🐦 Three Baby Birdies</div>
-  <div class="header-badge">🔐 Admin Dashboard</div>
+  <div class="header-logo">Three Baby Birdies</div>
+  <div class="header-badge">Admin Dashboard</div>
   <div class="header-right">
-    <span class="header-email" id="admin-email">—</span>
+    <span class="header-email" id="admin-email">,</span>
     <button class="btn-logout" onclick="logout()">Log out</button>
   </div>
 </header>
 
 <div class="admin-body">
   <!-- Stats -->
-  <div class="section-title">📊 System Overview</div>
+  <div class="section-title">System Overview</div>
   <div class="stats-grid">
-    <div class="stat-card c-red"><div class="stat-val" id="st-users">—</div><div class="stat-lbl">Total Users</div></div>
-    <div class="stat-card c-sky"><div class="stat-val" id="st-trial">—</div><div class="stat-lbl">On Trial</div></div>
-    <div class="stat-card c-green"><div class="stat-val" id="st-active">—</div><div class="stat-lbl">Paid Active</div></div>
-    <div class="stat-card c-yellow"><div class="stat-val" id="st-children">—</div><div class="stat-lbl">Child Profiles</div></div>
-    <div class="stat-card c-purple"><div class="stat-val" id="st-sessions">—</div><div class="stat-lbl">Total Sessions</div></div>
-    <div class="stat-card"><div class="stat-val" id="st-cost">—</div><div class="stat-lbl">API Cost / Mo</div></div>
+    <div class="stat-card c-red"><div class="stat-val" id="st-users">,</div><div class="stat-lbl">Total Users</div></div>
+    <div class="stat-card c-sky"><div class="stat-val" id="st-trial">,</div><div class="stat-lbl">On Trial</div></div>
+    <div class="stat-card c-green"><div class="stat-val" id="st-active">,</div><div class="stat-lbl">Paid Active</div></div>
+    <div class="stat-card c-yellow"><div class="stat-val" id="st-children">,</div><div class="stat-lbl">Child Profiles</div></div>
+    <div class="stat-card c-purple"><div class="stat-val" id="st-sessions">,</div><div class="stat-lbl">Total Sessions</div></div>
+    <div class="stat-card"><div class="stat-val" id="st-cost">,</div><div class="stat-lbl">API Cost / Mo</div></div>
   </div>
 
   <!-- Tabs -->
   <div class="admin-tabs">
-    <button class="admin-tab active" onclick="switchTab('users',this)">👨‍👩‍👧 Parents &amp; Children</button>
-    <button class="admin-tab" onclick="switchTab('usage',this)">📈 Usage &amp; Costs</button>
+    <button class="admin-tab active" onclick="switchTab('users',this)">Parents &amp; Children</button>
+    <button class="admin-tab" onclick="switchTab('usage',this)">Usage &amp; Costs</button>
   </div>
 
   <!-- Users panel -->
   <div class="admin-panel active" id="panel-users">
     <div class="parent-table-wrap">
       <div class="table-search">
-        <input class="search-input" type="text" placeholder="🔍 Search by email…" oninput="filterTable(this.value)" aria-label="Search users by email">
+        <input class="search-input" type="text" placeholder=" Search by email…" oninput="filterTable(this.value)" aria-label="Search users by email">
         <select class="filter-sel" aria-label="Filter users by status" onchange="filterStatus(this.value)">
           <option value="">All statuses</option>
           <option value="trial">Trial</option>
@@ -181,8 +180,8 @@ tr.parent-row:hover td{background:var(--cream);}
   <div class="admin-panel" id="panel-usage">
     <div class="usage-wrap">
       <div class="usage-totals">
-        <div class="usage-card"><div class="usage-val" id="u-msgs">—</div><div class="usage-lbl">Messages (30 days)</div></div>
-        <div class="usage-card"><div class="usage-val" id="u-cost">—</div><div class="usage-lbl">API Cost (30 days)</div></div>
+        <div class="usage-card"><div class="usage-val" id="u-msgs">,</div><div class="usage-lbl">Messages (30 days)</div></div>
+        <div class="usage-card"><div class="usage-val" id="u-cost">,</div><div class="usage-lbl">API Cost (30 days)</div></div>
       </div>
       <div class="section-title">Daily Breakdown</div>
       <div id="daily-table-wrap"><div class="loading-bar">Loading usage data…</div></div>
@@ -197,7 +196,7 @@ const API = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');
 const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
 
-// Auth guard — must be admin
+// Auth guard, must be admin
 if (!token || !user) { window.location.href = 'login.html'; }
 if (user && user.role !== 'admin') { window.location.href = 'app.html'; }
 
@@ -215,12 +214,12 @@ async function loadStats() {
   try {
     const res  = await api('GET', '/admin/stats');
     const data = await res.json();
-    document.getElementById('st-users').textContent    = data.total_users ?? '—';
-    document.getElementById('st-trial').textContent    = data.trial_users ?? '—';
-    document.getElementById('st-active').textContent   = data.active_subscribers ?? '—';
-    document.getElementById('st-children').textContent = data.total_children ?? '—';
-    document.getElementById('st-sessions').textContent = data.total_sessions ?? '—';
-    document.getElementById('st-cost').textContent     = data.api_cost_this_month != null ? '$' + data.api_cost_this_month.toFixed(4) : '—';
+    document.getElementById('st-users').textContent    = data.total_users ?? ',';
+    document.getElementById('st-trial').textContent    = data.trial_users ?? ',';
+    document.getElementById('st-active').textContent   = data.active_subscribers ?? ',';
+    document.getElementById('st-children').textContent = data.total_children ?? ',';
+    document.getElementById('st-sessions').textContent = data.total_sessions ?? ',';
+    document.getElementById('st-cost').textContent     = data.api_cost_this_month != null ? '$' + data.api_cost_this_month.toFixed(4) : ',';
   } catch(e) { showToast('Could not load stats', 'error'); }
 }
 
@@ -257,13 +256,13 @@ function renderTable() {
     const totalC    = p.children.reduce((s,c) => s + c.total_correct, 0);
     const acc       = totalQ ? Math.round(totalC/totalQ*100*10)/10 : 0;
     const statusCls = p.subscription_status === 'active' ? 'pill-active' : p.subscription_status === 'cancelled' ? 'pill-cancelled' : p.subscription_status === 'grace' || p.subscription_status === 'grace_period' ? 'pill-grace' : 'pill-trial';
-    const trialDate = p.trial_ends_at ? p.trial_ends_at.slice(0,10) : '—';
+    const trialDate = p.trial_ends_at ? p.trial_ends_at.slice(0,10) : ',';
     const hasChildren = p.children && p.children.length > 0;
 
     html += `<tr class="parent-row" onclick="toggleChildren('children-${i}')">
       <td><strong>${p.email}</strong></td>
-      <td>${p.role || '—'}</td>
-      <td><span class="status-pill ${statusCls}">${p.subscription_status || '—'}</span></td>
+      <td>${p.role || ','}</td>
+      <td><span class="status-pill ${statusCls}">${p.subscription_status || ','}</span></td>
       <td>${p.subscription_plan || 'trial'}</td>
       <td>${p.children.length}</td>
       <td>${totalSess}</td>
@@ -282,11 +281,11 @@ function renderTable() {
           <tbody style="display:none;" id="children-body-${i}">`;
       p.children.forEach(c => {
         const cAcc = c.accuracy_pct ?? 0;
-        const lastActive = c.last_active ? c.last_active.slice(0,10) : '—';
+        const lastActive = c.last_active ? c.last_active.slice(0,10) : ',';
         html += `<tr class="child-row">
-          <td style="width:36px;padding-left:24px;">👤</td>
+          <td style="width:36px;padding-left:24px;"></td>
           <td class="child-name-cell">${c.child_name}</td>
-          <td style="font-size:.78rem;color:var(--mid);">Age ${c.age || '?'} · ${c.grade || '—'}</td>
+          <td style="font-size:.78rem;color:var(--mid);">Age ${c.age || '?'} · ${c.grade || ','}</td>
           <td>${c.total_sessions} sessions</td>
           <td>${c.messages_used} msgs</td>
           <td>${cAcc}% accuracy</td>
@@ -335,8 +334,8 @@ async function loadUsage() {
   try {
     const res  = await api('GET', '/admin/usage');
     const data = await res.json();
-    document.getElementById('u-msgs').textContent = data.totals?.messages ?? '—';
-    document.getElementById('u-cost').textContent = data.totals?.cost_usd != null ? '$' + data.totals.cost_usd.toFixed(4) : '—';
+    document.getElementById('u-msgs').textContent = data.totals?.messages ?? ',';
+    document.getElementById('u-cost').textContent = data.totals?.cost_usd != null ? '$' + data.totals.cost_usd.toFixed(4) : ',';
 
     const daily = data.daily || [];
     if (!daily.length) {

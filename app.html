@@ -15,7 +15,7 @@
   --cream:#FDF8F3;--cream-dark:#F0E8DE;
   --font-display:'Quicksand',sans-serif;--font-body:'Nunito',sans-serif;
   --r-sm:8px;--r-md:12px;--r-lg:20px;--r-full:999px;
-  --sh-sm:0 2px 8px rgba(0,0,0,.06);--sh-md:0 4px 20px rgba(0,0,0,.1);--sh-lg:0 8px 40px rgba(0,0,0,.14);
+  --sh-sm:0 2px 8px rgba(0,0,0.06);--sh-md:0 4px 20px rgba(0,0,0.1);--sh-lg:0 8px 40px rgba(0,0,0.14);
 }
 html,body{height:100%;overflow:hidden;}
 body{font-family:var(--font-body);background:var(--cream);color:var(--dark);display:flex;flex-direction:column;}
@@ -49,7 +49,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .pm-add{color:var(--green);}
 .header-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
 
-/* Parent controls — hidden in child mode */
+/* Parent controls, hidden in child mode */
 .parent-controls{display:flex;align-items:center;gap:8px;transition:opacity .2s;}
 /* Anchored inside the header so the hidden bar never stretches the page width on mobile */
 .parent-controls.locked{opacity:0;pointer-events:none;position:absolute;right:16px;top:11px;}
@@ -66,7 +66,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 }
 .btn-logout:hover{border-color:var(--red);color:var(--red);}
 
-/* Lock button — always visible */
+/* Lock button, always visible */
 .btn-lock{
   padding:7px 14px;border-radius:var(--r-full);border:1.5px solid var(--cream-dark);
   background:#fff;cursor:pointer;font-size:.82rem;font-family:var(--font-display);font-weight:700;color:var(--mid);
@@ -76,7 +76,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .btn-lock:hover{border-color:var(--red);background:var(--red-light);}
 .btn-lock.unlocked{border-color:var(--green);background:var(--green-light);}
 
-/* ── BODY — fills remaining height ── */
+/* ── BODY, fills remaining height ── */
 .app-body{
   flex:1;overflow:hidden;display:flex;flex-direction:column;
   max-width:900px;width:100%;margin:0 auto;padding:14px 16px 0;
@@ -104,9 +104,9 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   background:#fff;font-family:var(--font-display);font-weight:600;font-size:.8rem;
   color:var(--mid);cursor:pointer;transition:all .18s;white-space:nowrap;
 }
-.subj-chip:hover,.subj-chip.active{border-color:var(--sky);color:var(--sky-dark);background:var(--sky-light);}
+.subj-chip:hover.subj-chip.active{border-color:var(--sky);color:var(--sky-dark);background:var(--sky-light);}
 
-/* ── CHAT WINDOW — fills remaining space ── */
+/* ── CHAT WINDOW, fills remaining space ── */
 .chat-card{
   flex:1;overflow:hidden;display:flex;flex-direction:column;
   background:#fff;border-radius:var(--r-lg) var(--r-lg) 0 0;box-shadow:var(--sh-md);
@@ -140,7 +140,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .typing-dot:nth-child(2){animation-delay:.15s;}.typing-dot:nth-child(3){animation-delay:.3s;}
 @keyframes tdot{0%,100%{transform:translateY(0);opacity:.4;}50%{transform:translateY(-4px);opacity:1;}}
 
-/* ── INPUT — glued to bottom ── */
+/* ── INPUT, glued to bottom ── */
 .chat-input-row{
   padding:12px 14px;background:#fff;border-top:1px solid var(--cream-dark);
   display:flex;gap:9px;align-items:center;flex-shrink:0;
@@ -156,14 +156,14 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 /* ── PIN MODAL ── */
 .pin-overlay{
   display:none;position:fixed;inset:0;z-index:300;
-  background:rgba(10,10,30,.55);backdrop-filter:blur(6px);
+  background:rgba(10,10,30.55);
   align-items:center;justify-content:center;
 }
 .pin-overlay.open{display:flex;}
 .pin-card{
   background:#fff;border-radius:28px;padding:36px 32px 28px;
   box-shadow:var(--sh-lg);text-align:center;max-width:340px;width:100%;margin:16px;
-  animation:pinPop .25s cubic-bezier(.34,1.56,.64,1);
+  animation:pinPop .25s cubic-bezier(.34,1.56.64,1);
 }
 @keyframes pinPop{from{transform:scale(.85);opacity:0;}to{transform:scale(1);opacity:1;}}
 @keyframes pinShake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-8px);}40%,80%{transform:translateX(8px);}}
@@ -233,7 +233,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .empty-state h4{font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--dark);margin-bottom:6px;}
 .empty-state p{font-size:.86rem;color:var(--light-text);max-width:290px;margin:0 auto;line-height:1.55;}
 .empty-state .es-hint{display:inline-block;margin-top:14px;font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--sky-dark);}
-/* Skeletons while the first fetch is in flight — a shape, not the word "Loading". */
+/* Skeletons while the first fetch is in flight, a shape, not the word "Loading". */
 .skel{background:linear-gradient(90deg,var(--cream-dark) 25%,#F8F2E8 37%,var(--cream-dark) 63%);background-size:400% 100%;animation:skel 1.3s ease infinite;}
 @keyframes skel{0%{background-position:100% 50%}100%{background-position:0 50%}}
 .skel-row{height:54px;border-radius:var(--r-md);margin-bottom:10px;}
@@ -256,7 +256,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .plan-name{flex:1;font-family:var(--font-display);font-weight:600;font-size:.85rem;color:var(--dark);}
 .btn-view{padding:5px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:none;color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.75rem;cursor:pointer;}
 .btn-view:hover{background:var(--sky-light);}
-.lp-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400;overflow-y:auto;}
+.lp-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0.5);z-index:400;overflow-y:auto;}
 .lp-modal.open{display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;}
 .lp-modal-inner{background:#fff;border-radius:var(--r-lg);max-width:700px;width:100%;padding:32px;position:relative;}
 .lp-modal-close{position:absolute;top:16px;right:16px;border:none;background:none;font-size:1.4rem;cursor:pointer;color:var(--light);}
@@ -271,7 +271,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .hist-msgs{margin-left:auto;font-family:var(--font-display);font-weight:600;font-size:.78rem;color:var(--mid);}
 
 /* ── CREATE PROFILE MODAL ── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0.5);z-index:500;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
 .modal-card{background:#fff;border-radius:var(--r-lg);padding:32px;max-width:420px;width:100%;margin:16px;}
 .modal-title{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--dark);margin-bottom:20px;}
@@ -287,7 +287,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   .app-header{padding:0 12px;gap:8px;}
   .header-logo-text{display:none;}
   .parent-controls{gap:6px;}
-  .btn-dashboard,.btn-logout{padding:7px 11px;font-size:.75rem;white-space:nowrap;}
+  .btn-dashboard.btn-logout{padding:7px 11px;font-size:.75rem;white-space:nowrap;}
   .profile-chip{max-width:150px;}
   #profile-chip-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 }
@@ -322,13 +322,13 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <!-- ── HEADER ── -->
 <header class="app-header">
   <div class="header-logo">
-    <div class="header-logo-bird">🐦</div>
+    <div class="header-logo-bird"></div>
     <span class="header-logo-text">MamaBird &amp; Chirpy</span>
   </div>
 
   <!-- Profile selector chip -->
   <div class="profile-chip" id="profile-chip-wrap" onclick="toggleProfileMenu(event)">
-    <span>👤</span>
+    <span></span>
     <span id="profile-chip-label">Loading…</span>
     <span id="profile-caret" style="font-size:.7rem;opacity:.55;display:none;">▾</span>
     <div class="profile-menu" id="profile-menu" onclick="event.stopPropagation()"></div>
@@ -336,14 +336,14 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 
   <div class="header-right">
     <a id="teacher-back" href="teacher.html" style="display:none;padding:7px 14px;border-radius:999px;border:1.5px solid #6EB4D4;color:#3A8BB0;font-family:var(--font-display);font-weight:700;font-size:.78rem;text-decoration:none;">← My Classroom</a>
-    <!-- Parent controls — hidden until PIN entered -->
+    <!-- Parent controls, hidden until PIN entered -->
     <div class="parent-controls locked" id="parent-controls">
-      <button class="btn-dashboard" onclick="openDashboard()">📊 Dashboard</button>
-      <button id="class-btn" onclick="handleClassBtn()" style="display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r-full);border:1.5px solid #4A8B3F;background:var(--green-light);color:#4A8B3F;font-family:var(--font-display);font-weight:700;font-size:.82rem;cursor:pointer;white-space:nowrap;">🎓 Join Class</button>
-      <button class="btn-logout" onclick="logout()">✕ Log out</button>
+      <button class="btn-dashboard" onclick="openDashboard()">Dashboard</button>
+      <button id="class-btn" onclick="handleClassBtn()" style="display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--r-full);border:1.5px solid #4A8B3F;background:var(--green-light);color:#4A8B3F;font-family:var(--font-display);font-weight:700;font-size:.82rem;cursor:pointer;white-space:nowrap;">Join Class</button>
+      <button class="btn-logout" onclick="logout()">Log out</button>
     </div>
     <!-- Lock / Unlock button always visible -->
-    <button class="btn-lock" id="btn-lock" onclick="handleLockClick()" title="Parent controls — set/enter a PIN to reach the Dashboard & Log out">🔒 Parent</button>
+    <button class="btn-lock" id="btn-lock" onclick="handleLockClick()" title="Parent controls, set/enter a PIN to reach the Dashboard & Log out">Parent</button>
   </div>
 </header>
 
@@ -367,12 +367,12 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   </div>
 
   <div class="subject-row" style="display:none;">
-    <button class="subj-chip active" onclick="setSubject(this,'spelling')">✏️ Spelling</button>
-    <button class="subj-chip" onclick="setSubject(this,'math')">🔢 Math</button>
-    <button class="subj-chip" onclick="setSubject(this,'rhyming')">🎵 Rhyming</button>
-    <button class="subj-chip" onclick="setSubject(this,'grammar')">📝 Grammar</button>
-    <button class="subj-chip" onclick="setSubject(this,'puzzles')">🧩 Puzzles</button>
-    <button class="subj-chip" onclick="setSubject(this,'literature')">📖 Stories</button>
+    <button class="subj-chip active" onclick="setSubject(this,'spelling')">Spelling</button>
+    <button class="subj-chip" onclick="setSubject(this,'math')">Math</button>
+    <button class="subj-chip" onclick="setSubject(this,'rhyming')">Rhyming</button>
+    <button class="subj-chip" onclick="setSubject(this,'grammar')">Grammar</button>
+    <button class="subj-chip" onclick="setSubject(this,'puzzles')">Puzzles</button>
+    <button class="subj-chip" onclick="setSubject(this,'literature')">Stories</button>
   </div>
 
   <div class="chat-card">
@@ -382,12 +382,12 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
         <div class="topbar-name" id="topbar-name">Chirpy</div>
         <div class="topbar-status"><span class="topbar-dot"></span> Online · <span id="topbar-subj">Spelling</span></div>
       </div>
-      <button id="change-subj-btn" onclick="changeSubjectClick()" style="margin-left:auto;padding:6px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:var(--sky-light);color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;">🔄 Subject</button>
+      <button id="change-subj-btn" onclick="changeSubjectClick()" style="margin-left:auto;padding:6px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:var(--sky-light);color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;">Subject</button>
     </div>
     <div class="chat-msgs" id="chat-msgs"></div>
     <div class="chat-input-row">
-      <input class="chat-input" id="chat-input" type="text" placeholder="Type your answer here… 🐦" onkeydown="if(event.key==='Enter')sendMsg()" aria-label="Type your answer to Chirpy">
-      <button class="chat-send" id="chat-send" onclick="sendMsg()">➤</button>
+      <input class="chat-input" id="chat-input" type="text" placeholder="Type your answer here… " onkeydown="if(event.key==='Enter')sendMsg()" aria-label="Type your answer to Chirpy">
+      <button class="chat-send" id="chat-send" onclick="sendMsg()" aria-label="Send message">Send</button>
     </div>
   </div>
 </div>
@@ -395,7 +395,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <!-- ── PIN MODAL ── -->
 <div class="pin-overlay" id="pin-overlay">
   <div class="pin-card" id="pin-card">
-    <div class="pin-icon" id="pin-icon">🔒</div>
+    <div class="pin-icon" id="pin-icon"></div>
     <div class="pin-title" id="pin-title">Parent Controls</div>
     <div class="pin-sub" id="pin-sub">Enter your 4-digit PIN to access settings</div>
     <div class="pin-dots" id="pin-dots">
@@ -426,26 +426,26 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <div class="dashboard-panel" id="dash-panel">
   <div class="dash-header">
     <button class="btn-back" onclick="closeDashboard()">← Back</button>
-    <div class="dash-child-chip" id="dash-child-chip">👤 —</div>
+    <div class="dash-child-chip" id="dash-child-chip">,</div>
     <div class="dash-header-right">
-      <button class="btn-pdf" onclick="downloadPdf()">⬇ Download PDF</button>
+      <button class="btn-pdf" onclick="downloadPdf()">Download PDF</button>
     </div>
   </div>
   <div class="dash-body">
     <div class="stats-row">
-      <div class="stat-card c-sky"><div class="stat-val" id="ds-sessions">—</div><div class="stat-lbl">Total Sessions</div></div>
-      <div class="stat-card c-green"><div class="stat-val green" id="ds-correct">—</div><div class="stat-lbl">Correct Answers</div></div>
-      <div class="stat-card c-red"><div class="stat-val red" id="ds-accuracy">—</div><div class="stat-lbl">Accuracy</div></div>
+      <div class="stat-card c-sky"><div class="stat-val" id="ds-sessions">,</div><div class="stat-lbl">Total Sessions</div></div>
+      <div class="stat-card c-green"><div class="stat-val green" id="ds-correct">,</div><div class="stat-lbl">Correct Answers</div></div>
+      <div class="stat-card c-red"><div class="stat-val red" id="ds-accuracy">,</div><div class="stat-lbl">Accuracy</div></div>
     </div>
     <div class="msg-bar-wrap">
-      <div class="msg-bar-label"><span>💬 Messages Used</span><span id="ds-msg-label">— / —</span></div>
+      <div class="msg-bar-label"><span>Messages Used</span><span id="ds-msg-label">, /,</span></div>
       <div class="msg-bar-track"><div class="msg-bar-fill" id="ds-msg-bar" style="width:0%"></div></div>
     </div>
     <div class="dash-tabs">
-      <button class="dash-tab active" onclick="switchDashTab('overview',this)">📈 Overview</button>
-      <button class="dash-tab" onclick="switchDashTab('badges',this)">🏅 Badges</button>
-      <button class="dash-tab" onclick="switchDashTab('plans',this)">📋 Lesson Plans</button>
-      <button class="dash-tab" onclick="switchDashTab('history',this)">🕐 History</button>
+      <button class="dash-tab active" onclick="switchDashTab('overview',this)">Overview</button>
+      <button class="dash-tab" onclick="switchDashTab('badges',this)">Badges</button>
+      <button class="dash-tab" onclick="switchDashTab('plans',this)">Lesson Plans</button>
+      <button class="dash-tab" onclick="switchDashTab('history',this)">History</button>
     </div>
     <div class="dash-panel active" id="panel-overview">
       <div class="subj-progress" id="subj-progress-wrap"><div class="skel-wrap"><div class="skel skel-row"></div><div class="skel skel-row"></div><div class="skel skel-row"></div></div></div>
@@ -455,7 +455,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
     </div>
     <div class="dash-panel" id="panel-plans">
       <div class="lp-generate">
-        <div class="lp-gen-title">✏️ GENERATE LESSON PLAN</div>
+        <div class="lp-gen-title">Generate a lesson plan</div>
         <div class="form-row">
           <div class="form-group"><label class="form-label">Subject</label>
             <select class="form-ctrl" id="lp-subject" aria-label="Subject">
@@ -469,9 +469,9 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
           <div class="form-group"><label class="form-label">Duration</label><input class="form-ctrl" id="lp-duration" type="text" placeholder="e.g. 1 week" aria-label="Duration"></div>
           <div class="form-group"><label class="form-label">Focus Areas</label><input class="form-ctrl" id="lp-focus" type="text" placeholder="optional" aria-label="Focus areas (optional)"></div>
         </div>
-        <button class="btn-gen" onclick="generatePlan()">⚡ Generate Plan</button>
+        <button class="btn-gen" onclick="generatePlan()">Generate plan</button>
       </div>
-      <div class="saved-plans"><div class="saved-title">📄 SAVED PLANS</div><div id="plans-list"><div class="skel-wrap"><div class="skel skel-row"></div><div class="skel skel-row"></div></div></div></div>
+      <div class="saved-plans"><div class="saved-title">Saved plans</div><div id="plans-list"><div class="skel-wrap"><div class="skel skel-row"></div><div class="skel skel-row"></div></div></div></div>
     </div>
     <div class="dash-panel" id="panel-history">
       <div class="history-list" id="history-list"><div class="skel-wrap"><div class="skel skel-row"></div><div class="skel skel-row"></div><div class="skel skel-row"></div></div></div>
@@ -482,7 +482,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <!-- Lesson plan content modal -->
 <div class="lp-modal" id="lp-modal">
   <div class="lp-modal-inner">
-    <button class="lp-modal-close" onclick="closeLpModal()">✕</button>
+    <button class="lp-modal-close" onclick="closeLpModal()" aria-label="Close">✕</button>
     <h3 id="lp-modal-title" style="font-family:var(--font-display);font-weight:700;color:var(--dark);"></h3>
     <pre class="lp-modal-body" id="lp-modal-body"></pre>
   </div>
@@ -491,7 +491,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <!-- Create profile modal -->
 <div class="modal-overlay" id="create-modal">
   <div class="modal-card">
-    <div class="modal-title">👶 Add a Child Profile</div>
+    <div class="modal-title">Add a Child Profile</div>
     <div class="form-group" style="margin-bottom:12px;">
       <label class="form-label">Child's Nickname</label>
       <input class="form-ctrl" id="new-name" type="text" placeholder="e.g. Emma, Lily, Noah" aria-label="Child's nickname">
@@ -502,7 +502,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
     </div>
     <div class="modal-btn-row">
       <button class="btn-cancel" onclick="closeCreateModal()">Cancel</button>
-      <button class="btn-create" onclick="createProfile()">Create Profile ✨</button>
+      <button class="btn-create" onclick="createProfile()">Create Profile </button>
     </div>
   </div>
 </div>
@@ -510,7 +510,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <!-- Join class modal -->
 <div class="modal-overlay" id="join-modal">
   <div class="modal-card">
-    <div class="modal-title">🎓 Join a Class</div>
+    <div class="modal-title">Join a Class</div>
     <p style="font-size:.85rem;color:#666;margin-bottom:14px;">Enter the class code your child's teacher gave you.</p>
     <div class="form-group" style="margin-bottom:12px;">
       <label class="form-label">Child</label>
@@ -546,12 +546,12 @@ const token = localStorage.getItem('mb_token');
 const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
 function mbTokenValid(t){ try { const p=t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'); const pad=p.length%4?'='.repeat(4-(p.length%4)):''; return JSON.parse(atob(p+pad)).exp*1000>Date.now(); } catch(e){ return false; } }
 if (!token || !user || !mbTokenValid(token)) {
-  // No session, or an expired token — clear any stale keys and force a real login.
+  // No session, or an expired token, clear any stale keys and force a real login.
   ['mb_token','mb_user','mb_child_id'].forEach(k=>localStorage.removeItem(k));
   window.location.href = 'login.html';
 }
 
-// Teachers arrive here via "Teach as student" — give them a way back to the classroom
+// Teachers arrive here via "Teach as student", give them a way back to the classroom
 if (user && user.role === 'teacher') {
   window.addEventListener('DOMContentLoaded', () => {
     const tb = document.getElementById('teacher-back');
@@ -604,14 +604,14 @@ function openPinModal() {
 
   const stored = getStoredPin();
   if (!stored) {
-    // First time — set a PIN
+    // First time, set a PIN
     pinMode = 'set1';
     document.getElementById('pin-icon').textContent  = '🔑';
     document.getElementById('pin-title').textContent = 'Set a Parent PIN';
     document.getElementById('pin-sub').textContent   = 'Choose a 4-digit PIN to protect parent controls';
   } else {
     pinMode = 'verify';
-    document.getElementById('pin-icon').textContent  = '🔒';
+    document.getElementById('pin-icon').textContent  = '';
     document.getElementById('pin-title').textContent = 'Parent Controls';
     document.getElementById('pin-sub').textContent   = 'Enter your 4-digit PIN to unlock';
   }
@@ -668,7 +668,7 @@ function submitPin() {
       showToast('PIN set! Parent controls unlocked.', 'success');
     } else {
       shakePin();
-      document.getElementById('pin-error').textContent = 'PINs do not match — try again';
+      document.getElementById('pin-error').textContent = 'PINs do not match, try again';
       pinBuffer = '';
       pinTemp   = '';
       pinMode   = 'set1';
@@ -696,7 +696,7 @@ function submitPin() {
     } else {
       shakePin();
       const left = MAX_ATTEMPTS - pinFailCount;
-      document.getElementById('pin-error').textContent = 'Incorrect PIN — ' + left + ' attempt' + (left === 1 ? '' : 's') + ' remaining';
+      document.getElementById('pin-error').textContent = 'Incorrect PIN, ' + left + ' attempt' + (left === 1 ? '' : 's') + ' remaining';
       pinBuffer = '';
       renderPinDots();
     }
@@ -729,7 +729,7 @@ function lock() {
   clearTimeout(lockTimer);
   document.getElementById('parent-controls').classList.add('locked');
   document.getElementById('btn-lock').classList.remove('unlocked');
-  document.getElementById('btn-lock').textContent = '🔒 Parent';
+  document.getElementById('btn-lock').textContent = ' Parent';
   const c=document.getElementById('profile-caret'); if(c) c.style.display='none';
   document.getElementById('profile-chip-wrap').style.cursor='default';
   closeProfileMenu();
@@ -765,9 +765,9 @@ async function loadProfiles() {
 
 function updateChip() {
   const p = profiles.find(p => p.id === currentChildId);
-  document.getElementById('profile-chip-label').textContent = p ? p.child_name + (p.grade ? ' · ' + p.grade : '') : '—';
+  document.getElementById('profile-chip-label').textContent = p ? p.child_name + (p.grade ? ' · ' + p.grade : '') : ',';
   const d = document.getElementById('dash-child-chip');
-  if (d) d.textContent = '👤 ' + (p ? p.child_name : '—');
+  if (d) d.textContent = '👤 ' + (p ? p.child_name : ',');
   updateClassBtn();
 }
 function updateClassBtn(){
@@ -792,11 +792,11 @@ function renderProfileMenu(){
   if (!menu) return;
   menu.innerHTML = profiles.map(p => `
     <div class="pm-item ${p.id===currentChildId?'active':''}" onclick="selectProfile('${p.id}',event)">
-      <span>🐣</span>
+      <span></span>
       <span class="pm-grow">${p.child_name}${p.grade?' · '+p.grade:''}${p.classroom_name?' · 🎓 '+p.classroom_name:''}</span>
-      <button class="pm-del" title="Delete profile" onclick="deleteProfile('${p.id}',event)">🗑</button>
+      <button class="pm-del" title="Delete profile" onclick="deleteProfile('${p.id}',event)">Delete</button>
     </div>`).join('') +
-    `<div class="pm-item pm-add" onclick="selectProfile('__add__',event)"><span>➕</span><span class="pm-grow">Add Child</span></div>`;
+    `<div class="pm-item pm-add" onclick="selectProfile('__add__',event)"><span>Add</span><span class="pm-grow">Add Child</span></div>`;
 }
 function toggleProfileMenu(ev){ if(ev) ev.stopPropagation(); if(!isUnlocked){ return; } const m=document.getElementById('profile-menu'); if(m) m.classList.toggle('open'); }
 function closeProfileMenu(){ const m=document.getElementById('profile-menu'); if(m) m.classList.remove('open'); }
@@ -838,8 +838,8 @@ function renderWelcome() {
 function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
 const SUBJECTS = [
-  ['spelling','✏️ Spelling'], ['math','🔢 Math'], ['rhyming','🎵 Rhyming'],
-  ['grammar','📝 Grammar'], ['puzzles','🧩 Puzzles'], ['literature','📖 Stories'],
+  ['spelling','Spelling'], ['math','Math'], ['rhyming','Rhyming'],
+  ['grammar','Grammar'], ['puzzles','Puzzles'], ['literature','Stories'],
 ];
 function showSubjectPicker() {
   const msgs = document.getElementById('chat-msgs');
@@ -877,7 +877,7 @@ function pickSubject(subj) {
 }
 function startLesson(subj) {
   showTyping();
-  const body = { message: "I'm ready — please ask me my first question!", character: currentChar, subject: subj };
+  const body = { message: "I'm ready, please ask me my first question!", character: currentChar, subject: subj };
   if (currentChildId) body.child_profile_id = currentChildId;
   api('POST', '/chat', body).then(r => r.json()).then(data => {
     const t = document.getElementById('typing'); if (t) t.remove();
@@ -886,11 +886,11 @@ function startLesson(subj) {
       addMsg(currentChar, data.response);
       if (data.new_badges && data.new_badges.length) data.new_badges.forEach(b => { const d=badgeDisplay(b); addMsg(null, `${d.emoji} <strong>New badge: ${d.name}</strong>`, true); });
     } else {
-      addMsg(currentChar, `Yay — let's do <strong>${cap(subj)}</strong>! 🌟 Type your first answer whenever you're ready!`);
+      addMsg(currentChar, `Yay, let's do <strong>${cap(subj)}</strong>! 🌟 Type your first answer whenever you're ready!`);
     }
   }).catch(() => {
     const t = document.getElementById('typing'); if (t) t.remove();
-    addMsg(currentChar, `Yay — let's do <strong>${cap(subj)}</strong>! 🌟 Type your first answer whenever you're ready!`);
+    addMsg(currentChar, `Yay, let's do <strong>${cap(subj)}</strong>! 🌟 Type your first answer whenever you're ready!`);
   });
 }
 
@@ -935,7 +935,7 @@ async function sendMsg() {
       sessionId = data.session_id;
       addMsg(currentChar, data.response);
       if (data.new_badges?.length) data.new_badges.forEach(b => { const d=badgeDisplay(b); addMsg(null, `${d.emoji} <strong>New badge: ${d.name}</strong>`, true); });
-      if (data.correct !== undefined) addMsg(null, data.correct ? '✅ <strong>Correct! +1 point</strong>' : '❌ Not quite — keep trying!', true);
+      if (data.correct !== undefined) addMsg(null, data.correct ? '✅ <strong>Correct! +1 point</strong>' : '❌ Not quite, keep trying!', true);
     } else {
       const m = data.detail || '';
       addMsg(currentChar, m.includes('limit') ? "You've used all your messages for this period! 🐦 Ask your parent to upgrade the plan." : "Hmm, something went wrong. Let's try again! 🐦");
@@ -980,7 +980,7 @@ async function loadDashboard() {
   try {
     const res  = await api('GET', '/dashboard/child/' + currentChildId);
     const data = await res.json();
-    document.getElementById('ds-sessions').textContent = data.total_sessions ?? '—';
+    document.getElementById('ds-sessions').textContent = data.total_sessions ?? ',';
     const correct = Object.values(data.progress_by_subject||{}).reduce((s,v)=>s+(v.correct||0),0);
     const acc     = computeAcc(data.progress_by_subject);
     document.getElementById('ds-correct').textContent  = correct;
@@ -1005,24 +1005,24 @@ function renderOverview(data) {
   const wrap   = document.getElementById('subj-progress-wrap');
   const bySubj = data.progress_by_subject||{};
   if (!Object.keys(bySubj).length) { wrap.innerHTML=emptyState('chirpy', 'Nothing to show yet', 'Once your child has chatted with Chirpy, their progress in each subject appears here.', 'Pick a subject above to begin'); return; }
-  let html = '<h4 style="font-family:var(--font-display);font-weight:700;font-size:.78rem;color:var(--mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;">📈 PROGRESS BY SUBJECT</h4>';
+  let html = '<h4 style="font-family:var(--font-display);font-weight:700;font-size:.78rem;color:var(--mid);text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px;">Progress by subject</h4>';
   Object.entries(bySubj).forEach(([subj,v])=>{
     const acc=v.accuracy_pct??0;
     const col=acc>=75?'var(--green)':acc>=50?'var(--yellow)':'var(--red)';
     const cls=acc>=75?'subj-acc':acc>=50?'subj-acc warn':'subj-acc low';
     html+=`<div class="subj-row-item"><div class="subj-row-header"><span>${cap(subj)}</span><span class="${cls}">${v.correct}/${v.total} · ${acc}%</span></div><div class="subj-track"><div class="subj-fill" style="width:${Math.min(acc,100)}%;background:${col};"></div></div></div>`;
   });
-  if (data.streak_days>0) html+=`<div class="streak-pill">🔥 ${data.streak_days}-day streak!</div>`;
+  if (data.streak_days>0) html+=`<div class="streak-pill">${data.streak_days}-day streak</div>`;
   wrap.innerHTML=html;
 }
 
 // Badge art and wording, keyed by badge_type. Rendered from the type rather than
 // the row's stored badge_name/badge_emoji, because those strings were written into
-// each row at the moment it was awarded — mapping here means renaming a badge
+// each row at the moment it was awarded, mapping here means renaming a badge
 // updates every badge already earned, with no database backfill. Kept identical to
 // _badgeCatalogue in the mobile app's badges_screen.dart.
 const BADGE_CATALOGUE = {
-  first_session:  { emoji: '🐣', name: 'First Peep!' },
+  first_session:  { emoji: '', name: 'First Peep!' },
   perfect_score:  { emoji: '⭐',     name: 'All Correct!' },
   five_correct:   { emoji: '🐦', name: 'Five Feathers' },
   ten_correct:    { emoji: '🌈', name: 'Ten Feathers' },
@@ -1055,7 +1055,7 @@ async function loadPlans() {
 function renderPlans(plans) {
   const l=document.getElementById('plans-list');
   if (!plans.length){l.innerHTML=emptyState('mamabird', 'No saved plans', 'Mama Bird can write a lesson plan for any subject in a few seconds, and it is saved here for you.', 'Use the form above');return;}
-  l.innerHTML=plans.map(p=>`<div class="plan-row"><div class="plan-name">📄 ${cap(p.subject||'')} - ${p.grade||'—'} - ${p.duration||'—'}</div><button class="btn-view" onclick='viewPlan(${JSON.stringify(p)})'>View</button></div>`).join('');
+  l.innerHTML=plans.map(p=>`<div class="plan-row"><div class="plan-name">${cap(p.subject||'')} - ${p.grade||','} - ${p.duration||','}</div><button class="btn-view" onclick='viewPlan(${JSON.stringify(p)})'>View</button></div>`).join('');
 }
 
 async function generatePlan() {
@@ -1072,11 +1072,11 @@ async function generatePlan() {
     if(res.ok){showToast('Lesson plan generated!','success');await loadPlans();viewPlan(data.plan||data);}
     else showToast(data.detail||'Failed','error');
   } catch(e){showToast('Could not generate','error');}
-  finally{btn.textContent='⚡ Generate Plan';btn.disabled=false;}
+  finally{btn.textContent='Generate plan';btn.disabled=false;}
 }
 
 function viewPlan(plan) {
-  document.getElementById('lp-modal-title').textContent=cap(plan.subject||'')+' Plan — '+(plan.grade||'')+(plan.duration?' — '+plan.duration:'');
+  document.getElementById('lp-modal-title').textContent=cap(plan.subject||'')+' Plan, '+(plan.grade||'')+(plan.duration?', '+plan.duration:'');
   document.getElementById('lp-modal-body').textContent=plan.content||plan.plan_content||JSON.stringify(plan,null,2);
   document.getElementById('lp-modal').classList.add('open');
 }

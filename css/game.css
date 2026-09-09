@@ -19,12 +19,11 @@
 .cf-panel {
   position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
   padding:20px; background:rgba(44,24,16,.42);
-  backdrop-filter:blur(3px); -webkit-backdrop-filter:blur(3px);
 }
 .cf-panel[hidden] { display:none; }
 
 .cf-card {
-  background:rgba(253,248,240,.97); border-radius:var(--r-lg);
+  background:var(--cream); border-radius:var(--r-lg);
   padding:24px 22px; max-width:290px; width:100%;
   box-shadow:var(--sh-md); text-align:center;
 }
@@ -87,7 +86,6 @@
   position:fixed; inset:0; z-index:2000;
   display:flex; align-items:center; justify-content:center;
   padding:20px; background:rgba(44,24,16,.62);
-  backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
   animation:cf-fade .18s ease;
 }
 .cf-modal[hidden] { display:none; }

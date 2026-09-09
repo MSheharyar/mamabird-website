@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>The Book — Three Baby Birdies</title>
+<title>The Book, Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -10,7 +10,7 @@
 .book-3d-wrap { position:relative; display:flex; justify-content:center; }
 .book-mockup-lg {
   width:300px; max-width:100%; position:relative;
-  filter:drop-shadow(0 32px 64px rgba(44,24,16,.2));
+  filter:drop-shadow(0 32px 64px rgba(44,24,16.2));
   transform:perspective(1000px) rotateY(-6deg);
   transition:transform .4s;
 }
@@ -21,8 +21,8 @@
 }
 .book-cover-lg {
   width:100%; border-radius:var(--r-lg); overflow:hidden;
-  box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);
-  border:3px solid rgba(255,255,255,.4);
+  box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184.3);
+  border:3px solid rgba(255,255,255.4);
   aspect-ratio:.72;
 }
 .buy-box { background:#fff; border-radius:var(--r-md); padding:28px; box-shadow:var(--sh-md); margin-top:24px; }
@@ -42,7 +42,7 @@
   box-shadow:var(--sh-sm); text-align:center;
 }
 .spread-card .page-art { font-size:3rem; margin-bottom:12px; }
-.spread-card p { font-family:var(--font-display); font-size:.95rem; font-weight:600; font-style:italic; color:var(--dark); }
+.spread-card p { font-family:var(--font-display); font-size:.95rem; font-weight:600; color:var(--dark); }
 @media(max-width:900px){ .book-hero-grid{grid-template-columns:1fr;} .spread-grid{grid-template-columns:1fr 1fr;} }
 @media(max-width:560px){ .spread-grid{grid-template-columns:1fr;} }
 
@@ -50,12 +50,11 @@
 .ebook-page { padding-top:var(--nav-h); min-height:100vh; background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%); }
 .ebook-hero { max-width:var(--max-w); margin:0 auto; padding:72px var(--sp-md) 0; display:grid; grid-template-columns:1.1fr 1fr; gap:80px; align-items:center; }
 .ebook-cover-3d { position:relative; display:flex; justify-content:center; }
-.ebook-cover-3d img { width:280px; border-radius:var(--r-md); box-shadow:var(--sh-lg),-12px 16px 48px rgba(74,154,184,.25); transition:transform .4s; }
+.ebook-cover-3d img { width:280px; border-radius:var(--r-md); box-shadow:var(--sh-lg),-12px 16px 48px rgba(74,154,184.25); transition:transform .4s; }
 .ebook-cover-3d img:hover { transform:rotate(-4deg) scale(1.03); }
 .ebook-spine { position:absolute; left:calc(50% - 154px); top:6px; bottom:6px; width:16px; background:var(--sky-dark); border-radius:4px 0 0 4px; }
 .float-badge { position:absolute; top:-12px; right:calc(50% - 152px); background:var(--yellow); color:var(--brown-dark); font-family:var(--font-display); font-weight:700; font-size:.8rem; padding:7px 16px; border-radius:var(--r-full); box-shadow:var(--sh-sm); white-space:nowrap; }
 .float-secure { position:absolute; bottom:24px; left:calc(50% - 172px); background:#fff; font-family:var(--font-display); font-weight:700; font-size:.75rem; padding:8px 14px; border-radius:var(--r-full); box-shadow:var(--sh-sm); color:var(--mid); display:flex; align-items:center; gap:6px; white-space:nowrap; }
-.ebook-info .section-label { margin-bottom:var(--sp-sm); }
 .ebook-info h1 { font-size:clamp(2rem,4vw,3rem); margin-bottom:16px; }
 .price-row { display:flex; align-items:baseline; gap:12px; margin-bottom:8px; }
 .price-now { font-family:var(--font-display); font-weight:700; font-size:3rem; color:var(--dark); line-height:1; }
@@ -65,7 +64,7 @@
 .what-inside h3 { font-size:.95rem; margin-bottom:14px; }
 .inside-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
 .inside-list li { display:flex; align-items:center; gap:10px; font-size:.92rem; color:var(--mid); }
-.inside-list li::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; }
+.inside-list li::before { content:''; color:var(--green); font-weight:700; flex-shrink:0; }
 .buy-btn { width:100%; padding:18px; font-size:1.05rem; justify-content:center; margin-bottom:12px; }
 .trust-row { display:flex; gap:20px; flex-wrap:wrap; }
 .trust-item { display:flex; align-items:center; gap:6px; font-size:.78rem; color:var(--light-text); font-family:var(--font-display); }
@@ -76,7 +75,7 @@
 .preview-pages { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
 .preview-card { border-radius:var(--r-md); overflow:hidden; box-shadow:var(--sh-sm); position:relative; }
 .preview-card img { width:100%; display:block; aspect-ratio:.75; object-fit:cover; background:var(--sky-xlight); }
-.preview-label { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,.6)); padding:16px 12px 10px; color:#fff; font-family:var(--font-display); font-weight:700; font-size:.82rem; }
+.preview-label { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0.6)); padding:16px 12px 10px; color:#fff; font-family:var(--font-display); font-weight:700; font-size:.82rem; }
 .preview-blur { filter:blur(6px); }
 
 /* Compare section */
@@ -87,8 +86,8 @@
 .compare-title { font-family:var(--font-display); font-weight:700; font-size:1rem; margin-bottom:14px; }
 .compare-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
 .compare-list li { font-size:.85rem; color:var(--mid); display:flex; gap:8px; }
-.compare-list li.yes::before { content:'✓'; color:var(--green); font-weight:700; }
-.compare-list li.no::before  { content:'✗'; color:var(--red); font-weight:700; }
+.compare-list li.yes::before { content:''; color:var(--green); font-weight:700; }
+.compare-list li.no::before  { content:''; color:var(--red); font-weight:700; }
 
 @media(max-width:960px){ .ebook-hero{grid-template-columns:1fr; gap:48px;} .ebook-cover-3d{order:-1;} .preview-pages{grid-template-columns:1fr 1fr;} .compare-grid{grid-template-columns:1fr;} }
 @media(max-width:560px){ .preview-pages{grid-template-columns:1fr;} .price-now{font-size:2.4rem;} }
@@ -98,7 +97,7 @@
 <link rel="canonical" href="https://threebabybirdies.com/book.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
-<meta property="og:title" content="The Book — Three Baby Birdies">
+<meta property="og:title" content="The Book, Three Baby Birdies">
 <meta property="og:description" content="The full illustrated story of Three Baby Birdies as an instant PDF for $4.99, or on Kindle and in paperback. Written for ages 2–6 and made to be read out loud.">
 <meta property="og:url" content="https://threebabybirdies.com/book.html">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
@@ -106,7 +105,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Book — Three Baby Birdies">
+<meta name="twitter:title" content="The Book, Three Baby Birdies">
 <meta name="twitter:description" content="The full illustrated story of Three Baby Birdies as an instant PDF for $4.99, or on Kindle and in paperback. Written for ages 2–6 and made to be read out loud.">
 <meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -178,22 +177,21 @@
           <div class="price-note">Instant PDF &middot; one-time &middot; keep forever</div>
           <div class="buy-stack">
             <button class="btn btn-red buy-btn" id="buy-btn" onclick="startEbookCheckout()" style="justify-content:center;">
-              <i data-lucide="download" style="width:18px;height:18px;"></i> Get the PDF &mdash; $4.99
+              Get the PDF, $4.99
             </button>
-            <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-outline" style="justify-content:center;"><i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Prefer Kindle? Buy on Amazon</a>
-            <a href="contact.html" class="btn btn-outline" style="justify-content:center;"><i data-lucide="pen-line" style="width:16px;height:16px;"></i> Order a signed paperback</a>
+            <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-outline" style="justify-content:center;">Prefer Kindle? Buy on Amazon</a>
+            <a href="contact.html" class="btn btn-outline" style="justify-content:center;">Order a signed paperback</a>
           </div>
           <div class="trust-row" style="justify-content:center;">
-            <span class="trust-item"><i data-lucide="shield-check" style="width:13px;height:13px;color:var(--green);"></i> Secure payment via Stripe</span>
-            <span class="trust-item"><i data-lucide="download" style="width:13px;height:13px;color:var(--sky-dark);"></i> Download straight after payment</span>
+            <span class="trust-item">Secure payment via Stripe</span>
+            <span class="trust-item">Download straight after payment</span>
           </div>
           <div id="checkout-err"></div>
         </div>
       </div>
       <div>
-        <span class="section-label"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</span>
         <h1 style="margin:12px 0 20px;">Three Baby<br>Birdies</h1>
-        <p style="margin-bottom:16px;">Written by <strong>Iris Scarfone</strong> and illustrated by <strong>Ronald Scarfone</strong>, Three Baby Birdies is a cheerful, rhythmic tale following three little red birds in their nest on a tree branch — with a bright blue sky, fluffy clouds, and a warm sun shining above.</p>
+        <p style="margin-bottom:16px;">Written by <strong>Iris Scarfone</strong> and illustrated by <strong>Ronald Scarfone</strong>, Three Baby Birdies is a cheerful, rhythmic tale following three little red birds in their nest on a tree branch, with a bright blue sky, fluffy clouds, and a warm sun shining above.</p>
         <p style="margin-bottom:24px;">Written in rhyming language that makes every read-aloud a joy, and illustrated so young children can follow and understand the story on their own terms. Perfect for bedtime, story time, and classroom read-alouds.</p>
         <div class="meta-grid">
           <div class="meta-chip"><div class="meta-chip-label">Age Range</div><div class="meta-chip-val">Ages 2–6</div></div>
@@ -204,14 +202,14 @@
           <div class="meta-chip"><div class="meta-chip-label">Publisher</div><div class="meta-chip-val">Independent</div></div>
         </div>
         <div class="format-pills">
-          <span class="format-pill"><i data-lucide="download" style="width:13px;height:13px;"></i> PDF from us</span>
-          <span class="format-pill"><i data-lucide="smartphone" style="width:13px;height:13px;"></i> Kindle eBook</span>
-          <span class="format-pill"><i data-lucide="book" style="width:13px;height:13px;"></i> Paperback</span>
-          <span class="format-pill"><i data-lucide="pen-line" style="width:13px;height:13px;"></i> Signed Copy</span>
-          <span class="format-pill"><i data-lucide="building-2" style="width:13px;height:13px;"></i> School Orders</span>
+          <span class="format-pill">PDF from us</span>
+          <span class="format-pill">Kindle eBook</span>
+          <span class="format-pill">Paperback</span>
+          <span class="format-pill">Signed Copy</span>
+          <span class="format-pill">School Orders</span>
         </div>
         <div style="background:var(--cream);border-radius:var(--r-md);padding:20px;margin-top:8px;">
-          <p style="font-size:.88rem;color:var(--light-text);font-style:italic;">"Perfect for bedtime, story time, and little readers who love nature and gentle adventures."</p>
+          <p style="font-size:.88rem;color:var(--light-text);">"Perfect for bedtime, story time, and little readers who love nature and gentle adventures."</p>
         </div>
       </div>
     </div>
@@ -222,7 +220,6 @@
 <section class="section" style="background:#fff;">
   <div class="container" style="max-width:800px;">
     <div class="section-header">
-      <span class="section-label"><i data-lucide="quote" style="width:13px;height:13px;"></i> A taste of the story</span>
       <h2>Listen to the rhythm</h2>
     </div>
     <div class="excerpt-box">
@@ -232,12 +229,12 @@
         It is just as easy<br>
         as easy as pie."
       </div>
-      <p style="font-size:.85rem;color:var(--sky-dark);">— from Three Baby Birdies by Iris Scarfone</p>
+      <p style="font-size:.85rem;color:var(--sky-dark);">, from Three Baby Birdies by Iris Scarfone</p>
     </div>
     <div class="spread-grid">
-      <div class="spread-card"><div class="page-art"><i data-lucide="egg" style="width:48px;height:48px;color:var(--brown);"></i></div><p>"Three little birds sat in their nest, on a branch up high, above all the rest."</p></div>
-      <div class="spread-card"><div class="page-art"><i data-lucide="sun" style="width:48px;height:48px;color:var(--yellow);"></i></div><p>"A bright blue sky, a warm yellow sun — the three baby birdies knew spring had begun."</p></div>
-      <div class="spread-card"><div class="page-art"><i data-lucide="feather" style="width:48px;height:48px;color:var(--sky-dark);"></i></div><p>"Chirp chirp chirp, said the first little bird. The sweetest of songs that was ever heard."</p></div>
+      <div class="spread-card"><p>"Three little birds sat in their nest, on a branch up high, above all the rest."</p></div>
+      <div class="spread-card"><p>"A bright blue sky, a warm yellow sun, the three baby birdies knew spring had begun."</p></div>
+      <div class="spread-card"><p>"Chirp chirp chirp, said the first little bird. The sweetest of songs that was ever heard."</p></div>
     </div>
     <p style="text-align:center;margin-top:20px;font-size:.85rem;color:var(--light-text);">Sample text for illustration purposes. Final book text may vary.</p>
   </div>
@@ -247,14 +244,13 @@
 <section class="section" style="background:var(--cream);">
   <div class="container">
     <div class="section-header">
-      <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="lightbulb" style="width:13px;height:13px;"></i> Why parents love it</span>
       <h2>Built for the way children learn</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;">
-      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="repeat-2" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Repetition</h3><p style="font-size:.88rem;">Builds pattern recognition and word familiarity through repetition children enjoy.</p></div>
-      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="music" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Rhyme</h3><p style="font-size:.88rem;">Rhythmic language makes read-alouds fun and helps children predict what comes next.</p></div>
-      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="image" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Visual match</h3><p style="font-size:.88rem;">Illustrations depict exactly what the text describes — connecting words to images.</p></div>
-      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"><i data-lucide="clock" style="width:32px;height:32px;color:var(--sky-dark);"></i></div><h3 style="font-size:1rem;margin-bottom:8px;">Right length</h3><p style="font-size:.88rem;">Short enough to hold a young child's attention from first page to last, every time.</p></div>
+      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"></div><h3 style="font-size:1rem;margin-bottom:8px;">Repetition</h3><p style="font-size:.88rem;">Builds pattern recognition and word familiarity through repetition children enjoy.</p></div>
+      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"></div><h3 style="font-size:1rem;margin-bottom:8px;">Rhyme</h3><p style="font-size:.88rem;">Rhythmic language makes read-alouds fun and helps children predict what comes next.</p></div>
+      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"></div><h3 style="font-size:1rem;margin-bottom:8px;">Visual match</h3><p style="font-size:.88rem;">Illustrations depict exactly what the text describes, connecting words to images.</p></div>
+      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"></div><h3 style="font-size:1rem;margin-bottom:8px;">Right length</h3><p style="font-size:.88rem;">Short enough to hold a young child's attention from first page to last, every time.</p></div>
     </div>
   </div>
 </section>
@@ -262,39 +258,38 @@
 <!-- WHAT'S INSIDE PREVIEW -->
 <section class="section preview-section">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label"><i data-lucide="eye" style="width:13px;height:13px;"></i> Preview</span>
+    <div class="section-header">
       <h2>A peek inside the story</h2>
       <p>Warm, rhythmic language and illustrations your little ones will love.</p>
     </div>
     <div class="preview-pages">
-      <div class="preview-card reveal">
+      <div class="preview-card">
         <div style="background:linear-gradient(135deg,#D6EDF8,#C8E6F5);aspect-ratio:.75;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;">
           <div style="display:flex;gap:6px;justify-content:center;align-items:flex-end;"><img src="assets/birdie-left.png" alt="" aria-hidden="true" class="mascot" style="width:54px;" loading="lazy" decoding="async" width="260" height="288"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:64px;" loading="lazy" decoding="async" width="280" height="276"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:54px;" loading="lazy" decoding="async" width="260" height="292"></div>
           <div style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--sky-dark);margin-top:12px;">Three Baby Birdies</div>
-          <div style="font-size:.85rem;color:var(--mid);margin-top:8px;font-style:italic;">"Chirp chirp chirp,<br>little birds in the nest..."</div>
+          <div style="font-size:.85rem;color:var(--mid);margin-top:8px;">"Chirp chirp chirp,<br>little birds in the nest..."</div>
         </div>
         <div class="preview-label">Cover Page</div>
       </div>
-      <div class="preview-card reveal">
+      <div class="preview-card">
         <div style="background:linear-gradient(135deg,var(--sky-xlight),#E8F5FB);aspect-ratio:.75;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;filter:blur(4px);">
-          <div style="font-size:3rem;">☁️🌤️</div>
+          <div style="font-size:3rem;"></div>
           <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--sky-dark);margin-top:12px;">Blue sky above...</div>
-          <div style="font-size:.82rem;color:var(--mid);margin-top:8px;font-style:italic;">"Flap your wings and try to fly,<br>it is just as easy as pie."</div>
+          <div style="font-size:.82rem;color:var(--mid);margin-top:8px;">"Flap your wings and try to fly,<br>it is just as easy as pie."</div>
         </div>
         <div class="preview-label">Page 8 (preview blurred)</div>
       </div>
-      <div class="preview-card reveal">
+      <div class="preview-card">
         <div style="background:linear-gradient(135deg,#FFF8E1,#FFF3CC);aspect-ratio:.75;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;filter:blur(4px);">
-          <div style="font-size:3rem;">☀️🌿</div>
+          <div style="font-size:3rem;"></div>
           <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--brown);margin-top:12px;">A warm sun shines...</div>
-          <div style="font-size:.82rem;color:var(--mid);margin-top:8px;font-style:italic;">"Tweet tweet tweet,<br>the birdies all sing..."</div>
+          <div style="font-size:.82rem;color:var(--mid);margin-top:8px;">"Tweet tweet tweet,<br>the birdies all sing..."</div>
         </div>
         <div class="preview-label">Page 18 (preview blurred)</div>
       </div>
     </div>
     <div style="text-align:center;margin-top:40px;">
-      <button class="btn btn-red btn-lg" onclick="startEbookCheckout()"><i data-lucide="download" style="width:18px;height:18px;"></i> Get Full Story — $4.99</button>
+      <button class="btn btn-red btn-lg" onclick="startEbookCheckout()">Get Full Story, $4.99</button>
     </div>
   </div>
 </section>
@@ -302,15 +297,14 @@
 <!-- COMPARE -->
 <section class="section" style="background:var(--cream);">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label"><i data-lucide="layers" style="width:13px;height:13px;"></i> Two ways to read it</span>
+    <div class="section-header">
       <h2>PDF from us, or Kindle from Amazon</h2>
     </div>
     <div class="compare-grid">
-      <div class="compare-card ours reveal">
-        <div class="compare-title">🐦 Three Baby Birdies PDF — $4.99</div>
+      <div class="compare-card ours">
+        <div class="compare-title">Three Baby Birdies PDF, $4.99</div>
         <ul class="compare-list">
-          <li class="yes">Works on ANY device — no Kindle required</li>
+          <li class="yes">Works on ANY device, no Kindle required</li>
           <li class="yes">Printable pages (300 DPI)</li>
           <li class="yes">Works offline, forever</li>
           <li class="yes">Email it to family &amp; teachers</li>
@@ -318,8 +312,8 @@
           <li class="yes">Download trouble? We fix it within 7 days</li>
         </ul>
       </div>
-      <div class="compare-card theirs reveal">
-        <div class="compare-title">📱 Amazon Kindle Edition</div>
+      <div class="compare-card theirs">
+        <div class="compare-title">Amazon Kindle Edition</div>
         <ul class="compare-list">
           <li class="yes">Available on Kindle app</li>
           <li class="no">Requires Kindle or Kindle app</li>
@@ -336,16 +330,15 @@
 <!-- WHAT YOU GET -->
 <section class="section" style="background:var(--sky-light);">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label"><i data-lucide="download" style="width:13px;height:13px;"></i> What you get</span>
+    <div class="section-header">
       <h2>The whole story, on any screen</h2>
-      <p style="max-width:520px;margin:12px auto 0;">A PDF of <em>Three Baby Birdies</em> &mdash; the same story and artwork as the paperback.</p>
+      <p style="max-width:520px;margin:12px auto 0;">A PDF of <em>Three Baby Birdies</em>, with the same story and artwork as the paperback.</p>
     </div>
     <div class="t-grid">
       <div class="t-card">
         <p class="t-text">The download link appears the moment your payment clears, and it is emailed to you as well.</p>
         <div class="t-author">
-          <div class="t-avatar" style="background:var(--sky);"><i data-lucide="zap" style="width:16px;height:16px;"></i></div>
+          <div class="t-avatar" style="background:var(--sky);"></div>
           <div>
             <div class="t-name">Instant download</div>
             <div class="t-role">Nothing to wait for in the post</div>
@@ -353,9 +346,9 @@
         </div>
       </div>
       <div class="t-card">
-        <p class="t-text">Open it at bedtime on whatever is to hand &mdash; or print it at home if your child would rather hold the pages.</p>
+        <p class="t-text">Open it at bedtime on whatever is to hand. Print it at home if your child would rather hold the pages.</p>
         <div class="t-author">
-          <div class="t-avatar" style="background:var(--green);"><i data-lucide="smartphone" style="width:16px;height:16px;"></i></div>
+          <div class="t-avatar" style="background:var(--green);"></div>
           <div>
             <div class="t-name">Reads on any screen</div>
             <div class="t-role">Phone, tablet or laptop</div>
@@ -365,7 +358,7 @@
       <div class="t-card">
         <p class="t-text">All of the artwork from the printed book, so a child who cannot read yet can still follow the story.</p>
         <div class="t-author">
-          <div class="t-avatar" style="background:var(--brown);"><i data-lucide="palette" style="width:16px;height:16px;"></i></div>
+          <div class="t-avatar" style="background:var(--brown);"></div>
           <div>
             <div class="t-name">Every illustration</div>
             <div class="t-role">Art by Ronald Scarfone</div>
@@ -378,15 +371,14 @@
 
 <section class="section" style="background:var(--sky-light);text-align:center;">
   <div class="container" style="max-width:560px;">
-    <div style="margin-bottom:16px;"><i data-lucide="feather" style="width:48px;height:48px;color:var(--sky-dark);"></i></div>
+    <div style="margin-bottom:16px;"></div>
     <h2 style="margin-bottom:12px;">Ready to read together?</h2>
-    <p style="max-width:520px;margin:0 auto 28px;">The full illustrated story, on whatever screen is to hand &mdash; or printed at home.</p>
-    <button class="btn btn-red btn-lg buy-btn" onclick="startEbookCheckout()"><i data-lucide="download" style="width:18px;height:18px;"></i> Get the PDF &mdash; $4.99</button>
+    <p style="max-width:520px;margin:0 auto 28px;">The full illustrated story, on whatever screen is to hand, or printed at home.</p>
+    <button class="btn btn-red btn-lg buy-btn" onclick="startEbookCheckout()">Get the PDF, $4.99</button>
   </div>
   </section>
 
 <footer id="footer"></footer>
-<script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
 <script>
@@ -394,10 +386,6 @@ const API = 'https://api.threebabybirdies.com';
 const SITE = 'https://mamabird-chirpy.netlify.app';
 
 // Scroll reveal
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 async function startEbookCheckout() {
   const btn = document.getElementById('buy-btn');
@@ -418,8 +406,7 @@ async function startEbookCheckout() {
     window.location.href = data.checkout_url;
   } catch (err) {
     errEl.style.display = 'block';
-    errEl.textContent = '⚠️ ' + (err.message || 'Could not start payment. Please try again.');
-    if (btn) { btn.disabled = false; btn.innerHTML = '<i data-lucide="download" style="width:18px;height:18px;"></i> Download for $4.99 — Instant Access'; if (window.lucide) lucide.createIcons({nodes:[btn]}); }
+    errEl.textContent = '⚠️ ' + (err.message || 'Could not start payment. Please try again.'); }
   }
 }
 </script>

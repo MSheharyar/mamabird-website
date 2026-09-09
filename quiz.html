@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Find your child's starting point — Three Baby Birdies</title>
+<title>Find your child's starting point, Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -120,7 +120,7 @@ body { background:var(--cream); }
 <link rel="canonical" href="https://threebabybirdies.com/quiz.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
-<meta property="og:title" content="Find your child's starting point — Three Baby Birdies">
+<meta property="og:title" content="Find your child's starting point, Three Baby Birdies">
 <meta property="og:description" content="Four questions, about a minute. Chirpy works out where your child should start and which subject to open first.">
 <meta property="og:url" content="https://threebabybirdies.com/quiz.html">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
@@ -128,7 +128,7 @@ body { background:var(--cream); }
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Find your child's starting point — Three Baby Birdies">
+<meta name="twitter:title" content="Find your child's starting point, Three Baby Birdies">
 <meta name="twitter:description" content="Four questions, about a minute. Chirpy works out where your child should start and which subject to open first.">
 <meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -166,7 +166,6 @@ body { background:var(--cream); }
 </main>
 
 <footer id="footer"></footer>
-<script src="https://unpkg.com/lucide@0.451.0/dist/umd/lucide.min.js"></script>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
 <script>
@@ -174,7 +173,7 @@ body { background:var(--cream); }
    Starting-point quiz.
 
    Four questions then an email step. The answers are not a
-   personality test — each one maps onto something the product
+   personality test, each one maps onto something the product
    genuinely uses: the age sets Chirpy's reading level, the subject
    decides which tile opens first, and the reading stage picks the
    starting difficulty. Nothing here promises a feature that does
@@ -202,7 +201,7 @@ body { background:var(--cream); }
       key: 'subject',
       says: 'Good. What shall we open first?',
       title: 'What would you like them to work on?',
-      note: 'You can switch any time — all six are always there.',
+      note: 'You can switch any time, all six are always there.',
       options: [
         { v: 'spelling', e: '✏️', label: 'Spelling' },
         { v: 'rhyming',  e: '🎵', label: 'Rhyming' },
@@ -216,7 +215,7 @@ body { background:var(--cream); }
       key: 'reading',
       says: 'Nearly there.',
       title: 'How is reading going right now?',
-      note: 'Be honest — it only changes where Chirpy begins.',
+      note: 'Be honest, it only changes where Chirpy begins.',
       options: [
         { v: 'not-yet',  e: '🌿', label: 'Not reading yet', note: 'Listens to stories, knows some letters' },
         { v: 'sounding', e: '🔤', label: 'Sounding words out', note: 'Getting there, needs a hand' },
@@ -409,13 +408,13 @@ body { background:var(--cream); }
     var classroom = answers.when === 'class';
 
     var plan = classroom
-      ? '<strong>Classroom</strong> &mdash; you mentioned a class, and that plan covers a whole group with one login rather than one child.'
-      : '<strong>Free for 3 months</strong> &mdash; every subject, no card needed. Most families never need more than the Individual plan after that.';
+      ? '<strong>Classroom</strong>, you mentioned a class, and that plan covers a whole group with one login rather than one child.'
+      : '<strong>Free for 3 months</strong>, every subject, no card needed. Most families never need more than the Individual plan after that.';
 
     var length = answers.when === 'bedtime'
       ? 'Short sessions, ten minutes or so, work best before bed.'
       : (answers.when === 'weekend'
-          ? 'Longer weekend sessions are fine &mdash; Chirpy keeps going as long as your child does.'
+          ? 'Longer weekend sessions are fine, Chirpy keeps going as long as your child does.'
           : 'Fifteen minutes after school is plenty to start.');
 
     elStep.innerHTML =
@@ -437,7 +436,6 @@ body { background:var(--cream); }
     try { sessionStorage.setItem('chatbot_subject', subj); } catch (e) {}
 
     elLive.textContent = 'Your plan: start with ' + SUBJECT_LABEL[subj] + '.';
-    if (window.lucide) lucide.createIcons();
   }
 
   function render() {
