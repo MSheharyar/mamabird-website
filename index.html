@@ -216,6 +216,28 @@
   .hero-mini { display:none; }
 }
 </style>
+<!-- SEO / social / icons -->
+<meta name="description" content="A gentle rhyming picture book for ages 2–6 by Iris Scarfone, illustrated by Ronald Scarfone — plus Chirpy's AI classroom for ages 2–8. Read it, play it, start free.">
+<link rel="canonical" href="https://threebabybirdies.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Three Baby Birdies">
+<meta property="og:title" content="Three Baby Birdies — A Read-Aloud Story by Iris Scarfone">
+<meta property="og:description" content="A gentle rhyming picture book for ages 2–6 by Iris Scarfone, illustrated by Ronald Scarfone — plus Chirpy's AI classroom for ages 2–8. Read it, play it, start free.">
+<meta property="og:url" content="https://threebabybirdies.com/">
+<meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Three Baby Birdies — A Read-Aloud Story by Iris Scarfone">
+<meta name="twitter:description" content="A gentle rhyming picture book for ages 2–6 by Iris Scarfone, illustrated by Ronald Scarfone — plus Chirpy's AI classroom for ages 2–8. Read it, play it, start free.">
+<meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#6EB4D4">
+<!-- /SEO -->
 </head>
 <body>
 
@@ -230,9 +252,9 @@
     <div class="blob" style="width:320px;height:320px;background:#F5C200;opacity:.15;top:80px;right:-60px;animation-duration:13s;animation-delay:-4s;"></div>
     <div class="blob" style="width:250px;height:250px;background:#7C3AED;opacity:.12;bottom:20px;left:35%;animation-duration:11s;animation-delay:-2s;"></div>
     <!-- Floating birds -->
-    <img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot float" style="position:absolute;top:18%;left:12%;width:56px;opacity:.55;animation-duration:3.8s;">
-    <img src="assets/birdie-left.png" alt="" aria-hidden="true" class="mascot float float-d1" style="position:absolute;top:25%;right:18%;width:42px;opacity:.45;animation-duration:4.5s;">
-    <img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot float float-d2" style="position:absolute;bottom:28%;left:28%;width:34px;opacity:.35;animation-duration:5.2s;">
+    <img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot float" style="position:absolute;top:18%;left:12%;width:56px;opacity:.55;animation-duration:3.8s;" loading="lazy" decoding="async" width="280" height="276">
+    <img src="assets/birdie-left.png" alt="" aria-hidden="true" class="mascot float float-d1" style="position:absolute;top:25%;right:18%;width:42px;opacity:.45;animation-duration:4.5s;" loading="lazy" decoding="async" width="260" height="288">
+    <img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot float float-d2" style="position:absolute;bottom:28%;left:28%;width:34px;opacity:.35;animation-duration:5.2s;" loading="lazy" decoding="async" width="260" height="292">
   </div>
   <div class="hero-inner">
     <div>
@@ -270,14 +292,14 @@
         <div class="book-3d float" style="animation-duration:4s;">
           <div class="book-spine"></div>
           <div class="book-cover">
-            <img src="assets/frontpage.png" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="assets/frontpage.jpg" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;" fetchpriority="high" decoding="async" width="760" height="761">
           </div>
           <div class="book-float book-float-top"><i data-lucide="star" style="width:12px;height:12px;"></i> Ages 2–6</div>
           <div class="book-float book-float-bot"><i data-lucide="graduation-cap" style="width:12px;height:12px;"></i> + AI Classroom</div>
         </div>
         <!-- Chirpy mini card floating beside book -->
         <div class="glass-card float float-d1 hero-mini" style="position:absolute;right:-40px;bottom:40px;padding:12px 16px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);display:flex;align-items:center;gap:10px;white-space:nowrap;animation-duration:5s;">
-          <span class="mascot-badge" style="width:38px;height:38px;"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></span>
+          <span class="mascot-badge" style="width:38px;height:38px;"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
           <div>
             <div style="font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--dark);">Chirpy says hi!</div>
             <div style="font-size:.7rem;color:var(--sky-dark);">● Online &amp; ready to teach</div>
@@ -295,8 +317,8 @@
       <div class="book-col-display">
         <div style="position:relative;display:inline-block;">
           <div style="position:absolute;left:-14px;top:8px;bottom:8px;width:14px;background:var(--sky-dark);border-radius:4px 0 0 4px;box-shadow:-3px 0 10px rgba(0,0,0,.15);"></div>
-          <img src="assets/frontpage.png" alt="Three Baby Birdies book cover"
-               style="width:280px;border-radius:var(--r-md);box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);border:3px solid rgba(255,255,255,.6);display:block;">
+          <img src="assets/frontpage.jpg" alt="Three Baby Birdies book cover"
+               style="width:280px;border-radius:var(--r-md);box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);border:3px solid rgba(255,255,255,.6);display:block;" loading="lazy" decoding="async" width="760" height="761">
           <div class="book-float" style="top:-14px;right:-24px;background:var(--yellow);color:var(--brown-dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;"><i data-lucide="star" style="width:12px;height:12px;"></i> Ages 2–6</div>
           <div class="book-float" style="bottom:20px;left:-32px;background:#fff;color:var(--dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;border:1px solid var(--cream-dark);"><i data-lucide="volume-2" style="width:12px;height:12px;"></i> Read-Aloud</div>
         </div>
@@ -328,23 +350,23 @@
 <!-- MARQUEE STRIP -->
 <div class="marquee-wrap" style="overflow:hidden;padding:14px 0;background:var(--purple);">
   <div class="marquee-track">
-    <span class="marquee-item"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;"> <span>Chirpy’s Classroom</span></span>
+    <span class="marquee-item"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="280" height="276"> <span>Chirpy’s Classroom</span></span>
     <span class="marquee-item">✏️ <span>Spelling</span></span>
     <span class="marquee-item">🎵 <span>Rhyming</span></span>
     <span class="marquee-item">🔢 <span>Math</span></span>
     <span class="marquee-item">📝 <span>Grammar</span></span>
     <span class="marquee-item">🧩 <span>Puzzles</span></span>
     <span class="marquee-item">📖 <span>Stories</span></span>
-    <span class="marquee-item"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;"> <span>Mama Bird</span></span>
+    <span class="marquee-item"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="260" height="292"> <span>Mama Bird</span></span>
     <span class="marquee-item">⭐ <span>Free 3-month trial</span></span>
-    <span class="marquee-item"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;"> <span>Chirpy’s Classroom</span></span>
+    <span class="marquee-item"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="280" height="276"> <span>Chirpy’s Classroom</span></span>
     <span class="marquee-item">✏️ <span>Spelling</span></span>
     <span class="marquee-item">🎵 <span>Rhyming</span></span>
     <span class="marquee-item">🔢 <span>Math</span></span>
     <span class="marquee-item">📝 <span>Grammar</span></span>
     <span class="marquee-item">🧩 <span>Puzzles</span></span>
     <span class="marquee-item">📖 <span>Stories</span></span>
-    <span class="marquee-item"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;"> <span>Mama Bird</span></span>
+    <span class="marquee-item"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="260" height="292"> <span>Mama Bird</span></span>
     <span class="marquee-item">⭐ <span>Free 3-month trial</span></span>
   </div>
 </div>
@@ -364,7 +386,7 @@
   <div class="container">
     <div class="game-banner">
       <div class="game-banner-art" aria-hidden="true">
-        <img src="assets/chirpy.png" alt="" class="mascot float" style="width:96px;">
+        <img src="assets/chirpy.png" alt="" class="mascot float" style="width:96px;" loading="lazy" decoding="async" width="280" height="276">
         <span class="gb-branch gb-branch-a"></span>
         <span class="gb-branch gb-branch-b"></span>
       </div>
@@ -425,7 +447,7 @@
     <div class="feature-cards-3">
       <div class="fcard reveal">
         <div class="fcard-head c-sky">
-          <div class="fcard-icon mascot-badge" style="background:rgba(255,255,255,.22);"><img src="assets/chirpy.png" alt="" class="mascot"></div>
+          <div class="fcard-icon mascot-badge" style="background:rgba(255,255,255,.22);"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
           <div><div class="fcard-title">Meet Chirpy</div><div class="fcard-sub">For kids ages 2–8</div></div>
         </div>
         <div class="fcard-body">
@@ -434,7 +456,7 @@
       </div>
       <div class="fcard reveal">
         <div class="fcard-head c-green">
-          <div class="fcard-icon mascot-badge" style="background:rgba(255,255,255,.22);"><img src="assets/mamabird.png" alt="" class="mascot"></div>
+          <div class="fcard-icon mascot-badge" style="background:rgba(255,255,255,.22);"><img src="assets/mamabird.png" alt="" class="mascot" loading="lazy" decoding="async" width="260" height="292"></div>
           <div><div class="fcard-title">Mama Bird</div><div class="fcard-sub">For parents & teachers</div></div>
         </div>
         <div class="fcard-body">
@@ -510,7 +532,7 @@
     <div class="session-wrap">
       <div class="session-window">
         <div class="session-bar">
-          <span class="mascot-badge"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></span>
+          <span class="mascot-badge"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
           <div>
             <div class="session-who">Chirpy</div>
             <div class="session-sub">&#9679; Spelling &middot; age 5</div>
@@ -518,7 +540,7 @@
         </div>
         <div class="session-body">
           <div class="sm">
-            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot"></span>
+            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
             <div class="sm-bubble sm-bot">Tweet tweet! Which word shall we try?</div>
           </div>
           <div class="sm sm-kid">
@@ -526,7 +548,7 @@
             <div class="sm-bubble">how do you spell elephant</div>
           </div>
           <div class="sm">
-            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot"></span>
+            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
             <div class="sm-bubble sm-bot">Ooh, a big one! Let&rsquo;s do it together. It starts <strong>E &mdash; L &mdash; E</strong>&hellip; what sound comes next?</div>
           </div>
           <div class="sm sm-kid">
@@ -534,7 +556,7 @@
             <div class="sm-bubble">f</div>
           </div>
           <div class="sm">
-            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot"></span>
+            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
             <div class="sm-bubble sm-bot">Your ears are exactly right &mdash; it <em>does</em> say f! This word is sneaky though: it uses <strong>p</strong> and <strong>h</strong> together to make that sound. E-L-E-<strong>P-H</strong>&hellip; you&rsquo;re nearly there!</div>
           </div>
         </div>
@@ -568,7 +590,7 @@
         </div>
       </div>
       <div class="ebook-cover-wrap">
-        <img src="assets/frontpage.png" alt="Three Baby Birdies eBook" class="ebook-cover-img">
+        <img src="assets/frontpage.jpg" alt="Three Baby Birdies eBook" class="ebook-cover-img" loading="lazy" decoding="async" width="760" height="761">
         <div style="position:absolute;top:-12px;right:-12px;background:var(--yellow);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:.75rem;color:var(--brown-dark);text-align:center;line-height:1.2;">50%<br>OFF</div>
       </div>
     </div>
@@ -595,7 +617,7 @@
       <div style="display:flex;justify-content:center;">
         <div class="author-photo-frame">
           <div class="author-photo-box">
-            <img src="assets/author-image.jpg" alt="Iris Scarfone" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+            <img src="assets/author-image.jpg" alt="Iris Scarfone" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy" decoding="async" width="600" height="656">
           </div>
           <div class="author-accent"></div>
         </div>
@@ -694,7 +716,7 @@
 
 <footer id="footer"></footer>
 <div class="sticky-cta">
-  <img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot">
+  <img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" loading="lazy" decoding="async" width="280" height="276">
   <div class="sticky-cta-text">
     <b>Chirpy&rsquo;s Classroom</b>
     <span>Free for 3 months &middot; no card needed</span>

@@ -68,6 +68,28 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
 @media(max-width:700px){ .auth-wrap{grid-template-columns:1fr;} .auth-panel-left{display:none;} .form-row{grid-template-columns:1fr;} }
 @media(max-width:560px){ .auth-page{padding-left:16px;padding-right:16px;} .auth-panel-right{padding:32px 22px;} .auth-tabs{gap:0;} }
 </style>
+<!-- SEO / social / icons -->
+<meta name="description" content="Sign in to Chirpy's Classroom, or create a free account.">
+<link rel="canonical" href="https://threebabybirdies.com/login.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Three Baby Birdies">
+<meta property="og:title" content="Sign In / Register — Three Baby Birdies">
+<meta property="og:description" content="Sign in to Chirpy's Classroom, or create a free account.">
+<meta property="og:url" content="https://threebabybirdies.com/login.html">
+<meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sign In / Register — Three Baby Birdies">
+<meta name="twitter:description" content="Sign in to Chirpy's Classroom, or create a free account.">
+<meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#6EB4D4">
+<!-- /SEO -->
 </head>
 <body>
 
@@ -78,7 +100,7 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
   <div class="auth-wrap">
     <div class="auth-panel-left">
       <div style="margin-bottom:20px;"><i data-lucide="graduation-cap" style="width:56px;height:56px;color:#fff;"></i></div>
-      <h2>Chirpy's Classroom</h2>
+      <h1>Chirpy's Classroom</h1>
       <p>Join thousands of families learning with Chirpy and Mama Bird. Start your free 3-month trial today.</p>
       <ul class="auth-benefits">
         <li class="auth-benefit"><span class="auth-benefit-icon"><i data-lucide="gift" style="width:20px;height:20px;color:#fff;"></i></span><span class="auth-benefit-text">3 months free — no credit card needed</span></li>
@@ -96,11 +118,11 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
       <form class="auth-form active" id="form-login" onsubmit="return false;">
         <div class="form-group">
           <label class="form-label">Email address</label>
-          <input class="form-input" type="email" placeholder="you@example.com" autocomplete="email">
+          <input class="form-input" type="email" placeholder="you@example.com" autocomplete="email" aria-label="Email address">
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>
-          <input class="form-input" type="password" placeholder="Your password" autocomplete="current-password">
+          <input class="form-input" type="password" placeholder="Your password" autocomplete="current-password" aria-label="Password">
         </div>
         <div style="text-align:right;margin-top:-8px;">
           <a href="#" style="font-size:.8rem;color:var(--red);font-family:var(--font-display);font-weight:700;">Forgot password?</a>
@@ -120,16 +142,16 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" placeholder="First name" autocomplete="given-name"></div>
-          <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" placeholder="Last name" autocomplete="family-name"></div>
+          <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" placeholder="First name" autocomplete="given-name" aria-label="First name"></div>
+          <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" placeholder="Last name" autocomplete="family-name" aria-label="Last name"></div>
         </div>
         <div class="form-group">
           <label class="form-label">Email address</label>
-          <input class="form-input" type="email" placeholder="you@example.com" autocomplete="email">
+          <input class="form-input" type="email" placeholder="you@example.com" autocomplete="email" aria-label="Email address">
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>
-          <input class="form-input" type="password" placeholder="At least 8 characters" autocomplete="new-password">
+          <input class="form-input" type="password" placeholder="At least 8 characters" autocomplete="new-password" aria-label="Password">
         </div>
         <div class="form-check">
           <input type="checkbox" id="agree">

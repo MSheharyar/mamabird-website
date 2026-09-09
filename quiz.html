@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Find your child's starting point — Three Baby Birdies</title>
-<meta name="description" content="Four questions, about a minute. Chirpy works out where your child should start and which subject to open first.">
 <link rel="stylesheet" href="css/main.css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -115,6 +114,28 @@ body { background:var(--cream); }
   .q-caret { animation:none; }
 }
 </style>
+<!-- SEO / social / icons -->
+<meta name="description" content="Four questions, about a minute. Chirpy works out where your child should start and which subject to open first.">
+<link rel="canonical" href="https://threebabybirdies.com/quiz.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Three Baby Birdies">
+<meta property="og:title" content="Find your child's starting point — Three Baby Birdies">
+<meta property="og:description" content="Four questions, about a minute. Chirpy works out where your child should start and which subject to open first.">
+<meta property="og:url" content="https://threebabybirdies.com/quiz.html">
+<meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Find your child's starting point — Three Baby Birdies">
+<meta name="twitter:description" content="Four questions, about a minute. Chirpy works out where your child should start and which subject to open first.">
+<meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#6EB4D4">
+<!-- /SEO -->
 </head>
 <body>
 
@@ -128,7 +149,7 @@ body { background:var(--cream); }
 
     <div class="q-host">
       <div class="q-host-card">
-        <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot"></span>
+        <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
         <div>
           <div class="q-host-name">Chirpy</div>
           <div class="q-host-role">Your child&rsquo;s learning companion</div>
@@ -395,7 +416,7 @@ body { background:var(--cream); }
 
     elStep.innerHTML =
       '<div class="q-result-card">' +
-        '<img src="assets/chirpy.png" alt="" class="mascot" style="width:76px;margin:0 auto 14px;">' +
+        '<img src="assets/chirpy.png" alt="" class="mascot" style="width:76px;margin:0 auto 14px;" loading="lazy" decoding="async" width="280" height="276">' +
         '<h1 style="font-size:1.45rem;margin-bottom:8px;">Start with ' + esc(SUBJECT_LABEL[subj]) + '</h1>' +
         '<p class="q-result-sub">Set up for ' + esc(AGE_LABEL[age]) + ', ' + esc(READING_LABEL[answers.reading] || 'just starting out') + '. ' + length + '</p>' +
         '<div class="q-chips">' +

@@ -162,6 +162,28 @@
 @media(max-width:560px){ .features-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} .subject-detail-grid{grid-template-columns:1fr;} }
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
 </style>
+<!-- SEO / social / icons -->
+<meta name="description" content="Chirpy's Classroom is an AI learning companion for ages 2–8 — spelling, rhyming, numbers, grammar, puzzles and stories. Try it free, no signup needed.">
+<link rel="canonical" href="https://threebabybirdies.com/chatbot.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Three Baby Birdies">
+<meta property="og:title" content="Chirpy's Classroom — AI Learning Chatbot">
+<meta property="og:description" content="Chirpy's Classroom is an AI learning companion for ages 2–8 — spelling, rhyming, numbers, grammar, puzzles and stories. Try it free, no signup needed.">
+<meta property="og:url" content="https://threebabybirdies.com/chatbot.html">
+<meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chirpy's Classroom — AI Learning Chatbot">
+<meta name="twitter:description" content="Chirpy's Classroom is an AI learning companion for ages 2–8 — spelling, rhyming, numbers, grammar, puzzles and stories. Try it free, no signup needed.">
+<meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#6EB4D4">
+<!-- /SEO -->
 </head>
 <body>
 <nav id="nav"></nav>
@@ -179,7 +201,7 @@
       <p style="font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--mid);margin-bottom:10px;text-transform:uppercase;letter-spacing:.05em;">Choose your guide</p>
       <div class="char-cards-v2" id="char-cards">
         <button class="char-card-v2 active-chirpy" id="btn-chirpy" onclick="switchChar('chirpy')" style="border:none;text-align:left;cursor:pointer;">
-          <div class="char-avatar chirpy-av mascot-badge" style="color:var(--sky-dark);"><img src="assets/chirpy.png" alt="" class="mascot"></div>
+          <div class="char-avatar chirpy-av mascot-badge" style="color:var(--sky-dark);"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
           <div>
             <div class="char-name">Chirpy</div>
             <div class="char-role">Playful · Perfect for kids</div>
@@ -187,7 +209,7 @@
           <div style="margin-left:auto;"><i data-lucide="check-circle-2" style="width:18px;height:18px;color:var(--sky-dark);" id="chirpy-check"></i></div>
         </button>
         <button class="char-card-v2" id="btn-mama" onclick="switchChar('mama')" style="border:none;text-align:left;cursor:pointer;">
-          <div class="char-avatar mama-av mascot-badge" style="color:var(--green);"><img src="assets/mamabird.png" alt="" class="mascot"></div>
+          <div class="char-avatar mama-av mascot-badge" style="color:var(--green);"><img src="assets/mamabird.png" alt="" class="mascot" loading="lazy" decoding="async" width="260" height="292"></div>
           <div>
             <div class="char-name">Mama Bird</div>
             <div class="char-role">Nurturing · For parents & teachers</div>
@@ -221,7 +243,7 @@
     <div>
       <div class="chat-window-wrap">
         <div class="chat-topbar">
-          <div class="chat-topbar-avatar mascot-badge" id="topbar-avatar"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div>
+          <div class="chat-topbar-avatar mascot-badge" id="topbar-avatar"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
           <div>
             <div class="chat-topbar-name" id="topbar-name">Chirpy</div>
             <div class="chat-topbar-status">● Online · Spelling</div>
@@ -231,7 +253,7 @@
         <div class="chat-body" id="chat-body">
           <!-- Chirpy opening message -->
           <div class="msg chirpy" id="opening-msg">
-            <div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div>
+            <div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
             <div class="msg-bubble">Tweet tweet! 🐦 Hi there! I'm Chirpy, your real AI spelling tutor! I'm SO excited to learn with you today! 🌟<br><br>Here's your first word — listen carefully:<br><br><strong>C-A-T</strong> 🐱 — can you spell it back to me?</div>
           </div>
         </div>
@@ -333,14 +355,14 @@
     <div class="feature-cards-3">
       <div class="fcard reveal">
         <div class="fcard-head c-sky">
-          <div class="fcard-icon mascot-badge" style="color:#fff;"><img src="assets/chirpy.png" alt="" class="mascot"></div>
+          <div class="fcard-icon mascot-badge" style="color:#fff;"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
           <div><div class="fcard-title">Chirpy — For Kids</div><div class="fcard-sub">Playful AI learning companion</div></div>
         </div>
         <div class="fcard-body"><p>Spelling, rhyming, math, grammar, puzzles — Chirpy turns every lesson into a game. "Tweet tweet! Great try! Now let's spell it together!" No child ever feels wrong.</p></div>
       </div>
       <div class="fcard reveal">
         <div class="fcard-head c-green">
-          <div class="fcard-icon mascot-badge" style="color:#fff;"><img src="assets/mamabird.png" alt="" class="mascot"></div>
+          <div class="fcard-icon mascot-badge" style="color:#fff;"><img src="assets/mamabird.png" alt="" class="mascot" loading="lazy" decoding="async" width="260" height="292"></div>
           <div><div class="fcard-title">Mama Bird — For Parents</div><div class="fcard-sub">Lesson plans & guidance</div></div>
         </div>
         <div class="fcard-body"><p>Ask Mama Bird anything: "Make a 5-day Grade 1 spelling plan" and get a structured, ready-to-use lesson plan in seconds. Perfect for homeschoolers and classroom teachers.</p></div>
@@ -504,7 +526,7 @@ document.querySelectorAll('.subject-pill').forEach(pill => {
 function addMsg(type, html) {
   const div = document.createElement('div');
   div.className = `msg ${type}`;
-  const avatar = type === 'user' ? '👤' : '<img src="assets/chirpy.png" alt="Chirpy" class="mascot">';
+  const avatar = type === 'user' ? '👤' : '<img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276">';
   const avatarBg = type === 'user' ? 'var(--sky)' : 'var(--sky-light)';
   div.innerHTML = `<div class="msg-avatar" style="background:${avatarBg};">${avatar}</div><div class="msg-bubble${type==='chirpy'?' upsell-bubble':''}" style="${type==='chirpy'?'background:#fff;border:none;':''}">${html}</div>`;
   chatBody.appendChild(div);
@@ -515,7 +537,7 @@ function addMsg(type, html) {
 function addChirpyMsg(html) {
   const div = document.createElement('div');
   div.className = 'msg chirpy';
-  div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div><div class="msg-bubble">${html}</div>`;
+  div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div><div class="msg-bubble">${html}</div>`;
   chatBody.appendChild(div);
   chatBody.scrollTop = chatBody.scrollHeight;
   return div;
@@ -525,7 +547,7 @@ function showTyping() {
   const div = document.createElement('div');
   div.className = 'msg chirpy';
   div.id = 'typing-indicator';
-  div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div><div class="msg-bubble"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+  div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div><div class="msg-bubble"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
   chatBody.appendChild(div);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
@@ -540,7 +562,7 @@ function showUpsell() {
   demoExhausted = true;
   const div = document.createElement('div');
   div.className = 'msg chirpy';
-  div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div>
+  div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
     <div class="msg-bubble upsell-bubble">
       <strong>Tweet tweet! 🐦 You're doing SO well!</strong><br><br>
       That's your free preview for today. Create a free account to keep going — 3 months free, no card needed!<br><br>
@@ -624,7 +646,7 @@ function switchChar(char) {
     demoCount = 0; demoHistory = [];
     const div = document.createElement('div');
     div.className = 'msg chirpy';
-    div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--green-light);color:var(--green);"><img src="assets/chirpy.png" alt="" class="mascot"></div>
+    div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--green-light);color:var(--green);"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
       <div class="msg-bubble upsell-bubble">
         <strong>🌿 Mama Bird is available with a free account!</strong><br><br>
         Sign up to unlock Mama Bird, lesson plan generation, all 6 subjects, and progress tracking.<br><br>
@@ -647,7 +669,7 @@ function switchChar(char) {
   if (mc) { mc.setAttribute('data-lucide', char === 'mama' ? 'check-circle-2' : 'circle'); mc.style.color = char === 'mama' ? 'var(--green)' : 'var(--light-text)'; }
   if (window.lucide) lucide.createIcons();
   const topbarAvatar = document.getElementById('topbar-avatar');
-  topbarAvatar.innerHTML = '<img src="assets/chirpy.png" alt="Chirpy" class="mascot">';
+  topbarAvatar.innerHTML = '<img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276">';
   document.getElementById('topbar-name').textContent = 'Chirpy';
   // Reset state
   demoHistory = []; demoExhausted = false;
@@ -665,7 +687,7 @@ function setSubject(el, subj) {
     demoCount = 0; demoHistory = [];
     const div = document.createElement('div');
     div.className = 'msg chirpy';
-    div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot"></div>
+    div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
       <div class="msg-bubble upsell-bubble">
         <strong>Tweet tweet! 🐦 I love ${subj}!</strong><br><br>
         ${subj} is available with a free account — along with all 5 other subjects. Sign up in seconds, no card needed!<br><br>

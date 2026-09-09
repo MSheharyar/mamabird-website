@@ -291,9 +291,33 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   .profile-chip{max-width:150px;}
   #profile-chip-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 }
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
 </style>
+<!-- SEO / social / icons -->
+<meta name="description" content="Chirpy's Classroom.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Three Baby Birdies">
+<meta property="og:title" content="Chirpy's Classroom">
+<meta property="og:description" content="Chirpy's Classroom.">
+<meta property="og:url" content="https://threebabybirdies.com/app.html">
+<meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chirpy's Classroom">
+<meta name="twitter:description" content="Chirpy's Classroom.">
+<meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#6EB4D4">
+<!-- /SEO -->
 </head>
 <body>
+<h1 class="visually-hidden">Chirpy's Classroom</h1>
 
 <!-- ── HEADER ── -->
 <header class="app-header">
@@ -327,14 +351,14 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <div class="app-body">
   <div class="char-tabs">
     <button class="char-tab active-chirpy" id="tab-chirpy" onclick="switchChar('chirpy')">
-      <div class="char-tab-avatar av-chirpy mascot-badge" style="color:var(--sky-dark);"><img src="assets/chirpy.png" alt="" class="mascot"></div>
+      <div class="char-tab-avatar av-chirpy mascot-badge" style="color:var(--sky-dark);"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
       <div>
         <div>Chirpy <small style="font-size:.7rem;color:var(--sky-dark);font-weight:600;">(for kids)</small></div>
         <div class="char-tab-sub">Playful · Perfect for children</div>
       </div>
     </button>
     <button class="char-tab" id="tab-mama" onclick="switchChar('mama')">
-      <div class="char-tab-avatar av-mama mascot-badge" style="color:var(--green);"><img src="assets/mamabird.png" alt="" class="mascot"></div>
+      <div class="char-tab-avatar av-mama mascot-badge" style="color:var(--green);"><img src="assets/mamabird.png" alt="" class="mascot" loading="lazy" decoding="async" width="260" height="292"></div>
       <div>
         <div>Mama Bird <small style="font-size:.7rem;color:var(--green);font-weight:600;">(for parents)</small></div>
         <div class="char-tab-sub">Nurturing · For parents &amp; teachers</div>
@@ -353,7 +377,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 
   <div class="chat-card">
     <div class="chat-topbar" id="chat-topbar">
-      <div class="msg-av mascot-badge av-chirpy" style="width:36px;height:36px;font-size:1.1rem;color:var(--sky-dark);" id="topbar-av"><img src="assets/chirpy.png" alt="" class="mascot"></div>
+      <div class="msg-av mascot-badge av-chirpy" style="width:36px;height:36px;font-size:1.1rem;color:var(--sky-dark);" id="topbar-av"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
       <div>
         <div class="topbar-name" id="topbar-name">Chirpy</div>
         <div class="topbar-status"><span class="topbar-dot"></span> Online · <span id="topbar-subj">Spelling</span></div>
@@ -362,7 +386,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
     </div>
     <div class="chat-msgs" id="chat-msgs"></div>
     <div class="chat-input-row">
-      <input class="chat-input" id="chat-input" type="text" placeholder="Type your answer here… 🐦" onkeydown="if(event.key==='Enter')sendMsg()">
+      <input class="chat-input" id="chat-input" type="text" placeholder="Type your answer here… 🐦" onkeydown="if(event.key==='Enter')sendMsg()" aria-label="Type your answer to Chirpy">
       <button class="chat-send" id="chat-send" onclick="sendMsg()">➤</button>
     </div>
   </div>
@@ -434,16 +458,16 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
         <div class="lp-gen-title">✏️ GENERATE LESSON PLAN</div>
         <div class="form-row">
           <div class="form-group"><label class="form-label">Subject</label>
-            <select class="form-ctrl" id="lp-subject">
+            <select class="form-ctrl" id="lp-subject" aria-label="Subject">
               <option value="spelling">Spelling</option><option value="math">Math</option>
               <option value="rhyming">Rhyming</option><option value="grammar">Grammar</option>
               <option value="literature">Stories</option><option value="puzzles">Puzzles</option>
             </select></div>
-          <div class="form-group"><label class="form-label">Grade</label><input class="form-ctrl" id="lp-grade" type="text" placeholder="e.g. Grade 1"></div>
+          <div class="form-group"><label class="form-label">Grade</label><input class="form-ctrl" id="lp-grade" type="text" placeholder="e.g. Grade 1" aria-label="Grade"></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Duration</label><input class="form-ctrl" id="lp-duration" type="text" placeholder="e.g. 1 week"></div>
-          <div class="form-group"><label class="form-label">Focus Areas</label><input class="form-ctrl" id="lp-focus" type="text" placeholder="optional"></div>
+          <div class="form-group"><label class="form-label">Duration</label><input class="form-ctrl" id="lp-duration" type="text" placeholder="e.g. 1 week" aria-label="Duration"></div>
+          <div class="form-group"><label class="form-label">Focus Areas</label><input class="form-ctrl" id="lp-focus" type="text" placeholder="optional" aria-label="Focus areas (optional)"></div>
         </div>
         <button class="btn-gen" onclick="generatePlan()">⚡ Generate Plan</button>
       </div>
@@ -470,11 +494,11 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
     <div class="modal-title">👶 Add a Child Profile</div>
     <div class="form-group" style="margin-bottom:12px;">
       <label class="form-label">Child's Nickname</label>
-      <input class="form-ctrl" id="new-name" type="text" placeholder="e.g. Emma, Lily, Noah">
+      <input class="form-ctrl" id="new-name" type="text" placeholder="e.g. Emma, Lily, Noah" aria-label="Child's nickname">
     </div>
     <div class="form-row">
-      <div class="form-group"><label class="form-label">Age</label><input class="form-ctrl" id="new-age" type="number" min="2" max="12" placeholder="6" required><div style="font-size:.75rem;color:var(--light-text);margin-top:5px;">Chirpy uses this to pitch every question and word at the right level.</div></div>
-      <div class="form-group"><label class="form-label">Grade (optional)</label><input class="form-ctrl" id="new-grade" type="text" placeholder="Grade 1"></div>
+      <div class="form-group"><label class="form-label">Age</label><input class="form-ctrl" id="new-age" type="number" min="2" max="12" placeholder="6" required aria-label="Child's age"><div style="font-size:.75rem;color:var(--light-text);margin-top:5px;">Chirpy uses this to pitch every question and word at the right level.</div></div>
+      <div class="form-group"><label class="form-label">Grade (optional)</label><input class="form-ctrl" id="new-grade" type="text" placeholder="Grade 1" aria-label="Grade (optional)"></div>
     </div>
     <div class="modal-btn-row">
       <button class="btn-cancel" onclick="closeCreateModal()">Cancel</button>
@@ -490,12 +514,12 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
     <p style="font-size:.85rem;color:#666;margin-bottom:14px;">Enter the class code your child's teacher gave you.</p>
     <div class="form-group" style="margin-bottom:12px;">
       <label class="form-label">Child</label>
-      <select class="form-ctrl" id="join-child" onchange="updateJoinCurrent()"></select>
+      <select class="form-ctrl" id="join-child" onchange="updateJoinCurrent()" aria-label="Child"></select>
     </div>
     <div id="join-current" style="font-size:.8rem;color:#666;margin-bottom:12px;"></div>
     <div class="form-group" style="margin-bottom:12px;">
       <label class="form-label">Class code</label>
-      <input class="form-ctrl" id="join-code" type="text" placeholder="e.g. SRG8T3" style="text-transform:uppercase;letter-spacing:2px;">
+      <input class="form-ctrl" id="join-code" type="text" placeholder="e.g. SRG8T3" style="text-transform:uppercase;letter-spacing:2px;" aria-label="Class code">
     </div>
     <div class="modal-btn-row">
       <button class="btn-cancel" onclick="closeJoinModal()">Cancel</button>
@@ -511,12 +535,12 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 // older Windows/Android and rendered as an empty box; Chirpy and Mama Bird are
 // told apart by their avatar background colour, as they are on the marketing site.
 function emptyState(art, title, line, hint) {
-  return '<div class="empty-state"><img src="assets/' + art + '.png" alt="" class="mascot">'
+  return '<div class="empty-state"><img src="assets/' + art + '.png" alt="" class="mascot" loading="lazy" decoding="async">'
        + '<h4>' + title + '</h4><p>' + line + '</p>'
        + (hint ? '<span class="es-hint">' + hint + '</span>' : '') + '</div>';
 }
 
-const birdImg = (ch) => `<img src="assets/${(ch || currentChar) === 'mama' ? 'mamabird' : 'chirpy'}.png" alt="" class="mascot">`;
+const birdImg = (ch) => `<img src="assets/${(ch || currentChar) === 'mama' ? 'mamabird' : 'chirpy'}.png" alt="" class="mascot" loading="lazy" decoding="async">`;
 const API   = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');
 const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');

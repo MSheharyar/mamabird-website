@@ -1,3 +1,6 @@
 # Hostinger/Apache. The eBook page was folded into The Book; keep any
 # existing advert, email or bookmark pointing at it working.
 Redirect 301 /ebook.html /book.html
+
+# Custom not-found page (Netlify picks up 404.html on its own).
+ErrorDocument 404 /404.html

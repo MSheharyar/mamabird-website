@@ -106,9 +106,33 @@ tr.parent-row:hover td{background:var(--cream);}
 
 @media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr);}table{font-size:.78rem;}}
 @media(max-width:600px){.stats-grid{grid-template-columns:1fr 1fr;}.admin-tabs{flex-wrap:wrap;border-radius:var(--r-lg);}th{display:none;}}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
 </style>
+<!-- SEO / social / icons -->
+<meta name="description" content="Admin.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Three Baby Birdies">
+<meta property="og:title" content="Admin Dashboard — Three Baby Birdies">
+<meta property="og:description" content="Admin.">
+<meta property="og:url" content="https://threebabybirdies.com/admin.html">
+<meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Admin Dashboard — Three Baby Birdies">
+<meta name="twitter:description" content="Admin.">
+<meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#6EB4D4">
+<!-- /SEO -->
 </head>
 <body>
+<h1 class="visually-hidden">Three Baby Birdies admin</h1>
 
 <header class="admin-header">
   <div class="header-logo">🐦 Three Baby Birdies</div>
@@ -141,8 +165,8 @@ tr.parent-row:hover td{background:var(--cream);}
   <div class="admin-panel active" id="panel-users">
     <div class="parent-table-wrap">
       <div class="table-search">
-        <input class="search-input" type="text" placeholder="🔍 Search by email…" oninput="filterTable(this.value)">
-        <select class="filter-sel" onchange="filterStatus(this.value)">
+        <input class="search-input" type="text" placeholder="🔍 Search by email…" oninput="filterTable(this.value)" aria-label="Search users by email">
+        <select class="filter-sel" aria-label="Filter users by status" onchange="filterStatus(this.value)">
           <option value="">All statuses</option>
           <option value="trial">Trial</option>
           <option value="active">Active</option>

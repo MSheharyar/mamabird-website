@@ -93,6 +93,28 @@ tr:last-child td{border-bottom:none;}
 .loading-bar{text-align:center;padding:36px;color:var(--mid);font-family:var(--font-display);font-weight:600;}
 @media(max-width:600px){th{font-size:.66rem;}td{font-size:.78rem;}}
 </style>
+<!-- SEO / social / icons -->
+<meta name="description" content="Teacher dashboard for Chirpy's Classroom.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Three Baby Birdies">
+<meta property="og:title" content="Teacher Dashboard — Three Baby Birdies">
+<meta property="og:description" content="Teacher dashboard for Chirpy's Classroom.">
+<meta property="og:url" content="https://threebabybirdies.com/teacher.html">
+<meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Teacher Dashboard — Three Baby Birdies">
+<meta name="twitter:description" content="Teacher dashboard for Chirpy's Classroom.">
+<meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#6EB4D4">
+<!-- /SEO -->
 </head>
 <body>
 
@@ -109,7 +131,7 @@ tr:last-child td{border-bottom:none;}
   <!-- LIST VIEW -->
   <div id="view-list">
     <div class="row">
-      <h2 class="page grow">Your Classes</h2>
+      <h1 class="page grow">Your Classes</h1>
       <button class="btn btn-green" onclick="openModal('m-class')">＋ New Class</button>
     </div>
     <div id="class-list"><div class="loading-bar">Loading classes…</div></div>
@@ -147,8 +169,8 @@ tr:last-child td{border-bottom:none;}
 <!-- New Class modal -->
 <div class="overlay" id="m-class"><div class="modal">
   <h3>🏫 New Class</h3>
-  <div class="field"><label>Class name</label><input id="nc-name" placeholder="e.g. Grade 1 - Room A"></div>
-  <div class="field"><label>Grade level (optional)</label><input id="nc-grade" placeholder="Grade 1"></div>
+  <div class="field"><label>Class name</label><input id="nc-name" placeholder="e.g. Grade 1 - Room A" aria-label="Class name"></div>
+  <div class="field"><label>Grade level (optional)</label><input id="nc-grade" placeholder="Grade 1" aria-label="Class grade"></div>
   <div class="modal-actions">
     <button class="btn btn-ghost" onclick="closeModal('m-class')">Cancel</button>
     <button class="btn btn-red" onclick="createClass()">Create</button>
@@ -158,10 +180,10 @@ tr:last-child td{border-bottom:none;}
 <!-- Add Student modal -->
 <div class="overlay" id="m-student"><div class="modal">
   <h3>🐣 Add Student</h3>
-  <div class="field"><label>Nickname</label><input id="ns-name" placeholder="e.g. Emma"></div>
+  <div class="field"><label>Nickname</label><input id="ns-name" placeholder="e.g. Emma" aria-label="Student's first name"></div>
   <div style="display:flex;gap:10px;">
-    <div class="field" style="flex:1;"><label>Age</label><input id="ns-age" inputmode="numeric" placeholder="6"></div>
-    <div class="field" style="flex:1;"><label>Grade</label><input id="ns-grade" placeholder="Grade 1"></div>
+    <div class="field" style="flex:1;"><label>Age</label><input id="ns-age" inputmode="numeric" placeholder="6" aria-label="Student's age"></div>
+    <div class="field" style="flex:1;"><label>Grade</label><input id="ns-grade" placeholder="Grade 1" aria-label="Student's grade"></div>
   </div>
   <div class="modal-actions">
     <button class="btn btn-ghost" onclick="closeModal('m-student')">Cancel</button>
@@ -173,18 +195,18 @@ tr:last-child td{border-bottom:none;}
 <div class="overlay" id="m-lesson"><div class="modal">
   <h3>📖 Assign Lesson to Class</h3>
   <div class="field"><label>Subject</label>
-    <select id="al-subject">
+    <select id="al-subject" aria-label="Subject">
       <option>spelling</option><option>math</option><option>rhyming</option>
       <option>grammar</option><option>puzzles</option><option>literature</option>
     </select>
   </div>
   <div style="display:flex;gap:10px;">
-    <div class="field" style="flex:1;"><label>Grade</label><input id="al-grade" placeholder="Grade 1"></div>
+    <div class="field" style="flex:1;"><label>Grade</label><input id="al-grade" placeholder="Grade 1" aria-label="Grade"></div>
     <div class="field" style="flex:1;"><label>Duration</label>
-      <select id="al-duration"><option>3 days</option><option selected>5 days</option><option>1 week</option><option>2 weeks</option></select>
+      <select id="al-duration" aria-label="Duration"><option>3 days</option><option selected>5 days</option><option>1 week</option><option>2 weeks</option></select>
     </div>
   </div>
-  <div class="field"><label>Focus areas (optional)</label><input id="al-focus" placeholder="e.g. sight words"></div>
+  <div class="field"><label>Focus areas (optional)</label><input id="al-focus" placeholder="e.g. sight words" aria-label="Focus areas"></div>
   <div class="modal-actions">
     <button class="btn btn-ghost" onclick="closeModal('m-lesson')">Cancel</button>
     <button class="btn btn-red" id="al-go" onclick="assignLesson()">Generate &amp; Assign</button>
