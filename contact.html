@@ -33,6 +33,9 @@
 .reason-pill.active { border-color:var(--sky); color:var(--sky-dark); background:var(--sky-light); }
 @media(max-width:860px){ .contact-grid{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;} }
 @media(max-width:480px){ .contact-info-card,.contact-form-card{padding:24px;} .contact-info-val{word-break:break-word;} }
+.send-note { font-size:.78rem; color:var(--light-text); margin-top:10px; text-align:center; }
+.send-note a { color:var(--sky-dark); text-decoration:underline; }
+.hp-field { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 </style>
 <!-- SEO / social / icons -->
 <meta name="description" content="Get in touch about Three Baby Birdies — signed copies, school and classroom orders, or anything else.">
@@ -114,12 +117,14 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" placeholder="First name" aria-label="First name"></div>
-          <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" placeholder="Last name" aria-label="Last name"></div>
+          <div class="form-group"><label class="form-label">First name</label><input class="form-input" type="text" placeholder="First name" id="c-first" aria-label="First name"></div>
+          <div class="form-group"><label class="form-label">Last name</label><input class="form-input" type="text" placeholder="Last name" id="c-last" aria-label="Last name"></div>
         </div>
-        <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email" placeholder="you@example.com" aria-label="Email address"></div>
-        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell Iris what's on your mind..." aria-label="Message"></textarea></div>
-        <button class="btn btn-red" style="width:100%;justify-content:center;" type="button"><i data-lucide="send" style="width:16px;height:16px;"></i> Send Message</button>
+        <div class="form-group"><label class="form-label">Email address</label><input class="form-input" type="email" placeholder="you@example.com" id="c-email" aria-label="Email address"></div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell Iris what's on your mind..." aria-label="Message" id="c-msg"></textarea></div>
+        <div class="hp-field" aria-hidden="true"><label>Do not fill this in<input type="text" id="c-website" name="website" tabindex="-1" autocomplete="off"></label></div>
+        <button class="btn btn-red" id="send-btn" style="width:100%;justify-content:center;" type="button"><i data-lucide="send" style="width:16px;height:16px;"></i> Send message</button>
+        <p class="send-note" id="send-note">This opens your email app with the message ready to send. Prefer to write it yourself? <a href="mailto:iris@threebabybirdies.com">iris@threebabybirdies.com</a></p>
         <p style="text-align:center;font-size:.78rem;color:var(--light-text);margin-top:12px;">We typically reply within 2 business days.</p>
       </div>
     </div>
@@ -131,4 +136,31 @@
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
 <script>function setReason(el){ document.querySelectorAll('.reason-pill').forEach(p=>p.classList.remove('active')); el.classList.add('active'); }</script>
+<script>
+// No contact endpoint exists on the backend, so the form composes a mail
+// rather than pretending to submit. Silently doing nothing was the bug.
+(function () {
+  var btn = document.getElementById('send-btn');
+  if (!btn) return;
+  var note = document.getElementById('send-note');
+  var val = function (id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; };
+
+  btn.addEventListener('click', function () {
+    if (val('c-website')) return;                 // honeypot tripped
+    var email = val('c-email');
+    if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      note.innerHTML = 'Please add an email address so Iris can reply.';
+      note.style.color = 'var(--red)';
+      var e = document.getElementById('c-email'); if (e) { e.setAttribute('aria-invalid','true'); e.focus(); }
+      return;
+    }
+    var reason = document.querySelector('.reason-pill.active');
+    var subject = 'Three Baby Birdies \u2014 ' + (reason ? reason.textContent.trim() : 'Enquiry');
+    var body = 'From: ' + (val('c-first') + ' ' + val('c-last')).trim() + '\n'
+             + 'Email: ' + email + '\n\n' + val('c-msg');
+    window.location.href = 'mailto:iris@threebabybirdies.com?subject='
+      + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+})();
+</script>
 </body></html>

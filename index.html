@@ -184,6 +184,7 @@
 .nl-input::placeholder { color:rgba(255,255,255,.3); }
 .nl-input:focus { border-color:var(--sky); }
 .nl-fine { font-size:.75rem; color:rgba(255,255,255,.3); margin-top:4px; }
+.hp-field { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 .nl-label {
   font-family:var(--font-display); font-weight:700; font-size:.78rem;
   color:rgba(255,255,255,.62); margin-bottom:-6px; padding-left:4px;
@@ -730,6 +731,7 @@
           <input class="nl-input" id="nl-name" name="first_name" type="text" autocomplete="given-name" maxlength="50" placeholder="Your first name">
           <label class="nl-label" for="nl-email">Email address</label>
           <input class="nl-input" id="nl-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+          <div class="hp-field" aria-hidden="true"><label>Leave blank<input type="text" id="nl-website" tabindex="-1" autocomplete="off"></label></div>
           <button class="btn btn-sky" id="nl-submit" type="submit" style="justify-content:center;"><i data-lucide="feather" style="width:16px;height:16px;"></i> Join the Flock &mdash; It&rsquo;s Free</button>
           <p class="nl-status" id="nl-status" role="status" aria-live="polite" hidden></p>
         </form>
@@ -798,6 +800,8 @@ document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    var hp = document.getElementById('nl-website');
+    if (hp && hp.value) { say('Thanks!', 'ok'); return; }   // bot
     if (!email.value.trim() || !email.checkValidity()) {
       email.setAttribute('aria-invalid', 'true');
       email.focus();

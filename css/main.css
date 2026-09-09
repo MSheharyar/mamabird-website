@@ -9,14 +9,17 @@
   --sky:          #6EB4D4;
   --sky-light:    #C8E6F5;
   --sky-xlight:   #E8F5FB;
-  --sky-dark:     #4A9AB8;
+  /* Darkened from #4A9AB8, which gave white button text 2.3:1 and label
+     text on --sky-light 2.4:1. Both were under the WCAG AA 4.5:1 floor. */
+  --sky-dark:     #336B80;
   --yellow:       #F5C200;
   --yellow-light: #FFF3CC;
   --red:          #CC2929;
   --red-dark:     #A82020;
   --brown:        #9B6B35;
   --brown-dark:   #6B4520;
-  --green:        #4A8B3F;
+  /* Was #4A8B3F: 3.2:1 on --green-light, also under 4.5:1. */
+  --green:        #3C7133;
   --green-light:  #D4E8D1;
   --cream:        #FDF8F0;
   --cream-dark:   #F0E6D0;
@@ -102,8 +105,8 @@ p  { font-size:1.05rem; color:var(--mid); line-height:1.75; }
 .btn-outline:hover{ border-color:var(--brown); }
 .btn-yellow { background:var(--yellow); color:var(--brown-dark); }
 .btn-yellow:hover { background:#e8b700; box-shadow:0 6px 20px rgba(245,194,0,0.35); }
-.btn-sky    { background:var(--sky);    color:#fff; }
-.btn-sky:hover    { background:var(--sky-dark); }
+.btn-sky    { background:var(--sky-dark); color:#fff; }  /* --sky gave white text 2.3:1 */
+.btn-sky:hover    { background:#2A5A6C; }
 .btn-dark   { background:var(--dark);   color:#fff; }
 .btn-dark:hover   { background:#1a0f0a; }
 .btn-ghost  { background:transparent; color:rgba(255,255,255,.75); border:2px solid rgba(255,255,255,.25); }
