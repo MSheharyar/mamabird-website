@@ -176,7 +176,6 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 @keyframes pinPop{from{transform:scale(.85);opacity:0;}to{transform:scale(1);opacity:1;}}
 @keyframes pinShake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-8px);}40%,80%{transform:translateX(8px);}}
 .pin-shake{animation:pinShake .35s ease;}
-.pin-icon{font-size:2.2rem;margin-bottom:8px;}
 .pin-title{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--dark);margin-bottom:4px;}
 .pin-sub{font-size:.8rem;color:var(--mid);font-family:var(--font-display);margin-bottom:24px;}
 .pin-dots{display:flex;justify-content:center;gap:14px;margin-bottom:24px;}
@@ -394,7 +393,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
     <div class="chat-msgs" id="chat-msgs"></div>
     <div class="chat-input-row">
       <input class="chat-input" id="chat-input" type="text" placeholder="Type your answer here… " onkeydown="if(event.key==='Enter')sendMsg()" aria-label="Type your answer to Chirpy">
-      <button class="chat-send" id="chat-send" onclick="sendMsg()" aria-label="Send message">Send</button>
+      <button class="chat-send" id="chat-send" onclick="sendMsg()" aria-label="Send message">➤</button>
     </div>
   </div>
 </div>
@@ -612,12 +611,10 @@ function openPinModal() {
   if (!stored) {
     // First time, set a PIN
     pinMode = 'set1';
-    document.getElementById('pin-icon').textContent  = '🔑';
     document.getElementById('pin-title').textContent = 'Set a Parent PIN';
     document.getElementById('pin-sub').textContent   = 'Choose a 4-digit PIN to protect parent controls';
   } else {
     pinMode = 'verify';
-    document.getElementById('pin-icon').textContent  = '';
     document.getElementById('pin-title').textContent = 'Parent Controls';
     document.getElementById('pin-sub').textContent   = 'Enter your 4-digit PIN to unlock';
   }
