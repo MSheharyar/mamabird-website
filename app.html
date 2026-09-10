@@ -92,6 +92,14 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 }
 .char-tab.active-chirpy{color:var(--sky-dark);border-bottom-color:var(--sky);background:var(--sky-xlight);}
 .char-tab.active-mama{color:var(--green);border-bottom-color:var(--green);background:var(--green-light);}
+/* Character art. app.html does not load css/main.css, so these three
+   rules have to live here too, or the images render at their natural
+   280px and cover the chat. */
+.mascot{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none;}
+.mascot-badge{border-radius:50%;overflow:hidden;flex-shrink:0;display:flex;align-items:flex-end;justify-content:center;background:var(--sky-xlight);}
+/* The art is a bust, so it is oversized and bottom-anchored; centring it
+   leaves a gap under the chin. */
+.mascot-badge .mascot{width:118%;margin-bottom:-8%;}
 .char-tab-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;}
 .av-chirpy{background:var(--sky-light);}
 .av-mama{background:var(--green-light);}
@@ -849,7 +857,7 @@ function showSubjectPicker() {
   const btns = SUBJECTS.map(([k,label]) =>
     `<button onclick="pickSubject('${k}')" style="padding:9px 15px;border-radius:14px;border:1.5px solid var(--cream-dark);background:#fff;color:var(--dark);font-family:var(--font-display);font-weight:700;font-size:.85rem;cursor:pointer;">${label}</button>`
   ).join('');
-  div.innerHTML = `<div class="msg-av" style="background:${avBg};color:${avFg};">${av}</div>` +
+  div.innerHTML = `<div class="msg-av mascot-badge" style="background:${avBg};color:${avFg};">${av}</div>` +
     `<div class="msg-bubble">Which one would you like to learn? 🌟<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">${btns}</div></div>`;
   msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
 }
@@ -902,7 +910,7 @@ function addMsg(type, html, isBadge) {
   const av    = type === 'user' ? '👤' : birdImg();
   const avBg  = type === 'user' ? (currentChar === 'mama' ? 'var(--green)' : 'var(--sky)') : (currentChar === 'chirpy' ? 'var(--sky-light)' : 'var(--green-light)');
   const avFg  = type === 'user' ? 'inherit' : (currentChar === 'chirpy' ? 'var(--sky-dark)' : 'var(--green)');
-  div.innerHTML = `<div class="msg-av" style="background:${avBg};color:${avFg};">${av}</div><div class="msg-bubble">${html.replace(/\n/g,'<br>')}</div>`;
+  div.innerHTML = `<div class="msg-av mascot-badge" style="background:${avBg};color:${avFg};">${av}</div><div class="msg-bubble">${html.replace(/\n/g,'<br>')}</div>`;
   msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
 }
 
@@ -912,7 +920,7 @@ function showTyping() {
   div.id = 'typing'; div.className = 'msg ' + currentChar;
   const avBg = currentChar === 'chirpy' ? 'var(--sky-light)' : 'var(--green-light)';
   const avFg = currentChar === 'chirpy' ? 'var(--sky-dark)' : 'var(--green)';
-  div.innerHTML = `<div class="msg-av" style="background:${avBg};color:${avFg};">${birdImg()}</div><div class="msg-bubble"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
+  div.innerHTML = `<div class="msg-av mascot-badge" style="background:${avBg};color:${avFg};">${birdImg()}</div><div class="msg-bubble"><div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div></div>`;
   msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
 }
 
