@@ -16,12 +16,12 @@
 .contact-form-card { background:#fff; border-radius:var(--r-lg); padding:36px; box-shadow:var(--sh-sm); }
 .form-group { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
 .form-label { font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--dark); }
-.form-input.form-textarea {
+.form-input,.form-textarea {
   padding:13px 16px; border-radius:var(--r-md); border:1.5px solid var(--cream-dark);
   font-family:var(--font-body); font-size:.95rem; outline:none; transition:border-color .18s;
   background:var(--cream); color:var(--dark); width:100%;
 }
-.form-input:focus.form-textarea:focus { border-color:var(--sky); background:#fff; }
+.form-input:focus,.form-textarea:focus { border-color:var(--sky); background:#fff; }
 .form-textarea { resize:vertical; min-height:120px; }
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .reason-pills { display:flex; flex-wrap:wrap; gap:8px; }
@@ -32,7 +32,7 @@
 }
 .reason-pill.active { border-color:var(--sky); color:var(--sky-dark); background:var(--sky-light); }
 @media(max-width:860px){ .contact-grid{grid-template-columns:1fr;} .form-row{grid-template-columns:1fr;} }
-@media(max-width:480px){ .contact-info-card.contact-form-card{padding:24px;} .contact-info-val{word-break:break-word;} }
+@media(max-width:480px){ .contact-info-card,.contact-form-card{padding:24px;} .contact-info-val{word-break:break-word;} }
 .send-note { font-size:.78rem; color:var(--light-text); margin-top:10px; text-align:center; }
 .send-note a { color:var(--sky-dark); text-decoration:underline; }
 .hp-field { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
