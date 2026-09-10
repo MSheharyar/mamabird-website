@@ -896,6 +896,18 @@ function startLesson(subj) {
   });
 }
 
+// Chirpy is told not to use markdown, but a model will occasionally reach
+// for **bold** anyway, and the bubble is plain text, so it would show the
+// asterisks. Convert the few things it actually emits and drop the rest.
+function fmtMsg(t) {
+  return String(t)
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|\s)\*([^*\n]+)\*(?=\s|$)/g, '$1<em>$2</em>')
+    .replace(/^#{1,6}\s*/gm, '')
+    .replace(/^\s*[-*]\s+/gm, '')
+    .replace(/\n/g, '<br>');
+}
+
 function addMsg(type, html, isBadge) {
   const msgs = document.getElementById('chat-msgs');
   const div  = document.createElement('div');
@@ -907,7 +919,7 @@ function addMsg(type, html, isBadge) {
   const av    = type === 'user' ? '👤' : birdImg();
   const avBg  = type === 'user' ? (currentChar === 'mama' ? 'var(--green)' : 'var(--sky)') : (currentChar === 'chirpy' ? 'var(--sky-light)' : 'var(--green-light)');
   const avFg  = type === 'user' ? 'inherit' : (currentChar === 'chirpy' ? 'var(--sky-dark)' : 'var(--green)');
-  div.innerHTML = `<div class="msg-av mascot-badge" style="background:${avBg};color:${avFg};">${av}</div><div class="msg-bubble">${html.replace(/\n/g,'<br>')}</div>`;
+  div.innerHTML = `<div class="msg-av mascot-badge" style="background:${avBg};color:${avFg};">${av}</div><div class="msg-bubble">${fmtMsg(html)}</div>`;
   msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
 }
 
