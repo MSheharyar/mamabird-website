@@ -9,14 +9,17 @@
   --sky:          #6EB4D4;
   --sky-light:    #C8E6F5;
   --sky-xlight:   #E8F5FB;
-  --sky-dark:     #4A9AB8;
+  /* Darkened from #4A9AB8, which gave white button text 2.3:1 and label
+     text on --sky-light 2.4:1. Both were under the WCAG AA 4.5:1 floor. */
+  --sky-dark:     #336B80;
   --yellow:       #F5C200;
   --yellow-light: #FFF3CC;
   --red:          #CC2929;
   --red-dark:     #A82020;
   --brown:        #9B6B35;
   --brown-dark:   #6B4520;
-  --green:        #4A8B3F;
+  /* Was #4A8B3F: 3.2:1 on --green-light, also under 4.5:1. */
+  --green:        #3C7133;
   --green-light:  #D4E8D1;
   --cream:        #FDF8F0;
   --cream-dark:   #F0E6D0;
@@ -62,7 +65,10 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
-img { display: block; max-width: 100%; }
+/* height:auto is not optional once images carry width/height attributes:
+   the attribute sets a presentational height, max-width shrinks the width,
+   and without this every image stretches vertically. */
+img { display: block; max-width: 100%; height: auto; }
 a { text-decoration: none; color: inherit; }
 button { font-family: inherit; cursor: pointer; }
 
@@ -77,15 +83,6 @@ p  { font-size:1.05rem; color:var(--mid); line-height:1.75; }
 .container { max-width:var(--max-w); margin:0 auto; padding:0 var(--sp-md); }
 .section   { padding:var(--sp-xl) 0; }
 
-.section-label {
-  display:inline-block;
-  font-family:var(--font-display);
-  font-size:0.72rem; font-weight:700;
-  letter-spacing:0.12em; text-transform:uppercase;
-  color:var(--sky-dark); background:var(--sky-light);
-  padding:4px 14px; border-radius:var(--r-full);
-  margin-bottom:var(--sp-sm);
-}
 
 /* ---- Buttons ---- */
 .btn {
@@ -102,8 +99,8 @@ p  { font-size:1.05rem; color:var(--mid); line-height:1.75; }
 .btn-outline:hover{ border-color:var(--brown); }
 .btn-yellow { background:var(--yellow); color:var(--brown-dark); }
 .btn-yellow:hover { background:#e8b700; box-shadow:0 6px 20px rgba(245,194,0,0.35); }
-.btn-sky    { background:var(--sky);    color:#fff; }
-.btn-sky:hover    { background:var(--sky-dark); }
+.btn-sky    { background:var(--sky-dark); color:#fff; }  /* --sky gave white text 2.3:1 */
+.btn-sky:hover    { background:#2A5A6C; }
 .btn-dark   { background:var(--dark);   color:#fff; }
 .btn-dark:hover   { background:#1a0f0a; }
 .btn-ghost  { background:transparent; color:rgba(255,255,255,.75); border:2px solid rgba(255,255,255,.25); }
@@ -122,8 +119,7 @@ p  { font-size:1.05rem; color:var(--mid); line-height:1.75; }
   padding:72px var(--sp-md) 0;
   text-align:center;
 }
-.page-hero-inner .section-label { margin-bottom:var(--sp-sm); }
-.page-hero-inner h1 { margin-bottom:16px; }
+.page-hero-inner .page-hero-inner h1 { margin-bottom:16px; }
 .page-hero-inner p  { max-width:560px; margin:0 auto 28px; }
 
 /* ============================================================
@@ -132,8 +128,7 @@ p  { font-size:1.05rem; color:var(--mid); line-height:1.75; }
 #nav {
   position:fixed; top:0; left:0; right:0; z-index:1000;
   height:var(--nav-h);
-  background:rgba(253,248,240,0.94);
-  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  background:var(--cream);
   border-bottom:1px solid rgba(155,107,53,0.1);
   transition:box-shadow .2s;
 }
@@ -255,6 +250,13 @@ footer { background:#1A0F0A; padding:64px var(--sp-md) 32px; }
 }
 
 /* Testimonial cards */
+/* The cards below are laid out by .t-grid. It used to live in index.html's
+   own <style>, so every other page using these cards got them at full
+   container width, one per row. It belongs with the card rules. */
+.t-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+@media(max-width:900px){ .t-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:620px){ .t-grid { grid-template-columns:1fr; } }
+
 .t-card { background:#fff; border-radius:var(--r-md); padding:28px; box-shadow:var(--sh-sm); display:flex; flex-direction:column; }
 .t-quote { font-size:2.8rem; color:var(--sky); opacity:.3; font-family:Georgia,serif; line-height:1; margin-bottom:4px; }
 .t-stars { display:flex; gap:2px; color:var(--yellow); font-size:.9rem; margin-bottom:12px; }
@@ -337,9 +339,6 @@ svg.lucide {
    v2 DESIGN SYSTEM — KidZo-inspired UI/UX upgrade
    ============================================================ */
 :root {
-  --purple:       #7C3AED;
-  --purple-light: #EDE9FE;
-  --purple-mid:   #8B5CF6;
   --orange:       #F97316;
   --orange-light: #FFF7ED;
   --green-light:  #D4E8D1;
@@ -359,9 +358,6 @@ svg.lucide {
 .float-d1   { animation-delay:.8s; }
 .float-d2   { animation-delay:1.5s; }
 
-/* ---- Scroll reveal ---- */
-.reveal { opacity:0; transform:translateY(26px); transition:opacity .55s ease, transform .55s ease; }
-.reveal.visible { opacity:1; transform:translateY(0); }
 
 /* ---- Background blobs ---- */
 .blob {
@@ -395,10 +391,10 @@ svg.lucide {
 .fcard:hover { transform:translateY(-5px); box-shadow:var(--sh-md); }
 .fcard-head { padding:28px 24px; display:flex; align-items:center; gap:14px; }
 .fcard-icon { width:52px; height:52px; border-radius:14px; background:rgba(255,255,255,.2); display:flex; align-items:center; justify-content:center; font-size:1.7rem; flex-shrink:0; }
-/* Vector bird, sized to the surrounding font-size. Used wherever a bird icon is
-   needed: the 🪺 nest emoji (Emoji 14) has no glyph on older Windows/Android and
-   renders as an empty box, so Mama Bird is drawn rather than typed. Chirpy uses
-   the same mark — the two are told apart by their container colour, as elsewhere. */
+/* Vector bird, sized to the surrounding font-size. Now only the logo mark in
+   js/layout.js (nav and footer heading) -- everywhere the page shows a
+   character it uses the real art cut from the book cover instead. The mark
+   stays for the logo because a photo-style bust does not read at 20px. */
 .vbird { width:1em; height:1em; display:block; flex-shrink:0; }
 .fcard-title { font-family:var(--font-display); font-weight:700; font-size:1.05rem; color:#fff; }
 .fcard-sub   { font-size:.75rem; color:rgba(255,255,255,.72); margin-top:2px; }
@@ -406,7 +402,7 @@ svg.lucide {
 .fcard-body p{ font-size:.88rem; color:var(--mid); line-height:1.75; margin-bottom:0; }
 .fcard-head.c-sky    { background:linear-gradient(135deg,#6EB4D4,#4A9AB8); }
 .fcard-head.c-green  { background:linear-gradient(135deg,#4A8B3F,#2D6A27); }
-.fcard-head.c-purple { background:linear-gradient(135deg,#7C3AED,#5B21B6); }
+.fcard-head.c-purple { background:linear-gradient(135deg,#9B6B35,#5B21B6); }
 .fcard-head.c-orange { background:linear-gradient(135deg,#F97316,#EA580C); }
 .fcard-head.c-red    { background:linear-gradient(135deg,#CC2929,#A82020); }
 .fcard-head.c-yellow { background:linear-gradient(135deg,#F5C200,#C89900); }
@@ -421,16 +417,9 @@ svg.lucide {
 .stat-label  { font-size:.82rem; color:rgba(255,255,255,.6); margin-top:5px; }
 
 /* ---- Glass card ---- */
-.glass-card { background:rgba(255,255,255,.15); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border:1px solid rgba(255,255,255,.25); border-radius:var(--r-lg); }
+.glass-card { background:rgba(255,255,255,.15); border:1px solid rgba(255,255,255,.25); border-radius:var(--r-lg); }
 
 /* ---- AI badge pill ---- */
-.badge-ai {
-  display:inline-flex; align-items:center; gap:7px; padding:7px 18px;
-  background:linear-gradient(135deg,var(--purple),var(--purple-mid));
-  color:#fff; border-radius:var(--r-full);
-  font-family:var(--font-display); font-weight:700; font-size:.8rem;
-  margin-bottom:20px; letter-spacing:.03em; box-shadow:0 4px 14px rgba(124,58,237,.35);
-}
 
 /* ---- Improved char toggle (chatbot) ---- */
 .char-cards-v2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
@@ -472,7 +461,7 @@ svg.lucide {
 .plan-head { padding:24px; }
 .plan-head.ph-free    { background:linear-gradient(135deg,#E8F5FB,var(--sky-light)); }
 .plan-head.ph-ind     { background:linear-gradient(135deg,var(--sky),#4A9AB8); }
-.plan-head.ph-prem    { background:linear-gradient(135deg,var(--purple),#5B21B6); }
+.plan-head.ph-prem    { background:linear-gradient(135deg,var(--brown),#5B21B6); }
 .plan-head.ph-class   { background:linear-gradient(135deg,var(--dark),#3D1F12); }
 .plan-head-icon { font-size:2rem; margin-bottom:8px; }
 .plan-head-name { font-family:var(--font-display); font-weight:700; font-size:1rem; color:#fff; }
@@ -490,7 +479,7 @@ svg.lucide {
 .plan-badge-v2 { position:absolute; top:-1px; right:20px; background:var(--sky); color:#fff; font-family:var(--font-display); font-weight:700; font-size:.7rem; padding:4px 14px; border-radius:0 0 var(--r-sm) var(--r-sm); }
 
 /* ---- Marquee strip ---- */
-.marquee-wrap { overflow:hidden; padding:16px 0; background:var(--purple); }
+.marquee-wrap { overflow:hidden; padding:16px 0; background:var(--brown); }
 .marquee-track { display:flex; width:max-content; animation:marquee 28s linear infinite; gap:0; }
 .marquee-item { display:inline-flex; align-items:center; gap:8px; padding:0 32px; font-family:var(--font-display); font-weight:700; font-size:.88rem; color:rgba(255,255,255,.8); white-space:nowrap; border-right:1px solid rgba(255,255,255,.15); }
 .marquee-item span { color:#fff; }
@@ -509,3 +498,15 @@ svg.lucide {
   .subject-tiles { grid-template-columns:1fr; }
   .ebook-promo { padding:36px 24px; }
 }
+
+
+/* ---- Mascot (Chirpy / Mama Bird, cut from the book cover) ----
+   Source art is ~140px wide, so never render these above ~140 CSS px --
+   past that they go soft. Busts, not full bodies: the birds sit in a nest
+   on the cover and there is no art of them anywhere else. */
+.mascot { display:block; width:100%; height:auto; user-select:none; -webkit-user-drag:none; }
+.mascot-badge {
+  border-radius:50%; overflow:hidden; flex-shrink:0;
+  background:var(--sky-xlight); display:flex; align-items:flex-end; justify-content:center;
+}
+.mascot-badge .mascot { width:118%; margin-bottom:-8%; }

@@ -1,0 +1,13 @@
+# Three Baby Birdies
+User-agent: *
+Allow: /
+
+# Nothing to gain from indexing these, and a duplicate-content risk if we do.
+Disallow: /app.html
+Disallow: /admin.html
+Disallow: /teacher.html
+Disallow: /ebook-download.html
+Disallow: /payment-success.html
+Disallow: /reset-password.html
+
+Sitemap: https://threebabybirdies.com/sitemap.xml

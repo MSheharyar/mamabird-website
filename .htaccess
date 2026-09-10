@@ -1,0 +1,24 @@
+# Hostinger/Apache. The eBook page was folded into The Book; keep any
+# existing advert, email or bookmark pointing at it working.
+Redirect 301 /ebook.html /book.html
+
+# Custom not-found page (Netlify picks up 404.html on its own).
+ErrorDocument 404 /404.html
+
+# www and non-www were both serving the site with no redirect between them,
+# which is two copies of every page as far as a crawler is concerned. The
+# canonical tags say non-www, so send www there too.
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# The site had no security headers at all beyond upgrade-insecure-requests.
+# HSTS is the one that matters most: without it the first request of a
+# session can still go out over http before the redirect.
+<IfModule mod_headers.c>
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Permissions-Policy "geolocation=(), camera=(), payment=()"
+</IfModule>

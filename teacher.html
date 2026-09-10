@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Teacher Dashboard — Three Baby Birdies</title>
+<title>Teacher Dashboard | Three Baby Birdies</title>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -93,14 +93,36 @@ tr:last-child td{border-bottom:none;}
 .loading-bar{text-align:center;padding:36px;color:var(--mid);font-family:var(--font-display);font-weight:600;}
 @media(max-width:600px){th{font-size:.66rem;}td{font-size:.78rem;}}
 </style>
+<!-- SEO / social / icons -->
+<meta name="description" content="Teacher dashboard for Chirpy's Classroom.">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Three Baby Birdies">
+<meta property="og:title" content="Teacher Dashboard | Three Baby Birdies">
+<meta property="og:description" content="Teacher dashboard for Chirpy's Classroom.">
+<meta property="og:url" content="https://threebabybirdies.com/teacher.html">
+<meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Teacher Dashboard | Three Baby Birdies">
+<meta name="twitter:description" content="Teacher dashboard for Chirpy's Classroom.">
+<meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#6EB4D4">
+<!-- /SEO -->
 </head>
 <body>
 
 <header class="admin-header">
-  <div class="header-logo">🐦 Three Baby Birdies</div>
-  <div class="header-badge">🎓 Teacher Dashboard</div>
+  <div class="header-logo">Three Baby Birdies</div>
+  <div class="header-badge">Teacher Dashboard</div>
   <div class="header-right">
-    <span class="header-email" id="t-email">—</span>
+    <span class="header-email" id="t-email">,</span>
     <button class="btn-logout" onclick="logout()">Log out</button>
   </div>
 </header>
@@ -109,7 +131,7 @@ tr:last-child td{border-bottom:none;}
   <!-- LIST VIEW -->
   <div id="view-list">
     <div class="row">
-      <h2 class="page grow">Your Classes</h2>
+      <h1 class="page grow">Your Classes</h1>
       <button class="btn btn-green" onclick="openModal('m-class')">＋ New Class</button>
     </div>
     <div id="class-list"><div class="loading-bar">Loading classes…</div></div>
@@ -120,7 +142,7 @@ tr:last-child td{border-bottom:none;}
     <div class="row">
       <button class="btn btn-ghost" onclick="showList()">← Classes</button>
       <h2 class="page grow" id="d-name">Class</h2>
-      <button class="btn btn-ghost" onclick="downloadReport()">⬇ Class Report</button>
+      <button class="btn btn-ghost" onclick="downloadReport()">Class Report</button>
       <button class="btn btn-ghost" style="color:var(--red);border-color:#fca5a5;" onclick="deleteClass()">Delete</button>
     </div>
 
@@ -129,7 +151,7 @@ tr:last-child td{border-bottom:none;}
 
     <div class="row" style="margin-top:22px;margin-bottom:10px;">
       <div class="section-title grow" style="margin:0;">Roster</div>
-      <span style="font-size:.78rem;color:var(--mid);">👨‍👩‍👧 Students join with the class code above.</span>
+      <span style="font-size:.78rem;color:var(--mid);">Students join with the class code above.</span>
     </div>
     <div class="table-wrap" id="d-roster"></div>
 
@@ -138,7 +160,7 @@ tr:last-child td{border-bottom:none;}
 
     <div class="row" style="margin-top:22px;margin-bottom:10px;">
       <div class="section-title grow" style="margin:0;">Assigned Lessons</div>
-      <button class="btn btn-amber" onclick="openModal('m-lesson')">📖 Assign Lesson</button>
+      <button class="btn btn-amber" onclick="openModal('m-lesson')">Assign Lesson</button>
     </div>
     <div id="d-lessons"></div>
   </div>
@@ -146,9 +168,9 @@ tr:last-child td{border-bottom:none;}
 
 <!-- New Class modal -->
 <div class="overlay" id="m-class"><div class="modal">
-  <h3>🏫 New Class</h3>
-  <div class="field"><label>Class name</label><input id="nc-name" placeholder="e.g. Grade 1 - Room A"></div>
-  <div class="field"><label>Grade level (optional)</label><input id="nc-grade" placeholder="Grade 1"></div>
+  <h3>New Class</h3>
+  <div class="field"><label>Class name</label><input id="nc-name" placeholder="e.g. Grade 1 - Room A" aria-label="Class name"></div>
+  <div class="field"><label>Grade level (optional)</label><input id="nc-grade" placeholder="Grade 1" aria-label="Class grade"></div>
   <div class="modal-actions">
     <button class="btn btn-ghost" onclick="closeModal('m-class')">Cancel</button>
     <button class="btn btn-red" onclick="createClass()">Create</button>
@@ -157,11 +179,11 @@ tr:last-child td{border-bottom:none;}
 
 <!-- Add Student modal -->
 <div class="overlay" id="m-student"><div class="modal">
-  <h3>🐣 Add Student</h3>
-  <div class="field"><label>Nickname</label><input id="ns-name" placeholder="e.g. Emma"></div>
+  <h3>Add Student</h3>
+  <div class="field"><label>Nickname</label><input id="ns-name" placeholder="e.g. Emma" aria-label="Student's first name"></div>
   <div style="display:flex;gap:10px;">
-    <div class="field" style="flex:1;"><label>Age</label><input id="ns-age" inputmode="numeric" placeholder="6"></div>
-    <div class="field" style="flex:1;"><label>Grade</label><input id="ns-grade" placeholder="Grade 1"></div>
+    <div class="field" style="flex:1;"><label>Age</label><input id="ns-age" inputmode="numeric" placeholder="6" aria-label="Student's age"></div>
+    <div class="field" style="flex:1;"><label>Grade</label><input id="ns-grade" placeholder="Grade 1" aria-label="Student's grade"></div>
   </div>
   <div class="modal-actions">
     <button class="btn btn-ghost" onclick="closeModal('m-student')">Cancel</button>
@@ -171,20 +193,20 @@ tr:last-child td{border-bottom:none;}
 
 <!-- Assign Lesson modal -->
 <div class="overlay" id="m-lesson"><div class="modal">
-  <h3>📖 Assign Lesson to Class</h3>
+  <h3>Assign Lesson to Class</h3>
   <div class="field"><label>Subject</label>
-    <select id="al-subject">
+    <select id="al-subject" aria-label="Subject">
       <option>spelling</option><option>math</option><option>rhyming</option>
       <option>grammar</option><option>puzzles</option><option>literature</option>
     </select>
   </div>
   <div style="display:flex;gap:10px;">
-    <div class="field" style="flex:1;"><label>Grade</label><input id="al-grade" placeholder="Grade 1"></div>
+    <div class="field" style="flex:1;"><label>Grade</label><input id="al-grade" placeholder="Grade 1" aria-label="Grade"></div>
     <div class="field" style="flex:1;"><label>Duration</label>
-      <select id="al-duration"><option>3 days</option><option selected>5 days</option><option>1 week</option><option>2 weeks</option></select>
+      <select id="al-duration" aria-label="Duration"><option>3 days</option><option selected>5 days</option><option>1 week</option><option>2 weeks</option></select>
     </div>
   </div>
-  <div class="field"><label>Focus areas (optional)</label><input id="al-focus" placeholder="e.g. sight words"></div>
+  <div class="field"><label>Focus areas (optional)</label><input id="al-focus" placeholder="e.g. sight words" aria-label="Focus areas"></div>
   <div class="modal-actions">
     <button class="btn btn-ghost" onclick="closeModal('m-lesson')">Cancel</button>
     <button class="btn btn-red" id="al-go" onclick="assignLesson()">Generate &amp; Assign</button>
@@ -194,7 +216,7 @@ tr:last-child td{border-bottom:none;}
 <!-- View Plan modal -->
 <div class="overlay" id="m-plan"><div class="modal wide">
   <div style="display:flex;justify-content:flex-end;margin-bottom:8px;">
-    <button class="btn btn-ghost" onclick="closeModal('m-plan')">✕ Close</button>
+    <button class="btn btn-ghost" onclick="closeModal('m-plan')">Close</button>
   </div>
   <div class="plan" id="plan-body"></div>
 </div></div>
@@ -206,7 +228,7 @@ const API = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');
 const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
 
-// Auth guard — valid, unexpired token + teacher role
+// Auth guard, valid, unexpired token + teacher role
 function tokenValid(t){ try{ const p=t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');const pad=p.length%4?'='.repeat(4-(p.length%4)):'';return JSON.parse(atob(p+pad)).exp*1000>Date.now(); }catch(e){ return false; } }
 if (!token || !user || !tokenValid(token)) { ['mb_token','mb_user','mb_child_id'].forEach(k=>localStorage.removeItem(k)); window.location.href='login.html'; }
 if (user && user.role !== 'teacher') { window.location.href = user.role === 'admin' ? 'admin.html' : 'app.html'; }
@@ -235,10 +257,10 @@ async function loadClasses(){
 }
 function renderClasses(){
   const el = document.getElementById('class-list');
-  if(!classes.length){ el.innerHTML='<div class="empty"><div class="big">🏫</div><p style="font-weight:700;margin-top:8px;">No classes yet</p><p style="font-size:.85rem;">Create your first class to add students and track progress.</p></div>'; return; }
+  if(!classes.length){ el.innerHTML='<div class="empty"><div class="big"></div><p style="font-weight:700;margin-top:8px;">No classes yet</p><p style="font-size:.85rem;">Create your first class to add students and track progress.</p></div>'; return; }
   el.innerHTML = '<div class="cards">'+classes.map(c=>`
     <div class="class-card" onclick='openClass(${JSON.stringify(c).replace(/'/g,"&#39;")})'>
-      <div class="emoji">📚</div>
+      <div class="emoji"></div>
       <div class="name">${esc(c.name)}</div>
       <div class="meta">${c.grade_level?esc(c.grade_level)+' · ':''}${c.student_count} student${c.student_count===1?'':'s'}</div>
     </div>`).join('')+'</div>';
@@ -264,8 +286,8 @@ function refreshDetail(){ if(active) openClass(active); }
 
 function renderCode(){
   const el=document.getElementById('d-code');
-  el.innerHTML = `<span style="font-family:var(--font-display);font-weight:700;font-size:.8rem;color:var(--mid);">🔑 Class join code:</span>
-    <span id="code-val" style="font-family:monospace;font-weight:700;font-size:1.05rem;letter-spacing:3px;background:var(--sky-light);color:var(--sky-dark);padding:5px 14px;border-radius:8px;">${esc(active.join_code||'—')}</span>
+  el.innerHTML = `<span style="font-family:var(--font-display);font-weight:700;font-size:.8rem;color:var(--mid);">Class join code:</span>
+    <span id="code-val" style="font-family:monospace;font-weight:700;font-size:1.05rem;letter-spacing:3px;background:var(--sky-light);color:var(--sky-dark);padding:5px 14px;border-radius:8px;">${esc(active.join_code||',')}</span>
     <button class="btn btn-ghost" onclick="copyCode()">Copy</button>
     <button class="btn btn-ghost" onclick="regenCode()">Regenerate</button>
     <span style="font-size:.75rem;color:var(--mid);flex-basis:100%;">Share this code with parents so they can enroll their own child in this class.</span>`;
@@ -288,8 +310,8 @@ function renderDetail(a){
   // roster
   let rows = students.length ? students.map(s=>`
     <tr>
-      <td><strong>🐣 ${esc(s.child_name)}</strong>${s.joined?' <span style="font-size:.62rem;background:var(--yellow-light);color:#92600a;padding:2px 7px;border-radius:999px;font-weight:700;vertical-align:middle;">parent-joined</span>':''}</td>
-      <td>${esc(s.grade)||'—'}</td>
+      <td><strong>${esc(s.child_name)}</strong>${s.joined?' <span style="font-size:.62rem;background:var(--yellow-light);color:#92600a;padding:2px 7px;border-radius:999px;font-weight:700;vertical-align:middle;">parent-joined</span>':''}</td>
+      <td>${esc(s.grade)||','}</td>
       <td>${s.sessions}</td>
       <td style="font-weight:700;color:${accColor(s.avg_score)}">${s.avg_score}%</td>
       <td>${s.badges}</td>
@@ -297,7 +319,7 @@ function renderDetail(a){
         ${s.joined?'<span style="font-size:.72rem;color:var(--mid);">Parent-managed</span>':`<button class="btn btn-sky" onclick="teach('${s.id}')">▶ Teach</button>`}
         <button class="btn btn-mini" onclick="removeStudent('${s.id}','${esc(s.child_name)}')">Remove</button>
       </td>
-    </tr>`).join('') : '<tr><td colspan="6" style="color:var(--mid);">No students yet — add one, or share the join code so a parent can enroll their child.</td></tr>';
+    </tr>`).join('') : '<tr><td colspan="6" style="color:var(--mid);">No students yet, add one, or share the join code so a parent can enroll their child.</td></tr>';
   document.getElementById('d-roster').innerHTML = `<table><thead><tr>
     <th>Student</th><th>Grade</th><th>Sessions</th><th>Accuracy</th><th>Badges</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
 
@@ -372,7 +394,7 @@ function renderPlan(p){
   if(p.overview) h+=`<p class="ov">${esc(p.overview)}</p>`;
   if(Array.isArray(p.objectives)&&p.objectives.length) h+=`<div style="margin-bottom:12px;"><strong style="color:var(--green);font-size:.75rem;text-transform:uppercase;">Objectives</strong><ul style="margin:6px 0 0 18px;font-size:.85rem;color:#444;line-height:1.6;">${p.objectives.map(o=>`<li>${esc(o)}</li>`).join('')}</ul></div>`;
   (p.days||[]).forEach((d,i)=>{
-    h+=`<div class="day"><div class="day-h">Day ${d.day||i+1}${d.title?' — '+esc(d.title):''}</div><div class="day-b">
+    h+=`<div class="day"><div class="day-h">Day ${d.day||i+1}${d.title?', '+esc(d.title):''}</div><div class="day-b">
       ${d.objective?`<p><strong style="color:var(--green)">Objective:</strong> ${esc(d.objective)}</p>`:''}
       ${d.warmup?`<p><strong style="color:var(--sky-dark)">Warm-up:</strong> ${esc(d.warmup)}</p>`:''}
       ${d.main_activity?`<p><strong style="color:var(--red)">Main Activity:</strong> ${esc(d.main_activity)}</p>`:''}

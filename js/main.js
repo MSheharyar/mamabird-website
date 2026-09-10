@@ -40,20 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---- Lucide icons ---- */
-  if (window.lucide) lucide.createIcons();
 
-  /* ---- Scroll-reveal (simple IntersectionObserver) ---- */
-  const reveals = document.querySelectorAll('.reveal');
-  if (reveals.length) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('revealed');
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => io.observe(el));
-  }
 
 });

@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Three Baby Birdies — A Read-Aloud Story by Iris Scarfone</title>
+<title>Three Baby Birdies | A Read-Aloud Story by Iris Scarfone</title>
 <link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/game.css">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ---- HOME-ONLY STYLES ---- */
@@ -21,7 +22,7 @@
   font-family:var(--font-display); font-size:.95rem; font-weight:600; color:var(--sky-dark);
   background:rgba(110,180,212,.12); border-left:3px solid var(--sky);
   padding:12px 18px; border-radius:0 var(--r-sm) var(--r-sm) 0;
-  margin-bottom:var(--sp-md); font-style:italic; line-height:1.65;
+  margin-bottom:var(--sp-md); line-height:1.65;
 }
 .hero-rhyme small { display:block; margin-top:6px; font-size:.7rem; opacity:.55; font-style:normal; }
 .hero-title .accent { color:var(--sky-dark); }
@@ -80,7 +81,6 @@
 .author-accent { position:absolute; inset:0; border:3px solid var(--yellow); border-radius:var(--r-lg); transform:translate(10px,10px); z-index:-1; }
 
 /* Testimonials */
-.t-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
 
 /* Newsletter */
 .nl-section { background:var(--dark); }
@@ -94,6 +94,85 @@
   font-family:var(--font-display); font-weight:700; font-size:.78rem;
   color:var(--yellow); margin-bottom:20px;
 }
+/* ---- Objection block ---- */
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:900px; margin:0 auto; }
+.compare-card { border-radius:var(--r-lg); padding:30px 28px; }
+.compare-card h3 { font-size:1.05rem; margin-bottom:4px; }
+.compare-kicker {
+  font-family:var(--font-display); font-weight:700; font-size:.68rem;
+  letter-spacing:.12em; text-transform:uppercase; margin-bottom:14px;
+}
+.cc-before { background:#FBF0EE; border:1.5px solid #EBD4CF; }
+.cc-before .compare-kicker { color:#B4675A; }
+.cc-after  { background:var(--green-light); border:1.5px solid #BBD9B6; }
+.cc-after .compare-kicker { color:var(--green); }
+.compare-list { list-style:none; display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+.compare-list li { display:flex; gap:10px; align-items:flex-start; font-size:.92rem; line-height:1.55; color:var(--mid); }
+.compare-list i { flex-shrink:0; margin-top:3px; }
+
+/* ---- Session preview ---- */
+.session-wrap { max-width:620px; margin:0 auto; }
+.session-window {
+  background:#fff; border-radius:var(--r-lg); box-shadow:var(--sh-md);
+  overflow:hidden; border:1px solid var(--cream-dark);
+}
+.session-bar {
+  display:flex; align-items:center; gap:10px; padding:12px 18px;
+  background:var(--sky-xlight); border-bottom:1px solid var(--cream-dark);
+}
+.session-bar .mascot-badge { width:30px; height:30px; }
+.session-who { font-family:var(--font-display); font-weight:700; font-size:.88rem; color:var(--dark); }
+.session-sub { font-size:.7rem; color:var(--green); font-weight:600; }
+.session-body { padding:22px 18px; display:flex; flex-direction:column; gap:14px; }
+.sm { display:flex; gap:10px; align-items:flex-end; max-width:86%; }
+.sm-kid { align-self:flex-end; flex-direction:row-reverse; }
+.sm .mascot-badge { width:28px; height:28px; }
+.sm-kid-av {
+  width:28px; height:28px; border-radius:50%; background:var(--yellow-light);
+  display:flex; align-items:center; justify-content:center; font-size:.8rem; flex-shrink:0;
+}
+.sm-bubble { padding:11px 15px; border-radius:var(--r-md); font-size:.92rem; line-height:1.55; }
+.sm-bot { background:var(--sky-xlight); color:var(--dark); border-bottom-left-radius:5px; }
+.sm-kid .sm-bubble { background:var(--red); color:#fff; border-bottom-right-radius:5px; }
+.session-note {
+  text-align:center; font-size:.75rem; color:var(--light-text);
+  padding:0 18px 18px;
+}
+
+/* ---- Sticky CTA (small screens only) ---- */
+.sticky-cta { display:none; }
+@media(max-width:760px){
+  .compare-grid { grid-template-columns:1fr; }
+  .sticky-cta {
+    display:flex; position:fixed; left:0; right:0; bottom:0; z-index:900;
+    align-items:center; gap:12px; padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+    background:var(--cream); border-top:1px solid var(--cream-dark);
+    box-shadow:0 -4px 18px rgba(44,24,16,.10);
+  }
+  .sticky-cta .mascot { width:34px; flex-shrink:0; }
+  .sticky-cta-text { flex:1; min-width:0; }
+  .sticky-cta-text b { display:block; font-family:var(--font-display); font-size:.82rem; color:var(--dark); }
+  .sticky-cta-text span { font-size:.68rem; color:var(--light-text); }
+  .sticky-cta .btn { padding:10px 18px; font-size:.85rem; }
+  body { padding-bottom:74px; }
+}
+.hero-play { display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin:18px 0 4px; }
+.play-link {
+  display:inline-flex; align-items:center; gap:9px; padding:0; border:none; background:none;
+  font-family:var(--font-display); font-weight:700; font-size:.95rem; color:var(--sky-dark);
+  cursor:pointer; transition:color .18s;
+}
+.play-link:hover { color:var(--red); }
+.play-link:hover .play-dot { background:var(--red); transform:scale(1.08); }
+.play-link:focus-visible { outline:3px solid var(--yellow); outline-offset:3px; border-radius:var(--r-sm); }
+.play-dot {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:26px; height:26px; border-radius:50%; background:var(--sky-dark); color:#fff;
+  transition:background .18s, transform .18s;
+}
+.hero-play-note { font-size:.78rem; color:var(--light-text); }
+@media(max-width:960px){ .hero-play { justify-content:center; } }
+@media (prefers-reduced-motion: reduce) { .play-link:hover .play-dot { transform:none; } }
 .nl-form { display:flex; flex-direction:column; gap:12px; }
 .nl-input {
   padding:15px 20px; border-radius:var(--r-full);
@@ -104,17 +183,31 @@
 .nl-input::placeholder { color:rgba(255,255,255,.3); }
 .nl-input:focus { border-color:var(--sky); }
 .nl-fine { font-size:.75rem; color:rgba(255,255,255,.3); margin-top:4px; }
+.hp-field { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.nl-label {
+  font-family:var(--font-display); font-weight:700; font-size:.78rem;
+  color:rgba(255,255,255,.62); margin-bottom:-6px; padding-left:4px;
+}
+.nl-opt { font-weight:600; color:rgba(255,255,255,.32); }
+.nl-input:focus-visible { outline:2px solid var(--sky); outline-offset:2px; }
+.nl-input[aria-invalid="true"] { border-color:var(--red); }
+#nl-submit[disabled] { opacity:.6; cursor:progress; }
+.nl-status {
+  font-size:.85rem; font-weight:700; font-family:var(--font-display);
+  margin-top:2px; padding-left:4px;
+}
+.nl-status.ok  { color:#8FD48A; }
+.nl-status.err { color:#FF9E96; }
 
 /* Responsive */
 @media(max-width:960px){
   .hero-inner { grid-template-columns:1fr; gap:40px; text-align:center; }
   .hero-book-col { order:-1; }
-  .hero-sub,.hero-actions,.hero-retailers,.hero-badges,.scroll-cue { margin-left:auto; margin-right:auto; justify-content:center; }
+  .hero-sub.hero-actions.hero-retailers.hero-badges.scroll-cue { margin-left:auto; margin-right:auto; justify-content:center; }
   .book-grid   { grid-template-columns:1fr; gap:40px; }
   .book-col-display { order:-1; }
   .about-grid  { grid-template-columns:1fr; gap:40px; }
   .author-photo-frame { order:-1; }
-  .t-grid      { grid-template-columns:1fr; }
   .nl-grid     { grid-template-columns:1fr; gap:40px; }
 }
 @media(max-width:560px){
@@ -123,6 +216,53 @@
   .hero-mini { display:none; }
 }
 </style>
+<!-- SEO / social / icons -->
+<meta name="description" content="A gentle rhyming picture book for ages 2 to 6 by Iris Scarfone, illustrated by Ronald Scarfone. Plus Chirpy's AI classroom for ages 2 to 8. Read it, play it, start free.">
+<link rel="canonical" href="https://threebabybirdies.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Three Baby Birdies">
+<meta property="og:title" content="Three Baby Birdies | A Read-Aloud Story by Iris Scarfone">
+<meta property="og:description" content="A gentle rhyming picture book for ages 2 to 6 by Iris Scarfone, illustrated by Ronald Scarfone. Plus Chirpy's AI classroom for ages 2 to 8. Read it, play it, start free.">
+<meta property="og:url" content="https://threebabybirdies.com/">
+<meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The cover of Three Baby Birdies: three red birds in a nest under a blue sky.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Three Baby Birdies | A Read-Aloud Story by Iris Scarfone">
+<meta name="twitter:description" content="A gentle rhyming picture book for ages 2 to 6 by Iris Scarfone, illustrated by Ronald Scarfone. Plus Chirpy's AI classroom for ages 2 to 8. Read it, play it, start free.">
+<meta name="twitter:image" content="https://threebabybirdies.com/assets/og-image.jpg">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#6EB4D4">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://threebabybirdies.com/#org",
+      "name": "Three Baby Birdies",
+      "url": "https://threebabybirdies.com/",
+      "logo": "https://threebabybirdies.com/assets/icon-512.png",
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://threebabybirdies.com/#website",
+      "url": "https://threebabybirdies.com/",
+      "name": "Three Baby Birdies",
+      "publisher": {
+        "@id": "https://threebabybirdies.com/#org"
+      },
+      "inLanguage": "en"
+    }
+  ]
+}
+</script>
+<!-- /SEO -->
 </head>
 <body>
 
@@ -135,34 +275,39 @@
     <!-- Animated gradient blobs -->
     <div class="blob" style="width:420px;height:420px;background:#6EB4D4;opacity:.22;top:-100px;left:-80px;animation-duration:10s;"></div>
     <div class="blob" style="width:320px;height:320px;background:#F5C200;opacity:.15;top:80px;right:-60px;animation-duration:13s;animation-delay:-4s;"></div>
-    <div class="blob" style="width:250px;height:250px;background:#7C3AED;opacity:.12;bottom:20px;left:35%;animation-duration:11s;animation-delay:-2s;"></div>
+    <div class="blob" style="width:250px;height:250px;background:#9B6B35;opacity:.12;bottom:20px;left:35%;animation-duration:11s;animation-delay:-2s;"></div>
     <!-- Floating birds -->
-    <div class="float" style="position:absolute;top:18%;left:12%;font-size:1.6rem;opacity:.55;animation-duration:3.8s;">🐦</div>
-    <div class="float float-d1" style="position:absolute;top:25%;right:18%;font-size:1.2rem;opacity:.45;animation-duration:4.5s;">🐦</div>
-    <div class="float float-d2" style="position:absolute;bottom:28%;left:28%;font-size:1rem;opacity:.35;animation-duration:5.2s;">🐦</div>
-    <div class="float" style="position:absolute;top:45%;right:8%;font-size:2rem;opacity:.25;animation-duration:3.2s;color:var(--green);"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
+    <img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot float" style="position:absolute;top:18%;left:12%;width:56px;opacity:.55;animation-duration:3.8s;" loading="lazy" decoding="async" width="280" height="276">
+    <img src="assets/birdie-left.png" alt="" aria-hidden="true" class="mascot float float-d1" style="position:absolute;top:25%;right:18%;width:42px;opacity:.45;animation-duration:4.5s;" loading="lazy" decoding="async" width="260" height="288">
+    <img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot float float-d2" style="position:absolute;bottom:28%;left:28%;width:34px;opacity:.35;animation-duration:5.2s;" loading="lazy" decoding="async" width="260" height="292">
   </div>
   <div class="hero-inner">
     <div>
-      <div class="badge-ai" style="margin-bottom:16px;"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> NEW — Chirpy's AI Classroom is live!</div>
-      <div class="hero-rhyme">"Chirp chirp chirp. Flap your wings and try to fly.<br>It is just as easy as easy as pie."<small>— from Three Baby Birdies</small></div>
+      <div class="hero-rhyme">"Chirp chirp chirp. Flap your wings and try to fly.<br>It is just as easy as easy as pie."<small>, from Three Baby Birdies</small></div>
       <h1 class="hero-title" style="margin-bottom:16px;">A nest of wonder<br><span class="accent">for little readers.</span></h1>
-      <p class="hero-sub">Three little red birds, a bright blue sky, and a warm sun — a gentle rhyming story made for bedtime, story time, and curious little ones. Now with an AI learning companion for ages 2–8.</p>
+      <p class="hero-sub">Three little red birds, a bright blue sky and a warm sun. A gentle rhyming story made for bedtime, story time and curious little ones. Now with an AI learning companion for ages 2–8.</p>
       <div class="hero-actions">
-        <a href="chatbot.html" class="btn btn-red"><i data-lucide="graduation-cap" style="width:16px;height:16px;"></i> Try Chirpy Free</a>
-        <a href="ebook.html" class="btn btn-outline"><i data-lucide="download" style="width:16px;height:16px;"></i> Get the eBook</a>
+        <a href="chatbot.html" class="btn btn-red">Try Chirpy Free</a>
+        <a href="book.html" class="btn btn-outline">Get the eBook</a>
       </div>
+      <p class="hero-play">
+        <button type="button" class="play-link" data-play-game>
+          <span class="play-dot"></span>
+          Play Chirpy&rsquo;s First Flight
+        </button>
+        <span class="hero-play-note">Free &middot; no sign-up</span>
+      </p>
       <div class="hero-retailers">
         Instant PDF download, or <a href="book.html">order a signed paperback</a>.<br>
         <!-- TODO: link "Barnes &amp; Noble" once Iris supplies the retailer URL. -->
         Also available at <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" target="_blank" rel="noopener">Amazon</a> and Barnes &amp; Noble.
       </div>
       <div class="hero-badges">
-        <span class="hero-badge"><i data-lucide="feather" style="width:14px;height:14px;"></i> Little Birds</span>
-        <span class="hero-badge"><i data-lucide="sun" style="width:14px;height:14px;"></i> Sky &amp; Sun</span>
-        <span class="hero-badge"><i data-lucide="volume-2" style="width:14px;height:14px;"></i> Read-Aloud</span>
-        <span class="hero-badge"><i data-lucide="star" style="width:14px;height:14px;"></i> Ages 2–6</span>
-        <span class="hero-badge" style="background:var(--purple-light);border-color:rgba(124,58,237,.2);color:var(--purple);"><i data-lucide="bot" style="width:14px;height:14px;"></i> AI Tutor</span>
+        <span class="hero-badge">Little Birds</span>
+        <span class="hero-badge">Sky &amp; Sun</span>
+        <span class="hero-badge">Read-Aloud</span>
+        <span class="hero-badge">Ages 2–6</span>
+        <span class="hero-badge" style="background:var(--yellow-light);border-color:rgba(124,58,237,.2);color:var(--brown);">AI Tutor</span>
       </div>
       <div class="scroll-cue" style="margin-top:28px;"><div class="scroll-dot"></div>Scroll to explore</div>
     </div>
@@ -171,14 +316,14 @@
         <div class="book-3d float" style="animation-duration:4s;">
           <div class="book-spine"></div>
           <div class="book-cover">
-            <img src="assets/frontpage.png" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="assets/frontpage.jpg" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;" fetchpriority="high" decoding="async" width="760" height="761">
           </div>
-          <div class="book-float book-float-top"><i data-lucide="star" style="width:12px;height:12px;"></i> Ages 2–6</div>
-          <div class="book-float book-float-bot"><i data-lucide="graduation-cap" style="width:12px;height:12px;"></i> + AI Classroom</div>
+          <div class="book-float book-float-top">Ages 2–6</div>
+          <div class="book-float book-float-bot">+ AI Classroom</div>
         </div>
         <!-- Chirpy mini card floating beside book -->
-        <div class="glass-card float float-d1 hero-mini" style="position:absolute;right:-40px;bottom:40px;padding:12px 16px;background:rgba(255,255,255,.85);backdrop-filter:blur(8px);display:flex;align-items:center;gap:10px;white-space:nowrap;animation-duration:5s;">
-          <span style="font-size:1.4rem;">🐦</span>
+        <div class="glass-card float float-d1 hero-mini" style="position:absolute;right:-40px;bottom:40px;padding:12px 16px;background:rgba(255,255,255,.85);display:flex;align-items:center;gap:10px;white-space:nowrap;animation-duration:5s;">
+          <span class="mascot-badge" style="width:38px;height:38px;"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
           <div>
             <div style="font-family:var(--font-display);font-weight:700;font-size:.82rem;color:var(--dark);">Chirpy says hi!</div>
             <div style="font-size:.7rem;color:var(--sky-dark);">● Online &amp; ready to teach</div>
@@ -196,16 +341,15 @@
       <div class="book-col-display">
         <div style="position:relative;display:inline-block;">
           <div style="position:absolute;left:-14px;top:8px;bottom:8px;width:14px;background:var(--sky-dark);border-radius:4px 0 0 4px;box-shadow:-3px 0 10px rgba(0,0,0,.15);"></div>
-          <img src="assets/frontpage.png" alt="Three Baby Birdies book cover"
-               style="width:280px;border-radius:var(--r-md);box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);border:3px solid rgba(255,255,255,.6);display:block;">
-          <div class="book-float" style="top:-14px;right:-24px;background:var(--yellow);color:var(--brown-dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;"><i data-lucide="star" style="width:12px;height:12px;"></i> Ages 2–6</div>
-          <div class="book-float" style="bottom:20px;left:-32px;background:#fff;color:var(--dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;border:1px solid var(--cream-dark);"><i data-lucide="volume-2" style="width:12px;height:12px;"></i> Read-Aloud</div>
+          <img src="assets/frontpage.jpg" alt="Three Baby Birdies book cover"
+               style="width:280px;border-radius:var(--r-md);box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);border:3px solid rgba(255,255,255,.6);display:block;" loading="lazy" decoding="async" width="760" height="761">
+          <div class="book-float" style="top:-14px;right:-24px;background:var(--yellow);color:var(--brown-dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;">Ages 2–6</div>
+          <div class="book-float" style="bottom:20px;left:-32px;background:#fff;color:var(--dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;border:1px solid var(--cream-dark);">Read-Aloud</div>
         </div>
       </div>
       <div>
-        <span class="section-label"><i data-lucide="book-open" style="width:14px;height:14px;"></i> The Book</span>
         <h2 style="margin-bottom:16px;">Three little birds,<br>one big adventure.</h2>
-        <p style="margin-bottom:20px;">A cheerful tale of three little red birds in their nest — bright blue sky, fluffy clouds, warm sun above. Rhythmic, rhyming language that makes every read-aloud a joy.</p>
+        <p style="margin-bottom:20px;">A cheerful tale of three little red birds in their nest, bright blue sky, fluffy clouds, warm sun above. Rhythmic, rhyming language that makes every read-aloud a joy.</p>
         <div class="meta-grid">
           <div class="meta-chip"><div class="meta-chip-label">Age Range</div><div class="meta-chip-val">Ages 2–6</div></div>
           <div class="meta-chip"><div class="meta-chip-label">Style</div><div class="meta-chip-val">Rhyming</div></div>
@@ -213,13 +357,13 @@
           <div class="meta-chip"><div class="meta-chip-label">Language</div><div class="meta-chip-val">English</div></div>
         </div>
         <div class="format-pills">
-          <span class="format-pill"><i data-lucide="smartphone" style="width:13px;height:13px;"></i> Kindle eBook</span>
-          <span class="format-pill"><i data-lucide="book" style="width:13px;height:13px;"></i> Paperback</span>
-          <span class="format-pill"><i data-lucide="pen-line" style="width:13px;height:13px;"></i> Signed Copy</span>
+          <span class="format-pill">Kindle eBook</span>
+          <span class="format-pill">Paperback</span>
+          <span class="format-pill">Signed Copy</span>
         </div>
         <div class="buy-stack">
-          <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-yellow"><i data-lucide="shopping-cart" style="width:16px;height:16px;"></i> Buy Kindle eBook on Amazon</a>
-          <a href="book.html" class="btn btn-outline"><i data-lucide="pen-line" style="width:16px;height:16px;"></i> Order a Signed Paperback</a>
+          <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-yellow">Buy Kindle eBook on Amazon</a>
+          <a href="book.html" class="btn btn-outline">Order a Signed Paperback</a>
         </div>
       </div>
     </div>
@@ -227,77 +371,94 @@
 </section>
 
 <!-- MARQUEE STRIP -->
-<div class="marquee-wrap" style="overflow:hidden;padding:14px 0;background:var(--purple);">
+<div class="marquee-wrap" style="overflow:hidden;padding:14px 0;background:var(--brown);">
   <div class="marquee-track">
-    <span class="marquee-item">🐦 <span>Chirpy's Classroom</span></span>
-    <span class="marquee-item">✏️ <span>Spelling</span></span>
-    <span class="marquee-item">🎵 <span>Rhyming</span></span>
-    <span class="marquee-item">🔢 <span>Math</span></span>
-    <span class="marquee-item">📝 <span>Grammar</span></span>
-    <span class="marquee-item">🧩 <span>Puzzles</span></span>
-    <span class="marquee-item">📖 <span>Stories</span></span>
-    <span class="marquee-item"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg> <span>Mama Bird</span></span>
-    <span class="marquee-item">⭐ <span>Free 3-month trial</span></span>
-    <span class="marquee-item">🐦 <span>Chirpy's Classroom</span></span>
-    <span class="marquee-item">✏️ <span>Spelling</span></span>
-    <span class="marquee-item">🎵 <span>Rhyming</span></span>
-    <span class="marquee-item">🔢 <span>Math</span></span>
-    <span class="marquee-item">📝 <span>Grammar</span></span>
-    <span class="marquee-item">🧩 <span>Puzzles</span></span>
-    <span class="marquee-item">📖 <span>Stories</span></span>
-    <span class="marquee-item"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg> <span>Mama Bird</span></span>
-    <span class="marquee-item">⭐ <span>Free 3-month trial</span></span>
+    <span class="marquee-item"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="280" height="276"> <span>Chirpy’s Classroom</span></span>
+    <span class="marquee-item"><span>Spelling</span></span>
+    <span class="marquee-item"><span>Rhyming</span></span>
+    <span class="marquee-item"><span>Math</span></span>
+    <span class="marquee-item"><span>Grammar</span></span>
+    <span class="marquee-item"><span>Puzzles</span></span>
+    <span class="marquee-item"><span>Stories</span></span>
+    <span class="marquee-item"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="260" height="292"> <span>Mama Bird</span></span>
+    <span class="marquee-item"><span>Free 3-month trial</span></span>
+    <span class="marquee-item"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="280" height="276"> <span>Chirpy’s Classroom</span></span>
+    <span class="marquee-item"><span>Spelling</span></span>
+    <span class="marquee-item"><span>Rhyming</span></span>
+    <span class="marquee-item"><span>Math</span></span>
+    <span class="marquee-item"><span>Grammar</span></span>
+    <span class="marquee-item"><span>Puzzles</span></span>
+    <span class="marquee-item"><span>Stories</span></span>
+    <span class="marquee-item"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="260" height="292"> <span>Mama Bird</span></span>
+    <span class="marquee-item"><span>Free 3-month trial</span></span>
   </div>
 </div>
 
 <!-- STATS BAR -->
 <section style="background:linear-gradient(135deg,var(--dark) 0%,#3D1F12 100%);padding:0;">
   <div class="stats-bar">
-    <div class="stat-item reveal"><div class="stat-number">6</div><div class="stat-label">Learning Subjects</div></div>
-    <div class="stat-item reveal"><div class="stat-number">2</div><div class="stat-label">AI Characters</div></div>
-    <div class="stat-item reveal"><div class="stat-number">3mo</div><div class="stat-label">Free Trial</div></div>
-    <div class="stat-item reveal"><div class="stat-number">100%</div><div class="stat-label">COPPA Safe</div></div>
+    <div class="stat-item"><div class="stat-number">6</div><div class="stat-label">Learning Subjects</div></div>
+    <div class="stat-item"><div class="stat-number">2</div><div class="stat-label">AI Characters</div></div>
+    <div class="stat-item"><div class="stat-number">3mo</div><div class="stat-label">Free Trial</div></div>
+    <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">COPPA Safe</div></div>
+  </div>
+</section>
+
+<!-- GAME BANNER -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="game-banner">
+      <div class="game-banner-art" aria-hidden="true">
+        <img src="assets/chirpy.png" alt="" class="mascot float" style="width:96px;" loading="lazy" decoding="async" width="280" height="276">
+        <span class="gb-branch gb-branch-a"></span>
+        <span class="gb-branch gb-branch-b"></span>
+      </div>
+      <div>
+        <h2 style="margin-bottom:12px;">Help Chirpy learn to fly</h2>
+        <p style="margin-bottom:22px;max-width:460px;">The moment from the book, made into a game your child can play. Tap to flap, slip between the branches, and see how far Chirpy gets. No sign-in and no adverts. It just runs in the browser.</p>
+        <button type="button" class="btn btn-red" data-play-game>Play Chirpy&rsquo;s First Flight</button>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- AI CLASSROOM SECTION -->
 <section class="section" style="background:var(--cream);">
   <div class="container">
-    <div class="section-header reveal">
-      <div class="badge-ai" style="display:inline-flex;margin-bottom:12px;"><i data-lucide="sparkles" style="width:13px;height:13px;"></i> Chirpy's Classroom</div>
+    <div class="section-header">
       <h2>Six subjects. Two characters.<br>One joyful AI classroom.</h2>
-      <p style="max-width:520px;margin:12px auto 0;">Let Chirpy and Mama Bird guide your child through spelling, rhyming, math, and more — all powered by Claude AI, all designed for ages 2–8.</p>
+      <p style="max-width:520px;margin:12px auto 0;">Let Chirpy and Mama Bird guide your child through spelling, rhyming, math and more. All powered by Claude AI, all written for ages 2 to 8.</p>
     </div>
 
     <!-- Subject tiles grid -->
     <div class="subject-tiles" style="margin-bottom:56px;">
-      <a href="chatbot.html?subject=spelling" class="subject-tile tile-sky reveal">
-        <span class="subject-tile-emoji">✏️</span>
+      <a href="chatbot.html?subject=spelling" class="subject-tile tile-sky">
+        <span class="subject-tile-emoji"></span>
         <div class="subject-tile-name">Spelling</div>
         <div class="subject-tile-desc">Words, letters & phonics</div>
       </a>
-      <a href="chatbot.html?subject=rhyming" class="subject-tile tile-green reveal">
-        <span class="subject-tile-emoji">🎵</span>
+      <a href="chatbot.html?subject=rhyming" class="subject-tile tile-green">
+        <span class="subject-tile-emoji"></span>
         <div class="subject-tile-name">Rhyming</div>
         <div class="subject-tile-desc">Phonemic awareness fun</div>
       </a>
-      <a href="chatbot.html?subject=math" class="subject-tile tile-red reveal">
-        <span class="subject-tile-emoji">🔢</span>
+      <a href="chatbot.html?subject=math" class="subject-tile tile-red">
+        <span class="subject-tile-emoji"></span>
         <div class="subject-tile-name">Math</div>
         <div class="subject-tile-desc">Numbers & bird math</div>
       </a>
-      <a href="chatbot.html?subject=grammar" class="subject-tile tile-yellow reveal">
-        <span class="subject-tile-emoji">📝</span>
+      <a href="chatbot.html?subject=grammar" class="subject-tile tile-yellow">
+        <span class="subject-tile-emoji"></span>
         <div class="subject-tile-name">Grammar</div>
         <div class="subject-tile-desc">Sentences & words</div>
       </a>
-      <a href="chatbot.html?subject=puzzles" class="subject-tile tile-purple reveal">
-        <span class="subject-tile-emoji">🧩</span>
+      <a href="chatbot.html?subject=puzzles" class="subject-tile tile-purple">
+        <span class="subject-tile-emoji"></span>
         <div class="subject-tile-name">Puzzles</div>
         <div class="subject-tile-desc">Riddles & word games</div>
       </a>
-      <a href="chatbot.html?subject=stories" class="subject-tile tile-orange reveal">
-        <span class="subject-tile-emoji">📖</span>
+      <a href="chatbot.html?subject=literature" class="subject-tile tile-orange">
+        <span class="subject-tile-emoji"></span>
         <div class="subject-tile-name">Stories</div>
         <div class="subject-tile-desc">Creative writing & comprehension</div>
       </a>
@@ -305,28 +466,27 @@
 
     <!-- Feature cards 3-up -->
     <div class="feature-cards-3">
-      <div class="fcard reveal">
+      <div class="fcard">
         <div class="fcard-head c-sky">
-          <div class="fcard-icon" style="color:#fff;"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
+          <div class="fcard-icon mascot-badge" style="background:rgba(255,255,255,.22);"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
           <div><div class="fcard-title">Meet Chirpy</div><div class="fcard-sub">For kids ages 2–8</div></div>
         </div>
         <div class="fcard-body">
-          <p>Chirpy is a playful, encouraging AI bird who makes learning feel like a game. Every question gets a warm "tweet tweet!" of encouragement — never a harsh correction.</p>
+          <p>Chirpy is a playful, encouraging AI bird who makes learning feel like a game. Every question gets a warm "tweet tweet!" of encouragement, never a harsh correction.</p>
         </div>
       </div>
-      <div class="fcard reveal">
+      <div class="fcard">
         <div class="fcard-head c-green">
-          <div class="fcard-icon" style="color:#fff;"><svg class="vbird" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
+          <div class="fcard-icon mascot-badge" style="background:rgba(255,255,255,.22);"><img src="assets/mamabird.png" alt="" class="mascot" loading="lazy" decoding="async" width="260" height="292"></div>
           <div><div class="fcard-title">Mama Bird</div><div class="fcard-sub">For parents & teachers</div></div>
         </div>
         <div class="fcard-body">
-          <p>Mama Bird helps parents and teachers with lesson plans, progress reports, and guided questions — generating day-by-day plans in seconds from any subject.</p>
+          <p>Mama Bird helps parents and teachers with lesson plans, progress reports and guided questions. It writes a day-by-day plan in seconds for any subject.</p>
         </div>
       </div>
-      <div class="fcard reveal">
+      <div class="fcard">
         <div class="fcard-head c-purple">
-          <div class="fcard-icon" style="color:#fff;"><i data-lucide="bar-chart-3" class="vbird"></i></div>
-          <div><div class="fcard-title">Progress Tracking</div><div class="fcard-sub">See every step forward</div></div>
+                    <div><div class="fcard-title">Progress Tracking</div><div class="fcard-sub">See every step forward</div></div>
         </div>
         <div class="fcard-body">
           <p>Visual dashboards, badge achievements, and PDF progress exports let you celebrate every milestone. Parents get a full picture of their child's learning journey.</p>
@@ -335,8 +495,95 @@
     </div>
 
     <div style="text-align:center;margin-top:40px;">
-      <a href="chatbot.html" class="btn btn-red btn-lg"><i data-lucide="graduation-cap" style="width:18px;height:18px;"></i> Start Free Trial — No Card Needed</a>
+      <a href="chatbot.html" class="btn btn-red btn-lg">Start Free Trial, No Card Needed</a>
       <div style="margin-top:12px;font-size:.82rem;color:var(--light-text);font-family:var(--font-display);">3 months free · All 6 subjects · Chirpy + Mama Bird included</div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTION / COMPARISON -->
+<section class="section" style="background:#fff;">
+  <div class="container">
+    <div class="section-header">
+      <h2>You didn&rsquo;t want another screen.<br>You wanted them learning.</h2>
+      <p style="max-width:540px;margin:12px auto 0;">Fair. Most things aimed at small children are built to hold their attention, not to teach them anything. Here is the difference, plainly.</p>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-card cc-before">
+        <div class="compare-kicker">Passive screen time</div>
+        <h3>The app decides</h3>
+        <ul class="compare-list">
+          <li><span>Something else always starts playing.</span></li>
+          <li><span>Your child watches rather than answers.</span></li>
+          <li><span>You find out what they saw afterwards, if at all.</span></li>
+          <li><span>Adverts are how it pays for itself.</span></li>
+        </ul>
+      </div>
+
+      <div class="compare-card cc-after">
+        <div class="compare-kicker">Chirpy&rsquo;s Classroom</div>
+        <h3>Your child decides</h3>
+        <ul class="compare-list">
+          <li><span>Nothing happens until your child asks a question.</span></li>
+          <li><span>Answers are written for the age you set, 2 to 8.</span></li>
+          <li><span>Every session is saved for you to read later.</span></li>
+          <li><span>No feed, no adverts, and leaving needs your PIN.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:26px;font-size:.85rem;color:var(--light-text);">
+      How we handle children&rsquo;s data is set out in our <a href="coppa.html" style="color:var(--sky-dark);text-decoration:underline;">COPPA notice</a>.
+    </p>
+  </div>
+</section>
+
+<!-- WHAT A SESSION LOOKS LIKE -->
+<section class="section" style="background:var(--cream);">
+  <div class="container">
+    <div class="section-header">
+      <h2>See it before you sign up</h2>
+      <p style="max-width:520px;margin:12px auto 0;">Chirpy never just gives the answer. It gets your child to the next letter themselves.</p>
+    </div>
+
+    <div class="session-wrap">
+      <div class="session-window">
+        <div class="session-bar">
+          <span class="mascot-badge"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
+          <div>
+            <div class="session-who">Chirpy</div>
+            <div class="session-sub">&#9679; Spelling &middot; age 5</div>
+          </div>
+        </div>
+        <div class="session-body">
+          <div class="sm">
+            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
+            <div class="sm-bubble sm-bot">Tweet tweet! Which word shall we try?</div>
+          </div>
+          <div class="sm sm-kid">
+            <span class="sm-kid-av">&#128118;</span>
+            <div class="sm-bubble">how do you spell elephant</div>
+          </div>
+          <div class="sm">
+            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
+            <div class="sm-bubble sm-bot">Ooh, a big one! Let&rsquo;s do it together. It starts <strong>E, L, E</strong>&hellip; what sound comes next?</div>
+          </div>
+          <div class="sm sm-kid">
+            <span class="sm-kid-av">&#128118;</span>
+            <div class="sm-bubble">f</div>
+          </div>
+          <div class="sm">
+            <span class="mascot-badge"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></span>
+            <div class="sm-bubble sm-bot">Your ears are exactly right, it <em>does</em> say f! This word is sneaky though: it uses <strong>p</strong> and <strong>h</strong> together to make that sound. E-L-E-<strong>P-H</strong>&hellip; you&rsquo;re nearly there!</div>
+          </div>
+        </div>
+        <p class="session-note">An example of the kind of exchange Chirpy has. Your child&rsquo;s own sessions are saved to your dashboard.</p>
+      </div>
+
+      <div style="text-align:center;margin-top:28px;">
+        <a href="chatbot.html" class="btn btn-red">Try it with your own question</a>
+      </div>
     </div>
   </div>
 </section>
@@ -344,24 +591,24 @@
 <!-- eBOOK PROMO SECTION -->
 <section class="section" style="background:#fff;">
   <div class="container">
-    <div class="ebook-promo reveal">
+    <div class="ebook-promo">
       <div style="position:relative;z-index:1;">
-        <div class="ebook-promo-label"><i data-lucide="download" style="width:12px;height:12px;"></i> Digital Download</div>
-        <div class="ebook-promo-title">Get the Three Baby Birdies<br>eBook — straight to your device</div>
+        <div class="ebook-promo-label">Digital Download</div>
+        <div class="ebook-promo-title">Get the Three Baby Birdies<br>eBook, straight to your device</div>
         <div class="ebook-promo-sub">Download the full illustrated story as a beautiful PDF. Read it on any tablet, phone, or computer. Instant access after purchase.</div>
         <div class="ebook-price">$4.99 <small>$9.99</small></div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
-          <a href="ebook.html" class="btn btn-yellow btn-lg"><i data-lucide="download" style="width:18px;height:18px;"></i> Download the eBook</a>
+          <a href="book.html" class="btn btn-yellow btn-lg">Download the eBook</a>
           <a href="book.html" class="btn btn-ghost">Get a Signed Copy →</a>
         </div>
         <div style="margin-top:16px;display:flex;gap:16px;flex-wrap:wrap;">
-          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="shield-check" style="width:13px;height:13px;"></i> Secure payment</span>
-          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="download" style="width:13px;height:13px;"></i> Instant PDF delivery</span>
-          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);"><i data-lucide="device-mobile" style="width:13px;height:13px;"></i> Works on any device</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);">Secure payment</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);">Instant PDF delivery</span>
+          <span style="display:flex;align-items:center;gap:6px;font-size:.78rem;color:rgba(255,255,255,.45);font-family:var(--font-display);">Works on any device</span>
         </div>
       </div>
       <div class="ebook-cover-wrap">
-        <img src="assets/frontpage.png" alt="Three Baby Birdies eBook" class="ebook-cover-img">
+        <img src="assets/frontpage.jpg" alt="Three Baby Birdies eBook" class="ebook-cover-img" loading="lazy" decoding="async" width="760" height="761">
         <div style="position:absolute;top:-12px;right:-12px;background:var(--yellow);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:.75rem;color:var(--brown-dark);text-align:center;line-height:1.2;">50%<br>OFF</div>
       </div>
     </div>
@@ -373,22 +620,21 @@
   <div class="container">
     <div class="about-grid">
       <div>
-        <span class="section-label" style="background:var(--yellow-light);color:var(--brown-dark);"><i data-lucide="user" style="width:14px;height:14px;"></i> About the Author</span>
         <h2 style="margin-bottom:16px;">Iris &amp; Frank Scarfone</h2>
         <p style="margin-bottom:16px;">Iris Scarfone and her husband Frank have always believed the love of reading begins at home. When their son Ronald was a baby, they taught him to read by placing words on posterboards around the house.</p>
-        <p style="margin-bottom:20px;">That hands-on philosophy became the heartbeat of Three Baby Birdies — short, rhythmic language with illustrations that let young children follow and understand the story on their own terms.</p>
+        <p style="margin-bottom:20px;">That hands-on philosophy became the heartbeat of Three Baby Birdies, short, rhythmic language with illustrations that let young children follow and understand the story on their own terms.</p>
         <div class="credentials">
-          <span class="cred-tag"><i data-lucide="palette" style="width:13px;height:13px;"></i> Illustrated by Ronald Scarfone</span>
-          <span class="cred-tag"><i data-lucide="book-open" style="width:13px;height:13px;"></i> M.S. Reading Education</span>
-          <span class="cred-tag"><i data-lucide="library" style="width:13px;height:13px;"></i> M.L.S. Library Science</span>
-          <span class="cred-tag"><i data-lucide="image" style="width:13px;height:13px;"></i> B.A. Art Education</span>
+          <span class="cred-tag">Illustrated by Ronald Scarfone</span>
+          <span class="cred-tag">M.S. Reading Education</span>
+          <span class="cred-tag">M.L.S. Library Science</span>
+          <span class="cred-tag">B.A. Art Education</span>
         </div>
-        <a href="about.html" class="btn btn-red" style="display:inline-flex;"><i data-lucide="user" style="width:16px;height:16px;"></i> Meet the Author</a>
+        <a href="about.html" class="btn btn-red" style="display:inline-flex;">Meet the Author</a>
       </div>
       <div style="display:flex;justify-content:center;">
         <div class="author-photo-frame">
           <div class="author-photo-box">
-            <img src="assets/author-image.png" alt="Iris Scarfone" style="width:100%;height:100%;object-fit:cover;object-position:top;">
+            <img src="assets/author-image.jpg" alt="Iris Scarfone" style="width:100%;height:100%;object-fit:cover;object-position:top;" loading="lazy" decoding="async" width="600" height="656">
           </div>
           <div class="author-accent"></div>
         </div>
@@ -400,27 +646,62 @@
 <!-- CHATBOT CTA BANNER -->
 <section class="section" style="background:linear-gradient(135deg,var(--sky-dark) 0%,var(--sky) 100%);">
   <div class="container" style="text-align:center;">
-    <div style="margin-bottom:16px;"><i data-lucide="graduation-cap" style="width:48px;height:48px;color:#fff;"></i></div>
-    <h2 style="color:#fff;margin-bottom:12px;">Meet Chirpy's Classroom</h2>
-    <p style="color:rgba(255,255,255,.8);max-width:520px;margin:0 auto 28px;">Our new AI-powered learning chatbot lets children learn spelling, math, rhyming, and more with Chirpy and Mama Bird as their guides. Free 3-month trial.</p>
+    <div style="margin-bottom:16px;"></div>
+    <h2 style="color:#fff;margin-bottom:12px;">Not sure where your child should start?</h2>
+    <p style="color:rgba(255,255,255,.8);max-width:520px;margin:0 auto 28px;">Four questions, about a minute. Chirpy works out the right reading level and which of the six subjects to open first. Then you can start straight away.</p>
     <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
-      <a href="chatbot.html" class="btn btn-yellow"><i data-lucide="sparkles" style="width:16px;height:16px;"></i> Try Chirpy Free</a>
-      <a href="pricing.html" class="btn btn-ghost">See Pricing</a>
+      <a href="quiz.html" class="btn btn-yellow">Find their starting point</a>
+      <a href="chatbot.html" class="btn btn-ghost">Skip, just open the classroom</a>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- INSIDE THE BOOK -->
 <section class="section" style="background:var(--sky-light);">
   <div class="container">
     <div class="section-header">
-      <span class="section-label" style="background:rgba(110,180,212,.2);color:var(--sky-dark);"><i data-lucide="star" style="width:13px;height:13px;"></i> Reader Reviews</span>
-      <h2>What families are saying</h2>
+      <h2>Written to be read out loud</h2>
+      <p style="max-width:540px;margin:12px auto 0;">A short rhyming story for ages 2&ndash;6, written by Iris Scarfone and illustrated by Ronald Scarfone.</p>
     </div>
     <div class="t-grid">
-      <div class="t-card"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">My 4-year-old asks for this every single night. The rhyming makes it so easy for her to follow along — she loves pointing at the birds.</p><div class="t-author"><div class="t-avatar" style="background:var(--sky);">SL</div><div><div class="t-name">Sarah L.</div><div class="t-role">Parent · Toronto, ON</div></div></div></div>
-      <div class="t-card"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">Perfect for classroom read-alouds. My Kindergarten students were clapping along within two pages. Wonderful addition to our library.</p><div class="t-author"><div class="t-avatar" style="background:var(--green);">MR</div><div><div class="t-name">Ms. Rivera</div><div class="t-role">Kindergarten Teacher · Chicago, IL</div></div></div></div>
-      <div class="t-card"><div class="t-quote">"</div><div class="t-stars">★★★★★</div><p class="t-text">Bought this as a gift and ended up reading it with my own kids too. Warm, perfectly-paced, and the illustrations tell the story just as well as the words.</p><div class="t-author"><div class="t-avatar" style="background:var(--brown);">JK</div><div><div class="t-name">James K.</div><div class="t-role">Parent · Seattle, WA</div></div></div></div>
+
+      <div class="t-card">
+        <div class="t-quote">&ldquo;</div>
+        <p class="t-text" style="font-family:var(--font-display);font-weight:600;color:var(--dark);font-size:1rem;">Chirp chirp chirp. Flap your wings and try to fly.<br>It is just as easy as easy as pie.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:var(--sky);"></div>
+          <div>
+            <div class="t-name">A refrain they can predict</div>
+            <div class="t-role">The rhyme repeats, so children join in</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <p class="t-text">Short pages and a steady rhythm mean the whole story fits inside one bedtime. It is written for the years before a child reads alone, when reading is something you do together.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:var(--green);"></div>
+          <div>
+            <div class="t-name">Built for read-aloud</div>
+            <div class="t-role">Ages 2&ndash;6</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="t-card">
+        <p class="t-text">Three little red birds, a bright blue sky and a warm sun. Hand-illustrated, so a child who cannot read yet can still follow every page on their own.</p>
+        <div class="t-author">
+          <div class="t-avatar" style="background:var(--brown);"></div>
+          <div>
+            <div class="t-name">Illustrated by hand</div>
+            <div class="t-role">Art by Ronald Scarfone</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" target="_blank" rel="noopener" class="btn btn-outline">Read reader reviews on Amazon</a>
     </div>
   </div>
 </section>
@@ -430,39 +711,168 @@
   <div class="container">
     <div class="nl-grid">
       <div class="nl-left">
-        <div class="incentive-pill"><i data-lucide="gift" style="width:14px;height:14px;"></i> Free printable activity sheet when you subscribe</div>
+        <div class="incentive-pill">Read-aloud tips, about once a month</div>
         <h2>Stay in touch<br>with the birdies</h2>
-        <p style="margin-top:12px;">Read-aloud tips, nature activities for little ones, updates on new stories — delivered to your inbox. No spam, ever.</p>
+        <p style="margin-top:12px;">Read-aloud tips, nature activities for little ones, and word when a new story is out. We email rarely and never share your address.</p>
       </div>
       <div>
-        <div class="nl-form">
-          <input class="nl-input" type="text" placeholder="Your first name">
-          <input class="nl-input" type="email" placeholder="Your email address">
-          <button class="btn btn-sky" style="justify-content:center;"><i data-lucide="feather" style="width:16px;height:16px;"></i> Join the Flock — It's Free</button>
-        </div>
-        <p class="nl-fine">Unsubscribe any time. We respect your inbox like a bird respects its nest.</p>
+        <form class="nl-form" id="nl-form" novalidate>
+          <label class="nl-label" for="nl-name">First name <span class="nl-opt">(optional)</span></label>
+          <input class="nl-input" id="nl-name" name="first_name" type="text" autocomplete="given-name" maxlength="50" placeholder="Your first name">
+          <label class="nl-label" for="nl-email">Email address</label>
+          <input class="nl-input" id="nl-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+          <div class="hp-field" aria-hidden="true"><label>Leave blank<input type="text" id="nl-website" tabindex="-1" autocomplete="off"></label></div>
+          <button class="btn btn-sky" id="nl-submit" type="submit" style="justify-content:center;">Join the Flock, It&rsquo;s Free</button>
+          <p class="nl-status" id="nl-status" role="status" aria-live="polite" hidden></p>
+        </form>
+        <p class="nl-fine">We&rsquo;ll only email you about Three Baby Birdies, and you can unsubscribe at any time.</p>
       </div>
     </div>
   </div>
 </section>
 
 <footer id="footer"></footer>
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<div class="sticky-cta">
+  <img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" loading="lazy" decoding="async" width="280" height="276">
+  <div class="sticky-cta-text">
+    <b>Chirpy&rsquo;s Classroom</b>
+    <span>Free for 3 months &middot; no card needed</span>
+  </div>
+  <a href="chatbot.html" class="btn btn-red">Try free</a>
+</div>
+
+<div class="cf-modal" id="gameModal" hidden role="dialog" aria-modal="true" aria-labelledby="gameModalTitle">
+  <div class="cf-modal-inner">
+    <div class="cf-modal-bar">
+      <p class="cf-modal-title" id="gameModalTitle">Chirpy&rsquo;s First Flight</p>
+      <button type="button" class="cf-close" id="gameClose" aria-label="Close the game">&#10005;</button>
+    </div>
+    <div id="gameStage"></div>
+    <p class="cf-modal-foot"><a href="game.html">Open the game on its own page</a></p>
+  </div>
+</div>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
+<script src="js/game.js"></script>
 <script>
-// Scroll reveal
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// Subject tile links — pass subject to chatbot
+// Subject tile links, pass subject to chatbot
 document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
   a.addEventListener('click', e => {
     const subj = new URLSearchParams(a.search).get('subject');
     if (subj) sessionStorage.setItem('chatbot_subject', subj);
   });
 });
+
+// Newsletter signup -> POST /leads/subscribe
+(function () {
+  const API    = 'https://api.threebabybirdies.com';
+  const form   = document.getElementById('nl-form');
+  const email  = document.getElementById('nl-email');
+  const name   = document.getElementById('nl-name');
+  const button = document.getElementById('nl-submit');
+  const status = document.getElementById('nl-status');
+  if (!form) return;
+
+  function say(message, kind) {
+    status.textContent = message;
+    status.className = 'nl-status ' + kind;
+    status.hidden = false;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    var hp = document.getElementById('nl-website');
+    if (hp && hp.value) { say('Thanks!', 'ok'); return; }   // bot
+    if (!email.value.trim() || !email.checkValidity()) {
+      email.setAttribute('aria-invalid', 'true');
+      email.focus();
+      say('Please enter an email address we can reach you at.', 'err');
+      return;
+    }
+    email.removeAttribute('aria-invalid');
+
+    button.disabled = true;
+    say('Signing you up\u2026', 'ok');
+
+    try {
+      const res = await fetch(API + '/leads/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: email.value.trim(),
+          first_name: name.value.trim() || null,
+          source: 'homepage_newsletter'
+        })
+      });
+
+      if (res.ok) {
+        form.reset();
+        say('You\u2019re on the list \u2014 welcome to the flock!', 'ok');
+      } else if (res.status === 429) {
+        say('That\u2019s a few tries in a row. Give it a minute and try again.', 'err');
+      } else {
+        say('We couldn\u2019t save that just now. Please try again in a moment.', 'err');
+      }
+    } catch (err) {
+      say('We couldn\u2019t reach the server. Check your connection and try again.', 'err');
+    } finally {
+      button.disabled = false;
+    }
+  });
+})();
+
+// Game modal, mounts the shared module on first open, then keeps it.
+(function () {
+  var openBtns= document.querySelectorAll('[data-play-game]');
+  var modal   = document.getElementById('gameModal');
+  var closeBtn= document.getElementById('gameClose');
+  var stage   = document.getElementById('gameStage');
+  if (!openBtns.length || !modal || !stage || !window.ChirpyFlight) return;
+
+  var game = null, lastFocus = null;
+
+  function open() {
+    lastFocus = document.activeElement;
+    modal.hidden = false;
+    document.body.classList.add('cf-locked');
+    if (!game) {
+      game = ChirpyFlight.create(stage);
+    } else {
+      game.reset();
+    }
+    closeBtn.focus();
+  }
+
+  function close() {
+    if (game) game.pause();
+    modal.hidden = true;
+    document.body.classList.remove('cf-locked');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  Array.prototype.forEach.call(openBtns, function (b) {
+    b.addEventListener('click', open);
+  });
+  closeBtn.addEventListener('click', close);
+
+  // Clicking the backdrop closes; clicking the game itself must not.
+  modal.addEventListener('pointerdown', function (e) {
+    if (e.target === modal) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key !== 'Tab') return;
+    // Keep tabbing inside the dialog.
+    var items = modal.querySelectorAll('button, a[href], canvas[tabindex]');
+    if (!items.length) return;
+    var first = items[0], last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+})();
 </script>
 </body></html>
