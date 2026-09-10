@@ -283,7 +283,7 @@ body { background:var(--cream); }
     var html = '';
     for (var k = 0; k < total; k++) {
       var cls = k < i ? 'done' : (k === i ? 'now' : '');
-      html += '<span class="q-pip ' + cls + '"></span>';
+      html += '';
     }
     elPips.innerHTML = html;
   }
@@ -306,7 +306,7 @@ body { background:var(--cream); }
               '<span class="q-opt-emoji" aria-hidden="true">' + o.e + '</span>' +
               '<span class="q-opt-label">' + esc(o.label) +
               (o.note ? '<span class="q-opt-note">' + esc(o.note) + '</span>' : '') +
-              '</span><span class="q-radio" aria-hidden="true"></span></button>';
+              '</span></button>';
     });
     html += '</div><div class="q-actions">' +
             '<button type="button" class="q-back"' + (i === 0 ? ' hidden' : '') + '>&larr; Back</button>' +

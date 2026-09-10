@@ -328,7 +328,6 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 
   <!-- Profile selector chip -->
   <div class="profile-chip" id="profile-chip-wrap" onclick="toggleProfileMenu(event)">
-    <span></span>
     <span id="profile-chip-label">Loading…</span>
     <span id="profile-caret" style="font-size:.7rem;opacity:.55;display:none;">▾</span>
     <div class="profile-menu" id="profile-menu" onclick="event.stopPropagation()"></div>
@@ -380,7 +379,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
       <div class="msg-av mascot-badge av-chirpy" style="width:36px;height:36px;font-size:1.1rem;color:var(--sky-dark);" id="topbar-av"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
       <div>
         <div class="topbar-name" id="topbar-name">Chirpy</div>
-        <div class="topbar-status"><span class="topbar-dot"></span> Online · <span id="topbar-subj">Spelling</span></div>
+        <div class="topbar-status">Online · <span id="topbar-subj">Spelling</span></div>
       </div>
       <button id="change-subj-btn" onclick="changeSubjectClick()" style="margin-left:auto;padding:6px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:var(--sky-light);color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;">Subject</button>
     </div>
@@ -395,7 +394,6 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <!-- ── PIN MODAL ── -->
 <div class="pin-overlay" id="pin-overlay">
   <div class="pin-card" id="pin-card">
-    <div class="pin-icon" id="pin-icon"></div>
     <div class="pin-title" id="pin-title">Parent Controls</div>
     <div class="pin-sub" id="pin-sub">Enter your 4-digit PIN to access settings</div>
     <div class="pin-dots" id="pin-dots">
@@ -792,7 +790,6 @@ function renderProfileMenu(){
   if (!menu) return;
   menu.innerHTML = profiles.map(p => `
     <div class="pm-item ${p.id===currentChildId?'active':''}" onclick="selectProfile('${p.id}',event)">
-      <span></span>
       <span class="pm-grow">${p.child_name}${p.grade?' · '+p.grade:''}${p.classroom_name?' · 🎓 '+p.classroom_name:''}</span>
       <button class="pm-del" title="Delete profile" onclick="deleteProfile('${p.id}',event)">Delete</button>
     </div>`).join('') +

@@ -36,15 +36,10 @@
   font-family:var(--font-display); font-size:1.4rem; font-weight:600;
   color:var(--dark); line-height:1.7; margin-bottom:16px;
 }
-.spread-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:40px; }
-.spread-card {
-  background:#fff; border-radius:var(--r-md); padding:24px 20px;
-  box-shadow:var(--sh-sm); text-align:center;
-}
 .spread-card .page-art { font-size:3rem; margin-bottom:12px; }
 .spread-card p { font-family:var(--font-display); font-size:.95rem; font-weight:600; color:var(--dark); }
-@media(max-width:900px){ .book-hero-grid{grid-template-columns:1fr;} .spread-grid{grid-template-columns:1fr 1fr;} }
-@media(max-width:560px){ .spread-grid{grid-template-columns:1fr;} }
+@media(max-width:900px){ .book-hero-grid{grid-template-columns:1fr;}  }
+@media(max-width:560px){  }
 
 /* ---- Carried over when the eBook page was folded in here ---- */
 .ebook-page { padding-top:var(--nav-h); min-height:100vh; background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%); }
@@ -72,11 +67,7 @@
 
 /* Preview section */
 .preview-section { background:#fff; }
-.preview-pages { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-.preview-card { border-radius:var(--r-md); overflow:hidden; box-shadow:var(--sh-sm); position:relative; }
 .preview-card img { width:100%; display:block; aspect-ratio:.75; object-fit:cover; background:var(--sky-xlight); }
-.preview-label { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,.6)); padding:16px 12px 10px; color:#fff; font-family:var(--font-display); font-weight:700; font-size:.82rem; }
-.preview-blur { filter:blur(6px); }
 
 /* Compare section */
 .compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
@@ -89,8 +80,8 @@
 .compare-list li.yes::before { content:''; color:var(--green); font-weight:700; }
 .compare-list li.no::before  { content:''; color:var(--red); font-weight:700; }
 
-@media(max-width:960px){ .ebook-hero{grid-template-columns:1fr; gap:48px;} .ebook-cover-3d{order:-1;} .preview-pages{grid-template-columns:1fr 1fr;} .compare-grid{grid-template-columns:1fr;} }
-@media(max-width:560px){ .preview-pages{grid-template-columns:1fr;} .price-now{font-size:2.4rem;} }
+@media(max-width:960px){ .ebook-hero{grid-template-columns:1fr; gap:48px;} .ebook-cover-3d{order:-1;}  .compare-grid{grid-template-columns:1fr;} }
+@media(max-width:560px){  .price-now{font-size:2.4rem;} }
 </style>
 <!-- SEO / social / icons -->
 <meta name="description" content="The full illustrated story of Three Baby Birdies as an instant PDF for $4.99, or on Kindle and in paperback. Written for ages 2–6 and made to be read out loud.">
@@ -231,12 +222,10 @@
       </div>
       <p style="font-size:.85rem;color:var(--sky-dark);">, from Three Baby Birdies by Iris Scarfone</p>
     </div>
-    <div class="spread-grid">
-      <div class="spread-card"><p>"Three little birds sat in their nest, on a branch up high, above all the rest."</p></div>
-      <div class="spread-card"><p>"A bright blue sky, a warm yellow sun, the three baby birdies knew spring had begun."</p></div>
-      <div class="spread-card"><p>"Chirp chirp chirp, said the first little bird. The sweetest of songs that was ever heard."</p></div>
+    <p style="text-align:center;margin-top:22px;font-size:.9rem;color:var(--mid);">That refrain repeats through the book, which is what lets a child join in before they can read the words.</p>
+    <div style="text-align:center;margin-top:26px;">
+      <button class="btn btn-red" onclick="startEbookCheckout()">Get the PDF, $4.99</button>
     </div>
-    <p style="text-align:center;margin-top:20px;font-size:.85rem;color:var(--light-text);">Sample text for illustration purposes. Final book text may vary.</p>
   </div>
 </section>
 
@@ -256,43 +245,6 @@
 </section>
 
 <!-- WHAT'S INSIDE PREVIEW -->
-<section class="section preview-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>A peek inside the story</h2>
-      <p>Warm, rhythmic language and illustrations your little ones will love.</p>
-    </div>
-    <div class="preview-pages">
-      <div class="preview-card">
-        <div style="background:linear-gradient(135deg,#D6EDF8,#C8E6F5);aspect-ratio:.75;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;">
-          <div style="display:flex;gap:6px;justify-content:center;align-items:flex-end;"><img src="assets/birdie-left.png" alt="" aria-hidden="true" class="mascot" style="width:54px;" loading="lazy" decoding="async" width="260" height="288"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:64px;" loading="lazy" decoding="async" width="280" height="276"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:54px;" loading="lazy" decoding="async" width="260" height="292"></div>
-          <div style="font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--sky-dark);margin-top:12px;">Three Baby Birdies</div>
-          <div style="font-size:.85rem;color:var(--mid);margin-top:8px;">"Chirp chirp chirp,<br>little birds in the nest..."</div>
-        </div>
-        <div class="preview-label">Cover Page</div>
-      </div>
-      <div class="preview-card">
-        <div style="background:linear-gradient(135deg,var(--sky-xlight),#E8F5FB);aspect-ratio:.75;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;filter:blur(4px);">
-          <div style="font-size:3rem;"></div>
-          <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--sky-dark);margin-top:12px;">Blue sky above...</div>
-          <div style="font-size:.82rem;color:var(--mid);margin-top:8px;">"Flap your wings and try to fly,<br>it is just as easy as pie."</div>
-        </div>
-        <div class="preview-label">Page 8 (preview blurred)</div>
-      </div>
-      <div class="preview-card">
-        <div style="background:linear-gradient(135deg,#FFF8E1,#FFF3CC);aspect-ratio:.75;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;filter:blur(4px);">
-          <div style="font-size:3rem;"></div>
-          <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--brown);margin-top:12px;">A warm sun shines...</div>
-          <div style="font-size:.82rem;color:var(--mid);margin-top:8px;">"Tweet tweet tweet,<br>the birdies all sing..."</div>
-        </div>
-        <div class="preview-label">Page 18 (preview blurred)</div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:40px;">
-      <button class="btn btn-red btn-lg" onclick="startEbookCheckout()">Get Full Story, $4.99</button>
-    </div>
-  </div>
-</section>
 
 <!-- COMPARE -->
 <section class="section" style="background:var(--cream);">
