@@ -296,7 +296,7 @@
       ctx.arc(x - 21 * s, y + 6 * s, 13 * s, 0, Math.PI * 2);
       ctx.arc(x + 6 * s, y - 13 * s, 15 * s, 0, Math.PI * 2);
       ctx.fill();
-      ctx.fillStyle = 'rgba(200,230,245.85)';
+      ctx.fillStyle = 'rgba(200,230,245,.85)';
       roundRect(x - 33 * s, y + 8 * s, 66 * s, 11 * s, 6 * s);
       ctx.fill();
     }
@@ -307,7 +307,7 @@
       function limb(y0, y1, fromTop) {
         ctx.fillStyle = '#9B6B35';
         roundRect(lx, y0, w, y1 - y0, 12); ctx.fill();
-        ctx.fillStyle = 'rgba(107,69,32.55)';
+        ctx.fillStyle = 'rgba(107,69,32,.55)';
         roundRect(lx + w - 15, y0, 15, y1 - y0, 10); ctx.fill();
         var ky = fromTop ? y1 : y0;
         ctx.fillStyle = '#8A5C2C';
@@ -358,12 +358,12 @@
 
       ctx.fillStyle = '#7CB86E'; ctx.fillRect(0, SKY_H, W, 16);
       ctx.fillStyle = '#BA9435'; ctx.fillRect(0, SKY_H + 16, W, GROUND - 16);
-      ctx.fillStyle = 'rgba(107,69,32.20)';
+      ctx.fillStyle = 'rgba(107,69,32,.20)';
       for (var g = -1; g < 10; g++) {
         roundRect((g * 54) - (scrollX % 54), SKY_H + 26, 34, 9, 4);
         ctx.fill();
       }
-      ctx.fillStyle = 'rgba(44,24,16.10)';
+      ctx.fillStyle = 'rgba(44,24,16,.10)';
       ctx.fillRect(0, SKY_H, W, 3);
       ctx.restore();
     }

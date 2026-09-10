@@ -15,7 +15,7 @@
   --cream:#FDF8F3;--cream-dark:#F0E8DE;
   --font-display:'Quicksand',sans-serif;--font-body:'Nunito',sans-serif;
   --r-sm:8px;--r-md:12px;--r-lg:20px;--r-full:999px;
-  --sh-sm:0 2px 8px rgba(0,0,0.06);--sh-md:0 4px 20px rgba(0,0,0.1);--sh-lg:0 8px 40px rgba(0,0,0.14);
+  --sh-sm:0 2px 8px rgba(0,0,0,.06);--sh-md:0 4px 20px rgba(0,0,0,.1);--sh-lg:0 8px 40px rgba(0,0,0,.14);
 }
 html,body{height:100%;overflow:hidden;}
 body{font-family:var(--font-body);background:var(--cream);color:var(--dark);display:flex;flex-direction:column;}
@@ -156,14 +156,14 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 /* ── PIN MODAL ── */
 .pin-overlay{
   display:none;position:fixed;inset:0;z-index:300;
-  background:rgba(10,10,30.55);
+  background:rgba(10,10,30,.55);
   align-items:center;justify-content:center;
 }
 .pin-overlay.open{display:flex;}
 .pin-card{
   background:#fff;border-radius:28px;padding:36px 32px 28px;
   box-shadow:var(--sh-lg);text-align:center;max-width:340px;width:100%;margin:16px;
-  animation:pinPop .25s cubic-bezier(.34,1.56.64,1);
+  animation:pinPop .25s cubic-bezier(.34,1.56,.64,1);
 }
 @keyframes pinPop{from{transform:scale(.85);opacity:0;}to{transform:scale(1);opacity:1;}}
 @keyframes pinShake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-8px);}40%,80%{transform:translateX(8px);}}
@@ -256,7 +256,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .plan-name{flex:1;font-family:var(--font-display);font-weight:600;font-size:.85rem;color:var(--dark);}
 .btn-view{padding:5px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:none;color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.75rem;cursor:pointer;}
 .btn-view:hover{background:var(--sky-light);}
-.lp-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0.5);z-index:400;overflow-y:auto;}
+.lp-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400;overflow-y:auto;}
 .lp-modal.open{display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;}
 .lp-modal-inner{background:#fff;border-radius:var(--r-lg);max-width:700px;width:100%;padding:32px;position:relative;}
 .lp-modal-close{position:absolute;top:16px;right:16px;border:none;background:none;font-size:1.4rem;cursor:pointer;color:var(--light);}
@@ -271,7 +271,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .hist-msgs{margin-left:auto;font-family:var(--font-display);font-weight:600;font-size:.78rem;color:var(--mid);}
 
 /* ── CREATE PROFILE MODAL ── */
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0.5);z-index:500;align-items:center;justify-content:center;}
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;}
 .modal-overlay.open{display:flex;}
 .modal-card{background:#fff;border-radius:var(--r-lg);padding:32px;max-width:420px;width:100%;margin:16px;}
 .modal-title{font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--dark);margin-bottom:20px;}
