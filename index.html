@@ -42,8 +42,6 @@
   border-radius:var(--r-full); font-family:var(--font-display); font-weight:600;
   font-size:.82rem; color:var(--mid);
 }
-.scroll-cue { display:flex; align-items:center; gap:10px; margin-top:40px;
-  font-family:var(--font-display); font-size:.78rem; font-weight:600; color:var(--light-text); }
 
 /* Book 3D mockup */
 .hero-book-col { display:flex; justify-content:center; align-items:center; }
@@ -57,7 +55,7 @@
   width:100%; border-radius:var(--r-md); overflow:hidden;
   box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);
   border:3px solid rgba(255,255,255,.5);
-  aspect-ratio:.72;
+  aspect-ratio:1;
 }
 .book-float {
   position:absolute; font-family:var(--font-display); font-weight:700;
@@ -203,7 +201,7 @@
 @media(max-width:960px){
   .hero-inner { grid-template-columns:1fr; gap:40px; text-align:center; }
   .hero-book-col { order:-1; }
-  .hero-sub.hero-actions.hero-retailers.hero-badges.scroll-cue { margin-left:auto; margin-right:auto; justify-content:center; }
+  .hero-sub, .hero-actions, .hero-retailers, .hero-badges { margin-left:auto; margin-right:auto; justify-content:center; }
   .book-grid   { grid-template-columns:1fr; gap:40px; }
   .book-col-display { order:-1; }
   .about-grid  { grid-template-columns:1fr; gap:40px; }
@@ -306,14 +304,14 @@
         <span class="hero-badge">Read-Aloud</span>
         <span class="hero-badge">Ages 2–6</span>
         <span class="hero-badge" style="background:var(--yellow-light);border-color:rgba(124,58,237,.2);color:var(--brown);">AI Tutor</span>
-      </div>Scroll to explore</div>
+      </div>
     </div>
     <div class="hero-book-col">
       <div style="position:relative;">
         <div class="book-3d float" style="animation-duration:4s;">
           <div class="book-spine"></div>
           <div class="book-cover">
-            <img src="assets/frontpage.jpg" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;" fetchpriority="high" decoding="async" width="760" height="761">
+            <img src="assets/book-cover.jpg" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;" fetchpriority="high" decoding="async" width="900" height="900">
           </div>
           <div class="book-float book-float-top">Ages 2–6</div>
           <div class="book-float book-float-bot">+ AI Classroom</div>
@@ -338,8 +336,8 @@
       <div class="book-col-display">
         <div style="position:relative;display:inline-block;">
           <div style="position:absolute;left:-14px;top:8px;bottom:8px;width:14px;background:var(--sky-dark);border-radius:4px 0 0 4px;box-shadow:-3px 0 10px rgba(0,0,0,.15);"></div>
-          <img src="assets/frontpage.jpg" alt="Three Baby Birdies book cover"
-               style="width:280px;border-radius:var(--r-md);box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);border:3px solid rgba(255,255,255,.6);display:block;" loading="lazy" decoding="async" width="760" height="761">
+          <img src="assets/book-cover.jpg" alt="Three Baby Birdies book cover"
+               style="width:280px;border-radius:var(--r-md);box-shadow:var(--sh-lg),-8px 12px 40px rgba(74,154,184,.3);border:3px solid rgba(255,255,255,.6);display:block;" loading="lazy" decoding="async" width="900" height="900">
           <div class="book-float" style="top:-14px;right:-24px;background:var(--yellow);color:var(--brown-dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;">Ages 2–6</div>
           <div class="book-float" style="bottom:20px;left:-32px;background:#fff;color:var(--dark);position:absolute;font-family:var(--font-display);font-weight:700;font-size:.75rem;padding:7px 16px;border-radius:var(--r-full);box-shadow:var(--sh-md);white-space:nowrap;border:1px solid var(--cream-dark);">Read-Aloud</div>
         </div>
@@ -368,26 +366,36 @@
 </section>
 
 <!-- MARQUEE STRIP -->
-<div class="marquee-wrap" style="overflow:hidden;padding:14px 0;background:var(--brown);">
+<div class="marquee-wrap">
   <div class="marquee-track">
-    <span class="marquee-item"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="280" height="276"> <span>Chirpy’s Classroom</span></span>
-    <span class="marquee-item"><span>Spelling</span></span>
-    <span class="marquee-item"><span>Rhyming</span></span>
-    <span class="marquee-item"><span>Math</span></span>
-    <span class="marquee-item"><span>Grammar</span></span>
-    <span class="marquee-item"><span>Puzzles</span></span>
-    <span class="marquee-item"><span>Stories</span></span>
-    <span class="marquee-item"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="260" height="292"> <span>Mama Bird</span></span>
-    <span class="marquee-item"><span>Free 3-month trial</span></span>
-    <span class="marquee-item"><img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="280" height="276"> <span>Chirpy’s Classroom</span></span>
-    <span class="marquee-item"><span>Spelling</span></span>
-    <span class="marquee-item"><span>Rhyming</span></span>
-    <span class="marquee-item"><span>Math</span></span>
-    <span class="marquee-item"><span>Grammar</span></span>
-    <span class="marquee-item"><span>Puzzles</span></span>
-    <span class="marquee-item"><span>Stories</span></span>
-    <span class="marquee-item"><img src="assets/mamabird.png" alt="" aria-hidden="true" class="mascot" style="width:26px;display:inline-block;vertical-align:-8px;" loading="lazy" decoding="async" width="260" height="292"> <span>Mama Bird</span></span>
-    <span class="marquee-item"><span>Free 3-month trial</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/learn-and-play.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Learn &amp; Play with Chirpy</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/rhyming-fun.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Rhyming Fun</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/read-aloud.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Read-Aloud Practice</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/new-words.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Learn New Words</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/story-questions.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Story Questions</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/baby-birdies.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Meet the Baby Birdies</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/comprehension.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Story Comprehension</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/picture-activities.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Picture &amp; Story Activities</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/reading-confidence.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Build Reading Confidence</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/learning-games.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Fun Learning Games</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/momma-bird.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Learn with Mama Bird</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/challenges.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>You Can Do It! Challenges</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/classroom.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Chirpy&rsquo;s Classroom</span></span>
+    <span class="marquee-item"><img src="assets/ribbon/try-free.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Try Chirpy Free</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/learn-and-play.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Learn &amp; Play with Chirpy</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/rhyming-fun.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Rhyming Fun</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/read-aloud.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Read-Aloud Practice</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/new-words.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Learn New Words</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/story-questions.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Story Questions</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/baby-birdies.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Meet the Baby Birdies</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/comprehension.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Story Comprehension</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/picture-activities.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Picture &amp; Story Activities</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/reading-confidence.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Build Reading Confidence</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/learning-games.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Fun Learning Games</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/momma-bird.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Learn with Mama Bird</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/challenges.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>You Can Do It! Challenges</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/classroom.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Chirpy&rsquo;s Classroom</span></span>
+    <span class="marquee-item" aria-hidden="true"><img src="assets/ribbon/try-free.jpg" alt="" aria-hidden="true" class="marquee-pic" loading="lazy" decoding="async" width="160" height="160"><span>Try Chirpy Free</span></span>
   </div>
 </div>
 
@@ -597,7 +605,7 @@
         </div>
       </div>
       <div class="ebook-cover-wrap">
-        <img src="assets/frontpage.jpg" alt="Three Baby Birdies eBook" class="ebook-cover-img" loading="lazy" decoding="async" width="760" height="761">
+        <img src="assets/book-cover.jpg" alt="Three Baby Birdies eBook" class="ebook-cover-img" loading="lazy" decoding="async" width="900" height="900">
         <div style="position:absolute;top:-12px;right:-12px;background:var(--yellow);border-radius:50%;width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:.75rem;color:var(--brown-dark);text-align:center;line-height:1.2;">50%<br>OFF</div>
       </div>
     </div>

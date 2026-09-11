@@ -481,10 +481,23 @@ svg.lucide {
 .plan-badge-v2 { position:absolute; top:-1px; right:20px; background:var(--sky); color:#fff; font-family:var(--font-display); font-weight:700; font-size:.7rem; padding:4px 14px; border-radius:0 0 var(--r-sm) var(--r-sm); }
 
 /* ---- Marquee strip ---- */
-.marquee-wrap { overflow:hidden; padding:16px 0; background:var(--brown); }
-.marquee-track { display:flex; width:max-content; animation:marquee 28s linear infinite; gap:0; }
-.marquee-item { display:inline-flex; align-items:center; gap:8px; padding:0 32px; font-family:var(--font-display); font-weight:700; font-size:.88rem; color:rgba(255,255,255,.8); white-space:nowrap; border-right:1px solid rgba(255,255,255,.15); }
+.marquee-wrap { overflow:hidden; padding:18px 0; background:var(--brown); }
+/* 14 illustrated items are a much wider track than the 9 words this used
+   to hold, so the duration goes up to keep the same reading speed. */
+.marquee-track { display:flex; width:max-content; animation:marquee 70s linear infinite; gap:0; }
+.marquee-item { display:inline-flex; align-items:center; gap:12px; padding:0 26px; font-family:var(--font-display); font-weight:700; font-size:.92rem; color:#fff; white-space:nowrap; border-right:1px solid rgba(255,255,255,.2); }
 .marquee-item span { color:#fff; }
+.marquee-pic { display:block; width:56px; height:56px; flex-shrink:0; border-radius:16px;
+  background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.2); }
+@media(max-width:620px){
+  .marquee-item { font-size:.82rem; padding:0 18px; gap:9px; }
+  .marquee-pic  { width:44px; height:44px; border-radius:13px; }
+}
+/* A permanent sideways scroll is the thing this setting exists for. */
+@media(prefers-reduced-motion:reduce){
+  .marquee-track { animation:none; }
+  .marquee-wrap  { overflow-x:auto; }
+}
 
 /* ---- Responsive additions ---- */
 @media(max-width:960px){
