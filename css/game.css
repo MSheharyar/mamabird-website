@@ -124,25 +124,62 @@ body.cf-locked { overflow:hidden; }
    Homepage teaser card
    ============================================================ */
 .game-banner {
-  display:grid; grid-template-columns:240px 1fr; gap:var(--sp-lg); align-items:center;
+  display:grid; grid-template-columns:minmax(0,340px) 1fr; gap:var(--sp-lg);
+  align-items:center;
   background:linear-gradient(135deg,var(--sky-xlight) 0%,var(--sky-light) 100%);
-  border-radius:var(--r-lg); padding:var(--sp-lg);
+  border-radius:var(--r-lg); padding:44px var(--sp-lg);
 }
+/* The art panel is the game's own sky. Chirpy is the full character now,
+   cut from the illustrations the client supplied, in the pose the notes
+   asked for: wings out, about to go. */
 .game-banner-art {
-  position:relative; height:190px; border-radius:var(--r-md);
-  background:linear-gradient(180deg,#6EB4D4 0%,#C4E4F4 100%);
-  display:flex; align-items:center; justify-content:center; overflow:hidden;
+  position:relative; height:280px; border-radius:var(--r-md);
+  background:linear-gradient(180deg,#5FA8CC 0%,#9FD3EC 60%,#CDE9F7 100%);
+  display:flex; align-items:flex-end; justify-content:center; overflow:hidden;
 }
-.gb-branch { position:absolute; width:34px; background:var(--brown); border-radius:10px; }
-.gb-branch-a { right:34px; top:-10px;    height:62px; }
-.gb-branch-b { right:34px; bottom:-10px; height:76px; }
+.gb-chirpy {
+  position:relative; z-index:2; width:200px; margin-bottom:26px;
+  filter:drop-shadow(0 14px 24px rgba(20,60,80,.32));
+  transition:transform .35s cubic-bezier(.3,1.4,.5,1);
+}
+.game-banner:hover .gb-chirpy { transform:translateY(-14px) rotate(-4deg); }
+.gb-cloud { position:absolute; background:rgba(255,255,255,.85); border-radius:var(--r-full); }
+.gb-cloud::before, .gb-cloud::after {
+  content:''; position:absolute; background:inherit; border-radius:50%;
+}
+.gb-cloud-a { width:86px; height:26px; top:34px;  left:16px; }
+.gb-cloud-a::before { width:38px; height:38px; top:-17px; left:16px; }
+.gb-cloud-a::after  { width:26px; height:26px; top:-11px; left:48px; }
+.gb-cloud-b { width:64px; height:20px; top:86px;  right:22px; opacity:.8; }
+.gb-cloud-b::before { width:30px; height:30px; top:-14px; left:12px; }
+.gb-cloud-c { width:50px; height:16px; top:18px;  right:64px; opacity:.6; }
+.gb-cloud-c::before { width:24px; height:24px; top:-11px; left:10px; }
+.gb-branch { position:absolute; width:34px; background:var(--brown); border-radius:10px; z-index:1; }
+.gb-branch-a { right:26px; top:-10px;    height:74px; }
+.gb-branch-b { right:26px; bottom:-10px; height:96px; }
 
-@media(max-width:760px){
+.game-banner-copy { min-width:0; }
+.game-banner-h { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.game-banner-h .ic { color:var(--sky-dark); }
+.game-cta-row { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.game-free-tag {
+  display:inline-flex; align-items:center; gap:7px;
+  font-family:var(--font-display); font-weight:700; font-size:.92rem;
+  color:var(--green); background:var(--green-light);
+  border:1.5px solid #B4D6AF; border-radius:var(--r-full); padding:8px 16px;
+}
+.game-free-tag .ic { width:17px; height:17px; }
+
+@media(max-width:860px){
   .game-banner { grid-template-columns:1fr; gap:var(--sp-md); padding:var(--sp-md); text-align:center; }
   .game-banner p { margin-left:auto; margin-right:auto; }
+  .game-banner-h, .game-cta-row, .game-banner .kid-badges { justify-content:center; }
+  .game-banner-art { height:230px; }
+  .game-cta-row .btn-game { width:100%; justify-content:center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cf-modal { animation:none; }
   .game-banner-art .float { animation:none; }
+  .game-banner:hover .gb-chirpy { transform:none; }
 }

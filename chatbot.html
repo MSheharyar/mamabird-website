@@ -723,5 +723,18 @@ function setSubject(el, subj) {
   document.querySelector('.chat-send').disabled = false;
   addChirpyMsg("Tweet tweet! ✏️ Let's practice <strong>Spelling</strong>! 🐦<br><br>I'll give you a word, and you spell it back to me. Ready? Here's your first one:<br><br><strong>🐱 C-A-T</strong>, can you spell it?");
 }
+
+// A question typed on the homepage. Put it in the box and send it, so the
+// parent lands mid-conversation instead of on an empty chat.
+(function () {
+  var q;
+  try { q = sessionStorage.getItem('chatbot_question'); } catch (e) { return; }
+  if (!q) return;
+  try { sessionStorage.removeItem('chatbot_question'); } catch (e) {}
+  var box = document.getElementById('chat-input');
+  if (!box) return;
+  box.value = q;
+  setTimeout(function () { sendMsg(); }, 700);
+})();
 </script>
 </body></html>
