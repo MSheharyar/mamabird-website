@@ -39,7 +39,7 @@
            .social-icon styles are still in css/main.css, ready to use. -->
     </div>
     <div class="footer-col">
-      <h4>Quick Links</h4>
+      <h4>Explore</h4>
       <ul class="footer-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
@@ -49,11 +49,11 @@
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Chirpy's Classroom</h4>
+      <h4>Learn with Chirpy</h4>
       <ul class="footer-links">
+        <li><a href="chatbot.html">Try Chirpy Free</a></li>
         <li><a href="quiz.html">Find your starting point</a></li>
         <li><a href="game.html">Play Chirpy's First Flight</a></li>
-        <li><a href="chatbot.html">Try the Chatbot</a></li>
         <li><a href="pricing.html">Pricing &amp; Plans</a></li>
         <li><a href="login.html">Sign In</a></li>
         <li><a href="login.html">Create Account</a></li>

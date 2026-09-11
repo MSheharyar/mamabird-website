@@ -46,7 +46,7 @@
         '<div class="cf-card">' +
           '<img src="assets/chirpy.png" alt="" class="cf-bird">' +
           '<p class="cf-rhyme">&ldquo;Chirp chirp chirp. Flap your wings and try to fly.<br>' +
-          'It is just as easy as easy as pie.&rdquo;</p>' +
+          'It is just as easy as pie.&rdquo;</p>' +
           '<button class="btn btn-red cf-start" type="button">Start flying</button>' +
           '<div class="cf-speed" role="group" aria-label="Game speed">' +
             '<button type="button" class="cf-speed-btn" data-speed="gentle" aria-pressed="true">Gentle</button>' +
