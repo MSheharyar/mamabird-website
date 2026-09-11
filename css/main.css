@@ -486,26 +486,33 @@ svg.lucide {
 /* ---- Pricing v2 ---- */
 .plan-card-v2 { background:#fff; border-radius:var(--r-lg); overflow:hidden; box-shadow:var(--sh-sm); border:2px solid transparent; display:flex; flex-direction:column; position:relative; transition:transform .2s, box-shadow .2s; }
 .plan-card-v2:hover { transform:translateY(-4px); box-shadow:var(--sh-md); }
-.plan-card-v2.featured { border-color:var(--sky); box-shadow:0 8px 32px rgba(110,180,212,.25); }
+.plan-card-v2.featured { border-color:var(--sky-dark); box-shadow:0 12px 40px rgba(51,107,128,.24); }
 .plan-head { padding:24px; }
 .plan-head.ph-free    { background:linear-gradient(135deg,#E8F5FB,var(--sky-light)); }
-.plan-head.ph-ind     { background:linear-gradient(135deg,var(--sky),#4A9AB8); }
-.plan-head.ph-prem    { background:linear-gradient(135deg,var(--brown),#6B4520); }
+/* White on --sky sits at 2.3:1. Same correction as the subject tiles. */
+.plan-head.ph-ind     { background:linear-gradient(135deg,#33768D,#2A6377); }
+.plan-head.ph-prem    { background:linear-gradient(135deg,#8E6130,#66421D); }
 .plan-head.ph-class   { background:linear-gradient(135deg,var(--dark),#3D1F12); }
-.plan-head-icon { font-size:2rem; margin-bottom:8px; }
-.plan-head-name { font-family:var(--font-display); font-weight:700; font-size:1rem; color:#fff; }
+.plan-head-icon { display:flex; width:48px; height:48px; border-radius:14px; margin-bottom:12px;
+  align-items:center; justify-content:center; background:rgba(255,255,255,.22); color:#fff; }
+.plan-head-icon .ic { width:25px; height:25px; }
+.plan-head.ph-free .plan-head-icon { background:rgba(51,107,128,.14); color:var(--sky-dark); }
+.plan-head-name { font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:#fff; }
 .plan-head.ph-free .plan-head-name { color:var(--dark); }
-.plan-head-price { font-family:var(--font-display); font-weight:700; font-size:2.2rem; color:#fff; line-height:1; margin-top:4px; }
+.plan-head-price { font-family:var(--font-display); font-weight:700; font-size:2.6rem; color:#fff; line-height:1; margin-top:6px; }
 .plan-head.ph-free .plan-head-price { color:var(--dark); }
-.plan-head-period { font-size:.78rem; color:rgba(255,255,255,.65); font-weight:500; }
+.plan-head-period { font-size:.88rem; color:rgba(255,255,255,.9); font-weight:500; }
 .plan-head.ph-free .plan-head-period { color:var(--light-text); }
 .plan-body { padding:20px 24px 28px; flex:1; display:flex; flex-direction:column; }
 .plan-features-v2 { list-style:none; display:flex; flex-direction:column; gap:10px; flex:1; margin-bottom:22px; }
-.plan-features-v2 li { font-size:.83rem; color:var(--mid); display:flex; gap:8px; align-items:flex-start; }
-.plan-features-v2 li.yes::before { content:'✓'; color:var(--green); font-weight:700; flex-shrink:0; margin-top:1px; }
-.plan-features-v2 li.no  { opacity:.4; }
-.plan-features-v2 li.no::before  { content:'—'; color:var(--light-text); flex-shrink:0; }
-.plan-badge-v2 { position:absolute; top:-1px; right:20px; background:var(--sky); color:#fff; font-family:var(--font-display); font-weight:700; font-size:.7rem; padding:4px 14px; border-radius:0 0 var(--r-sm) var(--r-sm); }
+/* The mark is an icon in the markup now, so it matches every other tick
+   and cross on the site instead of being a typed character. */
+.plan-features-v2 li { font-size:.95rem; color:var(--mid); display:flex; gap:10px; align-items:flex-start; line-height:1.5; }
+.plan-features-v2 li .ic { width:17px; height:17px; margin-top:3px; flex-shrink:0; }
+.plan-features-v2 li.yes .ic { color:var(--green); }
+.plan-features-v2 li.no  { color:var(--light-text); }
+.plan-features-v2 li.no .ic { color:#B4675A; }
+.plan-badge-v2 { position:absolute; top:-1px; right:20px; background:var(--sky-dark); color:#fff; font-family:var(--font-display); font-weight:700; font-size:.7rem; padding:4px 14px; border-radius:0 0 var(--r-sm) var(--r-sm); }
 
 /* ---- Marquee strip ---- */
 .marquee-wrap { overflow:hidden; padding:18px 0; background:var(--brown); }
@@ -693,6 +700,18 @@ svg.lucide {
   .meta-chip:hover { transform:none; }
   .t-card:hover { transform:none; }
 }
+
+.fmt-legend {
+  font-family:var(--font-display); font-weight:700; font-size:.8rem;
+  text-transform:uppercase; letter-spacing:.1em; color:var(--light-text);
+  padding:0; margin-bottom:12px;
+}
+.quiz-fine {
+  margin-top:22px; display:inline-flex; align-items:center; gap:8px;
+  font-family:var(--font-display); font-weight:600; font-size:.95rem;
+  color:rgba(255,255,255,.85);
+}
+.quiz-fine .ic { width:17px; height:17px; }
 
 /* ---- Comparison ticks and crosses (page 8 note 7) ---- */
 .cmp-mark {

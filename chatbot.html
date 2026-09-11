@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Chirpy's Classroom | AI Learning for Ages 2 to 8</title>
 <link rel="stylesheet" href="css/main.css">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ---- CHATBOT PAGE ---- */
@@ -117,6 +118,13 @@
 .feature-icon { font-size:1.8rem; margin-bottom:12px; }
 .feature-card h3 { font-size:.95rem; margin-bottom:8px; }
 .feature-card p  { font-size:.82rem; color:var(--light-text); }
+.h-underline {
+  background-image:linear-gradient(transparent 62%,rgba(245,194,0,.45) 62%);
+  background-repeat:no-repeat;
+}
+.msg-avatar .ic { width:20px; height:20px; }
+.upsell-btn .ic { width:18px; height:18px; vertical-align:-.2em; }
+
 /* Pricing */
 .pricing-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
 .plan-card {
@@ -124,19 +132,22 @@
   box-shadow:var(--sh-sm); position:relative; border:2px solid transparent;
   display:flex; flex-direction:column;
 }
-.plan-card.featured { border-color:var(--sky); box-shadow:0 8px 32px rgba(110,180,212,.2); }
+.plan-card.featured { border-color:var(--sky-dark); box-shadow:0 12px 40px rgba(51,107,128,.22); }
 .plan-badge {
   position:absolute; top:-14px; left:50%; transform:translateX(-50%);
-  background:var(--sky); color:#fff; font-family:var(--font-display); font-weight:700;
+  background:var(--sky-dark); color:#fff; font-family:var(--font-display); font-weight:700;
   font-size:.72rem; padding:4px 16px; border-radius:var(--r-full); white-space:nowrap;
 }
-.plan-name { font-family:var(--font-display); font-weight:700; font-size:1rem; color:var(--dark); margin-bottom:4px; }
-.plan-price { font-family:var(--font-display); font-weight:700; font-size:2rem; color:var(--dark); }
+.plan-name { font-family:var(--font-display); font-weight:700; font-size:1.15rem; color:var(--dark); margin-bottom:4px; }
+.plan-price { font-family:var(--font-display); font-weight:700; font-size:2.4rem; color:var(--dark); }
 .plan-price span { font-size:.9rem; font-weight:500; color:var(--light-text); }
-.plan-desc { font-size:.82rem; color:var(--light-text); margin:8px 0 16px; }
+.plan-desc { font-size:.92rem; color:var(--light-text); margin:8px 0 18px; }
 .plan-features { list-style:none; display:flex; flex-direction:column; gap:8px; flex:1; margin-bottom:20px; }
-.plan-features li { font-size:.82rem; color:var(--mid); display:flex; gap:7px; align-items:flex-start; }
-.plan-features li::before { content:''; color:var(--green); font-weight:700; flex-shrink:0; }
+/* The tick is a real icon in the markup now. This ::before was left
+   holding content:'' when the glyph came out, so the feature lists had
+   no marks at all. */
+.plan-features li { font-size:.95rem; color:var(--mid); display:flex; gap:10px; align-items:flex-start; line-height:1.5; }
+.plan-features li .ic { width:17px; height:17px; color:var(--green); margin-top:3px; flex-shrink:0; }
 
 /* "How each subject helps", the explanatory content behind each subject tile */
 .subject-detail-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:56px; }
@@ -149,14 +160,19 @@
 }
 .sdetail:hover { transform:translateY(-3px); box-shadow:var(--sh-md); }
 .sdetail-name {
-  font-family:var(--font-display); font-weight:700; font-size:1.02rem;
-  color:var(--sd); margin-bottom:8px;
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--font-display); font-weight:700; font-size:1.18rem;
+  color:var(--sd); margin-bottom:10px;
 }
-.sdetail p { font-size:.85rem; line-height:1.65; color:var(--mid); margin:0; }
+.sdetail-name .ic { width:22px; height:22px; }
+.sdetail p { font-size:.98rem; line-height:1.7; color:var(--mid); margin:0; }
 .sdetail-try {
-  margin-top:14px; font-family:var(--font-display); font-weight:700;
-  font-size:.78rem; color:var(--sd);
+  display:inline-flex; align-items:center; gap:7px;
+  margin-top:16px; font-family:var(--font-display); font-weight:700;
+  font-size:.88rem; color:var(--sd); transition:gap .2s;
 }
+.sdetail-try .ic { width:16px; height:16px; }
+.sdetail:hover .sdetail-try { gap:11px; }
 
 @media(max-width:1020px){ .chat-hero-inner{grid-template-columns:1fr;} .features-grid{grid-template-columns:1fr 1fr;} .pricing-grid{grid-template-columns:1fr 1fr;} .subject-detail-grid{grid-template-columns:1fr 1fr;} }
 @media(max-width:560px){ .features-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} .subject-detail-grid{grid-template-columns:1fr;} }
@@ -256,14 +272,14 @@
         <button class="subject-pill" onclick="setSubject(this,'Stories')">Stories</button>
       </div>
 
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;">
-        <a href="login.html" class="btn btn-red btn-lg">Start Free, No Card Needed</a>
-        <a href="pricing.html" class="btn btn-outline">See Pricing →</a>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
+        <a href="login.html" class="btn btn-red btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Start Free, No Card Needed</a>
+        <a href="pricing.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> See Pricing</a>
       </div>
-      <div style="display:flex;gap:20px;margin-top:14px;flex-wrap:wrap;">
-        <span style="display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--light-text);font-family:var(--font-display);">COPPA safe</span>
-        <span style="display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--light-text);font-family:var(--font-display);">3 months free</span>
-        <span style="display:flex;align-items:center;gap:5px;font-size:.75rem;color:var(--light-text);font-family:var(--font-display);">Powered by Claude AI</span>
+      <div class="kid-badges" style="margin-top:18px;">
+        <span class="kid-badge kb-green"><svg class="ic" aria-hidden="true"><use href="#i-shield"></use></svg> Built with children&rsquo;s privacy in mind</span>
+        <span class="kid-badge kb-yellow"><svg class="ic" aria-hidden="true"><use href="#i-gift"></use></svg> 3 months free</span>
+        <span class="kid-badge kb-sky"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Powered by Claude AI</span>
       </div>
     </div>
 
@@ -282,7 +298,7 @@
           <!-- Chirpy opening message -->
           <div class="msg chirpy" id="opening-msg">
             <div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
-            <div class="msg-bubble">Tweet tweet! 🐦 Hi there! I'm Chirpy, your real AI spelling tutor! I'm SO excited to learn with you today! 🌟<br><br>Here's your first word, listen carefully:<br><br><strong>C-A-T</strong> 🐱, can you spell it back to me?</div>
+            <div class="msg-bubble">Tweet tweet! 🐦 I'm Chirpy, and I am your spelling partner today.<br><br>Here's your first word, listen carefully:<br><br><strong>C-A-T</strong> 🐱, can you spell it back to me?</div>
           </div>
         </div>
 
@@ -299,38 +315,53 @@
   </div>
 </div>
 
+<div class="wave" style="--wave-from:var(--cream);--wave-to:#fff;" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
+
 <!-- FEATURES -->
 <section class="section" style="background:#fff;">
   <div class="container">
-    <div class="section-header">
-      <h2>Six subjects. Two characters.<br>One joyful classroom.</h2>
+    <div class="section-header reveal">
+      <h2>Six subjects. Two characters.<br><span class="h-underline">One joyful classroom.</span></h2>
+      <p style="max-width:560px;margin:14px auto 0;">Pick a subject and Chirpy starts a conversation, not a quiz.</p>
     </div>
 
     <!-- Subject tiles row -->
-    <div class="subject-tiles" style="margin-bottom:48px;">
+    <div class="subject-tiles reveal" style="margin-bottom:72px;">
       <button class="subject-tile tile-sky" onclick="setSubject(document.querySelector('.subject-pill'),'Spelling');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-abc"></use></svg></span>
         <div class="subject-tile-name">Spelling</div>
         <div class="subject-tile-desc">Words, phonics & letters</div>
+        <span class="subject-tile-cue">Try it <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </button>
       <button class="subject-tile tile-green" onclick="setSubject(document.querySelectorAll('.subject-pill')[1],'Rhyming');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});" style="border:none;cursor:pointer;">
+        <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-note"></use></svg></span>
         <div class="subject-tile-name">Rhyming</div>
         <div class="subject-tile-desc">Phonemic awareness</div>
+        <span class="subject-tile-cue">Try it <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </button>
       <button class="subject-tile tile-red" onclick="setSubject(document.querySelectorAll('.subject-pill')[2],'Math');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});" style="border:none;cursor:pointer;">
+        <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-math"></use></svg></span>
         <div class="subject-tile-name">Math</div>
         <div class="subject-tile-desc">Numbers & bird math</div>
+        <span class="subject-tile-cue">Try it <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </button>
       <button class="subject-tile tile-yellow" onclick="setSubject(document.querySelectorAll('.subject-pill')[3],'Grammar');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});" style="border:none;cursor:pointer;">
+        <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-pencil"></use></svg></span>
         <div class="subject-tile-name">Grammar</div>
         <div class="subject-tile-desc">Sentences & language</div>
+        <span class="subject-tile-cue">Try it <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </button>
       <button class="subject-tile tile-purple" onclick="setSubject(document.querySelectorAll('.subject-pill')[4],'Puzzles');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});" style="border:none;cursor:pointer;">
+        <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-puzzle"></use></svg></span>
         <div class="subject-tile-name">Puzzles</div>
         <div class="subject-tile-desc">Riddles & word games</div>
+        <span class="subject-tile-cue">Try it <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </button>
       <button class="subject-tile tile-orange" onclick="setSubject(document.querySelectorAll('.subject-pill')[5],'Stories');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});" style="border:none;cursor:pointer;">
+        <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg></span>
         <div class="subject-tile-name">Stories</div>
         <div class="subject-tile-desc">Comprehension & writing</div>
+        <span class="subject-tile-cue">Try it <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </button>
     </div>
 
@@ -340,35 +371,35 @@
       <p style="max-width:600px;margin:12px auto 0;">Chirpy doesn't quiz, it plays. Every subject is a back-and-forth conversation pitched at your child's level, with hints instead of corrections, so a wrong answer is just the next turn in the game.</p>
     </div>
     <div class="subject-detail-grid">
-      <button class="sdetail" style="--sd:var(--sky-dark);" onclick="setSubject(document.querySelector('.subject-pill'),'Spelling');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
-        <div class="sdetail-name">Spelling</div>
+      <button class="sdetail" style="--sd:#2A6377;" onclick="setSubject(document.querySelector('.subject-pill'),'Spelling');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name"><svg class="ic" aria-hidden="true"><use href="#i-abc"></use></svg>Spelling</div>
         <p>Chirpy sounds a word out one letter at a time, then asks your child to try it back. A wrong letter gets a hint, "listen for the buzzy sound in the middle", not a red mark. Words get longer as your child gets steadier, so it stays just hard enough to feel like a win.</p>
-        <div class="sdetail-try">Try Spelling with Chirpy →</div>
+        <div class="sdetail-try">Try Spelling with Chirpy <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></div>
       </button>
       <button class="sdetail" style="--sd:var(--green);" onclick="setSubject(document.querySelectorAll('.subject-pill')[1],'Rhyming');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
-        <div class="sdetail-name">Rhyming</div>
+        <div class="sdetail-name"><svg class="ic" aria-hidden="true"><use href="#i-note"></use></svg>Rhyming</div>
         <p>"What rhymes with nest?" Rhyme games train the ear for the sound patterns that reading is built on. Chirpy happily accepts silly and made-up words, because at this age hearing the pattern matters far more than landing on a real one.</p>
-        <div class="sdetail-try">Try Rhyming with Chirpy →</div>
+        <div class="sdetail-try">Try Rhyming with Chirpy <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></div>
       </button>
-      <button class="sdetail" style="--sd:var(--red);" onclick="setSubject(document.querySelectorAll('.subject-pill')[2],'Math');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
-        <div class="sdetail-name">Math</div>
+      <button class="sdetail" style="--sd:var(--red-dark);" onclick="setSubject(document.querySelectorAll('.subject-pill')[2],'Math');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name"><svg class="ic" aria-hidden="true"><use href="#i-math"></use></svg>Math</div>
         <p>Counting, number recognition and first addition, always tied to something a child can picture, like three birds and two worms. Chirpy works through the problem alongside them instead of waiting for an answer, so numbers stay concrete rather than abstract.</p>
-        <div class="sdetail-try">Try Math with Chirpy →</div>
+        <div class="sdetail-try">Try Math with Chirpy <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></div>
       </button>
-      <button class="sdetail" style="--sd:var(--brown);" onclick="setSubject(document.querySelectorAll('.subject-pill')[3],'Grammar');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
-        <div class="sdetail-name">Grammar</div>
+      <button class="sdetail" style="--sd:var(--brown-dark);" onclick="setSubject(document.querySelectorAll('.subject-pill')[3],'Grammar');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name"><svg class="ic" aria-hidden="true"><use href="#i-pencil"></use></svg>Grammar</div>
         <p>Capital letters, periods and word order, taught inside sentences your child makes up rather than as drills. Chirpy rebuilds their sentence with them, so the rule arrives attached to their own words, which is the version they remember.</p>
-        <div class="sdetail-try">Try Grammar with Chirpy →</div>
+        <div class="sdetail-try">Try Grammar with Chirpy <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></div>
       </button>
-      <button class="sdetail" style="--sd:var(--brown);" onclick="setSubject(document.querySelectorAll('.subject-pill')[4],'Puzzles');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
-        <div class="sdetail-name">Puzzles</div>
+      <button class="sdetail" style="--sd:#8A5E2D;" onclick="setSubject(document.querySelectorAll('.subject-pill')[4],'Puzzles');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name"><svg class="ic" aria-hidden="true"><use href="#i-puzzle"></use></svg>Puzzles</div>
         <p>Riddles, odd-one-out and word games that stretch vocabulary and reasoning while feeling entirely like play. These are the ones for days when a child won't sit still for a lesson, they're still learning, they just don't call it that.</p>
-        <div class="sdetail-try">Try Puzzles with Chirpy →</div>
+        <div class="sdetail-try">Try Puzzles with Chirpy <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></div>
       </button>
-      <button class="sdetail" style="--sd:var(--orange);" onclick="setSubject(document.querySelectorAll('.subject-pill')[5],'Stories');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
-        <div class="sdetail-name">Stories</div>
+      <button class="sdetail" style="--sd:#C2470A;" onclick="setSubject(document.querySelectorAll('.subject-pill')[5],'Stories');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});">
+        <div class="sdetail-name"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg>Stories</div>
         <p>Chirpy asks what happened, what might happen next, and why a character did what they did, then invites your child to invent their own ending. Retelling a story is what turns reading the words into understanding them.</p>
-        <div class="sdetail-try">Try Stories with Chirpy →</div>
+        <div class="sdetail-try">Try Stories with Chirpy <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></div>
       </button>
     </div>
 
@@ -390,7 +421,8 @@
       </div>
       <div class="fcard">
         <div class="fcard-head c-purple">
-                    <div><div class="fcard-title">Smart Progress</div><div class="fcard-sub">Badges, dashboards & PDF exports</div></div>
+          <div class="fcard-icon"><svg class="ic" aria-hidden="true"><use href="#i-chart"></use></svg></div>
+          <div><div class="fcard-title">Smart Progress</div><div class="fcard-sub">Badges, dashboards & PDF exports</div></div>
         </div>
         <div class="fcard-body"><p>Every session is tracked. Parents see subjects practiced, streaks, and improvement trends. Children earn badges for milestones. Export a PDF progress report any time.</p></div>
       </div>
@@ -398,68 +430,71 @@
   </div>
 </section>
 
+<div class="wave" style="--wave-from:#fff;--wave-to:var(--cream);" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
+
 <!-- PRICING -->
 <section class="section" style="background:var(--cream);" id="pricing">
   <div class="container">
-    <div class="section-header">
-      <h2>Start free. Upgrade when you're ready.</h2>
+    <div class="section-header reveal">
+      <h2>Start free. Upgrade when you&rsquo;re ready.</h2>
+      <p style="max-width:540px;margin:14px auto 0;">Three months of the whole classroom, with no card taken up front.</p>
     </div>
     <div class="pricing-grid">
-      <div class="plan-card">
+      <div class="plan-card reveal">
         <div class="plan-name">Free Trial</div>
         <div class="plan-price">$0 <span>/ 3 months</span></div>
         <div class="plan-desc">For all new families</div>
         <ul class="plan-features">
-          <li>Up to 3 child profiles</li>
-          <li>100 messages per child</li>
-          <li>All 6 subjects</li>
-          <li>Chirpy + Mama Bird</li>
-          <li>Progress tracking</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Up to 3 child profiles</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>100 messages per child</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>All 6 subjects</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Chirpy + Mama Bird</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Progress tracking</span></li>
         </ul>
         <a href="login.html" class="btn btn-outline btn-sm" style="justify-content:center;">Start Free →</a>
       </div>
-      <div class="plan-card featured">
+      <div class="plan-card featured reveal reveal-d1">
         <div class="plan-badge">Most Popular</div>
         <div class="plan-name">Individual</div>
         <div class="plan-price">$7 <span>/ month</span></div>
         <div class="plan-desc">Perfect for one family</div>
         <ul class="plan-features">
-          <li>Up to 3 child profiles</li>
-          <li>400 messages per child</li>
-          <li>All 6 subjects</li>
-          <li>Chirpy + Mama Bird</li>
-          <li>Progress dashboard</li>
-          <li>Lesson plan generator</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Up to 3 child profiles</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>400 messages per child</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>All 6 subjects</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Chirpy + Mama Bird</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Progress dashboard</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Lesson plan generator</span></li>
         </ul>
         <a href="login.html" class="btn btn-sky btn-sm" style="justify-content:center;">Get Started →</a>
       </div>
-      <div class="plan-card">
+      <div class="plan-card reveal reveal-d2">
         <div class="plan-name">Premium</div>
         <div class="plan-price">$10 <span>/ month</span></div>
         <div class="plan-desc">For larger families</div>
         <ul class="plan-features">
-          <li>Unlimited child profiles</li>
-          <li>1,000 messages per child</li>
-          <li>All 6 subjects</li>
-          <li>Chirpy + Mama Bird</li>
-          <li>Progress dashboard</li>
-          <li>Lesson plan generator</li>
-          <li>PDF progress exports</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Unlimited child profiles</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>1,000 messages per child</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>All 6 subjects</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Chirpy + Mama Bird</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Progress dashboard</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Lesson plan generator</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>PDF progress exports</span></li>
         </ul>
         <a href="login.html" class="btn btn-outline btn-sm" style="justify-content:center;">Get Started →</a>
       </div>
-      <div class="plan-card">
+      <div class="plan-card reveal reveal-d3">
         <div class="plan-name">Classroom</div>
         <div class="plan-price">$49 <span>/ month</span></div>
         <div class="plan-desc">For teachers</div>
         <ul class="plan-features">
-          <li>Up to 30 student profiles</li>
-          <li>200 messages per student</li>
-          <li>All 6 subjects</li>
-          <li>Classroom dashboard</li>
-          <li>Teacher lesson plans</li>
-          <li>Per-student PDF exports</li>
-          <li>Parent email summaries</li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Up to 30 student profiles</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>200 messages per student</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>All 6 subjects</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Classroom dashboard</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Teacher lesson plans</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Per-student PDF exports</span></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Parent email summaries</span></li>
         </ul>
         <a href="contact.html" class="btn btn-dark btn-sm" style="justify-content:center;">Contact Us →</a>
       </div>
@@ -540,7 +575,9 @@ document.querySelectorAll('.subject-pill').forEach(pill => {
 function addMsg(type, html) {
   const div = document.createElement('div');
   div.className = `msg ${type}`;
-  const avatar = type === 'user' ? '👤' : '<img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276">';
+  const avatar = type === 'user'
+    ? '<svg class="ic" aria-hidden="true"><use href="#i-child"></use></svg>'
+    : '<img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276">';
   const avatarBg = type === 'user' ? 'var(--sky)' : 'var(--sky-light)';
   div.innerHTML = `<div class="msg-avatar" style="background:${avatarBg};">${avatar}</div><div class="msg-bubble${type==='chirpy'?' upsell-bubble':''}" style="${type==='chirpy'?'background:#fff;border:none;':''}">${html}</div>`;
   chatBody.appendChild(div);
@@ -578,10 +615,10 @@ function showUpsell() {
   div.className = 'msg chirpy';
   div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
     <div class="msg-bubble upsell-bubble">
-      <strong>Tweet tweet! 🐦 You're doing SO well!</strong><br><br>
+      <strong>Tweet tweet! 🐦 You're doing so well!</strong><br><br>
       That's your free preview for today. Create a free account to keep going, 3 months free, no card needed!<br><br>
       <div class="upsell-cta">
-        <a href="login.html" class="upsell-btn">🎉 Start Free, No Card Needed</a>
+        <a href="login.html" class="upsell-btn"><svg class="ic" aria-hidden="true"><use href="#i-gift"></use></svg> Start Free, No Card Needed</a>
         <a href="pricing.html" class="upsell-link">See all plans →</a>
       </div>
     </div>`;
@@ -602,7 +639,7 @@ async function sendMsg() {
   // Add user message, escape user input before display
   const userDiv = document.createElement('div');
   userDiv.className = 'msg user';
-  userDiv.innerHTML = `<div class="msg-avatar" style="background:var(--sky);">👤</div><div class="msg-bubble">${safeHtml(text)}</div>`;
+  userDiv.innerHTML = `<div class="msg-avatar" style="background:var(--sky-light);color:var(--sky-dark);"><svg class="ic" aria-hidden="true"><use href="#i-child"></use></svg></div><div class="msg-bubble">${safeHtml(text)}</div>`;
   chatBody.appendChild(userDiv);
   chatBody.scrollTop = chatBody.scrollHeight;
   input.value = '';
@@ -662,7 +699,7 @@ function switchChar(char) {
     div.className = 'msg chirpy';
     div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--green-light);color:var(--green);"><img src="assets/chirpy.png" alt="" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
       <div class="msg-bubble upsell-bubble">
-        <strong>🌿 Mama Bird is available with a free account!</strong><br><br>
+        <strong>Mama Bird comes with a free account.</strong><br><br>
         Sign up to unlock Mama Bird, lesson plan generation, all 6 subjects, and progress tracking.<br><br>
         <div class="upsell-cta">
           <a href="login.html" class="upsell-btn" style="background:var(--green);">Start Free, 3 Months, No Card</a>
@@ -679,8 +716,11 @@ function switchChar(char) {
   document.getElementById('btn-mama').className   = 'char-card-v2' + (char === 'mama'   ? ' active-mama'   : '');
   const cc = document.getElementById('chirpy-check');
   const mc = document.getElementById('mama-check');
-  if (cc) { cc.textContent = char === 'chirpy' ? '✓' : ''; cc.style.color = 'var(--sky-dark)'; }
-  if (mc) { mc.textContent = char === 'mama' ? '✓' : ''; mc.style.color = 'var(--green)'; }
+  // A tick drawn as an icon rather than typed as a character, so it matches
+  // every other mark on the site and scales with the text around it.
+  var TICK = '<svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg>';
+  if (cc) { cc.innerHTML = char === 'chirpy' ? TICK : ''; cc.style.color = 'var(--sky-dark)'; }
+  if (mc) { mc.innerHTML = char === 'mama'   ? TICK : ''; mc.style.color = 'var(--green)'; }
   const topbarAvatar = document.getElementById('topbar-avatar');
   topbarAvatar.innerHTML = '<img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276">';
   document.getElementById('topbar-name').textContent = 'Chirpy';
@@ -690,7 +730,7 @@ function switchChar(char) {
   const inp = document.getElementById('chat-input');
   inp.disabled = false; inp.placeholder = 'Type your answer...';
   document.querySelector('.chat-send').disabled = false;
-  addChirpyMsg("Tweet tweet! 🐦 I'm Chirpy! Let's keep practicing <strong>Spelling</strong>, you're going to do GREAT! ⭐<br><br>Ready for a word?");
+  addChirpyMsg("Tweet tweet! 🐦 Let's keep practising <strong>Spelling</strong>.<br><br>Ready for a word?");
 }
 
 function setSubject(el, subj) {
@@ -702,7 +742,7 @@ function setSubject(el, subj) {
     div.className = 'msg chirpy';
     div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
       <div class="msg-bubble upsell-bubble">
-        <strong>Tweet tweet! 🐦 I love ${subj}!</strong><br><br>
+        <strong>Tweet tweet! 🐦 Let's do ${subj}.</strong><br><br>
         ${subj} is available with a free account, along with all 5 other subjects. Sign up in seconds, no card needed!<br><br>
         <div class="upsell-cta">
           <a href="login.html" class="upsell-btn">Start Free, No Card Needed</a>
@@ -721,7 +761,7 @@ function setSubject(el, subj) {
   const inp = document.getElementById('chat-input');
   inp.disabled = false; inp.placeholder = 'Type your answer...';
   document.querySelector('.chat-send').disabled = false;
-  addChirpyMsg("Tweet tweet! ✏️ Let's practice <strong>Spelling</strong>! 🐦<br><br>I'll give you a word, and you spell it back to me. Ready? Here's your first one:<br><br><strong>🐱 C-A-T</strong>, can you spell it?");
+  addChirpyMsg("Tweet tweet! 🐦 Let's practise <strong>Spelling</strong>.<br><br>I'll give you a word and you spell it back to me. Here's your first one:<br><br><strong>C-A-T</strong>, can you spell it?");
 }
 
 // A question typed on the homepage. Put it in the box and send it, so the

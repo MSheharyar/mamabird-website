@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Book | Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 .book-hero-grid { display:grid; grid-template-columns:1fr 1.6fr; gap:72px; align-items:start; padding-top:72px; }
@@ -59,8 +60,30 @@
 .what-inside h3 { font-size:.95rem; margin-bottom:14px; }
 .inside-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
 .inside-list li { display:flex; align-items:center; gap:10px; font-size:.92rem; color:var(--mid); }
-.inside-list li::before { content:''; color:var(--green); font-weight:700; flex-shrink:0; }
+/* Same story as .compare-list: the glyph went, the rule stayed. */
 .buy-btn { width:100%; padding:18px; font-size:1.05rem; justify-content:center; margin-bottom:12px; }
+.fmt-picker-2 { grid-template-columns:1fr 1fr; margin:22px 0 20px; }
+.meta-grid-3 { grid-template-columns:repeat(3,1fr); }
+@media(max-width:760px){ .meta-grid-3 { grid-template-columns:1fr 1fr; } }
+.why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+@media(max-width:900px){ .why-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:520px){ .why-grid { grid-template-columns:1fr; } }
+.why-card { text-align:center; padding:32px 22px; transition:transform .2s, box-shadow .2s; }
+.why-card:hover { transform:translateY(-5px); box-shadow:var(--sh-md); }
+.why-card h3 { font-size:1.15rem; margin-bottom:10px; }
+.why-card p  { font-size:1rem; }
+.why-ic {
+  width:60px; height:60px; border-radius:20px; margin:0 auto 16px;
+  display:flex; align-items:center; justify-content:center; color:#fff;
+}
+.why-ic .ic { width:29px; height:29px; }
+.why-ic-sky    { background:linear-gradient(135deg,#33768D,#2A6377); }
+.why-ic-green  { background:linear-gradient(135deg,#3F7A35,#2D6A27); }
+.why-ic-yellow { background:linear-gradient(135deg,#FFD233,#F0BC00); color:var(--brown-dark); }
+.why-ic-red    { background:linear-gradient(135deg,#CC2929,#A82020); }
+.book-cta-art { width:190px; margin:0 auto 22px; filter:drop-shadow(0 12px 22px rgba(44,24,16,.18)); }
+.t-avatar .ic { width:20px; height:20px; }
+@media(prefers-reduced-motion:reduce){ .why-card:hover { transform:none; } }
 .trust-row { display:flex; gap:20px; flex-wrap:wrap; }
 .trust-item { display:flex; align-items:center; gap:6px; font-size:.78rem; color:var(--light-text); font-family:var(--font-display); }
 #checkout-err { display:none; background:#fef2f2; border:1px solid #fca5a5; border-radius:var(--r-sm); padding:10px 14px; font-size:.83rem; color:#b91c1c; font-family:var(--font-display); font-weight:600; margin-top:12px; }
@@ -71,14 +94,22 @@
 
 /* Compare section */
 .compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-.compare-card { border-radius:var(--r-md); padding:28px; }
-.compare-card.ours { background:var(--sky-xlight); border:2px solid var(--sky); }
+.compare-card { border-radius:var(--r-lg); padding:36px 32px; }
+.compare-card.ours { background:var(--sky-xlight); border:2px solid var(--sky-dark); box-shadow:0 14px 40px rgba(51,107,128,.14); }
 .compare-card.theirs { background:var(--cream); border:2px solid var(--cream-dark); }
-.compare-title { font-family:var(--font-display); font-weight:700; font-size:1rem; margin-bottom:14px; }
-.compare-list { list-style:none; display:flex; flex-direction:column; gap:8px; }
-.compare-list li { font-size:.85rem; color:var(--mid); display:flex; gap:8px; }
-.compare-list li.yes::before { content:''; color:var(--green); font-weight:700; }
-.compare-list li.no::before  { content:''; color:var(--red); font-weight:700; }
+.compare-title { font-family:var(--font-display); font-weight:700; font-size:1.2rem; margin-bottom:4px; }
+.compare-head { display:flex; align-items:center; gap:14px; margin-bottom:20px; }
+.compare-head-ic { width:52px; height:52px; border-radius:16px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; }
+.compare-head-ic .ic { width:26px; height:26px; }
+.compare-card.ours   .compare-head-ic { background:#fff; color:var(--sky-dark); }
+.compare-card.theirs .compare-head-ic { background:#fff; color:var(--light-text); }
+.compare-sub { font-size:.9rem; color:var(--light-text); }
+.compare-list { list-style:none; display:flex; flex-direction:column; gap:16px; }
+/* The tick and the cross are real icons now. The ::before rules that
+   used to carry them were left with content:'' when the glyphs came
+   out, so every line read the same whether it was a yes or a no. */
+.compare-list li { font-size:1rem; color:var(--mid); display:flex; gap:12px; align-items:flex-start; line-height:1.5; }
 
 @media(max-width:960px){ .ebook-hero{grid-template-columns:1fr; gap:48px;} .ebook-cover-3d{order:-1;}  .compare-grid{grid-template-columns:1fr;} }
 @media(max-width:560px){  .price-now{font-size:2.4rem;} }
@@ -159,23 +190,51 @@
             </div>
           </div>
         </div>
-        <div class="buy-box">
+        <div class="buy-box reveal">
           <div class="price-row" style="justify-content:center;">
-            <div class="price-now">$4.99</div>
-            <div class="price-was">$9.99</div>
-            <div class="price-save">50% OFF</div>
+            <div class="price-now" id="fmt-price">$4.99</div>
+            <div class="price-was" id="fmt-was">$9.99</div>
+            <div class="price-save" id="fmt-save">50% OFF</div>
           </div>
-          <div class="price-note">Instant PDF &middot; one-time &middot; keep forever</div>
-          <div class="buy-stack">
-            <button class="btn btn-red buy-btn" id="buy-btn" onclick="startEbookCheckout()" style="justify-content:center;">
-              Get the PDF, $4.99
-            </button>
-            <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-outline" style="justify-content:center;">Prefer Kindle? Buy on Amazon</a>
-            <a href="contact.html" class="btn btn-outline" style="justify-content:center;">Order a signed paperback</a>
-          </div>
+          <div class="price-note" id="fmt-note">Instant PDF &middot; one-time &middot; keep forever</div>
+
+          <fieldset class="fmt-picker fmt-picker-2" id="fmt-picker">
+            <legend class="fmt-legend">Choose a format</legend>
+            <label class="fmt-opt">
+              <input type="radio" name="format" value="pdf" checked
+                     data-cta="Get the PDF, $4.99" data-icon="down" data-action="checkout"
+                     data-price="$4.99" data-was="$9.99" data-save="50% OFF"
+                     data-note="Instant PDF &middot; one-time &middot; keep forever">
+              <span class="fmt-body"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg><span class="fmt-name">PDF from us</span><span class="fmt-price">$4.99</span></span>
+            </label>
+            <label class="fmt-opt">
+              <input type="radio" name="format" value="kindle"
+                     data-cta="Buy on Amazon Kindle" data-icon="devices"
+                     data-href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/"
+                     data-note="Opens Amazon &middot; reads in the Kindle app">
+              <span class="fmt-body"><svg class="ic" aria-hidden="true"><use href="#i-devices"></use></svg><span class="fmt-name">Kindle</span><span class="fmt-price">On Amazon</span></span>
+            </label>
+            <label class="fmt-opt">
+              <input type="radio" name="format" value="paperback"
+                     data-cta="Buy the Paperback" data-icon="cart"
+                     data-href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/"
+                     data-note="Printed and posted by Amazon">
+              <span class="fmt-body"><svg class="ic" aria-hidden="true"><use href="#i-cart"></use></svg><span class="fmt-name">Paperback</span><span class="fmt-price">On Amazon</span></span>
+            </label>
+            <label class="fmt-opt">
+              <input type="radio" name="format" value="signed"
+                     data-cta="Order a Signed Copy" data-icon="pen" data-href="contact.html"
+                     data-note="Signed by Iris &middot; arranged by email">
+              <span class="fmt-body"><svg class="ic" aria-hidden="true"><use href="#i-pen"></use></svg><span class="fmt-name">Signed Copy</span><span class="fmt-price">By request</span></span>
+            </label>
+          </fieldset>
+
+          <button class="btn btn-red buy-btn" id="buy-btn" style="justify-content:center;">
+            <svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg><span id="fmt-cta-text">Get the PDF, $4.99</span>
+          </button>
           <div class="trust-row" style="justify-content:center;">
-            <span class="trust-item">Secure payment via Stripe</span>
-            <span class="trust-item">Download straight after payment</span>
+            <span class="trust-item"><svg class="ic" aria-hidden="true"><use href="#i-lock"></use></svg> Secure payment via Stripe</span>
+            <span class="trust-item"><svg class="ic" aria-hidden="true"><use href="#i-bolt"></use></svg> Download straight after payment</span>
           </div>
           <div id="checkout-err"></div>
         </div>
@@ -184,20 +243,20 @@
         <h1 style="margin:12px 0 20px;">Three Baby<br>Birdies</h1>
         <p style="margin-bottom:16px;">Written by <strong>Iris Scarfone</strong> and illustrated by <strong>Ronald Scarfone</strong>, Three Baby Birdies is a cheerful, rhythmic tale following three little red birds in their nest on a tree branch, with a bright blue sky, fluffy clouds, and a warm sun shining above.</p>
         <p style="margin-bottom:24px;">Written in rhyming language that makes every read-aloud a joy, and illustrated so young children can follow and understand the story on their own terms. Perfect for bedtime, story time, and classroom read-alouds.</p>
-        <div class="meta-grid">
-          <div class="meta-chip"><div class="meta-chip-label">Age Range</div><div class="meta-chip-val">Ages 2–6</div></div>
-          <div class="meta-chip"><div class="meta-chip-label">Style</div><div class="meta-chip-val">Rhyming Read-Aloud</div></div>
-          <div class="meta-chip"><div class="meta-chip-label">Reading Level</div><div class="meta-chip-val">Pre-Reader / Beginner</div></div>
-          <div class="meta-chip"><div class="meta-chip-label">Language</div><div class="meta-chip-val">English</div></div>
-          <div class="meta-chip"><div class="meta-chip-label">Format</div><div class="meta-chip-val">eBook + Paperback</div></div>
-          <div class="meta-chip"><div class="meta-chip-label">Publisher</div><div class="meta-chip-val">Independent</div></div>
+        <div class="meta-grid meta-grid-3">
+          <div class="meta-chip mc-sky"><div class="meta-chip-head"><svg class="ic" aria-hidden="true"><use href="#i-child"></use></svg><div class="meta-chip-label">Age Range</div></div><div class="meta-chip-val">Ages 2&ndash;6</div></div>
+          <div class="meta-chip mc-yellow"><div class="meta-chip-head"><svg class="ic" aria-hidden="true"><use href="#i-note"></use></svg><div class="meta-chip-label">Style</div></div><div class="meta-chip-val">Rhyming Read-Aloud</div></div>
+          <div class="meta-chip mc-green"><div class="meta-chip-head"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg><div class="meta-chip-label">Reading Level</div></div><div class="meta-chip-val">Pre-Reader / Beginner</div></div>
+          <div class="meta-chip mc-red"><div class="meta-chip-head"><svg class="ic" aria-hidden="true"><use href="#i-abc"></use></svg><div class="meta-chip-label">Language</div></div><div class="meta-chip-val">English</div></div>
+          <div class="meta-chip mc-sky"><div class="meta-chip-head"><svg class="ic" aria-hidden="true"><use href="#i-devices"></use></svg><div class="meta-chip-label">Format</div></div><div class="meta-chip-val">eBook + Paperback</div></div>
+          <div class="meta-chip mc-yellow"><div class="meta-chip-head"><svg class="ic" aria-hidden="true"><use href="#i-star"></use></svg><div class="meta-chip-label">Publisher</div></div><div class="meta-chip-val">Independent</div></div>
         </div>
-        <div class="format-pills">
-          <span class="format-pill">PDF from us</span>
-          <span class="format-pill">Kindle eBook</span>
-          <span class="format-pill">Paperback</span>
-          <span class="format-pill">Signed Copy</span>
-          <span class="format-pill">School Orders</span>
+        <div class="kid-badges" style="margin-bottom:24px;">
+          <span class="kid-badge kb-sky"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> PDF from us</span>
+          <span class="kid-badge kb-green"><svg class="ic" aria-hidden="true"><use href="#i-devices"></use></svg> Kindle eBook</span>
+          <span class="kid-badge kb-yellow"><svg class="ic" aria-hidden="true"><use href="#i-cart"></use></svg> Paperback</span>
+          <span class="kid-badge kb-red"><svg class="ic" aria-hidden="true"><use href="#i-pen"></use></svg> Signed Copy</span>
+          <span class="kid-badge kb-sky"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> School Orders</span>
         </div>
         <div style="background:var(--cream);border-radius:var(--r-md);padding:20px;margin-top:8px;">
           <p style="font-size:.88rem;color:var(--light-text);">"Perfect for bedtime, story time, and little readers who love nature and gentle adventures."</p>
@@ -207,39 +266,43 @@
   </div>
 </div>
 
+<div class="wave" style="--wave-from:var(--cream);--wave-to:#fff;" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
+
 <!-- Excerpt -->
 <section class="section" style="background:#fff;">
   <div class="container" style="max-width:800px;">
     <div class="section-header">
       <h2>Listen to the rhythm</h2>
     </div>
-    <div class="excerpt-box">
+    <div class="excerpt-box reveal">
       <div class="excerpt-text">
-        "Chirp chirp chirp.<br>
+        &ldquo;Chirp chirp chirp.<br>
         Flap your wings and try to fly.<br>
-        It is just as easy<br>
-        as easy as pie."
+        It is just as easy as pie.&rdquo;
       </div>
       <p style="font-size:.85rem;color:var(--sky-dark);">, from Three Baby Birdies by Iris Scarfone</p>
     </div>
     <p style="text-align:center;margin-top:22px;font-size:.9rem;color:var(--mid);">That refrain repeats through the book, which is what lets a child join in before they can read the words.</p>
     <div style="text-align:center;margin-top:26px;">
-      <button class="btn btn-red" onclick="startEbookCheckout()">Get the PDF, $4.99</button>
+      <button class="btn btn-red btn-lg" onclick="startEbookCheckout()"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Get the PDF, $4.99</button>
     </div>
   </div>
 </section>
 
+<div class="wave" style="--wave-from:#fff;--wave-to:var(--cream);" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
+
 <!-- Why this book -->
 <section class="section" style="background:var(--cream);">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <h2>Built for the way children learn</h2>
+      <p style="max-width:560px;margin:14px auto 0;">Four things a picture book has to get right before a two-year-old will sit through it.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;">
-      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"></div><h3 style="font-size:1rem;margin-bottom:8px;">Repetition</h3><p style="font-size:.88rem;">Builds pattern recognition and word familiarity through repetition children enjoy.</p></div>
-      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"></div><h3 style="font-size:1rem;margin-bottom:8px;">Rhyme</h3><p style="font-size:.88rem;">Rhythmic language makes read-alouds fun and helps children predict what comes next.</p></div>
-      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"></div><h3 style="font-size:1rem;margin-bottom:8px;">Visual match</h3><p style="font-size:.88rem;">Illustrations depict exactly what the text describes, connecting words to images.</p></div>
-      <div class="card" style="text-align:center;"><div style="margin-bottom:12px;"></div><h3 style="font-size:1rem;margin-bottom:8px;">Right length</h3><p style="font-size:.88rem;">Short enough to hold a young child's attention from first page to last, every time.</p></div>
+    <div class="why-grid">
+      <div class="card why-card reveal"><span class="why-ic why-ic-sky"><svg class="ic" aria-hidden="true"><use href="#i-speaker"></use></svg></span><h3>Repetition</h3><p>Builds pattern recognition and word familiarity through repetition children enjoy.</p></div>
+      <div class="card why-card reveal reveal-d1"><span class="why-ic why-ic-green"><svg class="ic" aria-hidden="true"><use href="#i-note"></use></svg></span><h3>Rhyme</h3><p>Rhythmic language makes read-alouds fun and helps children predict what comes next.</p></div>
+      <div class="card why-card reveal reveal-d2"><span class="why-ic why-ic-yellow"><svg class="ic" aria-hidden="true"><use href="#i-palette"></use></svg></span><h3>Visual match</h3><p>Illustrations show exactly what the text describes, connecting the words to the picture.</p></div>
+      <div class="card why-card reveal reveal-d3"><span class="why-ic why-ic-red"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg></span><h3>Right length</h3><p>Short enough to hold a young child&rsquo;s attention from the first page to the last.</p></div>
     </div>
   </div>
 </section>
@@ -253,64 +316,78 @@
       <h2>PDF from us, or Kindle from Amazon</h2>
     </div>
     <div class="compare-grid">
-      <div class="compare-card ours">
-        <div class="compare-title">Three Baby Birdies PDF, $4.99</div>
+      <div class="compare-card ours reveal">
+        <div class="compare-head">
+          <span class="compare-head-ic"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg></span>
+          <div>
+            <div class="compare-title">Three Baby Birdies PDF</div>
+            <div class="compare-sub">$4.99, straight from us</div>
+          </div>
+        </div>
         <ul class="compare-list">
-          <li class="yes">Works on ANY device, no Kindle required</li>
-          <li class="yes">Printable pages (300 DPI)</li>
-          <li class="yes">Works offline, forever</li>
-          <li class="yes">Email it to family &amp; teachers</li>
-          <li class="yes">Same story as the paperback</li>
-          <li class="yes">Download trouble? We fix it within 7 days</li>
+          <li><span class="cmp-mark cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg></span><span>Works on any device, no Kindle needed</span></li>
+          <li><span class="cmp-mark cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg></span><span>Printable pages at 300 DPI</span></li>
+          <li><span class="cmp-mark cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg></span><span>Works offline, and keeps working</span></li>
+          <li><span class="cmp-mark cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg></span><span>Email it to family and teachers</span></li>
+          <li><span class="cmp-mark cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg></span><span>The same story as the paperback</span></li>
+          <li><span class="cmp-mark cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg></span><span>Download trouble? We fix it within 7 days</span></li>
         </ul>
       </div>
-      <div class="compare-card theirs">
-        <div class="compare-title">Amazon Kindle Edition</div>
+      <div class="compare-card theirs reveal reveal-d1">
+        <div class="compare-head">
+          <span class="compare-head-ic"><svg class="ic" aria-hidden="true"><use href="#i-devices"></use></svg></span>
+          <div>
+            <div class="compare-title">Amazon Kindle edition</div>
+            <div class="compare-sub">Sold and delivered by Amazon</div>
+          </div>
+        </div>
         <ul class="compare-list">
-          <li class="yes">Available on Kindle app</li>
-          <li class="no">Requires Kindle or Kindle app</li>
-          <li class="no">Not printable</li>
-          <li class="no">Tied to your Amazon account</li>
-          <li class="no">Can't share with others</li>
-          <li class="no">Amazon controls the file</li>
+          <li><span class="cmp-mark cmp-yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg></span><span>Available in the Kindle app</span></li>
+          <li><span class="cmp-mark cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg></span><span>Needs a Kindle or the Kindle app</span></li>
+          <li><span class="cmp-mark cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg></span><span>Not printable</span></li>
+          <li><span class="cmp-mark cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg></span><span>Tied to your Amazon account</span></li>
+          <li><span class="cmp-mark cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg></span><span>Cannot be shared with others</span></li>
+          <li><span class="cmp-mark cmp-no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg></span><span>Amazon controls the file</span></li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
+<div class="wave" style="--wave-from:var(--cream);--wave-to:var(--sky-light);" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
+
 <!-- WHAT YOU GET -->
 <section class="section" style="background:var(--sky-light);">
   <div class="container">
-    <div class="section-header">
+    <div class="section-header reveal">
       <h2>The whole story, on any screen</h2>
       <p style="max-width:520px;margin:12px auto 0;">A PDF of <em>Three Baby Birdies</em>, with the same story and artwork as the paperback.</p>
     </div>
     <div class="t-grid">
-      <div class="t-card">
+      <div class="t-card reveal">
         <p class="t-text">The download link appears the moment your payment clears, and it is emailed to you as well.</p>
         <div class="t-author">
-          <div class="t-avatar" style="background:var(--sky);"></div>
+          <div class="t-avatar" style="background:var(--sky-dark);"><svg class="ic" aria-hidden="true"><use href="#i-bolt"></use></svg></div>
           <div>
             <div class="t-name">Instant download</div>
             <div class="t-role">Nothing to wait for in the post</div>
           </div>
         </div>
       </div>
-      <div class="t-card">
+      <div class="t-card reveal reveal-d1">
         <p class="t-text">Open it at bedtime on whatever is to hand. Print it at home if your child would rather hold the pages.</p>
         <div class="t-author">
-          <div class="t-avatar" style="background:var(--green);"></div>
+          <div class="t-avatar" style="background:var(--green);"><svg class="ic" aria-hidden="true"><use href="#i-devices"></use></svg></div>
           <div>
             <div class="t-name">Reads on any screen</div>
             <div class="t-role">Phone, tablet or laptop</div>
           </div>
         </div>
       </div>
-      <div class="t-card">
+      <div class="t-card reveal reveal-d2">
         <p class="t-text">All of the artwork from the printed book, so a child who cannot read yet can still follow the story.</p>
         <div class="t-author">
-          <div class="t-avatar" style="background:var(--brown);"></div>
+          <div class="t-avatar" style="background:var(--brown-dark);"><svg class="ic" aria-hidden="true"><use href="#i-palette"></use></svg></div>
           <div>
             <div class="t-name">Every illustration</div>
             <div class="t-role">Art by Ronald Scarfone</div>
@@ -322,22 +399,69 @@
 </section>
 
 <section class="section" style="background:var(--sky-light);text-align:center;">
-  <div class="container" style="max-width:560px;">
-    <div style="margin-bottom:16px;"></div>
-    <h2 style="margin-bottom:12px;">Ready to read together?</h2>
-    <p style="max-width:520px;margin:0 auto 28px;">The full illustrated story, on whatever screen is to hand, or printed at home.</p>
-    <button class="btn btn-red btn-lg buy-btn" onclick="startEbookCheckout()">Get the PDF, $4.99</button>
+  <div class="container" style="max-width:620px;">
+    <img src="assets/birdies-nest.png" alt="" aria-hidden="true" class="book-cta-art reveal" loading="lazy" decoding="async" width="420" height="337">
+    <h2 style="margin-bottom:14px;">Ready to read together?</h2>
+    <p style="max-width:520px;margin:0 auto 30px;">The full illustrated story, on whatever screen is to hand, or printed at home.</p>
+    <button class="btn btn-red btn-xl buy-btn" onclick="startEbookCheckout()" style="width:auto;"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Get the PDF, $4.99</button>
+    <p class="quiz-fine" style="color:var(--mid);"><svg class="ic" aria-hidden="true"><use href="#i-bolt"></use></svg> Instant download &middot; works on any device</p>
   </div>
-  </section>
+</section>
+
+<div class="wave" style="--wave-from:var(--sky-light);--wave-to:#1A0F0A;" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
+
+
 
 <footer id="footer"></footer>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
-const SITE = 'https://mamabird-chirpy.netlify.app';
+// Was hardcoded to the Netlify review deploy, and this is what Stripe gets
+// as success_url and cancel_url. On threebabybirdies.com that sent a paying
+// customer to the preview site after checkout. Whatever host is serving the
+// page is the host the buyer should come back to.
+const SITE = window.location.origin;
 
-// Scroll reveal
+// The format picker drives the one button underneath it. The PDF is ours and
+// goes through Stripe; the other three are somebody else's checkout, so they
+// are a plain navigation.
+(function () {
+  var picker = document.getElementById('fmt-picker');
+  var btn    = document.getElementById('buy-btn');
+  var label  = document.getElementById('fmt-cta-text');
+  if (!picker || !btn || !label) return;
+
+  var price = document.getElementById('fmt-price');
+  var was   = document.getElementById('fmt-was');
+  var save  = document.getElementById('fmt-save');
+  var note  = document.getElementById('fmt-note');
+
+  function apply(input) {
+    label.textContent = input.dataset.cta;
+    var use = btn.querySelector('use');
+    if (use) use.setAttribute('href', '#i-' + input.dataset.icon);
+    note.innerHTML = input.dataset.note;
+    // Only the PDF has a price of ours to show.
+    var own = !!input.dataset.price;
+    price.textContent = input.dataset.price || '';
+    was.hidden = save.hidden = !own;
+    price.hidden = !own;
+  }
+
+  picker.addEventListener('change', function (e) {
+    if (e.target.name === 'format') apply(e.target);
+  });
+  btn.addEventListener('click', function () {
+    var sel = picker.querySelector('input:checked');
+    if (!sel) return;
+    if (sel.dataset.action === 'checkout') startEbookCheckout();
+    else window.location.href = sel.dataset.href;
+  });
+
+  var checked = picker.querySelector('input:checked');
+  if (checked) apply(checked);
+})();
 
 async function startEbookCheckout() {
   const btn = document.getElementById('buy-btn');

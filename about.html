@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>About | Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px; margin-bottom:60px; }
@@ -17,7 +18,25 @@
 .team-card-body .role { font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--sky-dark); margin-bottom:12px; }
 .values-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
 .value-card { background:#fff; border-radius:var(--r-md); padding:28px; box-shadow:var(--sh-sm); text-align:center; }
-.value-icon { font-size:2.2rem; margin-bottom:12px; }
+.value-icon {
+  width:60px; height:60px; border-radius:20px; margin:0 auto 16px;
+  display:flex; align-items:center; justify-content:center; color:#fff;
+}
+.value-icon .ic { width:29px; height:29px; }
+.value-icon-speaker { background:linear-gradient(135deg,#33768D,#2A6377); }
+.value-icon-note    { background:linear-gradient(135deg,#3F7A35,#2D6A27); }
+.value-icon-palette { background:linear-gradient(135deg,#9B6B35,#70481F); }
+.value-card { transition:transform .2s, box-shadow .2s; }
+.value-card:hover { transform:translateY(-5px); box-shadow:var(--sh-md); }
+.team-card-art { display:flex; align-items:center; justify-content:center; padding:24px; }
+.team-card-art img { width:auto; max-height:100%; object-fit:contain;
+  filter:drop-shadow(0 10px 18px rgba(44,24,16,.18)); }
+.about-nest { width:170px; margin:0 auto 8px; filter:drop-shadow(0 10px 18px rgba(44,24,16,.16)); }
+.team-card { transition:transform .2s, box-shadow .2s; }
+.team-card:hover { transform:translateY(-5px); box-shadow:var(--sh-lg); }
+@media(prefers-reduced-motion:reduce){
+  .value-card:hover, .team-card:hover { transform:none; }
+}
 .value-card h3 { margin-bottom:8px; }
 @media(max-width:960px){ .team-grid{grid-template-columns:1fr 1fr;} }
 @media(max-width:560px){ .team-grid{grid-template-columns:1fr;} .values-grid{grid-template-columns:1fr;} }
@@ -79,7 +98,7 @@
 <section class="section" style="background:#fff;">
   <div class="container">
     <div class="team-grid">
-      <div class="team-card">
+      <div class="team-card reveal">
         <div class="team-card-top" style="background:linear-gradient(135deg,var(--sky-light),var(--sky-xlight));">
           <img src="assets/iris.jpg" alt="Iris Scarfone" loading="lazy" decoding="async" width="900" height="900">
         </div>
@@ -89,7 +108,7 @@
           <p>Iris has always believed that the love of reading begins at home. When her son Ronald was a baby, she and her husband Frank taught him to read by placing words on posterboards around the house, simple, common words first. That experience shaped her approach to writing for children: short sentences, repetition, rhythm, and illustrations that tell the story alongside the words.</p>
         </div>
       </div>
-      <div class="team-card">
+      <div class="team-card reveal reveal-d1">
         <div class="team-card-top" style="background:var(--cream-dark);">
           <img src="assets/frank-couple.jpg" alt="Frank Scarfone" loading="lazy" decoding="async" width="900" height="900">
         </div>
@@ -99,56 +118,64 @@
           <p>Frank Scarfone co-developed the at-home reading method that inspired Three Baby Birdies. Together with Iris, he surrounded their son Ronald with simple words on posterboards from infancy, creating an immersive language environment that helped Ronald read well before starting school. That philosophy of learning through environment and repetition is at the heart of every page of this book.</p>
         </div>
       </div>
-      <div class="team-card">
-        <div class="team-card-top" style="background:linear-gradient(135deg,var(--green-light),#c0ddb8); display:flex; align-items:center; justify-content:center;">
-          
+      <div class="team-card reveal reveal-d2">
+        <div class="team-card-top team-card-art" style="background:linear-gradient(135deg,var(--green-light),#c0ddb8);">
+          <img src="assets/chirpy-drawing.png" alt="" aria-hidden="true" loading="lazy" decoding="async" width="420" height="377">
         </div>
         <div class="team-card-body">
           <h3>Ronald Scarfone</h3>
           <div class="role">Illustrator · Reading Teacher · Librarian</div>
           <p>Iris's son Ronald illustrated Three Baby Birdies. After being taught to read at home, he went on to become a reading teacher and then a public librarian. He holds a Bachelor's degree in Art Education, a Master's in Reading Education, and a Master's in Library Science, making him uniquely suited to illustrate a book designed to help children understand stories through pictures as much as words.</p>
           <div class="credentials" style="margin-top:16px;">
-            <span class="cred-tag">B.A. Art Education</span>
-            <span class="cred-tag">M.S. Reading Education</span>
-            <span class="cred-tag">M.L.S. Library Science</span>
+            <span class="cred-tag"><svg class="ic" aria-hidden="true"><use href="#i-palette"></use></svg> B.A. Art Education</span>
+            <span class="cred-tag"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> M.S. Reading Education</span>
+            <span class="cred-tag"><svg class="ic" aria-hidden="true"><use href="#i-abc"></use></svg> M.L.S. Library Science</span>
           </div>
         </div>
       </div>
     </div>
 
-    <div style="max-width:700px;margin:0 auto;text-align:center;margin-bottom:60px;">
+    <div class="reveal" style="max-width:700px;margin:0 auto;text-align:center;margin-bottom:72px;">
+      <img src="assets/birdies-nest.png" alt="" aria-hidden="true" class="about-nest" loading="lazy" decoding="async" width="420" height="337">
       <h2 style="margin:12px 0;">Reading begins at home</h2>
       <p>Frank and Iris Scarfone started with posterboards. Words like "mommy," "daddy," "cat," and "dog" went up on the walls of their home when Ronald was still a baby. By making words part of the environment, visible, repeated, connected to real things, they helped Ronald build a relationship with language before he could even hold a book.</p>
       <p style="margin-top:16px;">Three Baby Birdies carries that same philosophy into a storybook: short, rhythmic sentences, repetition that builds familiarity, and illustrations that depict exactly what the words describe, so a child can follow the story through the pictures even before they can read a word.</p>
     </div>
 
     <div class="values-grid">
-      <div class="value-card">
-                <h3>Repetition</h3>
+      <div class="value-card reveal">
+        <span class="value-icon value-icon-speaker"><svg class="ic" aria-hidden="true"><use href="#i-speaker"></use></svg></span>
+        <h3>Repetition</h3>
         <p>Repetition in language builds pattern recognition. Children learn to predict what comes next, a key step toward reading fluency.</p>
       </div>
-      <div class="value-card">
-                <h3>Rhythm</h3>
+      <div class="value-card reveal">
+        <span class="value-icon value-icon-note"><svg class="ic" aria-hidden="true"><use href="#i-note"></use></svg></span>
+        <h3>Rhythm</h3>
         <p>Rhyming, rhythmic text makes read-alouds fun and memorable. Children who enjoy being read to become children who want to read.</p>
       </div>
-      <div class="value-card">
-                <h3>Visual storytelling</h3>
+      <div class="value-card reveal">
+        <span class="value-icon value-icon-palette"><svg class="ic" aria-hidden="true"><use href="#i-palette"></use></svg></span>
+        <h3>Visual storytelling</h3>
         <p>Illustrations that match the text help children connect words to meaning, building vocabulary through context, not memorization.</p>
       </div>
     </div>
   </div>
 </section>
 
+<div class="wave" style="--wave-from:#fff;--wave-to:var(--sky-light);" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
+
 <section class="section" style="background:var(--sky-light);text-align:center;">
   <div class="container" style="max-width:600px;">
     <h2 style="margin:12px 0;">See the philosophy in action</h2>
     <p>Every page of Three Baby Birdies was written with these principles in mind. Pick up a copy and experience it with a child you love.</p>
     <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px;">
-      <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" class="btn btn-red">Buy on Amazon</a>
-      <a href="book.html" class="btn btn-outline">Get a Signed Copy</a>
+      <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" target="_blank" rel="noopener" class="btn btn-red btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-cart"></use></svg> Buy on Amazon</a>
+      <a href="book.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> See all the ways to read it</a>
     </div>
   </div>
 </section>
+
+<div class="wave" style="--wave-from:var(--sky-light);--wave-to:#1A0F0A;" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
 
 <footer id="footer"></footer>
 <script src="js/layout.js"></script>
