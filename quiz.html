@@ -180,6 +180,7 @@ body { background:var(--cream); }
 <footer id="footer"></footer>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
+<script src="js/chirpy3d.js"></script>
 <script>
 /* ============================================================
    Starting-point quiz.
@@ -432,7 +433,7 @@ body { background:var(--cream); }
 
     elStep.innerHTML =
       '<div class="q-result-card">' +
-        '<img src="assets/chirpy-full.png" alt="" class="q-result-art" loading="lazy" decoding="async" width="440" height="429">' +
+        '<div class="q-result-art" data-chirpy3d="130" data-chirpy3d-play></div>' +
         '<h1 style="font-size:1.45rem;margin-bottom:8px;">Start with ' + esc(SUBJECT_LABEL[subj]) + '</h1>' +
         '<p class="q-result-sub">Set up for ' + esc(AGE_LABEL[age]) + ', ' + esc(READING_LABEL[answers.reading] || 'just starting out') + '. ' + length + '</p>' +
         '<div class="q-chips">' +

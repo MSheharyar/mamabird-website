@@ -177,6 +177,20 @@
 @media(max-width:1020px){ .chat-hero-inner{grid-template-columns:1fr;} .features-grid{grid-template-columns:1fr 1fr;} .pricing-grid{grid-template-columns:1fr 1fr;} .subject-detail-grid{grid-template-columns:1fr 1fr;} }
 @media(max-width:560px){ .features-grid{grid-template-columns:1fr;} .pricing-grid{grid-template-columns:1fr;} .subject-detail-grid{grid-template-columns:1fr;} }
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+.chat-topbar-who { flex:1; min-width:0; }
+.chat-topbar .voice-toggle { flex-shrink:0; font-size:.8rem; padding:6px 13px; }
+.chat-stage {
+  display:flex; align-items:flex-end; justify-content:center; padding:14px 0 4px;
+  background:linear-gradient(180deg,var(--sky-xlight) 0%,transparent 100%);
+  border-bottom:1px solid var(--cream-dark);
+}
+.chat-stage[hidden] { display:none; }
+.chat-stage-bird { width:120px; }
+@media(max-width:520px){
+  .chat-stage-bird { width:96px; }
+  .chat-topbar .voice-toggle span { display:none; }
+  .chat-topbar .voice-toggle { padding:8px; }
+}
 </style>
 <!-- SEO / social / icons -->
 <meta name="description" content="Chirpy's Classroom is an AI learning companion for ages 2–8, spelling, rhyming, numbers, grammar, puzzles and stories. Try it free, no signup needed.">
@@ -288,10 +302,20 @@
       <div class="chat-window-wrap">
         <div class="chat-topbar">
           <div class="chat-topbar-avatar mascot-badge" id="topbar-avatar"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div>
-          <div>
+          <div class="chat-topbar-who">
             <div class="chat-topbar-name" id="topbar-name">Chirpy</div>
             <div class="chat-topbar-status">● Online · Spelling</div>
           </div>
+          <button type="button" class="voice-toggle" id="voice-toggle" aria-pressed="false">
+            <svg class="ic" aria-hidden="true"><use href="#i-speaker"></use></svg><span id="voice-toggle-label">Read aloud</span>
+          </button>
+        </div>
+
+        <!-- The character sits above the conversation and moves for as
+             long as the audio runs. The clip has no open beak, so this is
+             a body animation, not lip-sync. -->
+        <div class="chat-stage" id="chat-stage" hidden>
+          <div class="chat-stage-bird" id="chat-bird"></div>
         </div>
 
         <div class="chat-body" id="chat-body">
@@ -505,6 +529,8 @@
 <footer id="footer"></footer>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
+<script src="js/chirpy3d.js"></script>
+<script src="js/chirpy-voice.js"></script>
 <style>
 .upsell-bubble {
   background:linear-gradient(135deg,#fff 0%,var(--sky-xlight) 100%);
@@ -525,6 +551,20 @@
   font-family:var(--font-display); font-weight:700;
 }
 .locked-pill { opacity:.55; cursor:not-allowed !important; }
+.chat-topbar-who { flex:1; min-width:0; }
+.chat-topbar .voice-toggle { flex-shrink:0; font-size:.8rem; padding:6px 13px; }
+.chat-stage {
+  display:flex; align-items:flex-end; justify-content:center; padding:14px 0 4px;
+  background:linear-gradient(180deg,var(--sky-xlight) 0%,transparent 100%);
+  border-bottom:1px solid var(--cream-dark);
+}
+.chat-stage[hidden] { display:none; }
+.chat-stage-bird { width:120px; }
+@media(max-width:520px){
+  .chat-stage-bird { width:96px; }
+  .chat-topbar .voice-toggle span { display:none; }
+  .chat-topbar .voice-toggle { padding:8px; }
+}
 </style>
 <script>
 // Scroll reveal
@@ -536,6 +576,45 @@ if (_preSubj) {
   const _pill = Array.from(document.querySelectorAll('.subject-pill')).find(p => p.textContent.toLowerCase().includes(_preSubj.toLowerCase()));
   if (_pill) setTimeout(() => setSubject(_pill, _preSubj.charAt(0).toUpperCase() + _preSubj.slice(1)), 200);
 }
+
+/* ---- Chirpy reads his replies out loud ----
+   Off until asked. Browsers refuse to play audio before a gesture, and a
+   page that starts talking at a child on its own is a bad page. The
+   character animates for exactly as long as the audio runs. */
+(function () {
+  var btn   = document.getElementById('voice-toggle');
+  var label = document.getElementById('voice-toggle-label');
+  var stage = document.getElementById('chat-stage');
+  var bird  = null;
+  if (!btn || !window.ChirpyVoice) return;
+
+  function paint() {
+    var on = ChirpyVoice.isEnabled();
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    if (label) label.textContent = on ? 'Reading aloud' : 'Read aloud';
+    stage.hidden = !on;
+    if (on && !bird && window.Chirpy3D) {
+      bird = Chirpy3D.mount(document.getElementById('chat-bird'), {});
+      bird.play();
+    }
+    if (!on && bird) bird.rest();
+  }
+
+  btn.addEventListener('click', function () {
+    ChirpyVoice.setEnabled(!ChirpyVoice.isEnabled());
+    paint();
+  });
+  paint();
+
+  // What the rest of the page calls once Chirpy has said something.
+  window.chirpySpeak = function (text) {
+    if (!ChirpyVoice.isEnabled()) return;
+    ChirpyVoice.speak(text, {
+      onstart: function () { if (bird) bird.speak(); },
+      onend:   function () { if (bird) bird.rest(); }
+    });
+  };
+})();
 
 /* ---- REAL CHATBOT DEMO ---- */
 const API = 'https://api.threebabybirdies.com';
@@ -585,12 +664,17 @@ function addMsg(type, html) {
   return div;
 }
 
-function addChirpyMsg(html) {
+function addChirpyMsg(html, opts) {
   const div = document.createElement('div');
   div.className = 'msg chirpy';
   div.innerHTML = `<div class="msg-avatar mascot-badge" style="background:var(--sky-light);"><img src="assets/chirpy.png" alt="Chirpy" class="mascot" loading="lazy" decoding="async" width="280" height="276"></div><div class="msg-bubble">${html}</div>`;
   chatBody.appendChild(div);
   chatBody.scrollTop = chatBody.scrollHeight;
+  // Every reply Chirpy renders comes through here, so this is the single
+  // place that hands text to the voice. It is a no-op until the reader
+  // turns Read aloud on. Pass {silent:true} for an upsell or an error,
+  // which are the page talking rather than Chirpy.
+  if (!(opts && opts.silent) && window.chirpySpeak) window.chirpySpeak(div.querySelector('.msg-bubble').textContent);
   return div;
 }
 

@@ -796,3 +796,37 @@ svg.lucide {
   .footer-grid { padding-bottom:36px; }
   .footer-brand p { max-width:none; }
 }
+
+/* ---- The 3D Chirpy ----
+   js/chirpy3d.js builds the inside of .c3d; this only has to give it a
+   box and a resting picture. The still frame sits behind as a background
+   so there is something on screen from the first paint, before the
+   renderer has decided whether this browser can show alpha video. */
+.c3d {
+  position:relative; display:block; width:100%; aspect-ratio:480/504;
+  background:var(--c3d-still) center/contain no-repeat;
+}
+.c3d-media {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:contain; display:block; background:transparent;
+}
+/* Speaking gets a gentle lift, so the character reads as active even on
+   the still-frame path where nothing else can move. */
+.c3d[data-state="speaking"] { animation:c3d-bob 1.6s ease-in-out infinite; }
+@keyframes c3d-bob { 0%,100% { transform:none; } 50% { transform:translateY(-4px); } }
+@media(prefers-reduced-motion:reduce){ .c3d[data-state="speaking"] { animation:none; } }
+
+/* ---- The speak toggle ---- */
+.voice-toggle {
+  display:inline-flex; align-items:center; gap:8px; padding:8px 15px;
+  border-radius:var(--r-full); border:1.5px solid var(--cream-dark);
+  background:#fff; color:var(--mid);
+  font-family:var(--font-display); font-weight:700; font-size:.85rem;
+  cursor:pointer; transition:border-color .18s, background .18s, color .18s;
+}
+.voice-toggle .ic { width:17px; height:17px; }
+.voice-toggle:hover { border-color:var(--sky-dark); color:var(--sky-dark); }
+.voice-toggle[aria-pressed="true"] {
+  background:var(--sky-dark); border-color:var(--sky-dark); color:#fff;
+}
+.voice-toggle:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
