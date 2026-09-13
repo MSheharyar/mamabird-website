@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Find your child's starting point | Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 body { background:var(--cream); }
@@ -24,7 +25,7 @@ body { background:var(--cream); }
 }
 .q-host-card .mascot-badge { width:42px; height:42px; }
 .q-host-name { font-family:var(--font-display); font-weight:700; font-size:.92rem; color:var(--dark); }
-.q-host-role { font-size:.7rem; color:var(--light-text); }
+.q-host-role { font-size:.82rem; color:var(--mid); }
 
 .q-bubble {
   position:relative; background:#fff; border-radius:var(--r-md);
@@ -54,9 +55,20 @@ body { background:var(--cream); }
 .q-opt:hover { border-color:var(--sky); transform:translateY(-1px); box-shadow:var(--sh-sm); }
 .q-opt:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
 .q-opt[aria-pressed="true"] { border-color:var(--red); background:#FFF7F6; }
-.q-opt-emoji { font-size:1.3rem; width:28px; text-align:center; flex-shrink:0; }
-.q-opt-label { flex:1; font-family:var(--font-display); font-weight:700; font-size:.98rem; }
-.q-opt-note  { display:block; font-family:var(--font-body); font-weight:400; font-size:.78rem; color:var(--light-text); margin-top:2px; }
+.q-opt-ic {
+  width:44px; height:44px; border-radius:14px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--sky-xlight); color:var(--sky-dark);
+  transition:background .18s, color .18s;
+}
+.q-opt-ic .ic { width:22px; height:22px; }
+.q-opt[aria-pressed="true"] .q-opt-ic { background:var(--sky-dark); color:#fff; }
+.q-opt:hover .q-opt-ic { background:var(--sky-light); }
+.q-opt[aria-pressed="true"]:hover .q-opt-ic { background:var(--sky-dark); }
+.q-result-art { width:130px; margin:0 auto 16px; filter:drop-shadow(0 10px 18px rgba(44,24,16,.18)); }
+.q-chip .ic { width:15px; height:15px; margin-right:6px; vertical-align:-.18em; }
+.q-opt-label { flex:1; font-family:var(--font-display); font-weight:700; font-size:1.08rem; }
+.q-opt-note  { display:block; font-family:var(--font-body); font-weight:400; font-size:.9rem; color:var(--mid); margin-top:3px; }
 .q-radio {
   width:22px; height:22px; border-radius:50%; border:2px solid var(--cream-dark);
   flex-shrink:0; position:relative; transition:border-color .16s;
@@ -191,10 +203,10 @@ body { background:var(--cream); }
       title: 'How old is your little one?',
       note: 'This sets how Chirpy talks and how hard the questions are.',
       options: [
-        { v: '2-3', e: '🌱', label: '2 to 3 years old', note: 'Sounds, colours and first words' },
-        { v: '4-5', e: '⭐', label: '4 to 5 years old', note: 'Letters, rhymes and counting' },
-        { v: '6-7', e: '⚡', label: '6 to 7 years old', note: 'Sounding out and simple sums' },
-        { v: '8',   e: '🚀', label: '8 years old', note: 'Reading alone and longer puzzles' }
+        { v: '2-3', e: 'child', label: '2 to 3 years old', note: 'Sounds, colours and first words' },
+        { v: '4-5', e: 'sparkle', label: '4 to 5 years old', note: 'Letters, rhymes and counting' },
+        { v: '6-7', e: 'bolt', label: '6 to 7 years old', note: 'Sounding out and simple sums' },
+        { v: '8',   e: 'target', label: '8 years old', note: 'Reading alone and longer puzzles' }
       ]
     },
     {
@@ -203,12 +215,12 @@ body { background:var(--cream); }
       title: 'What would you like them to work on?',
       note: 'You can switch any time, all six are always there.',
       options: [
-        { v: 'spelling', e: '✏️', label: 'Spelling' },
-        { v: 'rhyming',  e: '🎵', label: 'Rhyming' },
-        { v: 'math',     e: '🔢', label: 'Numbers' },
-        { v: 'grammar',  e: '📝', label: 'Grammar' },
-        { v: 'puzzles',  e: '🧩', label: 'Puzzles' },
-        { v: 'literature', e: '📖', label: 'Stories' }
+        { v: 'spelling', e: 'abc', label: 'Spelling' },
+        { v: 'rhyming',  e: 'note', label: 'Rhyming' },
+        { v: 'math',     e: 'math', label: 'Numbers' },
+        { v: 'grammar',  e: 'pencil', label: 'Grammar' },
+        { v: 'puzzles',  e: 'puzzle', label: 'Puzzles' },
+        { v: 'literature', e: 'book', label: 'Stories' }
       ]
     },
     {
@@ -217,10 +229,10 @@ body { background:var(--cream); }
       title: 'How is reading going right now?',
       note: 'Be honest, it only changes where Chirpy begins.',
       options: [
-        { v: 'not-yet',  e: '🌿', label: 'Not reading yet', note: 'Listens to stories, knows some letters' },
-        { v: 'sounding', e: '🔤', label: 'Sounding words out', note: 'Getting there, needs a hand' },
-        { v: 'simple',   e: '📚', label: 'Reads simple books', note: 'Confident with short words' },
-        { v: 'fluent',   e: '🌟', label: 'Reads well alone', note: 'Ready for a challenge' }
+        { v: 'not-yet',  e: 'speaker', label: 'Not reading yet', note: 'Listens to stories, knows some letters' },
+        { v: 'sounding', e: 'abc', label: 'Sounding words out', note: 'Getting there, needs a hand' },
+        { v: 'simple',   e: 'book', label: 'Reads simple books', note: 'Confident with short words' },
+        { v: 'fluent',   e: 'star', label: 'Reads well alone', note: 'Ready for a challenge' }
       ]
     },
     {
@@ -229,10 +241,10 @@ body { background:var(--cream); }
       title: 'When would you use it?',
       note: 'Just so we suggest a sensible session length.',
       options: [
-        { v: 'bedtime',   e: '🌙', label: 'Wind-down before bed' },
-        { v: 'afternoon', e: '☀️', label: 'After nursery or school' },
-        { v: 'weekend',   e: '🎨', label: 'Weekends, longer stretches' },
-        { v: 'class',     e: '🏫', label: 'In a classroom' }
+        { v: 'bedtime',   e: 'clock', label: 'Wind-down before bed' },
+        { v: 'afternoon', e: 'bulb', label: 'After nursery or school' },
+        { v: 'weekend',   e: 'palette', label: 'Weekends, longer stretches' },
+        { v: 'class',     e: 'birds', label: 'In a classroom' }
       ]
     }
   ];
@@ -303,7 +315,8 @@ body { background:var(--cream); }
     s.options.forEach(function (o) {
       var on = answers[s.key] === o.v;
       html += '<button type="button" class="q-opt" data-v="' + esc(o.v) + '" aria-pressed="' + on + '">' +
-              '<span class="q-opt-emoji" aria-hidden="true">' + o.e + '</span>' +
+              '<span class="q-opt-ic" aria-hidden="true">' +
+                '<svg class="ic"><use href="#i-' + esc(o.e) + '"></use></svg></span>' +
               '<span class="q-opt-label">' + esc(o.label) +
               (o.note ? '<span class="q-opt-note">' + esc(o.note) + '</span>' : '') +
               '</span></button>';
@@ -419,16 +432,17 @@ body { background:var(--cream); }
 
     elStep.innerHTML =
       '<div class="q-result-card">' +
-        '<img src="assets/chirpy.png" alt="" class="mascot" style="width:76px;margin:0 auto 14px;" loading="lazy" decoding="async" width="280" height="276">' +
+        '<img src="assets/chirpy-full.png" alt="" class="q-result-art" loading="lazy" decoding="async" width="440" height="429">' +
         '<h1 style="font-size:1.45rem;margin-bottom:8px;">Start with ' + esc(SUBJECT_LABEL[subj]) + '</h1>' +
         '<p class="q-result-sub">Set up for ' + esc(AGE_LABEL[age]) + ', ' + esc(READING_LABEL[answers.reading] || 'just starting out') + '. ' + length + '</p>' +
         '<div class="q-chips">' +
-          '<span class="q-chip">' + esc(AGE_LABEL[age]) + '</span>' +
-          '<span class="q-chip">' + esc(SUBJECT_LABEL[subj]) + ' first</span>' +
-          '<span class="q-chip">All 6 subjects included</span>' +
+          '<span class="q-chip"><svg class="ic"><use href="#i-child"></use></svg>' + esc(AGE_LABEL[age]) + '</span>' +
+          '<span class="q-chip"><svg class="ic"><use href="#i-target"></use></svg>' + esc(SUBJECT_LABEL[subj]) + ' first</span>' +
+          '<span class="q-chip"><svg class="ic"><use href="#i-book"></use></svg>All 6 subjects included</span>' +
         '</div>' +
         '<div class="q-plan">' + plan + '</div>' +
-        '<a href="chatbot.html?subject=' + encodeURIComponent(subj) + '" class="btn btn-red" style="width:100%;justify-content:center;">Start with ' + esc(SUBJECT_LABEL[subj]) + '</a>' +
+        '<a href="chatbot.html?subject=' + encodeURIComponent(subj) + '" class="btn btn-red btn-lg" style="width:100%;justify-content:center;">' +
+          '<svg class="ic"><use href="#i-sparkle"></use></svg>Start with ' + esc(SUBJECT_LABEL[subj]) + '</a>' +
         '<p style="margin-top:14px;font-size:.8rem;"><a href="pricing.html" style="color:var(--sky-dark);text-decoration:underline;">See what the plans include</a></p>' +
       '</div>';
 

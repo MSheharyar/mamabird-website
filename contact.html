@@ -4,9 +4,18 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Contact | Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 .contact-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:64px; align-items:start; }
+.contact-info-ic {
+  width:46px; height:46px; border-radius:14px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  background:var(--sky-xlight); color:var(--sky-dark);
+}
+.contact-info-ic .ic { width:22px; height:22px; }
+.req-row { display:flex; gap:11px; align-items:center; font-size:1rem; color:var(--mid); }
+.req-row .ic { width:19px; height:19px; color:var(--sky-dark); flex-shrink:0; }
 .contact-info-card { background:#fff; border-radius:var(--r-lg); padding:32px; box-shadow:var(--sh-sm); margin-bottom:20px; }
 .contact-info-item { display:flex; gap:16px; align-items:flex-start; margin-bottom:24px; }
 .contact-info-item:last-child { margin-bottom:0; }
@@ -72,29 +81,34 @@
   </div>
 </div>
 
+<div class="wave" style="--wave-from:var(--cream);--wave-to:#fff;" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
+
 <section class="section" style="background:#fff;">
   <div class="container">
     <div class="contact-grid">
       <div>
         <div class="contact-info-card">
           <div class="contact-info-item">
-                        <div><div class="contact-info-label">Email</div><div class="contact-info-val">iris@threebabybirdies.com</div></div>
+            <span class="contact-info-ic"><svg class="ic" aria-hidden="true"><use href="#i-mail"></use></svg></span>
+            <div><div class="contact-info-label">Email</div><div class="contact-info-val">iris@threebabybirdies.com</div></div>
           </div>
           <div class="contact-info-item">
-                        <div><div class="contact-info-label">Availability</div><div class="contact-info-val">Available Nationwide<br><span style="font-size:.82rem;color:var(--light-text);">School visits by request</span></div></div>
+            <span class="contact-info-ic"><svg class="ic" aria-hidden="true"><use href="#i-target"></use></svg></span>
+            <div><div class="contact-info-label">Availability</div><div class="contact-info-val">Available online across the U.S.<br><span style="font-size:.82rem;color:var(--light-text);">School visits by request</span></div></div>
           </div>
           <div class="contact-info-item">
-                        <div><div class="contact-info-label">Response Time</div><div class="contact-info-val">Within 2 business days</div></div>
+            <span class="contact-info-ic"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg></span>
+            <div><div class="contact-info-label">Response Time</div><div class="contact-info-val">Within 2 business days</div></div>
           </div>
         </div>
         <div class="contact-info-card">
           <h3 style="margin-bottom:16px;font-size:1rem;">Common requests</h3>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.88rem;color:var(--mid);">Order a signed copy of the book</span></div>
-            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.88rem;color:var(--mid);">Request a school or library visit</span></div>
-            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.88rem;color:var(--mid);">Bulk orders for classrooms</span></div>
-            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.88rem;color:var(--mid);">Press and media enquiries</span></div>
-            <div style="display:flex;gap:10px;align-items:flex-start;"><span style="font-size:.88rem;color:var(--mid);">Chirpy's Classroom support</span></div>
+            <div class="req-row"><svg class="ic" aria-hidden="true"><use href="#i-pen"></use></svg><span>Order a signed copy of the book</span></div>
+            <div class="req-row"><svg class="ic" aria-hidden="true"><use href="#i-birds"></use></svg><span>Request a school or library visit</span></div>
+            <div class="req-row"><svg class="ic" aria-hidden="true"><use href="#i-cart"></use></svg><span>Bulk orders for classrooms</span></div>
+            <div class="req-row"><svg class="ic" aria-hidden="true"><use href="#i-mail"></use></svg><span>Press and media enquiries</span></div>
+            <div class="req-row"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg><span>Chirpy's Classroom support</span></div>
           </div>
         </div>
       </div>

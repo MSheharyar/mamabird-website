@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Sign In / Register | Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%); min-height:100vh; }
@@ -26,8 +27,9 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
 .auth-panel-left p  { color:rgba(255,255,255,.75); font-size:.95rem; margin-bottom:32px; }
 .auth-benefits { list-style:none; display:flex; flex-direction:column; gap:12px; width:100%; }
 .auth-benefit { display:flex; align-items:center; gap:12px; background:rgba(255,255,255,.12); border-radius:var(--r-sm); padding:12px 16px; text-align:left; }
-.auth-benefit-icon { font-size:1.2rem; flex-shrink:0; }
-.auth-benefit-text { font-family:var(--font-display); font-size:.83rem; font-weight:600; color:#fff; }
+.auth-benefit-icon { display:flex; flex-shrink:0; color:var(--yellow); }
+.auth-benefit-icon .ic { width:21px; height:21px; }
+.auth-benefit-text { font-family:var(--font-display); font-size:.95rem; font-weight:600; color:#fff; }
 .auth-panel-right {
   background:#fff; padding:48px 40px;
   display:flex; flex-direction:column; justify-content:center;
@@ -110,11 +112,11 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
       <h1>Chirpy's Classroom</h1>
       <p>Three months of the whole classroom, free, with no card taken up front.</p>
       <ul class="auth-benefits">
-        <li class="auth-benefit"><span class="auth-benefit-text">3 months free, no credit card needed</span></li>
-        <li class="auth-benefit"><span class="auth-benefit-text">Chirpy + Mama Bird in 6 subjects</span></li>
-        <li class="auth-benefit"><span class="auth-benefit-text">Progress tracking for every child</span></li>
-        <li class="auth-benefit"><span class="auth-benefit-text">AI lesson plan generator for teachers</span></li>
-        <li class="auth-benefit"><span class="auth-benefit-text">COPPA-compliant &amp; child-safe</span></li>
+        <li class="auth-benefit"><span class="auth-benefit-icon"><svg class="ic" aria-hidden="true"><use href="#i-gift"></use></svg></span><span class="auth-benefit-text">3 months free, no credit card needed</span></li>
+        <li class="auth-benefit"><span class="auth-benefit-icon"><svg class="ic" aria-hidden="true"><use href="#i-birds"></use></svg></span><span class="auth-benefit-text">Chirpy + Mama Bird in 6 subjects</span></li>
+        <li class="auth-benefit"><span class="auth-benefit-icon"><svg class="ic" aria-hidden="true"><use href="#i-chart"></use></svg></span><span class="auth-benefit-text">Progress tracking for every child</span></li>
+        <li class="auth-benefit"><span class="auth-benefit-icon"><svg class="ic" aria-hidden="true"><use href="#i-pencil"></use></svg></span><span class="auth-benefit-text">AI lesson plan generator for teachers</span></li>
+        <li class="auth-benefit"><span class="auth-benefit-icon"><svg class="ic" aria-hidden="true"><use href="#i-shield"></use></svg></span><span class="auth-benefit-text">Built with children&rsquo;s privacy in mind</span></li>
       </ul>
     </div>
     <div class="auth-panel-right">

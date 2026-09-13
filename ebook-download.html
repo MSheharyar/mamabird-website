@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Download Your eBook | Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%); min-height:100vh; }
@@ -23,6 +24,7 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%);
 .dl-book-meta  { font-size:.78rem; color:var(--light-text); margin-top:3px; }
 .dl-btn { width:100%; padding:16px; font-size:1rem; justify-content:center; margin-bottom:14px; }
 .dl-instructions { background:var(--sky-xlight); border-radius:var(--r-sm); padding:16px 18px; }
+.dl-instructions h4 .ic { width:19px; height:19px; color:var(--sky-dark); vertical-align:-.2em; margin-right:6px; }
 .dl-instructions h4 { font-size:.88rem; margin-bottom:8px; }
 .dl-instructions ol  { padding-left:18px; font-size:.82rem; color:var(--mid); display:flex; flex-direction:column; gap:6px; }
 #loading-state, #success-state, #error-state { display:none; }
@@ -86,10 +88,10 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%);
           </div>
         </div>
         <a id="download-btn" href="#" class="btn btn-red btn-lg dl-btn" download="Three-Baby-Birdies.pdf">
-          Download Your eBook (PDF)
+          <svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Download Your eBook (PDF)
         </a>
         <div class="dl-instructions">
-          <h4>How to open your eBook:</h4>
+          <h4><svg class="ic" aria-hidden="true"><use href="#i-devices"></use></svg> How to open your eBook</h4>
           <ol>
             <li><strong>iPhone/iPad:</strong> Tap Download → tap the PDF → tap Share → "Books" or "Save to Files"</li>
             <li><strong>Android:</strong> Tap Download → open from Downloads → any PDF reader works</li>
@@ -101,9 +103,9 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%);
           A receipt was sent to your email. For support: <a href="mailto:iris@threebabybirdies.com" style="color:var(--sky-dark);">iris@threebabybirdies.com</a>
         </div>
         <div style="margin-top:20px;border-top:1px solid var(--cream-dark);padding-top:20px;text-align:center;">
-          <div style="font-family:var(--font-display);font-weight:700;font-size:.88rem;margin-bottom:10px;color:var(--dark);">While you're here, try Chirpy's free AI classroom:</div>
-          <a href="chatbot.html" class="btn btn-sky btn-sm" style="margin-right:8px;">Meet Chirpy</a>
-          <a href="pricing.html" class="btn btn-outline btn-sm">See Plans</a>
+          <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;margin-bottom:12px;color:var(--dark);">While you&rsquo;re here, try Chirpy&rsquo;s free classroom</div>
+          <a href="chatbot.html" class="btn btn-sky" style="margin-right:8px;"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Meet Chirpy</a>
+          <a href="pricing.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-cart"></use></svg> See plans</a>
         </div>
       </div>
     </div>

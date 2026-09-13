@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>COPPA Compliance | Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 .legal-wrap { max-width:760px; margin:0 auto; padding:0 24px 80px; }
@@ -36,6 +37,12 @@
 .contact-box p { color:rgba(255,255,255,.85); margin-bottom:16px; }
 .contact-box a { color:#fff; font-weight:700; text-decoration:underline; }
 @media(max-width:600px){ .rights-grid{grid-template-columns:1fr;} .coppa-hero-card{flex-direction:column;text-align:center;} }
+.legal-toc h3 .ic { width:19px; height:19px; color:var(--sky-dark); vertical-align:-.2em; margin-right:8px; }
+.legal-toc li { font-size:1rem; }
+.legal-toc a  { font-size:1rem; }
+.legal-wrap h2 { scroll-margin-top:calc(var(--nav-h) + 24px); }
+.highlight-box p { font-size:1rem; }
+.legal-meta { font-size:.92rem; }
 </style>
 <!-- SEO / social / icons -->
 <meta name="description" content="How Chirpy's Classroom protects children's data and complies with COPPA.">
@@ -77,19 +84,33 @@
 
     <div class="legal-meta">
       <span>Last updated: June 22, 2026</span>
-      <span>Applies to: Chirpy's Classroom (ages 3–12)</span>
+      <span>Applies to: Chirpy&rsquo;s Classroom (ages 2&ndash;8)</span>
+    </div>
+
+    <div class="legal-toc">
+      <h3><svg class="ic" aria-hidden="true"><use href="#i-shield"></use></svg> Contents</h3>
+      <ol>
+        <li><a href="#s-approach">How we approach children&rsquo;s privacy</a></li>
+        <li><a href="#s-what">What is COPPA?</a></li>
+        <li><a href="#s-collect">What information we collect from children</a></li>
+        <li><a href="#s-consent">Parental consent &amp; control</a></li>
+        <li><a href="#s-ai">How AI is used safely with children</a></li>
+        <li><a href="#s-third">Third-party services &amp; children&rsquo;s data</a></li>
+        <li><a href="#s-security">Security measures</a></li>
+        <li><a href="#s-updates">Policy updates</a></li>
+      </ol>
     </div>
 
     <div class="coppa-hero-card">
-      <div class="coppa-badge"></div>
+      <div class="coppa-badge"><svg class="ic ic-lg" aria-hidden="true"><use href="#i-shield"></use></svg></div>
       <div>
-        <h2>We are fully COPPA-compliant</h2>
+        <h2 id="s-approach">How we approach children&rsquo;s privacy</h2>
         <p>The Children's Online Privacy Protection Act (COPPA) is a U.S. federal law that protects the personal information of children under 13. Chirpy's Classroom was built from day one with COPPA as a design requirement, not an afterthought.</p>
       </div>
     </div>
 
     <div class="legal-section">
-      <h2>What is COPPA?</h2>
+      <h2 id="s-what">What is COPPA?</h2>
       <p>COPPA (the Children's Online Privacy Protection Act, 15 U.S.C. §§ 6501–6506) requires operators of websites and online services directed to children under 13, or who knowingly collect personal information from children under 13, to:</p>
       <ul>
         <li>Post a clear and comprehensive privacy policy</li>
@@ -105,7 +126,7 @@
     </div>
 
     <div class="legal-section">
-      <h2>What information we collect from children</h2>
+      <h2 id="s-collect">What information we collect from children</h2>
       <p>Chirpy's Classroom is designed so that <strong>children never register or submit personal information directly</strong>. Only adults (parents or teachers) create accounts.</p>
       <p>A child profile contains only:</p>
       <ul>
@@ -119,7 +140,7 @@
     </div>
 
     <div class="legal-section">
-      <h2>Parental consent &amp; control</h2>
+      <h2 id="s-consent">Parental consent &amp; control</h2>
       <p>Because children do not create their own accounts, parental consent is built into the account structure itself: <strong>a parent must register and create the child's profile</strong>. By creating a child profile, the parent consents to the collection and use of the limited data described above.</p>
       <p>Parents have complete control at all times:</p>
 
@@ -144,7 +165,7 @@
     </div>
 
     <div class="legal-section">
-      <h2>How AI is used safely with children</h2>
+      <h2 id="s-ai">How AI is used safely with children</h2>
       <p>Chirpy and Mama Bird are powered by the Claude API (Anthropic). Every AI response goes through multiple layers of safety:</p>
       <ul>
         <li><strong>System prompt guardrails</strong>, Chirpy and Mama Bird are instructed to stay strictly within age-appropriate educational topics. Any message outside this scope is declined politely.</li>
@@ -158,7 +179,7 @@
     </div>
 
     <div class="legal-section">
-      <h2>Third-party services &amp; children's data</h2>
+      <h2 id="s-third">Third-party services &amp; children's data</h2>
       <p>We share minimal data with the following services, all of which are bound by appropriate data protection agreements:</p>
       <ul>
         <li><strong>Supabase</strong>, stores child profile nicknames and session activity (no personal contact info). SOC 2 compliant. USA-based.</li>
@@ -169,7 +190,7 @@
     </div>
 
     <div class="legal-section">
-      <h2>Security measures</h2>
+      <h2 id="s-security">Security measures</h2>
       <ul>
         <li>All data encrypted in transit (HTTPS/TLS) and at rest</li>
         <li>Passwords hashed with bcrypt, never stored in plain text</li>
@@ -180,7 +201,7 @@
     </div>
 
     <div class="legal-section">
-      <h2>Policy updates</h2>
+      <h2 id="s-updates">Policy updates</h2>
       <p>If we materially change how we handle children's data, we will notify all active account holders by email at least 30 days in advance and update this page. Continued use after notice constitutes acceptance of the revised practices.</p>
       <p>We will never retroactively reduce privacy protections for children's data without explicit parental re-consent.</p>
     </div>

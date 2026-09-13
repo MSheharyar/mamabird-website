@@ -4,6 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Welcome to Chirpy's Classroom! | Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--sky-light) 40%,var(--cream)); min-height:100vh; }
@@ -26,6 +27,7 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--sky-light) 4
   background:var(--cream); border-radius:var(--r-md); padding:20px 24px;
   margin:28px 0; text-align:left; display:flex; flex-direction:column; gap:12px;
 }
+.success-detail .ic { width:20px; height:20px; color:var(--green); flex-shrink:0; }
 .success-detail { display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-size:.85rem; font-weight:600; color:var(--dark); }
 .success-detail-icon { width:32px; height:32px; border-radius:50%; background:var(--sky-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .success-actions { display:flex; flex-direction:column; gap:12px; margin-top:8px; }
@@ -66,16 +68,16 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--sky-light) 4
 
     <div class="success-details">
       <div class="success-detail">
-                <span>Subscription activated</span>
+        <svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Subscription activated</span>
       </div>
       <div class="success-detail">
-                <span>Full access to Chirpy + Mama Bird</span>
+        <svg class="ic" aria-hidden="true"><use href="#i-birds"></use></svg><span>Full access to Chirpy + Mama Bird</span>
       </div>
       <div class="success-detail">
-                <span>Progress dashboard unlocked</span>
+        <svg class="ic" aria-hidden="true"><use href="#i-chart"></use></svg><span>Progress dashboard unlocked</span>
       </div>
       <div class="success-detail">
-                <span>Lesson plan generator ready</span>
+        <svg class="ic" aria-hidden="true"><use href="#i-pencil"></use></svg><span>Lesson plan generator ready</span>
       </div>
     </div>
 
