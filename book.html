@@ -33,6 +33,11 @@
   background:linear-gradient(135deg,var(--sky-light),var(--sky-xlight));
   border-radius:var(--r-lg); padding:40px; text-align:center; margin:48px 0;
 }
+.excerpt-bird { width:120px; margin:0 auto 14px; }
+.excerpt-cite { font-size:.9rem; color:var(--sky-dark); margin-bottom:20px; }
+.excerpt-play { justify-content:center; }
+.excerpt-play[aria-pressed="true"] { background:var(--green); }
+@media(max-width:560px){ .excerpt-bird { width:96px; } }
 .excerpt-text {
   font-family:var(--font-display); font-size:1.4rem; font-weight:600;
   color:var(--dark); line-height:1.7; margin-bottom:16px;
@@ -196,16 +201,16 @@
             <div class="price-was" id="fmt-was">$9.99</div>
             <div class="price-save" id="fmt-save">50% OFF</div>
           </div>
-          <div class="price-note" id="fmt-note">Instant PDF &middot; one-time &middot; keep forever</div>
+          <div class="price-note" id="fmt-note">Instant eBook &middot; one-time &middot; keep forever</div>
 
           <fieldset class="fmt-picker fmt-picker-2" id="fmt-picker">
             <legend class="fmt-legend">Choose a format</legend>
             <label class="fmt-opt">
               <input type="radio" name="format" value="pdf" checked
-                     data-cta="Get the PDF, $4.99" data-icon="down" data-action="checkout"
+                     data-cta="Get the eBook, $4.99" data-icon="down" data-action="checkout"
                      data-price="$4.99" data-was="$9.99" data-save="50% OFF"
-                     data-note="Instant PDF &middot; one-time &middot; keep forever">
-              <span class="fmt-body"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg><span class="fmt-name">PDF from us</span><span class="fmt-price">$4.99</span></span>
+                     data-note="Instant eBook &middot; one-time &middot; keep forever">
+              <span class="fmt-body"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg><span class="fmt-name">eBook from us</span><span class="fmt-price">$4.99</span></span>
             </label>
             <label class="fmt-opt">
               <input type="radio" name="format" value="kindle"
@@ -230,7 +235,7 @@
           </fieldset>
 
           <button class="btn btn-red buy-btn" id="buy-btn" style="justify-content:center;">
-            <svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg><span id="fmt-cta-text">Get the PDF, $4.99</span>
+            <svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg><span id="fmt-cta-text">Get the eBook, $4.99</span>
           </button>
           <div class="trust-row" style="justify-content:center;">
             <span class="trust-item"><svg class="ic" aria-hidden="true"><use href="#i-lock"></use></svg> Secure payment via Stripe</span>
@@ -252,7 +257,7 @@
           <div class="meta-chip mc-yellow"><div class="meta-chip-head"><svg class="ic" aria-hidden="true"><use href="#i-star"></use></svg><div class="meta-chip-label">Publisher</div></div><div class="meta-chip-val">Independent</div></div>
         </div>
         <div class="kid-badges" style="margin-bottom:24px;">
-          <span class="kid-badge kb-sky"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> PDF from us</span>
+          <span class="kid-badge kb-sky"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> eBook from us</span>
           <span class="kid-badge kb-green"><svg class="ic" aria-hidden="true"><use href="#i-devices"></use></svg> Kindle eBook</span>
           <span class="kid-badge kb-yellow"><svg class="ic" aria-hidden="true"><use href="#i-cart"></use></svg> Paperback</span>
           <span class="kid-badge kb-red"><svg class="ic" aria-hidden="true"><use href="#i-pen"></use></svg> Signed Copy</span>
@@ -275,16 +280,20 @@
       <h2>Listen to the rhythm</h2>
     </div>
     <div class="excerpt-box reveal">
-      <div class="excerpt-text">
+      <div class="excerpt-bird" id="excerpt-bird"></div>
+      <div class="excerpt-text" id="excerpt-text">
         &ldquo;Chirp chirp chirp.<br>
         Flap your wings and try to fly.<br>
         It is just as easy as pie.&rdquo;
       </div>
-      <p style="font-size:.85rem;color:var(--sky-dark);">, from Three Baby Birdies by Iris Scarfone</p>
+      <p class="excerpt-cite">from <em>Three Baby Birdies</em> by Iris Scarfone</p>
+      <button type="button" class="btn btn-sky excerpt-play" id="excerpt-play">
+        <svg class="ic" aria-hidden="true"><use href="#i-speaker"></use></svg><span id="excerpt-play-label">Hear Chirpy read it</span>
+      </button>
     </div>
     <p style="text-align:center;margin-top:22px;font-size:.9rem;color:var(--mid);">That refrain repeats through the book, which is what lets a child join in before they can read the words.</p>
     <div style="text-align:center;margin-top:26px;">
-      <button class="btn btn-red btn-lg" onclick="startEbookCheckout()"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Get the PDF, $4.99</button>
+      <button class="btn btn-red btn-lg" onclick="startEbookCheckout()"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Get the eBook, $4.99</button>
     </div>
   </div>
 </section>
@@ -313,14 +322,14 @@
 <section class="section" style="background:var(--cream);">
   <div class="container">
     <div class="section-header">
-      <h2>PDF from us, or Kindle from Amazon</h2>
+      <h2>eBook from us, or Kindle from Amazon</h2>
     </div>
     <div class="compare-grid">
       <div class="compare-card ours reveal">
         <div class="compare-head">
           <span class="compare-head-ic"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg></span>
           <div>
-            <div class="compare-title">Three Baby Birdies PDF</div>
+            <div class="compare-title">Three Baby Birdies eBook</div>
             <div class="compare-sub">$4.99, straight from us</div>
           </div>
         </div>
@@ -361,7 +370,7 @@
   <div class="container">
     <div class="section-header reveal">
       <h2>The whole story, on any screen</h2>
-      <p style="max-width:520px;margin:12px auto 0;">A PDF of <em>Three Baby Birdies</em>, with the same story and artwork as the paperback.</p>
+      <p style="max-width:520px;margin:12px auto 0;">The full illustrated story as a PDF you keep, with the same artwork as the paperback.</p>
     </div>
     <div class="t-grid">
       <div class="t-card reveal">
@@ -403,7 +412,7 @@
     <img src="assets/birdies-nest.png" alt="" aria-hidden="true" class="book-cta-art reveal" loading="lazy" decoding="async" width="420" height="337">
     <h2 style="margin-bottom:14px;">Ready to read together?</h2>
     <p style="max-width:520px;margin:0 auto 30px;">The full illustrated story, on whatever screen is to hand, or printed at home.</p>
-    <button class="btn btn-red btn-xl buy-btn" onclick="startEbookCheckout()" style="width:auto;"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Get the PDF, $4.99</button>
+    <button class="btn btn-red btn-xl buy-btn" onclick="startEbookCheckout()" style="width:auto;"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Get the eBook, $4.99</button>
     <p class="quiz-fine" style="color:var(--mid);"><svg class="ic" aria-hidden="true"><use href="#i-bolt"></use></svg> Instant download &middot; works on any device</p>
   </div>
 </section>
@@ -415,8 +424,44 @@
 <footer id="footer"></footer>
 <script src="js/layout.js"></script>
 <script src="js/main.js"></script>
+<script src="js/chirpy3d.js"></script>
+<script src="js/chirpy-voice.js"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
+
+// The refrain, read out loud. Chirpy animates for as long as the audio
+// runs. Voice comes from our /tts if it is deployed and from the browser
+// otherwise, so this works today and improves when the key is set.
+(function () {
+  var btn   = document.getElementById('excerpt-play');
+  var label = document.getElementById('excerpt-play-label');
+  var host  = document.getElementById('excerpt-bird');
+  var text  = document.getElementById('excerpt-text');
+  if (!btn || !host || !text || !window.ChirpyVoice || !window.Chirpy3D) return;
+
+  var bird = Chirpy3D.mount(host, {});
+  var playing = false;
+
+  function stop() {
+    playing = false;
+    ChirpyVoice.cancel();
+    bird.rest();
+    btn.setAttribute('aria-pressed', 'false');
+    if (label) label.textContent = 'Hear Chirpy read it';
+  }
+
+  btn.addEventListener('click', function () {
+    if (playing) return stop();
+    // The button is the gesture browsers require before audio, and it is
+    // also the reader asking, so this one place turns the voice on.
+    if (!ChirpyVoice.isEnabled()) ChirpyVoice.setEnabled(true);
+    playing = true;
+    btn.setAttribute('aria-pressed', 'true');
+    if (label) label.textContent = 'Stop';
+    bird.speak();
+    ChirpyVoice.speak(text.textContent, { onend: stop });
+  });
+})();
 // Was hardcoded to the Netlify review deploy, and this is what Stripe gets
 // as success_url and cancel_url. On threebabybirdies.com that sent a paying
 // customer to the preview site after checkout. Whatever host is serving the

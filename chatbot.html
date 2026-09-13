@@ -110,6 +110,7 @@
   display:flex;align-items:center;justify-content:center;
   transition:background .18s,transform .15s; flex-shrink:0;
 }
+.chat-send .ic { width:21px; height:21px; }
 .chat-send:hover { background:var(--sky-dark); transform:scale(1.08); }
 
 /* Features below chat */
@@ -329,7 +330,7 @@
         <div class="chat-input-row">
           <label class="sr-only" for="chat-input">Type your answer to Chirpy</label>
           <input class="chat-input" id="chat-input" type="text" autocomplete="off" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')sendMsg()">
-          <button class="chat-send" onclick="sendMsg()" aria-label="Send message"></button>
+          <button class="chat-send" onclick="sendMsg()" aria-label="Send message"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></button>
         </div>
       </div>
       <p style="text-align:center;font-size:.75rem;color:var(--light-text);margin-top:10px;padding-bottom:4px;">
