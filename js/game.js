@@ -44,7 +44,7 @@
 
       '<div class="cf-panel cf-ready">' +
         '<div class="cf-card">' +
-          '<img src="assets/chirpy.png" alt="" class="cf-bird">' +
+          '<img src="assets/chirpy3d-poster.png" alt="" class="cf-bird">' +
           '<p class="cf-rhyme">&ldquo;Chirp chirp chirp. Flap your wings and try to fly.<br>' +
           'It is just as easy as pie.&rdquo;</p>' +
           '<button class="btn btn-red cf-start" type="button">Start flying</button>' +
@@ -109,10 +109,15 @@
     best = readBest();
     el.best.textContent = best;
 
+    // Chirpy flies as six frames of the 3D render rather than the flat
+    // head crop off the book cover. One wing beat, tucked through fully
+    // spread, cropped on a shared bounding box so the body stays put and
+    // only the wings move.
+    var SPRITE_FRAMES = 6;
     var sprite = new global.Image();
     var spriteReady = false;
     sprite.onload = function () { spriteReady = true; };
-    sprite.src = 'assets/chirpy.png';
+    sprite.src = 'assets/chirpy-fly.png';
 
     function addBranch(x) {
       // Keep the gap clear of the very top and the ground so there is
@@ -328,10 +333,16 @@
       ctx.save();
       ctx.translate(BIRD_X, bird.y);
       ctx.rotate(bird.rot * 0.5);
-      ctx.scale(1, 1 + flapAnim * 0.12);
       if (spriteReady) {
-        var w = BIRD_DRAW, h = w * (sprite.height / sprite.width);
-        ctx.drawImage(sprite, -w / 2, -h / 2 - 2, w, h);
+        // flapAnim runs 1 -> 0 over about a fifth of a second after each
+        // tap, so reading the frame straight off it puts the wings at
+        // full spread on the beat and folds them as Chirpy glides.
+        var fw = sprite.width / SPRITE_FRAMES;
+        var i = Math.round(flapAnim * (SPRITE_FRAMES - 1));
+        if (i < 0) i = 0; else if (i > SPRITE_FRAMES - 1) i = SPRITE_FRAMES - 1;
+        var w = BIRD_DRAW * 1.5, h = w * (sprite.height / fw);
+        ctx.drawImage(sprite, i * fw, 0, fw, sprite.height,
+                      -w / 2, -h / 2 - 2, w, h);
       } else {
         ctx.fillStyle = '#DC3B2A';
         ctx.beginPath(); ctx.arc(0, 0, BIRD_R + 4, 0, Math.PI * 2); ctx.fill();

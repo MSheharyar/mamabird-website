@@ -28,7 +28,7 @@
   box-shadow:var(--sh-md); text-align:center;
 }
 .cf-card .btn { width:100%; justify-content:center; }
-.cf-bird { display:block; width:70px; margin:0 auto 10px; }
+.cf-bird { display:block; width:96px; margin:0 auto 10px; }
 .cf-rhyme {
   font-family:var(--font-display); font-weight:600; font-size:.88rem;
   color:var(--sky-dark); line-height:1.5; margin-bottom:16px;
