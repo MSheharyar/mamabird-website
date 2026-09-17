@@ -28,6 +28,15 @@
 .value-icon-palette { background:linear-gradient(135deg,#9B6B35,#70481F); }
 .value-card { transition:transform .2s, box-shadow .2s; }
 .value-card:hover { transform:translateY(-5px); box-shadow:var(--sh-md); }
+.about-sec { position:relative; overflow:hidden; }
+.about-deco { position:absolute; pointer-events:none; opacity:.5; }
+.about-deco-a { width:120px; top:40px; left:-30px; transform:rotate(-8deg); }
+.about-deco-b { width:96px;  bottom:90px; right:-24px; transform:rotate(9deg); }
+.team-card-top { transition:filter .25s; }
+.team-card:hover .team-card-top { filter:saturate(1.15); }
+.team-card-body .role { color:var(--teal); }
+.team-card:nth-child(2) .team-card-body .role { color:var(--green); }
+.team-card:nth-child(3) .team-card-body .role { color:var(--red-dark); }
 .team-card-art { display:flex; align-items:center; justify-content:center; padding:24px; }
 .team-card-art img { width:auto; max-height:100%; object-fit:contain;
   filter:drop-shadow(0 10px 18px rgba(44,24,16,.18)); }
@@ -95,8 +104,10 @@
   </div>
 </div>
 
-<section class="section" style="background:#fff;">
-  <div class="container">
+<section class="section about-sec" style="background:#fff;">
+  <img src="assets/chirpy-full.png" alt="" aria-hidden="true" class="about-deco about-deco-a" loading="lazy" decoding="async" width="440" height="429">
+  <img src="assets/birdies-nest.png" alt="" aria-hidden="true" class="about-deco about-deco-b" loading="lazy" decoding="async" width="420" height="337">
+  <div class="container" style="position:relative;">
     <div class="team-grid">
       <div class="team-card reveal">
         <div class="team-card-top" style="background:linear-gradient(135deg,var(--sky-light),var(--sky-xlight));">

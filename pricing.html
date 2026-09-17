@@ -11,6 +11,15 @@
 /* The v1 .plan-card / .plan-features block lived here. Nothing on this
    page uses it any more (the markup is .plan-card-v2), and one of its
    rules still read content:',' where a tick used to be. */
+.plan-sub { max-width:520px; margin:14px auto 0; font-size:1.12rem; }
+.plan-head-price small { font-size:.95rem; font-weight:600; opacity:.85; }
+.plan-foot {
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  margin-top:34px; font-family:var(--font-display); font-weight:600;
+  font-size:1rem; color:var(--mid);
+}
+.plan-foot .ic { width:18px; height:18px; color:var(--green); }
+.plan-card-v2 .btn { margin-top:auto; }
 .pricing-cta-art { width:150px; margin:0 auto 18px; filter:drop-shadow(0 12px 22px rgba(44,24,16,.2)); }
 .faq-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
 .faq-item { background:#fff; border-radius:var(--r-md); padding:24px; box-shadow:var(--sh-sm); }
@@ -98,7 +107,8 @@
 
 <div class="page-hero">
   <div class="page-hero-inner">
-    <h1>Start free.<br>Upgrade when you're ready.</h1>
+    <h1>Start free.<br>Upgrade when you&rsquo;re ready.</h1>
+    <p class="plan-sub">Try everything free, then choose the plan that fits.</p>
     <p>Every account starts with a 3-month free trial, full access, no credit card needed. Upgrade only when your trial ends.</p>
   </div>
 </div>
@@ -110,9 +120,9 @@
       <div class="plan-card-v2">
         <div class="plan-head ph-free">
           <span class="plan-head-icon"><svg class="ic" aria-hidden="true"><use href="#i-gift"></use></svg></span>
-          <div class="plan-head-name">Free Trial</div>
-          <div class="plan-head-price" style="font-size:2rem;">$0</div>
-          <div class="plan-head-period">3 months free · No card needed</div>
+          <div class="plan-head-name">3-Month Free Trial</div>
+          <div class="plan-head-price" style="font-size:2rem;">$0 <small>for 3 months</small></div>
+          <div class="plan-head-period">No card needed · cancel anytime</div>
         </div>
         <div class="plan-body">
           <ul class="plan-features-v2">
@@ -124,7 +134,7 @@
             <li class="no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg><span>Lesson plan generator</span></li>
             <li class="no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg><span>PDF exports</span></li>
           </ul>
-          <a href="login.html" class="btn btn-outline btn-sm" style="justify-content:center;">Start Free →</a>
+          <a href="login.html" class="btn btn-outline" style="justify-content:center;">Start Free</a>
         </div>
       </div>
 
@@ -135,7 +145,7 @@
           <span class="plan-head-icon"><svg class="ic" aria-hidden="true"><use href="#i-child"></use></svg></span>
           <div class="plan-head-name">Individual</div>
           <div class="plan-head-price"><sup style="font-size:1.1rem;">$</sup>9.99</div>
-          <div class="plan-head-period">per month · billed monthly</div>
+          <div class="plan-head-period">per month · best for families</div>
         </div>
         <div class="plan-body">
           <ul class="plan-features-v2">
@@ -147,7 +157,7 @@
             <li class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Lesson plan generator</span></li>
             <li class="no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg><span>PDF exports</span></li>
           </ul>
-          <button id="btn-individual" onclick="startCheckout('individual')" class="btn btn-sky btn-sm" style="justify-content:center;width:100%;border:none;cursor:pointer;">Get Started →</button>
+          <button id="btn-individual" onclick="startCheckout('individual')" class="btn btn-sky" style="justify-content:center;width:100%;border:none;cursor:pointer;">Choose Individual</button>
         </div>
       </div>
 
@@ -169,7 +179,7 @@
             <li class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Lesson plan generator</span></li>
             <li class="yes"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>PDF progress exports</span></li>
           </ul>
-          <button id="btn-premium" onclick="startCheckout('premium')" class="btn btn-sm" style="justify-content:center;width:100%;border:none;cursor:pointer;background:var(--brown);color:#fff;">Get Started →</button>
+          <button id="btn-premium" onclick="startCheckout('premium')" class="btn btn-sm" style="justify-content:center;width:100%;border:none;cursor:pointer;background:var(--teal);color:#fff;">Choose Premium</button>
         </div>
       </div>
 
@@ -179,7 +189,7 @@
           <span class="plan-head-icon"><svg class="ic" aria-hidden="true"><use href="#i-birds"></use></svg></span>
           <div class="plan-head-name">Classroom</div>
           <div class="plan-head-price"><sup style="font-size:1.1rem;">$</sup>29.99</div>
-          <div class="plan-head-period">per month · up to 30 students</div>
+          <div class="plan-head-period">per month · best for teachers</div>
         </div>
         <div class="plan-body">
           <ul class="plan-features-v2">
@@ -195,6 +205,8 @@
         </div>
       </div>
     </div>
+    <p class="plan-foot"><svg class="ic" aria-hidden="true"><use href="#i-shield"></use></svg> No ads &nbsp;&middot;&nbsp; Kid-friendly &nbsp;&middot;&nbsp; Parent-controlled</p>
+
     <div class="section-header reveal" style="margin:80px 0 36px;">
       <h2>Frequently asked</h2>
     </div>

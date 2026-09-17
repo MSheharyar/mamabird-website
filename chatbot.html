@@ -192,6 +192,32 @@
   .chat-topbar .voice-toggle span { display:none; }
   .chat-topbar .voice-toggle { padding:8px; }
 }
+.btn small { display:block; font-weight:600; font-size:.72rem; opacity:.85; margin-top:2px; }
+.see-pricing { opacity:.82; font-size:.95rem; }
+.see-pricing:hover { opacity:1; }
+.quick-replies {
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  padding:12px 18px 0; border-top:1px solid var(--cream-dark);
+}
+.quick-label {
+  font-family:var(--font-display); font-weight:700; font-size:.76rem;
+  text-transform:uppercase; letter-spacing:.08em; color:var(--light-text);
+}
+.quick-chip {
+  border:1.5px solid var(--cream-dark); background:#fff; color:var(--sky-dark);
+  border-radius:var(--r-full); padding:7px 15px; cursor:pointer;
+  font-family:var(--font-display); font-weight:700; font-size:.86rem;
+  transition:border-color .16s, background .16s, transform .16s;
+}
+.quick-chip:hover { border-color:var(--sky-dark); background:var(--sky-xlight); transform:translateY(-2px); }
+.quick-chip:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
+@media(prefers-reduced-motion:reduce){ .quick-chip:hover { transform:none; } }
+.parent-note-row {
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  margin-top:14px; font-family:var(--font-display); font-weight:600;
+  font-size:.92rem; color:var(--green);
+}
+.parent-note-row .ic { width:17px; height:17px; }
 </style>
 <!-- SEO / social / icons -->
 <meta name="description" content="Chirpy's Classroom is an AI learning companion for ages 2–8, spelling, rhyming, numbers, grammar, puzzles and stories. Try it free, no signup needed.">
@@ -288,7 +314,7 @@
       </div>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
-        <a href="login.html" class="btn btn-red btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Start Free, No Card Needed</a>
+        <a href="login.html" class="btn btn-red btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Start Learning Free<small>No card needed</small></a>
         <a href="pricing.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> See Pricing</a>
       </div>
       <div class="kid-badges" style="margin-top:18px;">
@@ -296,6 +322,7 @@
         <span class="kid-badge kb-yellow"><svg class="ic" aria-hidden="true"><use href="#i-gift"></use></svg> 3 months free</span>
         <span class="kid-badge kb-sky"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Powered by Claude AI</span>
       </div>
+      <p class="parent-note-row"><svg class="ic" aria-hidden="true"><use href="#i-shield"></use></svg> Kid-friendly &middot; No ads &middot; Safe learning space</p>
     </div>
 
     <!-- RIGHT: Live chat demo -->
@@ -327,9 +354,15 @@
           </div>
         </div>
 
+        <div class="quick-replies" id="quick-replies">
+          <span class="quick-label">Try asking</span>
+          <button type="button" class="quick-chip" onclick="quickSay(this)">C-A-T</button>
+          <button type="button" class="quick-chip" onclick="quickSay(this)">Give me a hint</button>
+          <button type="button" class="quick-chip" onclick="quickSay(this)">Try another word</button>
+        </div>
         <div class="chat-input-row">
           <label class="sr-only" for="chat-input">Type your answer to Chirpy</label>
-          <input class="chat-input" id="chat-input" type="text" autocomplete="off" placeholder="Type your answer..." onkeydown="if(event.key==='Enter')sendMsg()">
+          <input class="chat-input" id="chat-input" type="text" autocomplete="off" placeholder="Ask Chirpy something..." onkeydown="if(event.key==='Enter')sendMsg()">
           <button class="chat-send" onclick="sendMsg()" aria-label="Send message"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></button>
         </div>
       </div>
@@ -367,7 +400,7 @@
       <button class="subject-tile tile-red" onclick="setSubject(document.querySelectorAll('.subject-pill')[2],'Math');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});" style="border:none;cursor:pointer;">
         <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-math"></use></svg></span>
         <div class="subject-tile-name">Math</div>
-        <div class="subject-tile-desc">Numbers & bird math</div>
+        <div class="subject-tile-desc">Numbers, counting & bird math</div>
         <span class="subject-tile-cue">Try it <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </button>
       <button class="subject-tile tile-yellow" onclick="setSubject(document.querySelectorAll('.subject-pill')[3],'Grammar');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});" style="border:none;cursor:pointer;">
@@ -379,13 +412,13 @@
       <button class="subject-tile tile-purple" onclick="setSubject(document.querySelectorAll('.subject-pill')[4],'Puzzles');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});" style="border:none;cursor:pointer;">
         <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-puzzle"></use></svg></span>
         <div class="subject-tile-name">Puzzles</div>
-        <div class="subject-tile-desc">Riddles & word games</div>
+        <div class="subject-tile-desc">Riddles, patterns & word games</div>
         <span class="subject-tile-cue">Try it <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </button>
       <button class="subject-tile tile-orange" onclick="setSubject(document.querySelectorAll('.subject-pill')[5],'Stories');document.getElementById('chat-body').scrollIntoView({behavior:'smooth'});" style="border:none;cursor:pointer;">
         <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg></span>
         <div class="subject-tile-name">Stories</div>
-        <div class="subject-tile-desc">Comprehension & writing</div>
+        <div class="subject-tile-desc">Reading, comprehension & creative writing</div>
         <span class="subject-tile-cue">Try it <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </button>
     </div>
@@ -566,6 +599,32 @@
   .chat-topbar .voice-toggle span { display:none; }
   .chat-topbar .voice-toggle { padding:8px; }
 }
+.btn small { display:block; font-weight:600; font-size:.72rem; opacity:.85; margin-top:2px; }
+.see-pricing { opacity:.82; font-size:.95rem; }
+.see-pricing:hover { opacity:1; }
+.quick-replies {
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  padding:12px 18px 0; border-top:1px solid var(--cream-dark);
+}
+.quick-label {
+  font-family:var(--font-display); font-weight:700; font-size:.76rem;
+  text-transform:uppercase; letter-spacing:.08em; color:var(--light-text);
+}
+.quick-chip {
+  border:1.5px solid var(--cream-dark); background:#fff; color:var(--sky-dark);
+  border-radius:var(--r-full); padding:7px 15px; cursor:pointer;
+  font-family:var(--font-display); font-weight:700; font-size:.86rem;
+  transition:border-color .16s, background .16s, transform .16s;
+}
+.quick-chip:hover { border-color:var(--sky-dark); background:var(--sky-xlight); transform:translateY(-2px); }
+.quick-chip:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
+@media(prefers-reduced-motion:reduce){ .quick-chip:hover { transform:none; } }
+.parent-note-row {
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  margin-top:14px; font-family:var(--font-display); font-weight:600;
+  font-size:.92rem; color:var(--green);
+}
+.parent-note-row .ic { width:17px; height:17px; }
 </style>
 <script>
 // Scroll reveal
@@ -576,6 +635,15 @@ if (_preSubj) {
   sessionStorage.removeItem('chatbot_subject');
   const _pill = Array.from(document.querySelectorAll('.subject-pill')).find(p => p.textContent.toLowerCase().includes(_preSubj.toLowerCase()));
   if (_pill) setTimeout(() => setSubject(_pill, _preSubj.charAt(0).toUpperCase() + _preSubj.slice(1)), 200);
+}
+
+// The quick replies just fill the box and send, so a child who cannot
+// spell yet can still take a turn.
+function quickSay(btn) {
+  var input = document.getElementById('chat-input');
+  if (!input || input.disabled) return;
+  input.value = btn.textContent;
+  sendMsg();
 }
 
 /* ---- Chirpy reads his replies out loud ----
@@ -703,7 +771,7 @@ function showUpsell() {
       <strong>Tweet tweet! 🐦 You're doing so well!</strong><br><br>
       That's your free preview for today. Create a free account to keep going, 3 months free, no card needed!<br><br>
       <div class="upsell-cta">
-        <a href="login.html" class="upsell-btn"><svg class="ic" aria-hidden="true"><use href="#i-gift"></use></svg> Start Free, No Card Needed</a>
+        <a href="login.html" class="upsell-btn"><svg class="ic" aria-hidden="true"><use href="#i-gift"></use></svg> Start Learning Free<small>No card needed</small></a>
         <a href="pricing.html" class="upsell-link">See all plans →</a>
       </div>
     </div>`;
@@ -830,7 +898,7 @@ function setSubject(el, subj) {
         <strong>Tweet tweet! 🐦 Let's do ${subj}.</strong><br><br>
         ${subj} is available with a free account, along with all 5 other subjects. Sign up in seconds, no card needed!<br><br>
         <div class="upsell-cta">
-          <a href="login.html" class="upsell-btn">Start Free, No Card Needed</a>
+          <a href="login.html" class="upsell-btn">Start Learning Free<small>No card needed</small></a>
           <a href="pricing.html" class="upsell-link">See all plans →</a>
         </div>
       </div>`;

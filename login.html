@@ -5,6 +5,7 @@
 <title>Sign In / Register | Three Baby Birdies</title>
 <link rel="stylesheet" href="css/main.css">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
+<script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%); min-height:100vh; }
@@ -30,6 +31,18 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
 .auth-benefit-icon { display:flex; flex-shrink:0; color:var(--yellow); }
 .auth-benefit-icon .ic { width:21px; height:21px; }
 .auth-benefit-text { font-family:var(--font-display); font-size:.95rem; font-weight:600; color:#fff; }
+.pw-wrap { position:relative; display:block; }
+.pw-wrap .form-input { width:100%; padding-right:46px; }
+.pw-eye {
+  position:absolute; right:8px; top:50%; transform:translateY(-50%);
+  width:32px; height:32px; border:none; background:none; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--light-text); border-radius:50%;
+}
+.pw-eye:hover { color:var(--sky-dark); background:var(--sky-xlight); }
+.pw-eye:focus-visible { outline:3px solid var(--yellow); outline-offset:1px; }
+.pw-eye .ic { width:19px; height:19px; }
+.no-card { display:block; margin-top:6px; font-size:.82rem; color:var(--light-text); }
 .auth-panel-right {
   background:#fff; padding:48px 40px;
   display:flex; flex-direction:column; justify-content:center;
@@ -132,13 +145,14 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
         </div>
         <div class="form-group">
           <label class="form-label">Password</label>
-          <input class="form-input" type="password" placeholder="Your password" autocomplete="current-password" aria-label="Password">
+          <span class="pw-wrap"><input class="form-input" type="password" id="login-pw" placeholder="Your password" autocomplete="current-password" aria-label="Password"><button type="button" class="pw-eye" id="login-pw-eye" aria-label="Show password" aria-pressed="false"><svg class="ic" aria-hidden="true"><use href="#i-eye"></use></svg></button></span>
         </div>
         <div style="text-align:right;margin-top:-8px;">
           <a href="#" onclick="switchTab('forgot');return false;" style="font-size:.8rem;color:var(--red);font-family:var(--font-display);font-weight:700;">Forgot password?</a>
         </div>
         <button type="submit" class="btn btn-red form-submit btn-lg">Sign In to Chirpy's Classroom</button>
-        <div class="form-footer">Don't have an account? <a href="#" onclick="switchTab('register');return false;">Create one free →</a></div>
+        <div class="form-footer">Don't have an account? <a href="#" onclick="switchTab('register');return false;">Create one free →</a>
+          <span class="no-card">No credit card required</span></div>
       </form>
       <form class="auth-form" id="form-forgot" onsubmit="return false;">
         <p style="font-size:.9rem;color:var(--mid);margin:0 0 4px;">
@@ -319,6 +333,23 @@ document.getElementById('form-register').addEventListener('submit', async functi
     var box = document.getElementById('form-forgot-error');
     if (box) { box.style.background = 'var(--green-light)'; box.style.color = 'var(--green)'; }
     btn.disabled = false;
+  });
+})();
+
+// Show and hide the password. Toggling the type is the whole trick; the
+// pressed state and the label are what make it usable without sight.
+(function () {
+  var btn = document.getElementById('login-pw-eye');
+  var pw  = document.getElementById('login-pw');
+  if (!btn || !pw) return;
+  btn.addEventListener('click', function () {
+    var show = pw.type === 'password';
+    pw.type = show ? 'text' : 'password';
+    btn.setAttribute('aria-pressed', show ? 'true' : 'false');
+    btn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    var use = btn.querySelector('use');
+    if (use) use.setAttribute('href', show ? '#i-eyeoff' : '#i-eye');
+    pw.focus();
   });
 })();
 </script>
