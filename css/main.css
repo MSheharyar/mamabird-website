@@ -16,16 +16,27 @@
   --yellow-light: #FFF3CC;
   --red:          #CC2929;
   --red-dark:     #A82020;
+  /* Brown is now only ever wood: the game's branches, the nest, the
+     ground. Every place it was a UI surface uses --teal instead. */
   --brown:        #9B6B35;
   --brown-dark:   #6B4520;
+  /* The fifth brand colour, standing where brown used to. It sits between
+     the book's blue sky and its green leaves, and white on it measures
+     4.7:1, so it can carry text. */
+  --teal:         #2A8080;
+  --teal-dark:    #1F6B6B;
+  --teal-light:   #DCF0F0;
+  /* The deep bands: the newsletter and the footer. Brown-black before. */
+  --deep:         #16343D;
+  --deeper:       #122B33;
   /* Was #4A8B3F: 3.2:1 on --green-light, also under 4.5:1. */
   --green:        #3C7133;
   --green-light:  #D4E8D1;
   --cream:        #FDF8F0;
   --cream-dark:   #F0E6D0;
-  --dark:         #2C1810;
-  --mid:          #5C4033;
-  --light-text:   #8B6B5C;
+  --dark:         #2B2622;
+  --mid:          #55504C;
+  --light-text:   #746D68;
 
   /* Typography */
   --font-display: 'Quicksand', sans-serif;
@@ -97,7 +108,7 @@ p  { font-size:1.1rem; color:var(--mid); line-height:1.78; }
 .btn-red    { background:var(--red);    color:#fff; }
 .btn-red:hover    { background:var(--red-dark); box-shadow:0 6px 20px rgba(204,41,41,0.3); }
 .btn-outline{ background:#fff; color:var(--dark); border:2px solid var(--cream-dark); }
-.btn-outline:hover{ border-color:var(--brown); }
+.btn-outline:hover{ border-color:var(--teal); }
 .btn-yellow { background:var(--yellow); color:var(--brown-dark); }
 .btn-yellow:hover { background:#e8b700; box-shadow:0 6px 20px rgba(245,194,0,0.35); }
 .btn-sky    { background:var(--sky-dark); color:#fff; }  /* --sky gave white text 2.3:1 */
@@ -187,7 +198,7 @@ p  { font-size:1.1rem; color:var(--mid); line-height:1.78; }
 /* ============================================================
    FOOTER (shared)
    ============================================================ */
-footer { background:#1A0F0A; padding:84px var(--sp-md) 44px; }
+footer { background:var(--deeper); padding:84px var(--sp-md) 44px; }
 .footer-inner { max-width:var(--max-w); margin:0 auto; }
 .footer-grid {
   display:grid; grid-template-columns:1.9fr 1fr 1fr 1.2fr; gap:48px;
@@ -317,7 +328,7 @@ footer { background:#1A0F0A; padding:84px var(--sp-md) 44px; }
   border-radius:var(--r-full); font-family:var(--font-display); font-weight:600;
   font-size:.88rem; color:var(--mid);
 }
-.cred-tag .ic { width:17px; height:17px; color:var(--brown); }
+.cred-tag .ic { width:17px; height:17px; color:var(--teal); }
 
 /* Scroll animation cue */
 .scroll-dot { width:7px; height:7px; border-radius:50%; background:var(--sky); animation:bob 1.6s ease-in-out infinite; }
@@ -407,7 +418,7 @@ svg.lucide {
 .tile-yellow .subject-tile-ic   { color:var(--brown-dark); background:rgba(255,255,255,.5); border-color:rgba(107,69,32,.2); }
 /* Was #8B5CF6 to #5B21B6. Puzzles now uses the branch and nest brown
    that is actually in the cover art. */
-.tile-purple { background:linear-gradient(135deg,#9B6B35,#70481F); box-shadow:0 10px 28px rgba(107,69,32,.35); }
+.tile-purple { background:linear-gradient(135deg,#2A8080,#1F6B6B); box-shadow:0 10px 28px rgba(31,107,107,.4); }
 .tile-orange { background:linear-gradient(135deg,#C2470A,#9E3908); box-shadow:0 10px 28px rgba(194,71,10,.4); }
 
 /* ---- Feature cards (gradient header) ---- */
@@ -428,7 +439,7 @@ svg.lucide {
 .fcard-body p{ font-size:1rem; color:var(--mid); line-height:1.75; margin-bottom:0; }
 .fcard-head.c-sky    { background:linear-gradient(135deg,#33768D,#2A6377); }
 .fcard-head.c-green  { background:linear-gradient(135deg,#3F7A35,#2D6A27); }
-.fcard-head.c-purple { background:linear-gradient(135deg,#8E6130,#66421D); }
+.fcard-head.c-purple { background:linear-gradient(135deg,#2A8080,#1F6B6B); }
 .fcard-head.c-orange { background:linear-gradient(135deg,#C2470A,#9E3908); }
 .fcard-head.c-red    { background:linear-gradient(135deg,#CC2929,#A82020); }
 /* White on the old #F5C200 was 1.7:1. Not used on the homepage, kept
@@ -466,19 +477,21 @@ svg.lucide {
 
 /* ---- eBook promo ---- */
 .ebook-promo {
-  background:linear-gradient(135deg,#2C1810 0%,#3D1F12 100%);
+  /* Was a near-black brown the client called way too dark, with red
+     suggested in its place. White on the light end measures 5.7:1. */
+  background:linear-gradient(135deg,#C22E2B 0%,#9E2320 100%);
   border-radius:var(--r-lg); padding:64px 56px;
   display:grid; grid-template-columns:1fr auto; gap:40px; align-items:center;
   box-shadow:var(--sh-lg); position:relative; overflow:hidden;
 }
-.ebook-promo::before { content:''; position:absolute; top:-60px; right:40px; width:240px; height:240px; background:var(--yellow); border-radius:50%; opacity:.03; }
-.ebook-promo::after  { content:''; position:absolute; bottom:-40px; left:20px; width:180px; height:180px; background:var(--sky); border-radius:50%; opacity:.035; }
+.ebook-promo::before { content:''; position:absolute; top:-60px; right:40px; width:240px; height:240px; background:var(--yellow); border-radius:50%; opacity:.12; }
+.ebook-promo::after  { content:''; position:absolute; bottom:-40px; left:20px; width:180px; height:180px; background:#fff; border-radius:50%; opacity:.07; }
 .ebook-promo-label   { display:inline-flex; align-items:center; gap:8px; padding:8px 18px; background:var(--yellow); border-radius:var(--r-full); font-family:var(--font-display); font-weight:700; font-size:.9rem; color:var(--brown-dark); margin-bottom:18px; }
 .ebook-promo-label .ic { width:18px; height:18px; }
 .ebook-promo-title   { font-family:var(--font-display); font-weight:700; font-size:2.15rem; color:#fff; margin-bottom:14px; line-height:1.22; }
-.ebook-promo-sub     { font-size:1.05rem; color:rgba(255,255,255,.74); margin-bottom:30px; line-height:1.7; }
-.ebook-price         { font-family:var(--font-display); font-weight:700; font-size:3.1rem; color:var(--yellow); line-height:1; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
-.ebook-price small   { font-size:1.3rem; font-weight:500; color:rgba(255,255,255,.5); text-decoration:line-through; margin-left:0; }
+.ebook-promo-sub     { font-size:1.05rem; color:rgba(255,255,255,.93); margin-bottom:30px; line-height:1.7; }
+.ebook-price         { font-family:var(--font-display); font-weight:700; font-size:3.1rem; color:#FFE066; line-height:1; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+.ebook-price small   { font-size:1.3rem; font-weight:500; color:rgba(255,255,255,.75); text-decoration:line-through; margin-left:0; }
 .ebook-cover-wrap    { position:relative; z-index:1; }
 .ebook-cover-img     { width:250px; max-width:100%; border-radius:var(--r-md); box-shadow:0 28px 70px rgba(0,0,0,.5); transition:transform .3s; position:relative; z-index:1; }
 .ebook-cover-img:hover { transform:rotate(-3deg) scale(1.04); }
@@ -491,8 +504,8 @@ svg.lucide {
 .plan-head.ph-free    { background:linear-gradient(135deg,#E8F5FB,var(--sky-light)); }
 /* White on --sky sits at 2.3:1. Same correction as the subject tiles. */
 .plan-head.ph-ind     { background:linear-gradient(135deg,#33768D,#2A6377); }
-.plan-head.ph-prem    { background:linear-gradient(135deg,#8E6130,#66421D); }
-.plan-head.ph-class   { background:linear-gradient(135deg,var(--dark),#3D1F12); }
+.plan-head.ph-prem    { background:linear-gradient(135deg,#2A8080,#1F6B6B); }
+.plan-head.ph-class   { background:linear-gradient(135deg,var(--deep),var(--deeper)); }
 .plan-head-icon { display:flex; width:48px; height:48px; border-radius:14px; margin-bottom:12px;
   align-items:center; justify-content:center; background:rgba(255,255,255,.22); color:#fff; }
 .plan-head-icon .ic { width:25px; height:25px; }
@@ -515,17 +528,18 @@ svg.lucide {
 .plan-badge-v2 { position:absolute; top:-1px; right:20px; background:var(--sky-dark); color:#fff; font-family:var(--font-display); font-weight:700; font-size:.7rem; padding:4px 14px; border-radius:0 0 var(--r-sm) var(--r-sm); }
 
 /* ---- Marquee strip ---- */
-.marquee-wrap { overflow:hidden; padding:18px 0; background:var(--brown); }
+.marquee-wrap { overflow:hidden; padding:20px 0;
+  background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%); }
 /* 14 illustrated items are a much wider track than the 9 words this used
    to hold, so the duration goes up to keep the same reading speed. */
 .marquee-track { display:flex; width:max-content; animation:marquee 70s linear infinite; gap:0; }
 .marquee-item { display:inline-flex; align-items:center; gap:12px; padding:0 26px; font-family:var(--font-display); font-weight:700; font-size:.92rem; color:#fff; white-space:nowrap; border-right:1px solid rgba(255,255,255,.2); }
 .marquee-item span { color:#fff; }
-.marquee-pic { display:block; width:56px; height:56px; flex-shrink:0; border-radius:16px;
-  background:#fff; box-shadow:0 2px 8px rgba(0,0,0,.2); }
+.marquee-pic { display:block; width:74px; height:74px; flex-shrink:0; border-radius:20px;
+  background:#fff; box-shadow:0 3px 10px rgba(0,0,0,.22); }
 @media(max-width:620px){
   .marquee-item { font-size:.82rem; padding:0 18px; gap:9px; }
-  .marquee-pic  { width:44px; height:44px; border-radius:13px; }
+  .marquee-pic  { width:56px; height:56px; border-radius:16px; }
 }
 /* A permanent sideways scroll is the thing this setting exists for. */
 @media(prefers-reduced-motion:reduce){
@@ -791,7 +805,7 @@ svg.lucide {
 .trust-item {
   display:flex; align-items:center; gap:9px;
   font-family:var(--font-display); font-weight:600; font-size:.95rem;
-  color:rgba(255,255,255,.75);
+  color:rgba(255,255,255,.94);
 }
 .trust-item .ic { width:20px; height:20px; color:var(--yellow); }
 

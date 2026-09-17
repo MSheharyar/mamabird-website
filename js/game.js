@@ -29,6 +29,14 @@
     brisk:  { scroll: 142, gap: 190, spacing: 268, gravity: 1500, flap: -330, ramp: 1.4 }
   };
 
+  // Sound is optional: js/chirpy-sfx.js may not be on the page, and the
+  // reader may have it switched off. Neither is this file's problem.
+  var SPEAKER = '<svg class="ic" aria-hidden="true"><use href="#i-speaker"></use></svg>';
+
+  function sfx(name) {
+    if (global.ChirpySfx) global.ChirpySfx.play(name);
+  }
+
   var BIRD_X = 116;
   var BIRD_R = 15;        // collision radius, deliberately under the art
   var BIRD_DRAW = 46;
@@ -51,6 +59,8 @@
           '<div class="cf-speed" role="group" aria-label="Game speed">' +
             '<button type="button" class="cf-speed-btn" data-speed="gentle" aria-pressed="true">Gentle</button>' +
             '<button type="button" class="cf-speed-btn" data-speed="brisk" aria-pressed="false">Brisk</button>' +
+            '<button type="button" class="cf-sound-btn" aria-pressed="false" '
+              + 'aria-label="Sound">' + SPEAKER + '<span>Sound</span></button>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -142,6 +152,7 @@
     }
 
     function start() {
+      sfx('start');
       resetWorld();
       state = STATE.PLAYING;
       el.ready.hidden = true; el.over.hidden = true; el.paused.hidden = true;
@@ -173,6 +184,7 @@
     }
 
     function gameOver() {
+      sfx('bump');
       state = STATE.OVER;
       shake = 1;
       if (score > best) { best = score; writeBest(best); }
@@ -194,6 +206,7 @@
     }
 
     function flap() {
+      sfx('flap');
       if (state === STATE.READY)  { start();  return; }
       if (state === STATE.PAUSED) { resume(); return; }
       if (state !== STATE.PLAYING) return;
@@ -216,6 +229,26 @@
     el.start.addEventListener('click', start);
     el.again.addEventListener('click', start);
     global.document.addEventListener('visibilitychange', onVisibility);
+
+    // Sound is off until asked for. An AudioContext cannot start before a
+    // gesture anyway, and a game that makes noise unprompted is a bad
+    // guest on a child's tablet.
+    var soundBtn = container.querySelector('.cf-sound-btn');
+    if (soundBtn && global.ChirpySfx && global.ChirpySfx.available()) {
+      var paintSound = function () {
+        var on = global.ChirpySfx.isEnabled();
+        soundBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        soundBtn.setAttribute('aria-label', on ? 'Sound on' : 'Sound off');
+      };
+      soundBtn.addEventListener('click', function () {
+        global.ChirpySfx.setEnabled(!global.ChirpySfx.isEnabled());
+        paintSound();
+        global.ChirpySfx.play('chirp');     // so the choice is audible
+      });
+      paintSound();
+    } else if (soundBtn) {
+      soundBtn.hidden = true;               // no Web Audio here
+    }
 
     var speedBtns = container.querySelectorAll('.cf-speed-btn');
     Array.prototype.forEach.call(speedBtns, function (b) {
@@ -258,7 +291,7 @@
         var b = branches[i];
         b.x -= speed * dt;
         if (!b.passed && b.x + 26 < BIRD_X - BIRD_R) {
-          b.passed = true; score++;
+          b.passed = true; score++; sfx('point');
           el.hud.textContent = String(score);
           if (score === 1) el.hint.hidden = true;
         }

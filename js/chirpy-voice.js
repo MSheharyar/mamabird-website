@@ -44,10 +44,17 @@
   var current   = null;        // the Audio element now playing
   var synthOn   = false;
 
+  // Same as the sound module: a private window makes localStorage throw,
+  // and without an in-memory copy the Read aloud button would refuse to
+  // stay on for the whole session.
+  var memOn = null;
+
   function isEnabled() {
+    if (memOn !== null) return memOn;
     try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; }
   }
   function setEnabled(on) {
+    memOn = !!on;
     try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) {}
     if (!on) cancel();
   }

@@ -51,6 +51,17 @@
 }
 
 .cf-speed { display:flex; gap:8px; justify-content:center; margin-top:14px; }
+.cf-sound-btn {
+  display:inline-flex; align-items:center; gap:7px;
+  border:2px solid var(--cream-dark); background:#fff; color:var(--mid);
+  border-radius:var(--r-full); padding:6px 14px;
+  font-family:var(--font-display); font-weight:700; font-size:.78rem;
+  transition:border-color .18s, background .18s, color .18s;
+}
+.cf-sound-btn .ic { width:15px; height:15px; }
+.cf-sound-btn:hover { border-color:var(--teal); }
+.cf-sound-btn[aria-pressed="true"] { background:var(--teal); border-color:var(--teal); color:#fff; }
+.cf-sound-btn[hidden] { display:none; }
 .cf-speed-btn {
   border:2px solid var(--cream-dark); background:#fff; color:var(--mid);
   border-radius:var(--r-full); padding:6px 16px;
@@ -154,6 +165,7 @@ body.cf-locked { overflow:hidden; }
 .gb-cloud-b::before { width:30px; height:30px; top:-14px; left:12px; }
 .gb-cloud-c { width:50px; height:16px; top:18px;  right:64px; opacity:.6; }
 .gb-cloud-c::before { width:24px; height:24px; top:-11px; left:10px; }
+/* A branch is wood, so this one keeps the brown. */
 .gb-branch { position:absolute; width:34px; background:var(--brown); border-radius:10px; z-index:1; }
 .gb-branch-a { right:26px; top:-10px;    height:74px; }
 .gb-branch-b { right:26px; bottom:-10px; height:96px; }
