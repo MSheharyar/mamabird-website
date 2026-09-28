@@ -828,6 +828,17 @@ svg.lucide {
   position:absolute; inset:0; width:100%; height:100%;
   object-fit:contain; display:block; background:transparent;
 }
+/* The mouth sprite is one strip of five frames; the box clips it and a
+   transform slides the right one into view. No reflow, no repaint of
+   anything else, so it can move every animation frame. */
+.c3d-talking { overflow:hidden; aspect-ratio:240/404; background:none; }
+.c3d-mouth {
+  position:absolute; left:0; top:0; height:100%; width:500%;
+  max-width:none; object-fit:fill;
+  transition:transform .045s linear;
+  will-change:transform;
+}
+@media(prefers-reduced-motion:reduce){ .c3d-mouth { transition:none; } }
 /* Speaking gets a gentle lift, so the character reads as active even on
    the still-frame path where nothing else can move. */
 .c3d[data-state="speaking"] { animation:c3d-bob 1.6s ease-in-out infinite; }

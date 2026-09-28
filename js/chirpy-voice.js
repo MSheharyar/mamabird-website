@@ -39,6 +39,8 @@
   'use strict';
 
   var API       = global.MB_API || 'https://api.threebabybirdies.com';
+  var actx      = null;        // shared, for reading the amplitude back
+  var raf       = null;
   var KEY       = 'mb_voice_on';
   var ttsBroken = false;       // our endpoint answered badly; stop trying
   var current   = null;        // the Audio element now playing
@@ -77,7 +79,65 @@
       .slice(0, 600);          // a runaway reply should not become a monologue
   }
 
+  /* ---- Amplitude, which is what drives the beak ----
+     The audio coming back from /tts is routed through an analyser on its
+     way to the speakers, so the mouth opens on the loud parts of the
+     actual sentence. That is real lip-sync, within the limit that the
+     clip gives us five mouth positions rather than phonemes.
+
+     speechSynthesis gives no access to its output, so on that path there
+     is nothing to measure and the mouth falls back to a plausible rhythm.
+     It is the same call either way as far as the caller is concerned. */
+  function watchLevel(node, onLevel) {
+    if (!actx) return null;
+    var an = actx.createAnalyser();
+    an.fftSize = 256;
+    an.smoothingTimeConstant = 0.55;
+    node.connect(an);
+    var buf = new Uint8Array(an.frequencyBinCount);
+    function tick() {
+      an.getByteFrequencyData(buf);
+      // The voice sits low; the top of the spectrum is mostly hiss.
+      var n = Math.floor(buf.length * 0.55), sum = 0;
+      for (var i = 0; i < n; i++) sum += buf[i];
+      var avg = sum / n / 255;
+      // Speech rarely reaches the ceiling, so lift it or the beak barely
+      // parts, and square it a little so quiet gaps actually close it.
+      onLevel(Math.min(1, Math.pow(avg * 2.6, 1.35)));
+      raf = global.requestAnimationFrame(tick);
+    }
+    tick();
+    return function stop() {
+      if (raf) global.cancelAnimationFrame(raf);
+      raf = null;
+      try { an.disconnect(); } catch (e) {}
+      onLevel(0);
+    };
+  }
+
+  /* No stream to measure, so move the mouth the way a cartoon does: open
+     and shut at a speaking rhythm, with enough variation to not look
+     mechanical. Honest, and better than a still beak. */
+  function fakeLevel(onLevel) {
+    var t0 = Date.now();
+    function tick() {
+      var t = (Date.now() - t0) / 1000;
+      var v = 0.5 + 0.5 * Math.sin(t * 11) * Math.sin(t * 3.1 + 0.7);
+      onLevel(Math.max(0, v));
+      raf = global.requestAnimationFrame(tick);
+    }
+    tick();
+    return function stop() {
+      if (raf) global.cancelAnimationFrame(raf);
+      raf = null;
+      onLevel(0);
+    };
+  }
+
+  var stopLevel = null;
+
   function cancel() {
+    if (stopLevel) { stopLevel(); stopLevel = null; }
     if (current) {
       try { current.pause(); current.src = ''; } catch (e) {}
       current = null;
@@ -103,11 +163,12 @@
       if (nice.length) u.voice = nice[0];
       else if (pick.length) u.voice = pick[0];
 
-      u.onend = function () { synthOn = false; cb.end(); };
-      u.onerror = function () { synthOn = false; cb.end(); };
+      u.onend = function () { synthOn = false; if (stopLevel) { stopLevel(); stopLevel = null; } cb.end(); };
+      u.onerror = function () { synthOn = false; if (stopLevel) { stopLevel(); stopLevel = null; } cb.end(); };
       synth.cancel();
       synthOn = true;
       cb.start();
+      if (cb.level) stopLevel = fakeLevel(cb.level);
       synth.speak(u);
       return true;
     } catch (e) { return cb.fail(); }
@@ -124,13 +185,30 @@
     }).then(function (blob) {
       var url = URL.createObjectURL(blob);
       var a = new Audio(url);
+      a.crossOrigin = 'anonymous';
       current = a;
       a.onended = a.onerror = function () {
         URL.revokeObjectURL(url);
+        if (stopLevel) { stopLevel(); stopLevel = null; }
         if (current === a) current = null;
         cb.end();
       };
       cb.start();
+
+      // Route through an analyser so the beak can follow the sentence.
+      // A blob: URL is same-origin, so this is not tainted.
+      if (cb.level) {
+        try {
+          var AC = global.AudioContext || global.webkitAudioContext;
+          if (AC) {
+            if (!actx) actx = new AC();
+            if (actx.state === 'suspended') actx.resume();
+            var src = actx.createMediaElementSource(a);
+            src.connect(actx.destination);
+            stopLevel = watchLevel(src, cb.level);
+          }
+        } catch (e) { stopLevel = fakeLevel(cb.level); }
+      }
       return a.play();
     }).catch(function () {
       // One bad answer is enough: the endpoint is not deployed, or the
@@ -144,6 +222,7 @@
     opts = opts || {};
     var onstart = opts.onstart || function () {};
     var onend   = opts.onend   || function () {};
+    var onlevel = opts.onlevel || null;
     var said    = clean(text);
 
     if (!isEnabled() || !said) { onend(); return; }
@@ -153,7 +232,8 @@
     var cb = {
       start: function () { if (!fired) { fired = true; onstart(); } },
       end:   function () { onend(); },
-      fail:  function () { onend(); return false; }
+      fail:  function () { onend(); return false; },
+      level: onlevel
     };
 
     if (!ttsBroken) {

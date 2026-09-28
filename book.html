@@ -476,7 +476,7 @@ const API = 'https://api.threebabybirdies.com';
   var text  = document.getElementById('excerpt-text');
   if (!btn || !host || !text || !window.ChirpyVoice || !window.Chirpy3D) return;
 
-  var bird = Chirpy3D.mount(host, {});
+  var bird = Chirpy3D.mount(host, { mouth: true });
   var playing = false;
 
   function stop() {
@@ -496,7 +496,10 @@ const API = 'https://api.threebabybirdies.com';
     btn.setAttribute('aria-pressed', 'true');
     if (label) label.textContent = 'Stop';
     bird.speak();
-    ChirpyVoice.speak(text.textContent, { onend: stop });
+    ChirpyVoice.speak(text.textContent, {
+      onend: stop,
+      onlevel: function (v) { bird.setMouth(v); }
+    });
   });
 })();
 // Was hardcoded to the Netlify review deploy, and this is what Stripe gets

@@ -45,7 +45,14 @@
     video:  'assets/chirpy3d.webm',
     anim:   'assets/chirpy3d.webp',
     still:  'assets/chirpy3d-poster.png',
-    ratio:  480 / 504          // the render's own aspect
+    ratio:  480 / 504,         // the render's own aspect
+    // Five mouth positions, closed through wide, cut from frames 175 to
+    // 185 of the same clip. That window is the only one where the beak
+    // travels almost its whole range while body_dx and body_dz stay at
+    // zero, so the head does not shift between levels.
+    mouth:  'assets/chirpy-talk.png',
+    mouthFrames: 5,
+    mouthRatio: 240 / 404
   };
 
   var reduced = global.matchMedia &&
@@ -156,6 +163,37 @@
              destroy: function () { clearTimeout(timer); } };
   }
 
+  /* ---- The mouth ----
+     Swaps between five real frames of the character rather than animating
+     anything, so the beak matches the art exactly. setMouth takes 0 to 1;
+     chirpy-voice.js feeds it the live amplitude of whatever Chirpy is
+     saying, which is what makes this lip-sync rather than a loop. */
+  function mouthRenderer(root) {
+    var img = document.createElement('img');
+    img.className = 'c3d-media c3d-mouth';
+    img.alt = '';
+    img.setAttribute('aria-hidden', 'true');
+    img.src = SOURCES.mouth;
+    img.style.width = (SOURCES.mouthFrames * 100) + '%';
+    root.appendChild(img);
+
+    var level = -1;
+    function setMouth(v) {
+      var n = SOURCES.mouthFrames;
+      var i = Math.round(Math.max(0, Math.min(1, v)) * (n - 1));
+      if (i === level) return;
+      level = i;
+      img.style.transform = 'translateX(' + (-i * (100 / n)) + '%)';
+    }
+    setMouth(0);
+    return {
+      start: function () {},
+      rest: function () { setMouth(0); },
+      setMouth: setMouth,
+      destroy: function () {}
+    };
+  }
+
   function stillRenderer(root) {
     var img = document.createElement('img');
     img.className = 'c3d-media';
@@ -166,7 +204,10 @@
     return { start: noop, rest: noop, destroy: noop };
   }
 
-  function makeRenderer(root, cb) {
+  function makeRenderer(root, cb, opts) {
+    // A mouth that moves with the words beats a body that moves without
+    // them, so when a caller asks to talk it gets the sprite either way.
+    if (opts && opts.mouth) return cb(mouthRenderer(root));
     if (reduced) return cb(stillRenderer(root));
     supportsAlphaVideo().then(function (ok) {
       cb(ok ? videoRenderer(root) : imageRenderer(root));
@@ -193,11 +234,15 @@
 
     var r = null;
     var queued = null;                    // a call that arrived before the probe
+    if (opts.mouth) {
+      root.classList.add('c3d-talking');
+      root.style.setProperty('--c3d-still', 'none');
+    }
     makeRenderer(root, function (made) {
       r = made;
       if (queued) { r[queued[0]].apply(null, queued[1]); queued = null; }
       else if (opts.autoplay) r.start(!!opts.loop);
-    });
+    }, opts);
 
     function call(name, args) {
       if (r) r[name].apply(null, args || []);
@@ -212,6 +257,10 @@
       rest:  function () { root.dataset.state = 'rest'; call('rest'); },
       /* One pass, then settle. A greeting, a celebration. */
       play:  function () { root.dataset.state = 'playing'; call('start', [false]); },
+      /* 0 is shut, 1 is wide. A no-op on the video and image renderers,
+         so callers never have to ask which one they got. */
+      setMouth: function (v) { if (r && r.setMouth) r.setMouth(v); },
+      canMouth: function () { return !!(r && r.setMouth); },
       destroy: function () { call('destroy'); if (root.parentNode) root.parentNode.removeChild(root); }
     };
   }

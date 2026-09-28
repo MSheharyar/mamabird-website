@@ -663,8 +663,9 @@ function quickSay(btn) {
     if (label) label.textContent = on ? 'Reading aloud' : 'Read aloud';
     stage.hidden = !on;
     if (on && !bird && window.Chirpy3D) {
-      bird = Chirpy3D.mount(document.getElementById('chat-bird'), {});
-      bird.play();
+      // mouth:true swaps the body clip for the five-position beak, so
+      // Chirpy's mouth follows the words instead of his wings flapping.
+      bird = Chirpy3D.mount(document.getElementById('chat-bird'), { mouth: true });
     }
     if (!on && bird) bird.rest();
   }
@@ -680,7 +681,8 @@ function quickSay(btn) {
     if (!ChirpyVoice.isEnabled()) return;
     ChirpyVoice.speak(text, {
       onstart: function () { if (bird) bird.speak(); },
-      onend:   function () { if (bird) bird.rest(); }
+      onend:   function () { if (bird) bird.rest(); },
+      onlevel: function (v) { if (bird) bird.setMouth(v); }
     });
   };
 })();

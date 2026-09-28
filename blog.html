@@ -17,13 +17,13 @@
 }
 .blog-thumb img { width:118px; height:118px; border-radius:26px; box-shadow:var(--sh-sm); }
 .blog-lead { text-align:center; max-width:620px; margin:0 auto 44px; font-size:1.12rem; }
-.blog-soon {
-  display:inline-flex; align-items:center; gap:7px; padding:5px 13px;
-  border-radius:var(--r-full); background:var(--yellow-light);
-  border:1px solid #F0DDA4; color:#736000;
-  font-family:var(--font-display); font-weight:700; font-size:.8rem;
-}
-.blog-soon .ic { width:14px; height:14px; }
+/* The cards are links now that the posts exist. */
+.blog-card { display:block; color:inherit; }
+.blog-card:hover h3 { color:var(--teal); }
+.blog-go { margin-left:auto; display:inline-flex; color:var(--teal); transition:transform .18s; }
+.blog-go .ic { width:17px; height:17px; }
+.blog-card:hover .blog-go { transform:translateX(4px); }
+@media(prefers-reduced-motion:reduce){ .blog-card:hover .blog-go { transform:none; } }
 .blog-nl-art { width:150px; margin:0 auto 18px; filter:drop-shadow(0 12px 22px rgba(0,0,0,.35)); }
 .blog-nl-form { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
 .blog-nl-form .nl-input { flex:1; min-width:220px; }
@@ -86,7 +86,7 @@
 <div class="page-hero">
   <div class="page-hero-inner">
     <h1>Read-aloud tips &amp;<br>family learning ideas</h1>
-    <p>Practical ideas for parents and teachers who believe that learning starts with a great story and a warm lap to sit in.</p>
+    <p>Nine pieces from Iris and Frank on reading aloud, building confidence, and why picture books still matter.</p>
   </div>
 </div>
 
@@ -94,62 +94,88 @@
 
 <section class="section" style="background:#fff;">
   <div class="container">
-    <p class="blog-lead reveal">These are the six pieces we are writing first. Put your address in below and we will send each one as it lands.</p>
     <div class="blog-grid">
-      <div class="blog-card reveal">
-        <div class="blog-thumb"><img src="assets/ribbon/read-aloud.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
-        <div class="blog-body">
-          <span class="blog-tag" style="background:var(--sky-light);color:var(--sky-dark);">Read-Aloud Tips</span>
-          <h3>7 ways to make read-aloud time irresistible for toddlers</h3>
-          <p>From voice acting to sound effects, simple tricks that turn any picture book into an event your child begs to repeat.</p>
-          <div class="blog-meta"><span class="blog-soon"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg> Coming soon</span></div>
-        </div>
-      </div>
-      <div class="blog-card reveal reveal-d1">
-        <div class="blog-thumb"><img src="assets/ribbon/rhyming-fun.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
-        <div class="blog-body">
-          <span class="blog-tag" style="background:var(--green-light);color:var(--green);">Learning</span>
-          <h3>Why rhyming is the single best thing for early reading</h3>
-          <p>The research is clear: phonemic awareness predicts reading success more reliably than almost anything else. Here's the science.</p>
-          <div class="blog-meta"><span class="blog-soon"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg> Coming soon</span></div>
-        </div>
-      </div>
-      <div class="blog-card reveal reveal-d2">
-        <div class="blog-thumb"><img src="assets/ribbon/picture-activities.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
-        <div class="blog-body">
-          <span class="blog-tag" style="background:var(--yellow-light);color:var(--brown-dark);">Activities</span>
-          <h3>5 nature activities inspired by Three Baby Birdies</h3>
-          <p>From building a mini nest to bird-watching journals, hands-on activities that extend the book's world into real life.</p>
-          <div class="blog-meta"><span class="blog-soon"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg> Coming soon</span></div>
-        </div>
-      </div>
-      <div class="blog-card reveal reveal-d3">
-        <div class="blog-thumb"><img src="assets/ribbon/classroom.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
-        <div class="blog-body">
-          <span class="blog-tag" style="background:#fce8e8;color:var(--red-dark);">For Teachers</span>
-          <h3>How to use Three Baby Birdies in a Kindergarten classroom</h3>
-          <p>A complete lesson plan guide, literacy goals, discussion prompts, follow-up activities, and assessment ideas.</p>
-          <div class="blog-meta"><span class="blog-soon"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg> Coming soon</span></div>
-        </div>
-      </div>
-      <div class="blog-card reveal reveal-d3">
-        <div class="blog-thumb"><img src="assets/ribbon/baby-birdies.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
-        <div class="blog-body">
-          <span class="blog-tag" style="background:var(--cream-dark);color:var(--brown);">Family</span>
-          <h3>Teaching your baby to read, what we did with Ronald</h3>
-          <p>The posterboard method that started it all. Iris shares the full story of how Frank and she taught their son Ronald to read before he started school.</p>
-          <div class="blog-meta"><span class="blog-soon"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg> Coming soon</span></div>
-        </div>
-      </div>
-      <div class="blog-card reveal reveal-d3">
+      <a class="blog-card reveal" href="blog-every-child-learns-at-their-own-pace.html">
         <div class="blog-thumb"><img src="assets/ribbon/learn-and-play.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
-          <span class="blog-tag" style="background:var(--sky-light);color:var(--sky-dark);">Announcement</span>
-          <h3>Introducing Chirpy's Classroom, AI learning comes to Three Baby Birdies</h3>
-          <p>We're launching an AI educational chatbot featuring Chirpy and Mama Bird. Here's what it does, who it's for, and how the free trial works.</p>
-          <div class="blog-meta"><span class="blog-soon"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg> Coming soon</span></div>
+          <span class="blog-tag kb-green">Learning</span>
+          <h3>Every Child Learns at Their Own Pace: Why Encouragement Makes All the Difference</h3>
+          <p>One of the greatest joys of childhood is watching a young mind discover something new. Whether it’s taking a first step, saying a first word, riding…</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> 4 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
         </div>
-      </div>
+      </a>
+      <a class="blog-card reveal reveal-d1" href="blog-the-lasting-power-of-family-encouragement-in-a-child-s-journ.html">
+        <div class="blog-thumb"><img src="assets/ribbon/baby-birdies.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="blog-body">
+          <span class="blog-tag kb-yellow">Family</span>
+          <h3>The Lasting Power of Family Encouragement in a Child’s Journey</h3>
+          <p>Every child begins life with endless possibilities, but none of them reach their full potential alone. Behind every first word, first step, first…</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
+        </div>
+      </a>
+      <a class="blog-card reveal reveal-d2" href="blog-small-stories-big-lessons.html">
+        <div class="blog-thumb"><img src="assets/ribbon/read-aloud.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="blog-body">
+          <span class="blog-tag kb-sky">Read-Aloud Tips</span>
+          <h3>Small Stories, Big Lessons: Why Children’s Picture Books Matter More Than Ever</h3>
+          <p>In an age where children are surrounded by fast-paced entertainment and endless digital distractions, the simple joy of reading a picture book…</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
+        </div>
+      </a>
+      <a class="blog-card reveal reveal-d3" href="blog-building-confidence-one-small-step-at-a-time.html">
+        <div class="blog-thumb"><img src="assets/ribbon/reading-confidence.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="blog-body">
+          <span class="blog-tag kb-red">Confidence</span>
+          <h3>Building Confidence One Small Step at a Time: A Lesson Every Child Needs</h3>
+          <p>Confidence is often described as the key to success, but for young children, confidence isn’t something they are born with, it is something they…</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
+        </div>
+      </a>
+      <a class="blog-card reveal reveal-d3" href="blog-the-magic-of-rhyming-stories.html">
+        <div class="blog-thumb"><img src="assets/ribbon/rhyming-fun.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="blog-body">
+          <span class="blog-tag kb-sky">Read-Aloud Tips</span>
+          <h3>The Magic of Rhyming Stories: Inspiring Young Minds Through Reading</h3>
+          <p>Long before children become fluent readers, they fall in love with the rhythm of language. They giggle at playful sounds, repeat familiar phrases,…</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
+        </div>
+      </a>
+      <a class="blog-card reveal reveal-d3" href="blog-teaching-children-to-believe-in-themselves.html">
+        <div class="blog-thumb"><img src="assets/ribbon/challenges.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="blog-body">
+          <span class="blog-tag kb-red">Confidence</span>
+          <h3>Teaching Children to Believe in Themselves: The Gift That Lasts a Lifetime</h3>
+          <p>Every child enters the world with boundless curiosity. They eagerly explore new places, ask endless questions, and dream without limits. Yet as they…</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
+        </div>
+      </a>
+      <a class="blog-card reveal reveal-d3" href="blog-encouragement-is-the-first-step-to-success.html">
+        <div class="blog-thumb"><img src="assets/ribbon/story-questions.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="blog-body">
+          <span class="blog-tag kb-green">Learning</span>
+          <h3>Encouragement Is the First Step to Success: Why Stories That Build Confidence Matter for Every Child</h3>
+          <p>Every child experiences moments of uncertainty. Whether it’s taking a first step, learning to read, making new friends, or trying something…</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
+        </div>
+      </a>
+      <a class="blog-card reveal reveal-d3" href="blog-growing-through-kindness-and-perseverance.html">
+        <div class="blog-thumb"><img src="assets/ribbon/momma-bird.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="blog-body">
+          <span class="blog-tag kb-yellow">Family</span>
+          <h3>Growing Through Kindness and Perseverance: Why Children’s Books Continue to Shape Young Hearts</h3>
+          <p>The lessons children learn during their earliest years often become the foundation for the adults they eventually become. While schools teach…</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
+        </div>
+      </a>
+      <a class="blog-card reveal reveal-d3" href="blog-stories-that-inspire-courage.html">
+        <div class="blog-thumb"><img src="assets/ribbon/learning-games.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
+        <div class="blog-body">
+          <span class="blog-tag kb-green">Learning</span>
+          <h3>Stories That Inspire Courage: How Children’s Literature Helps Young Readers Spread Their Wings</h3>
+          <p>Childhood is a remarkable journey filled with first experiences. Every day brings new discoveries, fresh challenges, and opportunities to grow. From…</p>
+          <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
