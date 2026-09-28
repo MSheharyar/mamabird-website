@@ -18,6 +18,7 @@
   <ul class="nav-links">
     <li><a href="about.html">About</a></li>
     <li><a href="book.html">The Book</a></li>
+    <li><a href="blog.html">Blog</a></li>
     <li><a href="chatbot.html">Chirpy's Classroom</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="login.html" class="nav-cta">Sign In / Join Free</a></li>

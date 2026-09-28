@@ -159,6 +159,28 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 .chat-input:focus{border-color:var(--sky);background:#fff;}
 .chat-input.mama-focus:focus{border-color:var(--green);}
 .chat-send .ic { width:21px; height:21px; }
+.chat-stage {
+  display:flex; align-items:flex-end; justify-content:center; padding:12px 0 4px;
+  background:linear-gradient(180deg,var(--sky-xlight) 0%,transparent 100%);
+  border-bottom:1px solid var(--cream-dark);
+}
+.chat-stage[hidden] { display:none; }
+.chat-stage-bird { width:190px; }
+.voice-toggle {
+  display:inline-flex; align-items:center; gap:7px; padding:6px 13px;
+  border-radius:var(--r-full); border:1.5px solid var(--cream-dark);
+  background:#fff; color:var(--mid); cursor:pointer;
+  font-family:var(--font-display); font-weight:700; font-size:.78rem;
+  transition:border-color .18s, background .18s, color .18s;
+}
+.voice-toggle .ic { width:16px; height:16px; }
+.voice-toggle:hover { border-color:var(--sky-dark); color:var(--sky-dark); }
+.voice-toggle[aria-pressed="true"] { background:var(--sky-dark); border-color:var(--sky-dark); color:#fff; }
+.voice-toggle:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
+@media(max-width:560px){
+  .chat-stage-bird { width:140px; }
+  .voice-toggle span { display:none; }
+}
 .chat-send{width:40px;height:40px;border-radius:50%;background:var(--sky-dark);color:#fff;border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .18s,transform .12s;flex-shrink:0;}
 .chat-send:hover{background:var(--sky-dark);transform:scale(1.06);}
 .chat-send.mama-send{background:var(--green);}
@@ -398,8 +420,10 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
         <div class="topbar-name" id="topbar-name">Chirpy</div>
         <div class="topbar-status">Online · <span id="topbar-subj">Spelling</span></div>
       </div>
-      <button id="change-subj-btn" onclick="changeSubjectClick()" style="margin-left:auto;padding:6px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:var(--sky-light);color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;">Subject</button>
+      <button type="button" class="voice-toggle" id="voice-toggle" aria-pressed="false" style="margin-left:auto;"><svg class="ic" aria-hidden="true"><use href="#i-speaker"></use></svg><span id="voice-toggle-label">Read aloud</span></button>
+      <button id="change-subj-btn" onclick="changeSubjectClick()" style="margin-left:8px;padding:6px 14px;border-radius:var(--r-full);border:1.5px solid var(--sky);background:var(--sky-light);color:var(--sky-dark);font-family:var(--font-display);font-weight:700;font-size:.78rem;cursor:pointer;white-space:nowrap;">Subject</button>
     </div>
+    <div class="chat-stage" id="chat-stage" hidden><div class="chat-stage-bird" id="chat-bird"></div></div>
     <div class="chat-msgs" id="chat-msgs"></div>
     <div class="chat-input-row">
       <input class="chat-input" id="chat-input" type="text" placeholder="Type your answer here… " onkeydown="if(event.key==='Enter')sendMsg()" aria-label="Type your answer to Chirpy">
@@ -548,6 +572,9 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <!-- Loaded for the icon sprite only: layout.js guards its nav and
      footer injection on elements this page does not have. -->
 <script src="js/layout.js"></script>
+<script src="js/chirpy3d.js"></script>
+<script src="js/chirpy-voice.js"></script>
+<script src="js/chirpy-sfx.js"></script>
 <script>
 // Vector bird for both characters. The 🪺 nest emoji (Emoji 14) has no glyph on
 // older Windows/Android and rendered as an empty box; Chirpy and Mama Bird are
@@ -921,6 +948,66 @@ function fmtMsg(t) {
     .replace(/\n/g, '<br>');
 }
 
+/* Read aloud in the classroom. Same three pieces as the public demo:
+   the voice, the beak, and the words appearing as they are spoken. Off
+   until a parent or child asks for it. */
+(function () {
+  var btn, label, stage, bird = null;
+  document.addEventListener('DOMContentLoaded', function () {
+    btn   = document.getElementById('voice-toggle');
+    label = document.getElementById('voice-toggle-label');
+    stage = document.getElementById('chat-stage');
+    if (!btn || !window.ChirpyVoice) return;
+    function paint() {
+      var on = ChirpyVoice.isEnabled();
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      if (label) label.textContent = on ? 'Reading aloud' : 'Read aloud';
+      stage.hidden = !on;
+      if (on && !bird && window.Chirpy3D) {
+        bird = Chirpy3D.mount(document.getElementById('chat-bird'), { mouth: true });
+      }
+      if (!on && bird) bird.rest();
+    }
+    btn.addEventListener('click', function () {
+      var on = !ChirpyVoice.isEnabled();
+      ChirpyVoice.setEnabled(on);
+      if (on && window.ChirpySfx && !ChirpySfx.isEnabled()) ChirpySfx.setEnabled(true);
+      paint();
+    });
+    paint();
+  });
+
+  window.chirpySpeak = function (text, bubble) {
+    if (!window.ChirpyVoice || !ChirpyVoice.isEnabled()) return;
+    var full = bubble ? bubble.innerHTML : null;
+    var stopReveal = null;
+    if (bubble) bubble.textContent = '';
+    if (window.ChirpySfx && ChirpySfx.isEnabled()) ChirpySfx.play('chirp');
+
+    function finish() {
+      if (stopReveal) { stopReveal(); stopReveal = null; }
+      if (bubble && full !== null) bubble.innerHTML = full;
+      if (bird) bird.rest();
+    }
+    ChirpyVoice.speak(text, {
+      onstart: function () { if (bird) bird.speak(); },
+      onend:   finish,
+      onlevel: function (v) { if (bird) bird.setMouth(v); },
+      onaudio: function (a) {
+        if (!bubble) return;
+        stopReveal = ChirpyVoice.reveal(text, function (part) { bubble.textContent = part; }, { audio: a });
+      }
+    });
+    if (bubble && !stopReveal) {
+      setTimeout(function () {
+        if (!stopReveal) {
+          stopReveal = ChirpyVoice.reveal(text, function (part) { bubble.textContent = part; }, {});
+        }
+      }, 120);
+    }
+  };
+})();
+
 function addMsg(type, html, isBadge) {
   const msgs = document.getElementById('chat-msgs');
   const div  = document.createElement('div');
@@ -934,6 +1021,11 @@ function addMsg(type, html, isBadge) {
   const avFg  = type === 'user' ? 'inherit' : (currentChar === 'chirpy' ? 'var(--sky-dark)' : 'var(--green)');
   div.innerHTML = `<div class="msg-av mascot-badge" style="background:${avBg};color:${avFg};">${av}</div><div class="msg-bubble">${fmtMsg(html)}</div>`;
   msgs.appendChild(div); msgs.scrollTop = msgs.scrollHeight;
+  // Only Chirpy and Mama Bird are read out; the child's own words are not.
+  if (type !== 'user' && window.chirpySpeak) {
+    window.chirpySpeak(div.querySelector('.msg-bubble').textContent,
+                       div.querySelector('.msg-bubble'));
+  }
 }
 
 function showTyping() {

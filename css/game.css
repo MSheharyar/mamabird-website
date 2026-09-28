@@ -144,12 +144,12 @@ body.cf-locked { overflow:hidden; }
    cut from the illustrations the client supplied, in the pose the notes
    asked for: wings out, about to go. */
 .game-banner-art {
-  position:relative; height:280px; border-radius:var(--r-md);
+  position:relative; height:320px; border-radius:var(--r-md);
   background:linear-gradient(180deg,#5FA8CC 0%,#9FD3EC 60%,#CDE9F7 100%);
   display:flex; align-items:flex-end; justify-content:center; overflow:hidden;
 }
 .gb-chirpy {
-  position:relative; z-index:2; width:200px; margin-bottom:26px;
+  position:relative; z-index:2; width:250px; margin-bottom:26px;
   filter:drop-shadow(0 14px 24px rgba(20,60,80,.32));
   transition:transform .35s cubic-bezier(.3,1.4,.5,1);
 }

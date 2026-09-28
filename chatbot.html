@@ -186,9 +186,9 @@
   border-bottom:1px solid var(--cream-dark);
 }
 .chat-stage[hidden] { display:none; }
-.chat-stage-bird { width:120px; }
+.chat-stage-bird { width:210px; }
 @media(max-width:520px){
-  .chat-stage-bird { width:96px; }
+  .chat-stage-bird { width:150px; }
   .chat-topbar .voice-toggle span { display:none; }
   .chat-topbar .voice-toggle { padding:8px; }
 }
@@ -565,6 +565,7 @@
 <script src="js/main.js"></script>
 <script src="js/chirpy3d.js"></script>
 <script src="js/chirpy-voice.js"></script>
+<script src="js/chirpy-sfx.js"></script>
 <style>
 .upsell-bubble {
   background:linear-gradient(135deg,#fff 0%,var(--sky-xlight) 100%);
@@ -585,46 +586,6 @@
   font-family:var(--font-display); font-weight:700;
 }
 .locked-pill { opacity:.55; cursor:not-allowed !important; }
-.chat-topbar-who { flex:1; min-width:0; }
-.chat-topbar .voice-toggle { flex-shrink:0; font-size:.8rem; padding:6px 13px; }
-.chat-stage {
-  display:flex; align-items:flex-end; justify-content:center; padding:14px 0 4px;
-  background:linear-gradient(180deg,var(--sky-xlight) 0%,transparent 100%);
-  border-bottom:1px solid var(--cream-dark);
-}
-.chat-stage[hidden] { display:none; }
-.chat-stage-bird { width:120px; }
-@media(max-width:520px){
-  .chat-stage-bird { width:96px; }
-  .chat-topbar .voice-toggle span { display:none; }
-  .chat-topbar .voice-toggle { padding:8px; }
-}
-.btn small { display:block; font-weight:600; font-size:.72rem; opacity:.85; margin-top:2px; }
-.see-pricing { opacity:.82; font-size:.95rem; }
-.see-pricing:hover { opacity:1; }
-.quick-replies {
-  display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-  padding:12px 18px 0; border-top:1px solid var(--cream-dark);
-}
-.quick-label {
-  font-family:var(--font-display); font-weight:700; font-size:.76rem;
-  text-transform:uppercase; letter-spacing:.08em; color:var(--light-text);
-}
-.quick-chip {
-  border:1.5px solid var(--cream-dark); background:#fff; color:var(--sky-dark);
-  border-radius:var(--r-full); padding:7px 15px; cursor:pointer;
-  font-family:var(--font-display); font-weight:700; font-size:.86rem;
-  transition:border-color .16s, background .16s, transform .16s;
-}
-.quick-chip:hover { border-color:var(--sky-dark); background:var(--sky-xlight); transform:translateY(-2px); }
-.quick-chip:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
-@media(prefers-reduced-motion:reduce){ .quick-chip:hover { transform:none; } }
-.parent-note-row {
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  margin-top:14px; font-family:var(--font-display); font-weight:600;
-  font-size:.92rem; color:var(--green);
-}
-.parent-note-row .ic { width:17px; height:17px; }
 </style>
 <script>
 // Scroll reveal
@@ -671,19 +632,56 @@ function quickSay(btn) {
   }
 
   btn.addEventListener('click', function () {
-    ChirpyVoice.setEnabled(!ChirpyVoice.isEnabled());
+    var on = !ChirpyVoice.isEnabled();
+    ChirpyVoice.setEnabled(on);
+    // One decision, not two: if Chirpy may speak, he may chirp.
+    if (on && window.ChirpySfx && !ChirpySfx.isEnabled()) ChirpySfx.setEnabled(true);
     paint();
   });
   paint();
 
   // What the rest of the page calls once Chirpy has said something.
-  window.chirpySpeak = function (text) {
+  // bubble is the element holding the reply: with Read aloud on, its
+  // words appear in time with the speaking instead of all at once.
+  window.chirpySpeak = function (text, bubble) {
     if (!ChirpyVoice.isEnabled()) return;
+
+    var full = bubble ? bubble.innerHTML : null;
+    var stopReveal = null;
+    if (bubble) bubble.textContent = '';
+
+    // A chirp first, so it is Chirpy arriving rather than a voice
+    // starting out of nowhere.
+    if (window.ChirpySfx && ChirpySfx.isEnabled()) ChirpySfx.play('chirp');
+
+    function finish() {
+      if (stopReveal) { stopReveal(); stopReveal = null; }
+      if (bubble && full !== null) bubble.innerHTML = full;
+      if (bird) bird.rest();
+    }
+
     ChirpyVoice.speak(text, {
       onstart: function () { if (bird) bird.speak(); },
-      onend:   function () { if (bird) bird.rest(); },
-      onlevel: function (v) { if (bird) bird.setMouth(v); }
+      onend:   finish,
+      onlevel: function (v) { if (bird) bird.setMouth(v); },
+      onaudio: function (a) {
+        if (!bubble) return;
+        stopReveal = ChirpyVoice.reveal(text, function (part) {
+          bubble.textContent = part;
+        }, { audio: a });
+      }
     });
+
+    // No audio element on the browser-voice path, so pace it instead.
+    if (bubble && !stopReveal) {
+      setTimeout(function () {
+        if (!stopReveal) {
+          stopReveal = ChirpyVoice.reveal(text, function (part) {
+            bubble.textContent = part;
+          }, {});
+        }
+      }, 120);
+    }
   };
 })();
 
@@ -745,7 +743,8 @@ function addChirpyMsg(html, opts) {
   // place that hands text to the voice. It is a no-op until the reader
   // turns Read aloud on. Pass {silent:true} for an upsell or an error,
   // which are the page talking rather than Chirpy.
-  if (!(opts && opts.silent) && window.chirpySpeak) window.chirpySpeak(div.querySelector('.msg-bubble').textContent);
+  var bubble = div.querySelector('.msg-bubble');
+  if (!(opts && opts.silent) && window.chirpySpeak) window.chirpySpeak(bubble.textContent, bubble);
   return div;
 }
 

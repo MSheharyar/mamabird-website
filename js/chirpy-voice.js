@@ -194,6 +194,7 @@
         cb.end();
       };
       cb.start();
+      if (cb.audio) cb.audio(a);
 
       // Route through an analyser so the beak can follow the sentence.
       // A blob: URL is same-origin, so this is not tainted.
@@ -233,7 +234,8 @@
       start: function () { if (!fired) { fired = true; onstart(); } },
       end:   function () { onend(); },
       fail:  function () { onend(); return false; },
-      level: onlevel
+      level: onlevel,
+      audio: opts.onaudio || null
     };
 
     if (!ttsBroken) {
@@ -256,7 +258,49 @@
     };
   }
 
+  /* ---- Reveal text in time with the speaking ----
+     The words appear as Chirpy says them rather than all at once. Driven
+     by the audio's own progress where we have an element to ask (our
+     /tts path), and by an estimated speaking rate otherwise, because
+     speechSynthesis will not tell you where it has got to.
+
+     Returns a stop function. Always finishes the text, even if the audio
+     is cut short, so nobody is left with half a sentence on screen. */
+  function reveal(text, onText, opts) {
+    opts = opts || {};
+    var words = String(text).split(/(\s+)/);   // keep the spacing
+    var total = words.length;
+    var shown = 0;
+    var t0 = Date.now();
+    var wps = opts.wordsPerSecond || 2.6;      // roughly a read-aloud pace
+    var timer = null;
+
+    function done() {
+      if (timer) { global.clearInterval(timer); timer = null; }
+      onText(text, 1);
+    }
+
+    timer = global.setInterval(function () {
+      var frac;
+      if (opts.audio && opts.audio.duration && isFinite(opts.audio.duration)) {
+        frac = opts.audio.currentTime / opts.audio.duration;
+      } else {
+        frac = ((Date.now() - t0) / 1000) * wps * 2 / total;
+      }
+      frac = Math.max(0, Math.min(1, frac));
+      var want = Math.round(frac * total);
+      if (want > shown) {
+        shown = want;
+        onText(words.slice(0, shown).join(""), frac);
+      }
+      if (frac >= 1) done();
+    }, 60);
+
+    return done;
+  }
+
   global.ChirpyVoice = {
+    reveal: reveal,
     speak: speak,
     cancel: cancel,
     isEnabled: isEnabled,
