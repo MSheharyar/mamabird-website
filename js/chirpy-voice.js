@@ -148,13 +148,15 @@
     }
   }
 
-  function speakViaSynth(text, cb) {
+  function speakViaSynth(text, cb, voice) {
     var synth = global.speechSynthesis;
     if (!synth || !global.SpeechSynthesisUtterance) return cb.fail();
     try {
       var u = new global.SpeechSynthesisUtterance(text);
-      u.rate = 0.95;           // a shade slow; these are four-year-olds
-      u.pitch = 1.25;          // and Chirpy is a small bird
+      // Chirpy is a small bird talking to four-year-olds. Mama Bird is
+      // talking to their parents, so she is steadier and lower.
+      u.rate  = voice === 'mama' ? 1.0  : 0.95;
+      u.pitch = voice === 'mama' ? 1.0  : 1.25;
       u.lang = 'en-US';
       // Prefer a voice that is not the robotic default, where one exists.
       var vs = synth.getVoices() || [];
@@ -174,11 +176,13 @@
     } catch (e) { return cb.fail(); }
   }
 
-  function speakViaApi(text, cb) {
+  function speakViaApi(text, cb, voice) {
     return fetch(API + '/tts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text: text, voice: 'chirpy' })
+      // 'chirpy' and 'mama' are names the backend maps to voice ids, so
+      // the browser never holds one and cannot ask for somebody else's.
+      body: JSON.stringify({ text: text, voice: voice === 'mama' ? 'mama' : 'chirpy' })
     }).then(function (res) {
       if (!res.ok) throw new Error('tts ' + res.status);
       return res.blob();
@@ -224,6 +228,7 @@
     var onstart = opts.onstart || function () {};
     var onend   = opts.onend   || function () {};
     var onlevel = opts.onlevel || null;
+    var voice   = opts.voice === 'mama' ? 'mama' : 'chirpy';
     var said    = clean(text);
 
     if (!isEnabled() || !said) { onend(); return; }
@@ -239,12 +244,12 @@
     };
 
     if (!ttsBroken) {
-      speakViaApi(said, cb).then(function (played) {
+      speakViaApi(said, cb, voice).then(function (played) {
         if (played === null) {            // endpoint unavailable
-          if (!speakViaSynth(said, cb)) onend();
+          if (!speakViaSynth(said, cb, voice)) onend();
         }
       });
-    } else if (!speakViaSynth(said, cb)) {
+    } else if (!speakViaSynth(said, cb, voice)) {
       onend();
     }
   }

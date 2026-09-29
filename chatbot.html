@@ -661,6 +661,8 @@ function quickSay(btn) {
     }
 
     ChirpyVoice.speak(text, {
+      // The demo only unlocks Chirpy; Mama Bird is behind sign-up.
+      voice:   'chirpy',
       onstart: function () { if (bird) bird.speak(); },
       onend:   finish,
       onlevel: function (v) { if (bird) bird.setMouth(v); },

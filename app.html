@@ -990,6 +990,8 @@ function fmtMsg(t) {
       if (bird) bird.rest();
     }
     ChirpyVoice.speak(text, {
+      // whichever character the child is with right now
+      voice:   (typeof currentChar !== 'undefined' && currentChar === 'mama') ? 'mama' : 'chirpy',
       onstart: function () { if (bird) bird.speak(); },
       onend:   finish,
       onlevel: function (v) { if (bird) bird.setMouth(v); },
