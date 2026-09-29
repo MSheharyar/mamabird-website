@@ -29,6 +29,14 @@
     brisk:  { scroll: 142, gap: 190, spacing: 268, gravity: 1500, flap: -330, ramp: 1.4 }
   };
 
+  // Sound is optional: js/chirpy-sfx.js may not be on the page, and the
+  // reader may have it switched off. Neither is this file's problem.
+  var SPEAKER = '<svg class="ic" aria-hidden="true"><use href="#i-speaker"></use></svg>';
+
+  function sfx(name) {
+    if (global.ChirpySfx) global.ChirpySfx.play(name);
+  }
+
   var BIRD_X = 116;
   var BIRD_R = 15;        // collision radius, deliberately under the art
   var BIRD_DRAW = 46;
@@ -44,13 +52,15 @@
 
       '<div class="cf-panel cf-ready">' +
         '<div class="cf-card">' +
-          '<img src="assets/chirpy.png" alt="" class="cf-bird">' +
+          '<img src="assets/chirpy3d-poster.png" alt="" class="cf-bird">' +
           '<p class="cf-rhyme">&ldquo;Chirp chirp chirp. Flap your wings and try to fly.<br>' +
-          'It is just as easy as easy as pie.&rdquo;</p>' +
+          'It is just as easy as pie.&rdquo;</p>' +
           '<button class="btn btn-red cf-start" type="button">Start flying</button>' +
           '<div class="cf-speed" role="group" aria-label="Game speed">' +
             '<button type="button" class="cf-speed-btn" data-speed="gentle" aria-pressed="true">Gentle</button>' +
             '<button type="button" class="cf-speed-btn" data-speed="brisk" aria-pressed="false">Brisk</button>' +
+            '<button type="button" class="cf-sound-btn" aria-pressed="false" '
+              + 'aria-label="Sound">' + SPEAKER + '<span>Sound</span></button>' +
           '</div>' +
         '</div>' +
       '</div>' +
@@ -109,10 +119,15 @@
     best = readBest();
     el.best.textContent = best;
 
+    // Chirpy flies as six frames of the 3D render rather than the flat
+    // head crop off the book cover. One wing beat, tucked through fully
+    // spread, cropped on a shared bounding box so the body stays put and
+    // only the wings move.
+    var SPRITE_FRAMES = 6;
     var sprite = new global.Image();
     var spriteReady = false;
     sprite.onload = function () { spriteReady = true; };
-    sprite.src = 'assets/chirpy.png';
+    sprite.src = 'assets/chirpy-fly.png';
 
     function addBranch(x) {
       // Keep the gap clear of the very top and the ground so there is
@@ -137,6 +152,7 @@
     }
 
     function start() {
+      sfx('start');
       resetWorld();
       state = STATE.PLAYING;
       el.ready.hidden = true; el.over.hidden = true; el.paused.hidden = true;
@@ -168,6 +184,7 @@
     }
 
     function gameOver() {
+      sfx('bump');
       state = STATE.OVER;
       shake = 1;
       if (score > best) { best = score; writeBest(best); }
@@ -189,6 +206,7 @@
     }
 
     function flap() {
+      sfx('flap');
       if (state === STATE.READY)  { start();  return; }
       if (state === STATE.PAUSED) { resume(); return; }
       if (state !== STATE.PLAYING) return;
@@ -211,6 +229,26 @@
     el.start.addEventListener('click', start);
     el.again.addEventListener('click', start);
     global.document.addEventListener('visibilitychange', onVisibility);
+
+    // Sound is off until asked for. An AudioContext cannot start before a
+    // gesture anyway, and a game that makes noise unprompted is a bad
+    // guest on a child's tablet.
+    var soundBtn = container.querySelector('.cf-sound-btn');
+    if (soundBtn && global.ChirpySfx && global.ChirpySfx.available()) {
+      var paintSound = function () {
+        var on = global.ChirpySfx.isEnabled();
+        soundBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        soundBtn.setAttribute('aria-label', on ? 'Sound on' : 'Sound off');
+      };
+      soundBtn.addEventListener('click', function () {
+        global.ChirpySfx.setEnabled(!global.ChirpySfx.isEnabled());
+        paintSound();
+        global.ChirpySfx.play('chirp');     // so the choice is audible
+      });
+      paintSound();
+    } else if (soundBtn) {
+      soundBtn.hidden = true;               // no Web Audio here
+    }
 
     var speedBtns = container.querySelectorAll('.cf-speed-btn');
     Array.prototype.forEach.call(speedBtns, function (b) {
@@ -253,7 +291,7 @@
         var b = branches[i];
         b.x -= speed * dt;
         if (!b.passed && b.x + 26 < BIRD_X - BIRD_R) {
-          b.passed = true; score++;
+          b.passed = true; score++; sfx('point');
           el.hud.textContent = String(score);
           if (score === 1) el.hint.hidden = true;
         }
@@ -328,10 +366,16 @@
       ctx.save();
       ctx.translate(BIRD_X, bird.y);
       ctx.rotate(bird.rot * 0.5);
-      ctx.scale(1, 1 + flapAnim * 0.12);
       if (spriteReady) {
-        var w = BIRD_DRAW, h = w * (sprite.height / sprite.width);
-        ctx.drawImage(sprite, -w / 2, -h / 2 - 2, w, h);
+        // flapAnim runs 1 -> 0 over about a fifth of a second after each
+        // tap, so reading the frame straight off it puts the wings at
+        // full spread on the beat and folds them as Chirpy glides.
+        var fw = sprite.width / SPRITE_FRAMES;
+        var i = Math.round(flapAnim * (SPRITE_FRAMES - 1));
+        if (i < 0) i = 0; else if (i > SPRITE_FRAMES - 1) i = SPRITE_FRAMES - 1;
+        var w = BIRD_DRAW * 1.5, h = w * (sprite.height / fw);
+        ctx.drawImage(sprite, i * fw, 0, fw, sprite.height,
+                      -w / 2, -h / 2 - 2, w, h);
       } else {
         ctx.fillStyle = '#DC3B2A';
         ctx.beginPath(); ctx.arc(0, 0, BIRD_R + 4, 0, Math.PI * 2); ctx.fill();

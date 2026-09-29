@@ -12,6 +12,40 @@ RewriteEngine On
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 
+# ---- Clean URLs -----------------------------------------------------
+# STAGE 1: /book serves book.html. Purely additive -- it adds a second
+# working address for each page and takes none away, so if this host
+# ignores these rules the site behaves exactly as it does today.
+#
+# The order matters. The 301 comes first so an old link is corrected in
+# the browser, and it is guarded on THE_REQUEST so it only fires for a
+# real request and not for the internal rewrite underneath it, which
+# would otherwise loop.
+#
+# WARNING: these rules only work if this host honours .htaccess. That has
+# never been verified on this Hostinger account. Internal links are all
+# still written as .html on purpose, so if these rules never fire the
+# site carries on working exactly as it does today; only the tidy URLs
+# are missing. Do not rewrite the internal links to extensionless until
+# somebody has loaded https://threebabybirdies.com/book and seen the
+# page rather than a 404.
+# STAGE 2, not enabled yet. These redirect /book.html to /book. They are
+# held back on purpose: every internal link on this site is still .html,
+# so if the 301 below fired and the rewrite underneath it did NOT, every
+# page on the site would 404 at once, and this host publishes with no
+# rollback. Enable these only after somebody has loaded
+# https://threebabybirdies.com/book and seen the page.
+#
+#   RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+#   RewriteRule ^ / [R=301,L]
+#
+#   RewriteCond %{THE_REQUEST} \s/+([^?\s]+?)\.html[\s?] [NC]
+#   RewriteRule ^ /%1 [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
 # The site had no security headers at all beyond upgrade-insecure-requests.
 # HSTS is the one that matters most: without it the first request of a
 # session can still go out over http before the redirect.

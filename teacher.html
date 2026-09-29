@@ -8,10 +8,10 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --red:#CC2929;--red-dark:#A81E1E;--red-light:#FDECEA;
-  --sky:#6EB4D4;--sky-dark:#3A8BB0;--sky-light:#E8F4FA;
-  --green:#4A8B3F;--green-light:#EDF7EC;
+  --sky:#6EB4D4;--sky-dark:#336B80;--sky-light:#E8F4FA;
+  --green:#3C7133;--green-light:#EDF7EC;
   --yellow:#F5C200;--yellow-light:#FFFAEB;
-  --dark:#1A1A2E;--mid:#6B7280;--light:#9CA3AF;
+  --dark:#1A1A2E;--mid:#6B7280;--light:#6E7684;
   --cream:#FDF8F3;--cream-dark:#F0E8DE;--white:#fff;
   --font-display:'Quicksand',sans-serif;--font-body:'Nunito',sans-serif;
   --r-sm:8px;--r-md:12px;--r-lg:20px;--r-full:999px;
@@ -30,6 +30,8 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);min-
 .row .grow{margin-right:auto;}
 h2.page{font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:var(--dark);margin:0;}
 .section-title{font-family:var(--font-display);font-weight:700;font-size:.78rem;color:var(--red);text-transform:uppercase;letter-spacing:.06em;margin:22px 0 10px;}
+.btn .ic{width:17px;height:17px;}
+.btn-logout .ic{width:16px;height:16px;}
 .btn{border:none;border-radius:var(--r-full);padding:9px 16px;font-family:var(--font-display);font-weight:700;font-size:.82rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
 .btn-green{background:var(--green);color:#fff;}
 .btn-red{background:var(--red);color:#fff;}
@@ -92,6 +94,13 @@ tr:last-child td{border-bottom:none;}
 .toast.success{background:var(--green);}.toast.error{background:var(--red);}.toast.show{opacity:1;}
 .loading-bar{text-align:center;padding:36px;color:var(--mid);font-family:var(--font-display);font-weight:600;}
 @media(max-width:600px){th{font-size:.66rem;}td{font-size:.78rem;}}
+
+/* The sprite comes from js/layout.js, which these pages load only for that.
+   Same class and behaviour as the marketing side: an icon takes the size
+   and the colour of the text it sits in. */
+.icon-sprite { position:absolute; width:0; height:0; overflow:hidden; }
+.ic { width:1.15em; height:1.15em; flex-shrink:0; color:currentColor; vertical-align:-.18em; }
+.ic-lg { width:1.5em; height:1.5em; }
 </style>
 <!-- SEO / social / icons -->
 <meta name="description" content="Teacher dashboard for Chirpy's Classroom.">
@@ -122,8 +131,8 @@ tr:last-child td{border-bottom:none;}
   <div class="header-logo">Three Baby Birdies</div>
   <div class="header-badge">Teacher Dashboard</div>
   <div class="header-right">
-    <span class="header-email" id="t-email">,</span>
-    <button class="btn-logout" onclick="logout()">Log out</button>
+    <span class="header-email" id="t-email">&mdash;</span>
+    <button class="btn-logout" onclick="logout()"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> Log out</button>
   </div>
 </header>
 
@@ -132,7 +141,7 @@ tr:last-child td{border-bottom:none;}
   <div id="view-list">
     <div class="row">
       <h1 class="page grow">Your Classes</h1>
-      <button class="btn btn-green" onclick="openModal('m-class')">＋ New Class</button>
+      <button class="btn btn-green" onclick="openModal('m-class')"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> New Class</button>
     </div>
     <div id="class-list"><div class="loading-bar">Loading classes…</div></div>
   </div>
@@ -140,9 +149,9 @@ tr:last-child td{border-bottom:none;}
   <!-- DETAIL VIEW -->
   <div id="view-detail" style="display:none;">
     <div class="row">
-      <button class="btn btn-ghost" onclick="showList()">← Classes</button>
+      <button class="btn btn-ghost" onclick="showList()"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> Classes</button>
       <h2 class="page grow" id="d-name">Class</h2>
-      <button class="btn btn-ghost" onclick="downloadReport()">Class Report</button>
+      <button class="btn btn-ghost" onclick="downloadReport()"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Class Report</button>
       <button class="btn btn-ghost" style="color:var(--red);border-color:#fca5a5;" onclick="deleteClass()">Delete</button>
     </div>
 
@@ -160,7 +169,7 @@ tr:last-child td{border-bottom:none;}
 
     <div class="row" style="margin-top:22px;margin-bottom:10px;">
       <div class="section-title grow" style="margin:0;">Assigned Lessons</div>
-      <button class="btn btn-amber" onclick="openModal('m-lesson')">Assign Lesson</button>
+      <button class="btn btn-amber" onclick="openModal('m-lesson')"><svg class="ic" aria-hidden="true"><use href="#i-pencil"></use></svg> Assign Lesson</button>
     </div>
     <div id="d-lessons"></div>
   </div>
@@ -223,6 +232,9 @@ tr:last-child td{border-bottom:none;}
 
 <div class="toast" id="toast"></div>
 
+<!-- Loaded for the icon sprite only: layout.js guards its nav and
+     footer injection on elements this page does not have. -->
+<script src="js/layout.js"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');
@@ -287,8 +299,8 @@ function refreshDetail(){ if(active) openClass(active); }
 function renderCode(){
   const el=document.getElementById('d-code');
   el.innerHTML = `<span style="font-family:var(--font-display);font-weight:700;font-size:.8rem;color:var(--mid);">Class join code:</span>
-    <span id="code-val" style="font-family:monospace;font-weight:700;font-size:1.05rem;letter-spacing:3px;background:var(--sky-light);color:var(--sky-dark);padding:5px 14px;border-radius:8px;">${esc(active.join_code||',')}</span>
-    <button class="btn btn-ghost" onclick="copyCode()">Copy</button>
+    <span id="code-val" style="font-family:monospace;font-weight:700;font-size:1.05rem;letter-spacing:3px;background:var(--sky-light);color:var(--sky-dark);padding:5px 14px;border-radius:8px;">${esc(active.join_code||'—')}</span>
+    <button class="btn btn-ghost" onclick="copyCode()"><svg class="ic" aria-hidden="true"><use href="#i-devices"></use></svg> Copy</button>
     <button class="btn btn-ghost" onclick="regenCode()">Regenerate</button>
     <span style="font-size:.75rem;color:var(--mid);flex-basis:100%;">Share this code with parents so they can enroll their own child in this class.</span>`;
 }
@@ -311,12 +323,12 @@ function renderDetail(a){
   let rows = students.length ? students.map(s=>`
     <tr>
       <td><strong>${esc(s.child_name)}</strong>${s.joined?' <span style="font-size:.62rem;background:var(--yellow-light);color:#92600a;padding:2px 7px;border-radius:999px;font-weight:700;vertical-align:middle;">parent-joined</span>':''}</td>
-      <td>${esc(s.grade)||','}</td>
+      <td>${esc(s.grade)||'—'}</td>
       <td>${s.sessions}</td>
       <td style="font-weight:700;color:${accColor(s.avg_score)}">${s.avg_score}%</td>
       <td>${s.badges}</td>
       <td style="white-space:nowrap;">
-        ${s.joined?'<span style="font-size:.72rem;color:var(--mid);">Parent-managed</span>':`<button class="btn btn-sky" onclick="teach('${s.id}')">▶ Teach</button>`}
+        ${s.joined?'<span style="font-size:.72rem;color:var(--mid);">Parent-managed</span>':`<button class="btn btn-sky" onclick="teach('${s.id}')"><svg class="ic" aria-hidden="true"><use href="#i-play"></use></svg> Teach</button>`}
         <button class="btn btn-mini" onclick="removeStudent('${s.id}','${esc(s.child_name)}')">Remove</button>
       </td>
     </tr>`).join('') : '<tr><td colspan="6" style="color:var(--mid);">No students yet, add one, or share the join code so a parent can enroll their child.</td></tr>';

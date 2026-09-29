@@ -8,10 +8,10 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --red:#CC2929;--red-dark:#A81E1E;--red-light:#FDECEA;
-  --sky:#6EB4D4;--sky-dark:#3A8BB0;--sky-light:#E8F4FA;
-  --green:#4A8B3F;--green-light:#EDF7EC;
+  --sky:#6EB4D4;--sky-dark:#336B80;--sky-light:#E8F4FA;
+  --green:#3C7133;--green-light:#EDF7EC;
   --yellow:#F5C200;--yellow-light:#FFFAEB;
-  --dark:#1A1A2E;--mid:#6B7280;--light:#9CA3AF;
+  --dark:#1A1A2E;--mid:#6B7280;--light:#6E7684;
   --cream:#FDF8F3;--cream-dark:#F0E8DE;--white:#fff;
   --font-display:'Quicksand',sans-serif;--font-body:'Nunito',sans-serif;
   --r-sm:8px;--r-md:12px;--r-lg:20px;--r-full:999px;
@@ -39,6 +39,16 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);min-
 /* ── STATS ROW ── */
 .stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:28px;}
 .stat-card{background:#fff;border-radius:var(--r-lg);padding:20px 16px;box-shadow:var(--sh-sm);text-align:center;border-top:3px solid var(--cream-dark);}
+.stat-ic{display:flex;width:38px;height:38px;margin:0 auto 10px;border-radius:12px;align-items:center;justify-content:center;background:var(--cream);color:var(--mid);}
+.stat-ic .ic{width:19px;height:19px;}
+.stat-card.c-red .stat-ic{background:var(--red-light);color:var(--red-dark);}
+.stat-card.c-sky .stat-ic{background:var(--sky-light);color:var(--sky-dark);}
+.stat-card.c-green .stat-ic{background:var(--green-light);color:var(--green);}
+.stat-card.c-yellow .stat-ic{background:var(--yellow-light);color:#736000;}
+.stat-card.c-purple .stat-ic{background:var(--cream-dark);color:var(--brown);}
+.admin-tab{display:inline-flex;align-items:center;gap:8px;}
+.admin-tab .ic{width:16px;height:16px;}
+.btn-logout .ic{width:16px;height:16px;}
 .stat-card.c-red{border-top-color:var(--red);}
 .stat-card.c-sky{border-top-color:var(--sky);}
 .stat-card.c-green{border-top-color:var(--green);}
@@ -106,6 +116,13 @@ tr.parent-row:hover td{background:var(--cream);}
 @media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr);}table{font-size:.78rem;}}
 @media(max-width:600px){.stats-grid{grid-template-columns:1fr 1fr;}.admin-tabs{flex-wrap:wrap;border-radius:var(--r-lg);}th{display:none;}}
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
+
+/* The sprite comes from js/layout.js, which these pages load only for that.
+   Same class and behaviour as the marketing side: an icon takes the size
+   and the colour of the text it sits in. */
+.icon-sprite { position:absolute; width:0; height:0; overflow:hidden; }
+.ic { width:1.15em; height:1.15em; flex-shrink:0; color:currentColor; vertical-align:-.18em; }
+.ic-lg { width:1.5em; height:1.5em; }
 </style>
 <!-- SEO / social / icons -->
 <meta name="description" content="Admin.">
@@ -137,8 +154,8 @@ tr.parent-row:hover td{background:var(--cream);}
   <div class="header-logo">Three Baby Birdies</div>
   <div class="header-badge">Admin Dashboard</div>
   <div class="header-right">
-    <span class="header-email" id="admin-email">,</span>
-    <button class="btn-logout" onclick="logout()">Log out</button>
+    <span class="header-email" id="admin-email">&mdash;</span>
+    <button class="btn-logout" onclick="logout()"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> Log out</button>
   </div>
 </header>
 
@@ -146,18 +163,18 @@ tr.parent-row:hover td{background:var(--cream);}
   <!-- Stats -->
   <div class="section-title">System Overview</div>
   <div class="stats-grid">
-    <div class="stat-card c-red"><div class="stat-val" id="st-users">,</div><div class="stat-lbl">Total Users</div></div>
-    <div class="stat-card c-sky"><div class="stat-val" id="st-trial">,</div><div class="stat-lbl">On Trial</div></div>
-    <div class="stat-card c-green"><div class="stat-val" id="st-active">,</div><div class="stat-lbl">Paid Active</div></div>
-    <div class="stat-card c-yellow"><div class="stat-val" id="st-children">,</div><div class="stat-lbl">Child Profiles</div></div>
-    <div class="stat-card c-purple"><div class="stat-val" id="st-sessions">,</div><div class="stat-lbl">Total Sessions</div></div>
-    <div class="stat-card"><div class="stat-val" id="st-cost">,</div><div class="stat-lbl">API Cost / Mo</div></div>
+    <div class="stat-card c-red"><span class="stat-ic"><svg class="ic" aria-hidden="true"><use href="#i-child"></use></svg></span><div class="stat-val" id="st-users">&mdash;</div><div class="stat-lbl">Total Users</div></div>
+    <div class="stat-card c-sky"><span class="stat-ic"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg></span><div class="stat-val" id="st-trial">&mdash;</div><div class="stat-lbl">On Trial</div></div>
+    <div class="stat-card c-green"><span class="stat-ic"><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg></span><div class="stat-val" id="st-active">&mdash;</div><div class="stat-lbl">Paid Active</div></div>
+    <div class="stat-card c-yellow"><span class="stat-ic"><svg class="ic" aria-hidden="true"><use href="#i-birds"></use></svg></span><div class="stat-val" id="st-children">&mdash;</div><div class="stat-lbl">Child Profiles</div></div>
+    <div class="stat-card c-purple"><span class="stat-ic"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg></span><div class="stat-val" id="st-sessions">&mdash;</div><div class="stat-lbl">Total Sessions</div></div>
+    <div class="stat-card"><span class="stat-ic"><svg class="ic" aria-hidden="true"><use href="#i-chart"></use></svg></span><div class="stat-val" id="st-cost">&mdash;</div><div class="stat-lbl">API Cost / Mo</div></div>
   </div>
 
   <!-- Tabs -->
   <div class="admin-tabs">
-    <button class="admin-tab active" onclick="switchTab('users',this)">Parents &amp; Children</button>
-    <button class="admin-tab" onclick="switchTab('usage',this)">Usage &amp; Costs</button>
+    <button class="admin-tab active" onclick="switchTab('users',this)"><svg class="ic" aria-hidden="true"><use href="#i-birds"></use></svg> Parents &amp; Children</button>
+    <button class="admin-tab" onclick="switchTab('usage',this)"><svg class="ic" aria-hidden="true"><use href="#i-chart"></use></svg> Usage &amp; Costs</button>
   </div>
 
   <!-- Users panel -->
@@ -180,8 +197,8 @@ tr.parent-row:hover td{background:var(--cream);}
   <div class="admin-panel" id="panel-usage">
     <div class="usage-wrap">
       <div class="usage-totals">
-        <div class="usage-card"><div class="usage-val" id="u-msgs">,</div><div class="usage-lbl">Messages (30 days)</div></div>
-        <div class="usage-card"><div class="usage-val" id="u-cost">,</div><div class="usage-lbl">API Cost (30 days)</div></div>
+        <div class="usage-card"><div class="usage-val" id="u-msgs">&mdash;</div><div class="usage-lbl">Messages (30 days)</div></div>
+        <div class="usage-card"><div class="usage-val" id="u-cost">&mdash;</div><div class="usage-lbl">API Cost (30 days)</div></div>
       </div>
       <div class="section-title">Daily Breakdown</div>
       <div id="daily-table-wrap"><div class="loading-bar">Loading usage data…</div></div>
@@ -191,6 +208,9 @@ tr.parent-row:hover td{background:var(--cream);}
 
 <div class="toast" id="toast"></div>
 
+<!-- Loaded for the icon sprite only: layout.js guards its nav and
+     footer injection on elements this page does not have. -->
+<script src="js/layout.js"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');
@@ -214,12 +234,12 @@ async function loadStats() {
   try {
     const res  = await api('GET', '/admin/stats');
     const data = await res.json();
-    document.getElementById('st-users').textContent    = data.total_users ?? ',';
-    document.getElementById('st-trial').textContent    = data.trial_users ?? ',';
-    document.getElementById('st-active').textContent   = data.active_subscribers ?? ',';
-    document.getElementById('st-children').textContent = data.total_children ?? ',';
-    document.getElementById('st-sessions').textContent = data.total_sessions ?? ',';
-    document.getElementById('st-cost').textContent     = data.api_cost_this_month != null ? '$' + data.api_cost_this_month.toFixed(4) : ',';
+    document.getElementById('st-users').textContent    = data.total_users ?? '—';
+    document.getElementById('st-trial').textContent    = data.trial_users ?? '—';
+    document.getElementById('st-active').textContent   = data.active_subscribers ?? '—';
+    document.getElementById('st-children').textContent = data.total_children ?? '—';
+    document.getElementById('st-sessions').textContent = data.total_sessions ?? '—';
+    document.getElementById('st-cost').textContent     = data.api_cost_this_month != null ? '$' + data.api_cost_this_month.toFixed(4) : '—';
   } catch(e) { showToast('Could not load stats', 'error'); }
 }
 
@@ -256,13 +276,13 @@ function renderTable() {
     const totalC    = p.children.reduce((s,c) => s + c.total_correct, 0);
     const acc       = totalQ ? Math.round(totalC/totalQ*100*10)/10 : 0;
     const statusCls = p.subscription_status === 'active' ? 'pill-active' : p.subscription_status === 'cancelled' ? 'pill-cancelled' : p.subscription_status === 'grace' || p.subscription_status === 'grace_period' ? 'pill-grace' : 'pill-trial';
-    const trialDate = p.trial_ends_at ? p.trial_ends_at.slice(0,10) : ',';
+    const trialDate = p.trial_ends_at ? p.trial_ends_at.slice(0,10) : '—';
     const hasChildren = p.children && p.children.length > 0;
 
     html += `<tr class="parent-row" onclick="toggleChildren('children-${i}')">
       <td><strong>${p.email}</strong></td>
-      <td>${p.role || ','}</td>
-      <td><span class="status-pill ${statusCls}">${p.subscription_status || ','}</span></td>
+      <td>${p.role || '—'}</td>
+      <td><span class="status-pill ${statusCls}">${p.subscription_status || '—'}</span></td>
       <td>${p.subscription_plan || 'trial'}</td>
       <td>${p.children.length}</td>
       <td>${totalSess}</td>
@@ -281,11 +301,11 @@ function renderTable() {
           <tbody style="display:none;" id="children-body-${i}">`;
       p.children.forEach(c => {
         const cAcc = c.accuracy_pct ?? 0;
-        const lastActive = c.last_active ? c.last_active.slice(0,10) : ',';
+        const lastActive = c.last_active ? c.last_active.slice(0,10) : '—';
         html += `<tr class="child-row">
           <td style="width:36px;padding-left:24px;"></td>
           <td class="child-name-cell">${c.child_name}</td>
-          <td style="font-size:.78rem;color:var(--mid);">Age ${c.age || '?'} · ${c.grade || ','}</td>
+          <td style="font-size:.78rem;color:var(--mid);">Age ${c.age || '?'} · ${c.grade || '—'}</td>
           <td>${c.total_sessions} sessions</td>
           <td>${c.messages_used} msgs</td>
           <td>${cAcc}% accuracy</td>
@@ -334,8 +354,8 @@ async function loadUsage() {
   try {
     const res  = await api('GET', '/admin/usage');
     const data = await res.json();
-    document.getElementById('u-msgs').textContent = data.totals?.messages ?? ',';
-    document.getElementById('u-cost').textContent = data.totals?.cost_usd != null ? '$' + data.totals.cost_usd.toFixed(4) : ',';
+    document.getElementById('u-msgs').textContent = data.totals?.messages ?? '—';
+    document.getElementById('u-cost').textContent = data.totals?.cost_usd != null ? '$' + data.totals.cost_usd.toFixed(4) : '—';
 
     const daily = data.daily || [];
     if (!daily.length) {
