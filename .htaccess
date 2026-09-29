@@ -61,6 +61,20 @@ RewriteRule ^(.+?)/?$ $1.html [L]
   AddType application/manifest+json   .webmanifest
 </IfModule>
 
+# The AddType block above is guarded on mod_mime.c, and this host does not
+# report that module, so it is skipped and .webm kept arriving as
+# text/plain. mod_headers is demonstrably active here -- the HSTS header
+# below is being served -- so the content type is set that way instead.
+# The block above stays for a host that does honour it.
+<IfModule mod_headers.c>
+  <FilesMatch "\.webm$">
+    Header set Content-Type "video/webm"
+  </FilesMatch>
+  <FilesMatch "\.webp$">
+    Header set Content-Type "image/webp"
+  </FilesMatch>
+</IfModule>
+
 # The site had no security headers at all beyond upgrade-insecure-requests.
 # HSTS is the one that matters most: without it the first request of a
 # session can still go out over http before the redirect.
