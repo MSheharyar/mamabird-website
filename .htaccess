@@ -46,6 +46,21 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
 
+# ---- Media types ----------------------------------------------------
+# This host serves .webm as text/plain, and a browser will not decode a
+# video with that content type. Chirpy fell back to the animated WebP,
+# which works but is the lesser asset. The rest are here so the same
+# thing cannot happen to the other modern formats.
+<IfModule mod_mime.c>
+  AddType video/webm                  .webm
+  AddType video/mp4                   .mp4
+  AddType image/webp                  .webp
+  AddType image/avif                  .avif
+  AddType image/svg+xml               .svg
+  AddType font/woff2                  .woff2
+  AddType application/manifest+json   .webmanifest
+</IfModule>
+
 # The site had no security headers at all beyond upgrade-insecure-requests.
 # HSTS is the one that matters most: without it the first request of a
 # session can still go out over http before the redirect.
