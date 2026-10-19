@@ -4,12 +4,17 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <script src="js/analytics.js?v=c0b61f56" defer></script>
 <title>The Book | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=e2a548b8">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-.book-hero-grid { display:grid; grid-template-columns:1fr 1.6fr; gap:72px; align-items:start; padding-top:72px; }
-.book-3d-wrap { position:relative; display:flex; justify-content:center; }
+/* minmax(0,...) and min-width:0, both on purpose. A grid track and a
+   flex item are both sized to at least their content by default, so the
+   430px mockup below held the column open at 430px on a 390px phone and
+   the whole page scrolled sideways -- max-width:100% could not help,
+   because the 100% it resolved against was the blown-out column itself. */
+.book-hero-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.6fr); gap:72px; align-items:start; padding-top:72px; }
+.book-3d-wrap { position:relative; display:flex; justify-content:center; min-width:0; }
 .book-mockup-lg {
   width:430px; max-width:100%; position:relative;
   filter:drop-shadow(0 16px 30px rgba(44,24,16,.13));
@@ -46,8 +51,7 @@
 }
 .spread-card .page-art { font-size:3rem; margin-bottom:12px; }
 .spread-card p { font-family:var(--font-display); font-size:.95rem; font-weight:600; color:var(--dark); }
-@media(max-width:900px){ .book-hero-grid{grid-template-columns:1fr;}  }
-@media(max-width:560px){  }
+@media(max-width:900px){ .book-hero-grid{grid-template-columns:minmax(0,1fr);}  }
 
 /* ---- Carried over when the eBook page was folded in here ---- */
 .ebook-page { padding-top:var(--nav-h); min-height:100vh; background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%); }
