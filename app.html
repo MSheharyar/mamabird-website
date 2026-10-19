@@ -101,6 +101,26 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 /* The art is a bust, so it is oversized and bottom-anchored; centring it
    leaves a gap under the chin. */
 .mascot-badge .mascot{width:118%;margin-bottom:-8%;}
+/* The 3D Chirpy, for the same reason: this page does not load
+   css/main.css, so without these the mouth strip is unclipped. It is one
+   image of five beak positions laid side by side and sized to 500% of the
+   box; the box has to clip it and a transform slides the wanted frame in.
+   Miss the clip and all five birds render across the chat at once, which
+   is exactly what was happening here. */
+.c3d{position:relative;display:block;width:100%;aspect-ratio:480/504;}
+.c3d-media{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;background:transparent;}
+.c3d-talking{overflow:hidden;aspect-ratio:240/404;background:none;}
+.c3d-mouth{
+  position:absolute;left:0;top:0;height:100%;width:500%;
+  max-width:none;object-fit:fill;
+  transition:transform .045s linear;will-change:transform;
+}
+.c3d[data-state="speaking"]{animation:c3d-bob 1.6s ease-in-out infinite;}
+@keyframes c3d-bob{0%,100%{transform:none;}50%{transform:translateY(-4px);}}
+@media(prefers-reduced-motion:reduce){
+  .c3d-mouth{transition:none;}
+  .c3d[data-state="speaking"]{animation:none;}
+}
 .char-tab-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;}
 .av-chirpy{background:var(--sky-light);}
 .av-mama{background:var(--green-light);}
@@ -992,21 +1012,22 @@ function fmtMsg(t) {
     ChirpyVoice.speak(text, {
       // whichever character the child is with right now
       voice:   (typeof currentChar !== 'undefined' && currentChar === 'mama') ? 'mama' : 'chirpy',
-      onstart: function () { if (bird) bird.speak(); },
-      onend:   finish,
-      onlevel: function (v) { if (bird) bird.setMouth(v); },
-      onaudio: function (a) {
+      // One reveal, started the moment speech actually starts, and driven
+      // by the audio's own clock when there is audio to ask. The previous
+      // version started a timed reveal after 120ms if no audio had arrived
+      // yet, which a round trip to the speech provider always loses: the
+      // words appeared first, then the voice began, and a second reveal
+      // started on top of the first and fought it for the same bubble.
+      onstart: function (audio) {
+        if (bird) bird.speak();
         if (!bubble) return;
-        stopReveal = ChirpyVoice.reveal(text, function (part) { bubble.textContent = part; }, { audio: a });
-      }
+        stopReveal = ChirpyVoice.reveal(text, function (part) {
+          bubble.textContent = part;
+        }, audio ? { audio: audio } : {});
+      },
+      onend:   finish,
+      onlevel: function (v) { if (bird) bird.setMouth(v); }
     });
-    if (bubble && !stopReveal) {
-      setTimeout(function () {
-        if (!stopReveal) {
-          stopReveal = ChirpyVoice.reveal(text, function (part) { bubble.textContent = part; }, {});
-        }
-      }, 120);
-    }
   };
 })();
 

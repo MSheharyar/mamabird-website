@@ -667,27 +667,22 @@ function quickSay(btn) {
     ChirpyVoice.speak(text, {
       // The demo only unlocks Chirpy; Mama Bird is behind sign-up.
       voice:   'chirpy',
-      onstart: function () { if (bird) bird.speak(); },
-      onend:   finish,
-      onlevel: function (v) { if (bird) bird.setMouth(v); },
-      onaudio: function (a) {
+      // One reveal, started when speech actually starts, paced by the
+      // audio's own clock where there is audio and by an estimated
+      // reading rate on the browser-voice path. Racing a 120ms timer
+      // against the speech request, as this used to, meant the timer
+      // always won: words first, voice afterwards, and then a second
+      // reveal fighting the first for the same bubble.
+      onstart: function (audio) {
+        if (bird) bird.speak();
         if (!bubble) return;
         stopReveal = ChirpyVoice.reveal(text, function (part) {
           bubble.textContent = part;
-        }, { audio: a });
-      }
+        }, audio ? { audio: audio } : {});
+      },
+      onend:   finish,
+      onlevel: function (v) { if (bird) bird.setMouth(v); }
     });
-
-    // No audio element on the browser-voice path, so pace it instead.
-    if (bubble && !stopReveal) {
-      setTimeout(function () {
-        if (!stopReveal) {
-          stopReveal = ChirpyVoice.reveal(text, function (part) {
-            bubble.textContent = part;
-          }, {});
-        }
-      }, 120);
-    }
   };
 })();
 
