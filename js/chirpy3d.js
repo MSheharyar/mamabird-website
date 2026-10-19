@@ -69,7 +69,9 @@
     alphaProbe = new Promise(function (resolve) {
       var cached = null;
       try { cached = sessionStorage.getItem('c3d_alpha'); } catch (e) {}
-      if (cached !== null) return resolve(cached === '1');
+      // A cached yes carries no element: the renderer makes its own, and
+      // that request is a cache hit because it is the same URL.
+      if (cached !== null) return resolve({ ok: cached === '1', video: null });
 
       var v = document.createElement('video');
       if (!v.canPlayType || !v.canPlayType('video/webm')) return finish(false);
@@ -96,9 +98,15 @@
         if (done) return;
         done = true; clearTimeout(bail);
         try { sessionStorage.setItem('c3d_alpha', ok ? '1' : '0'); } catch (e) {}
-        // Releasing the probe's buffer is a courtesy, not a requirement.
+        // The probe used to throw this element away, which meant the clip
+        // was downloaded twice -- 437KB to read one pixel, then 437KB
+        // again for the renderer, 841KB of a 1.2MB page. When the answer
+        // is yes the element is handed on and becomes the renderer; only
+        // when the answer is no is the buffer released, because then
+        // nothing is going to play it.
+        if (ok) return resolve({ ok: true, video: v });
         try { v.removeAttribute('src'); v.load(); } catch (e) {}
-        resolve(ok);
+        resolve({ ok: false, video: null });
       }
     });
     return alphaProbe;
@@ -106,14 +114,16 @@
 
   /* ---- The two renderers ---- */
 
-  function videoRenderer(root) {
-    var v = document.createElement('video');
+  function videoRenderer(root, existing) {
+    // `existing` is the element the alpha probe already loaded, adopted so
+    // the clip is fetched once rather than twice.
+    var v = existing || document.createElement('video');
     v.className = 'c3d-media';
     v.muted = true; v.playsInline = true; v.loop = false;
     v.preload = 'auto';
     v.setAttribute('aria-hidden', 'true');
     v.setAttribute('poster', SOURCES.still);
-    v.src = SOURCES.video;
+    if (!existing) v.src = SOURCES.video;
     root.appendChild(v);
 
     var looping = false;
@@ -209,8 +219,11 @@
     // them, so when a caller asks to talk it gets the sprite either way.
     if (opts && opts.mouth) return cb(mouthRenderer(root));
     if (reduced) return cb(stillRenderer(root));
-    supportsAlphaVideo().then(function (ok) {
-      cb(ok ? videoRenderer(root) : imageRenderer(root));
+    // Nothing is ever going to call start() on this one, so the 437KB clip
+    // would be downloaded to show its poster frame and nothing else.
+    if (opts && opts.staticOnly) return cb(stillRenderer(root));
+    supportsAlphaVideo().then(function (res) {
+      cb(res.ok ? videoRenderer(root, res.video) : imageRenderer(root));
     });
   }
 
@@ -229,7 +242,14 @@
       root.style.height = Math.round(opts.size / SOURCES.ratio) + 'px';
     }
     // Something visible from the first paint, whichever renderer wins.
-    root.style.setProperty('--c3d-still', 'url(' + SOURCES.still + ')');
+    //
+    // Root-relative on purpose. This value is consumed by a background
+    // shorthand in css/main.css, and a relative url() inside a custom
+    // property resolves against the stylesheet that uses it, not the
+    // document -- so "assets/..." was being fetched as /css/assets/... and
+    // 404ing on every page. The other SOURCES paths are fine as they are,
+    // because they go on elements in the document.
+    root.style.setProperty('--c3d-still', 'url(/' + SOURCES.still + ')');
     el.appendChild(root);
 
     var r = null;
@@ -267,16 +287,53 @@
 
   /* Mount every [data-chirpy3d] on the page. The attribute's value, if
      any, is the pixel width. data-chirpy3d-play makes it greet once. */
+  /* Mounting fetches a 437KB clip, and on the homepage the character sits
+     well below the fold, where it was competing for bandwidth with the
+     book cover that is the page's largest contentful paint. So a
+     [data-chirpy3d] is mounted when it comes near the viewport rather
+     than at DOMContentLoaded. Anything already on screen mounts
+     immediately, so nothing above the fold waits for a scroll.
+
+     mount() is untouched: the pages that call it directly for the talking
+     mouth never load the video at all. */
+  var io = null;
+  function lazyMount(n) {
+    if (n.__c3d || n.__c3dPending) return;
+    var size = parseInt(n.getAttribute('data-chirpy3d'), 10);
+    var plays = n.hasAttribute('data-chirpy3d-play');
+    n.__c3d = mount(n, {
+      size: size || null,
+      autoplay: plays,
+      loop: n.hasAttribute('data-chirpy3d-loop'),
+      // loop only ever took effect once autoplay had fired, so a node with
+      // data-chirpy3d-loop and no data-chirpy3d-play -- which is what the
+      // homepage has -- has always shown a still poster while downloading
+      // the whole clip to do it. It gets the still image instead. Adding
+      // data-chirpy3d-play is what makes one animate.
+      staticOnly: !plays
+    });
+  }
+
   function auto() {
     var nodes = document.querySelectorAll('[data-chirpy3d]');
+    if (!global.IntersectionObserver) {
+      Array.prototype.forEach.call(nodes, lazyMount);
+      return;
+    }
+    if (!io) {
+      io = new global.IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          io.unobserve(e.target);
+          e.target.__c3dPending = false;
+          lazyMount(e.target);
+        });
+      }, { rootMargin: '300px 0px' });   // start a little before it shows
+    }
     Array.prototype.forEach.call(nodes, function (n) {
-      if (n.__c3d) return;
-      var size = parseInt(n.getAttribute('data-chirpy3d'), 10);
-      n.__c3d = mount(n, {
-        size: size || null,
-        autoplay: n.hasAttribute('data-chirpy3d-play'),
-        loop: n.hasAttribute('data-chirpy3d-loop')
-      });
+      if (n.__c3d || n.__c3dPending) return;
+      n.__c3dPending = true;
+      io.observe(n);
     });
   }
 
