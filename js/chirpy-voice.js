@@ -169,7 +169,7 @@
       u.onerror = function () { synthOn = false; if (stopLevel) { stopLevel(); stopLevel = null; } cb.end(); };
       synth.cancel();
       synthOn = true;
-      cb.start();
+      cb.start(null);
       if (cb.level) stopLevel = fakeLevel(cb.level);
       synth.speak(u);
       return true;
@@ -197,7 +197,7 @@
         if (current === a) current = null;
         cb.end();
       };
-      cb.start();
+      cb.start(a);
       if (cb.audio) cb.audio(a);
 
       // Route through an analyser so the beak can follow the sentence.
@@ -214,7 +214,16 @@
           }
         } catch (e) { stopLevel = fakeLevel(cb.level); }
       }
-      return a.play();
+      return a.play().then(function () { return true; }, function () {
+        // The browser refused to play it. That is an autoplay decision,
+        // not a fault in our endpoint, so /tts is still worth trying for
+        // the next reply. Finish cleanly rather than leaving the caller
+        // revealing text behind an audio clock that will never move.
+        if (stopLevel) { stopLevel(); stopLevel = null; }
+        if (current === a) current = null;
+        cb.end();
+        return true;
+      });
     }).catch(function () {
       // One bad answer is enough: the endpoint is not deployed, or the
       // key is missing. Stop asking and let the browser do it.
@@ -234,23 +243,33 @@
     if (!isEnabled() || !said) { onend(); return; }
     cancel();
 
-    var fired = false;
+    var fired = false, ended = false;
     var cb = {
-      start: function () { if (!fired) { fired = true; onstart(); } },
-      end:   function () { onend(); },
-      fail:  function () { onend(); return false; },
+      // The audio element is handed to the caller with onstart, so a text
+      // reveal can run off the real clock from its very first frame. It is
+      // null on the browser-voice path, which has nothing to measure.
+      start: function (audio) { if (!fired) { fired = true; onstart(audio || null); } },
+      // Both the 'ended' and 'error' handlers point here, and a refused
+      // play() finishes too, so this has to be idempotent: callers restore
+      // the full bubble text in onend and must not do it twice.
+      end:   function () { if (ended) return; ended = true; onend(); },
+      fail:  function () { cb.end(); return false; },
       level: onlevel,
       audio: opts.onaudio || null
     };
 
+    // cb.end rather than onend: speakViaSynth already finishes through
+    // cb.fail when there is no synthesiser, and calling the caller's
+    // onend directly here would walk straight past the once-only guard
+    // and run their finish handler a second time.
     if (!ttsBroken) {
       speakViaApi(said, cb, voice).then(function (played) {
         if (played === null) {            // endpoint unavailable
-          if (!speakViaSynth(said, cb, voice)) onend();
+          if (!speakViaSynth(said, cb, voice)) cb.end();
         }
       });
     } else if (!speakViaSynth(said, cb, voice)) {
-      onend();
+      cb.end();
     }
   }
 
@@ -287,8 +306,13 @@
 
     timer = global.setInterval(function () {
       var frac;
-      if (opts.audio && opts.audio.duration && isFinite(opts.audio.duration)) {
-        frac = opts.audio.currentTime / opts.audio.duration;
+      if (opts.audio) {
+        var dur = opts.audio.duration;
+        // Metadata has not necessarily arrived yet. Showing nothing for
+        // those few frames beats guessing a pace and then having to stall
+        // the words while the real clock catches up to the guess.
+        if (!dur || !isFinite(dur)) return;
+        frac = opts.audio.currentTime / dur;
       } else {
         frac = ((Date.now() - t0) / 1000) * wps * 2 / total;
       }
