@@ -475,7 +475,16 @@
         <div class="book-3d float" style="animation-duration:4s;">
           <div class="book-spine"></div>
           <div class="book-cover">
-            <img src="assets/book-cover.jpg" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;" fetchpriority="high" decoding="async" width="900" height="900">
+            <!-- This is the page's largest contentful paint, so it is the
+                 one image worth serving twice: 43KB of WebP instead of
+                 79KB of JPEG, with the JPEG still there for anything that
+                 cannot read WebP. The picture element carries the same
+                 display and height as the img it wraps, because the img
+                 sizes itself against its parent. -->
+            <picture style="display:block;width:100%;height:100%;">
+              <source srcset="assets/book-cover.webp" type="image/webp">
+              <img src="assets/book-cover.jpg" alt="Three Baby Birdies book cover" style="width:100%;height:100%;object-fit:cover;display:block;" fetchpriority="high" decoding="async" width="900" height="900">
+            </picture>
           </div>
           <div class="book-float book-float-top">Ages 2–6</div>
           <div class="book-float book-float-bot">+ AI Classroom</div>
