@@ -85,3 +85,21 @@ RewriteRule ^(.+?)/?$ $1.html [L]
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Permissions-Policy "geolocation=(), camera=(), payment=()"
 </IfModule>
+
+# ---- Caching -------------------------------------------------------
+# This host serves css and js with max-age=604800, so for a week after a
+# deploy a returning visitor carried on running the old file: a fix could
+# be live and still invisible to the people asked to look at it.
+#
+# The pages now reference those files with a hash of their contents in
+# the query string (tools/stamp_assets.py writes it), so a changed file
+# is a new URL that no cache has, and an unchanged one keeps its stamp
+# and stays cached. That only works if the page itself is fresh, hence
+# no-cache here -- which means revalidate, not "do not store": the
+# browser still keeps its copy and the server answers most of these with
+# a 304.
+<IfModule mod_headers.c>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
