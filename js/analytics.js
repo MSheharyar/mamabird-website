@@ -41,7 +41,11 @@
 (function (global) {
   'use strict';
 
-  var MEASUREMENT_ID = 'G-W4E0J01WMX';
+  // G-VQ1360GWLP, from the October brief. The earlier brief gave
+  // G-W4E0J01WMX, which was what sat here until now; if both properties
+  // are real then the first one has a few weeks of data in it that this
+  // change stops adding to.
+  var MEASUREMENT_ID = 'G-VQ1360GWLP';
 
   // Not a legal requirement in the US, but a cheap courtesy and this is a
   // site whose whole pitch is being careful with children.
@@ -52,14 +56,28 @@
   }
 
   var d = global.document;
-  var s = d.createElement('script');
-  s.async = true;
-  s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEASUREMENT_ID;
-  d.head.appendChild(s);
 
+  // The queue and the gtag function go up straight away, so anything that
+  // calls gtag() -- now or later -- is recorded. Only the 175KB library
+  // itself waits: it was being fetched while the browser was still
+  // getting the book cover on screen, which is this page's largest
+  // contentful paint, and on a phone those were competing for the same
+  // few hundred kilobits. Commands pushed before it arrives are replayed
+  // by it on load, so nothing is lost by waiting -- only the timestamp
+  // moves, by about as long as the page took to finish.
   global.dataLayer = global.dataLayer || [];
   function gtag() { global.dataLayer.push(arguments); }
   global.gtag = gtag;
+
+  function fetchLibrary() {
+    var s = d.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + MEASUREMENT_ID;
+    d.head.appendChild(s);
+  }
+  var whenIdle = global.requestIdleCallback || function (f) { global.setTimeout(f, 1); };
+  if (d.readyState === 'complete') whenIdle(fetchLibrary);
+  else global.addEventListener('load', function () { whenIdle(fetchLibrary); }, { once: true });
 
   gtag('js', new Date());
   gtag('config', MEASUREMENT_ID, {
