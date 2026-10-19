@@ -226,7 +226,12 @@ footer { background:var(--deeper); padding:84px var(--sp-md) 44px; }
   font-weight:700; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:18px;
 }
 .footer-links { list-style:none; display:flex; flex-direction:column; gap:14px; }
+/* inline-flex with a floor, because these rendered 20px tall and WCAG
+   2.2 asks for 24. They are a list of navigation links rather than links
+   inside a sentence, so the inline exception does not cover them. The
+   column gap is unchanged, so the footer looks the same. */
 .footer-links a { font-size:0.95rem; color:rgba(255,255,255,0.62); transition:color .15s;
+  display:inline-flex; align-items:center; min-height:24px;
   text-decoration:underline; text-decoration-color:transparent; text-underline-offset:4px; }
 .footer-links a:hover { color:#fff; text-decoration-color:var(--sky); }
 .footer-mail { display:inline-flex; align-items:center; gap:9px; font-size:1rem;
@@ -859,3 +864,15 @@ svg.lucide {
   background:var(--sky-dark); border-color:var(--sky-dark); color:#fff;
 }
 .voice-toggle:focus-visible { outline:3px solid var(--yellow); outline-offset:2px; }
+
+/* ---- Phone input sizing ----
+   iOS Safari zooms the whole page in when a field whose font is under
+   16px takes focus, and then leaves the reader zoomed. Every field is
+   sized for the design at desktop widths; this floors them at 16px on a
+   phone, which is the only place the zoom happens, so nothing about the
+   wider layout changes. */
+@media(max-width:820px){
+  input[type="text"],input[type="email"],input[type="password"],
+  input[type="number"],input[type="search"],input[type="tel"],
+  input[type="url"],textarea,select{ font-size:16px; }
+}
