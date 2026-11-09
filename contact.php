@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Contact | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -84,14 +84,14 @@
 <!-- SEO / social / icons -->
 <meta name="description" content="Get in touch about Three Baby Birdies, signed copies, school and classroom orders, or anything else.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/contact.html">
-<link rel="alternate" href="https://threebabybirdies.com/contact.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/contact.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/contact">
+<link rel="alternate" href="https://threebabybirdies.com/contact" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/contact" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Contact | Three Baby Birdies">
 <meta property="og:description" content="Get in touch about Three Baby Birdies, signed copies, school and classroom orders, or anything else.">
-<meta property="og:url" content="https://threebabybirdies.com/contact.html">
+<meta property="og:url" content="https://threebabybirdies.com/contact">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -182,8 +182,8 @@
 </section>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 <script>function setReason(el){ document.querySelectorAll('.reason-pill').forEach(p=>p.classList.remove('active')); el.classList.add('active'); }</script>
 <script>
 // No contact endpoint exists on the backend, so the form composes a mail

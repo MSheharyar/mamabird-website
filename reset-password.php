@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Choose a new password | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -62,14 +62,14 @@
     </div>
 
     <p style="text-align:center;margin-top:18px;font-size:.84rem;">
-      <a href="login.html" style="color:var(--sky-dark);text-decoration:underline;">Back to sign in</a>
+      <a href="login" style="color:var(--sky-dark);text-decoration:underline;">Back to sign in</a>
     </p>
   </div>
 </main>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 <script>
 (function () {
   'use strict';
@@ -122,7 +122,7 @@
       if (res.ok) {
         form.hidden = true; sub.hidden = true;
         tell('Done. Your password has been changed, you can sign in with it now.', 'ok');
-        setTimeout(function () { location.href = 'login.html'; }, 2200);
+        setTimeout(function () { location.href = 'login'; }, 2200);
         return;
       }
       if (res.status === 429) {

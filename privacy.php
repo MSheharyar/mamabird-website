@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Privacy Policy | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -41,14 +41,14 @@
 <!-- SEO / social / icons -->
 <meta name="description" content="How Three Baby Birdies handles your data and your child's.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/privacy.html">
-<link rel="alternate" href="https://threebabybirdies.com/privacy.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/privacy.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/privacy">
+<link rel="alternate" href="https://threebabybirdies.com/privacy" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/privacy" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Privacy Policy | Three Baby Birdies">
 <meta property="og:description" content="How Three Baby Birdies handles your data and your child's.">
-<meta property="og:url" content="https://threebabybirdies.com/privacy.html">
+<meta property="og:url" content="https://threebabybirdies.com/privacy">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -85,7 +85,7 @@
     </div>
 
     <div class="highlight-box green">
-      <p><strong>Short version:</strong> We collect only what's necessary to run Chirpy's Classroom. We never sell your data. We never show ads. Children under 13 are protected under COPPA, parents are in full control. <a href="coppa.html" style="color:var(--green);font-weight:700;">Read our COPPA page →</a></p>
+      <p><strong>Short version:</strong> We collect only what's necessary to run Chirpy's Classroom. We never sell your data. We never show ads. Children under 13 are protected under COPPA, parents are in full control. <a href="coppa" style="color:var(--green);font-weight:700;">Read our COPPA page →</a></p>
     </div>
 
     <div class="legal-toc">
@@ -149,7 +149,7 @@
       <div class="highlight-box red">
         <p><strong>Parent right to delete:</strong> Email us at <a href="mailto:iris@threebabybirdies.com" style="color:var(--red);">iris@threebabybirdies.com</a> and we will delete all child profile data within 30 days.</p>
       </div>
-      <p>For our full COPPA disclosure, see our <a href="coppa.html" style="color:var(--sky-dark);font-weight:700;">COPPA Compliance page</a>.</p>
+      <p>For our full COPPA disclosure, see our <a href="coppa" style="color:var(--sky-dark);font-weight:700;">COPPA Compliance page</a>.</p>
     </div>
 
     <div class="legal-section" id="use">
@@ -227,6 +227,6 @@
 </section>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 </body></html>

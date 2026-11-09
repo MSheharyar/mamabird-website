@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="/js/analytics.js?v=e50b2442" defer></script>
+<script src="/js/analytics.js?v=8c5c278c" defer></script>
 <title>Page not found | Three Baby Birdies</title>
-<link rel="stylesheet" href="/css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="/css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -33,14 +33,14 @@
     <p>Chirpy had a look and could not find that page. It may have moved, or the link that brought you here may have a typo in it.</p>
     <div class="nf-links">
       <a href="/" class="btn btn-red btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-birds"></use></svg> Back to the nest</a>
-      <a href="/book.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> The book</a>
-      <a href="/chatbot.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Chirpy&rsquo;s Classroom</a>
+      <a href="/book" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> The book</a>
+      <a href="/chatbot" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Chirpy&rsquo;s Classroom</a>
     </div>
   </div>
 </main>
 
 <footer id="footer"></footer>
-<script src="/js/layout.js?v=e5312f39"></script>
-<script src="/js/main.js?v=ebc19fcc"></script>
-<script src="/js/chirpy3d.js?v=3721acde"></script>
+<script src="/js/layout.js?v=c1ea5b7c"></script>
+<script src="/js/main.js?v=2bcf66a4"></script>
+<script src="/js/chirpy3d.js?v=26e9391e"></script>
 </body></html>

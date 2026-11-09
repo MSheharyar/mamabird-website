@@ -93,7 +93,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 }
 .char-tab.active-chirpy{color:var(--sky-dark);border-bottom-color:var(--sky);background:var(--sky-xlight);}
 .char-tab.active-mama{color:var(--green);border-bottom-color:var(--green);background:var(--green-light);}
-/* Character art. app.html does not load css/main.css, so these three
+/* Character art. app does not load css/main.css, so these three
    rules have to live here too, or the images render at their natural
    280px and cover the chat. */
 .mascot{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none;}
@@ -376,7 +376,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Chirpy's Classroom">
 <meta property="og:description" content="Chirpy's Classroom.">
-<meta property="og:url" content="https://threebabybirdies.com/app.html">
+<meta property="og:url" content="https://threebabybirdies.com/app">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -410,7 +410,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
   </div>
 
   <div class="header-right">
-    <a id="teacher-back" href="teacher.html" style="display:none;padding:7px 14px;border-radius:999px;border:1.5px solid #6EB4D4;color:#3A8BB0;font-family:var(--font-display);font-weight:700;font-size:.78rem;text-decoration:none;">← My Classroom</a>
+    <a id="teacher-back" href="teacher" style="display:none;padding:7px 14px;border-radius:999px;border:1.5px solid #6EB4D4;color:#3A8BB0;font-family:var(--font-display);font-weight:700;font-size:.78rem;text-decoration:none;">← My Classroom</a>
     <!-- Parent controls, hidden until PIN entered -->
     <div class="parent-controls locked" id="parent-controls">
       <button class="btn-dashboard" onclick="openDashboard()">Dashboard</button>
@@ -608,10 +608,10 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 
 <!-- Loaded for the icon sprite only: layout.js guards its nav and
      footer injection on elements this page does not have. -->
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/chirpy3d.js?v=3721acde"></script>
-<script src="js/chirpy-voice.js?v=6aa5901d"></script>
-<script src="js/chirpy-sfx.js?v=6ebb2188"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/chirpy3d.js?v=26e9391e"></script>
+<script src="js/chirpy-voice.js?v=dfacdeff"></script>
+<script src="js/chirpy-sfx.js?v=666be356"></script>
 <script>
 // Vector bird for both characters. The 🪺 nest emoji (Emoji 14) has no glyph on
 // older Windows/Android and rendered as an empty box; Chirpy and Mama Bird are
@@ -630,7 +630,7 @@ function mbTokenValid(t){ try { const p=t.split('.')[1].replace(/-/g,'+').replac
 if (!token || !user || !mbTokenValid(token)) {
   // No session, or an expired token, clear any stale keys and force a real login.
   ['mb_token','mb_user','mb_child_id'].forEach(k=>localStorage.removeItem(k));
-  window.location.href = 'login.html';
+  window.location.href = 'login';
 }
 
 // Teachers arrive here via "Teach as student", give them a way back to the classroom
@@ -1334,7 +1334,7 @@ function api(method,path,body){
 
 function logout() {
   localStorage.removeItem('mb_token'); localStorage.removeItem('mb_user'); localStorage.removeItem('mb_child_id');
-  window.location.href='login.html';
+  window.location.href='login';
 }
 
 function fmtDate(iso) {

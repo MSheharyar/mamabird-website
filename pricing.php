@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Pricing | Chirpy's Classroom</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -36,14 +36,14 @@
 <!-- SEO / social / icons -->
 <meta name="description" content="Plans for Chirpy's Classroom. Start free for three months with no card, then choose Individual, Premium or Classroom.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/pricing.html">
-<link rel="alternate" href="https://threebabybirdies.com/pricing.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/pricing.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/pricing">
+<link rel="alternate" href="https://threebabybirdies.com/pricing" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/pricing" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Pricing | Chirpy's Classroom">
 <meta property="og:description" content="Plans for Chirpy's Classroom. Start free for three months with no card, then choose Individual, Premium or Classroom.">
-<meta property="og:url" content="https://threebabybirdies.com/pricing.html">
+<meta property="og:url" content="https://threebabybirdies.com/pricing">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -63,7 +63,7 @@
   "@graph": [
     {
       "@type": "FAQPage",
-      "@id": "https://threebabybirdies.com/pricing.html#faq",
+      "@id": "https://threebabybirdies.com/pricing#faq",
       "mainEntity": [
         {
           "@type": "Question",
@@ -138,7 +138,7 @@
             <li class="no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg><span>Lesson plan generator</span></li>
             <li class="no"><svg class="ic" aria-hidden="true"><use href="#i-cross"></use></svg><span>PDF exports</span></li>
           </ul>
-          <a href="login.html" class="btn btn-outline" style="justify-content:center;">Start Free</a>
+          <a href="login" class="btn btn-outline" style="justify-content:center;">Start Free</a>
         </div>
       </div>
 
@@ -218,7 +218,7 @@
       <div class="faq-item reveal"><h3>Do I need a credit card for the free trial?</h3><p>No. Your 3-month free trial starts the moment you create an account. No payment info needed until you choose to upgrade.</p></div>
       <div class="faq-item reveal reveal-d1"><h3>What happens when the trial ends?</h3><p>You'll see a friendly screen from Chirpy explaining the options. Your child's progress data is saved for 90 days, so nothing is lost if you decide to upgrade later.</p></div>
       <div class="faq-item reveal reveal-d2"><h3>Can I cancel any time?</h3><p>Yes, always. Cancel from your account settings with one click. No questions asked, no penalty, no run-around.</p></div>
-      <div class="faq-item reveal reveal-d3"><h3>How do you handle children&rsquo;s data?</h3><p>Chirpy is designed with children&rsquo;s privacy in mind. Children under 13 never create their own account: every child profile is made and managed by a parent or a teacher. Our <a href="coppa.html">COPPA notice</a> and <a href="privacy.html">Privacy Policy</a> set out the detail.</p></div>
+      <div class="faq-item reveal reveal-d3"><h3>How do you handle children&rsquo;s data?</h3><p>Chirpy is designed with children&rsquo;s privacy in mind. Children under 13 never create their own account: every child profile is made and managed by a parent or a teacher. Our <a href="coppa">COPPA notice</a> and <a href="privacy">Privacy Policy</a> set out the detail.</p></div>
     </div>
   </div>
 </section>
@@ -231,8 +231,8 @@
     <h2 style="margin-bottom:12px;">Ready to start?</h2>
     <p>Three months of the whole classroom, free, with no card taken up front.</p>
     <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px;">
-      <a href="login.html" class="btn btn-red btn-xl"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Start Your Free 3-Month Trial</a>
-      <a href="chatbot.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Try the demo first</a>
+      <a href="login" class="btn btn-red btn-xl"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Start Your Free 3-Month Trial</a>
+      <a href="chatbot" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Try the demo first</a>
     </div>
   </div>
 </section>
@@ -240,12 +240,12 @@
 <div class="wave" style="--wave-from:var(--sky-light);--wave-to:#1A0F0A;" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
-<script src="js/chirpy3d.js?v=3721acde"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
+<script src="js/chirpy3d.js?v=26e9391e"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
-// Same fix as book.html: this is Stripe's success_url and cancel_url, and
+// Same fix as book: this is Stripe's success_url and cancel_url, and
 // pointing it at the review deploy sent live buyers to the preview site.
 const SITE = window.location.origin;
 
@@ -260,7 +260,7 @@ async function startCheckout(plan) {
   const token = localStorage.getItem('mb_token');
   if (!token) {
     sessionStorage.setItem('pending_plan', plan);
-    window.location.href = 'login.html?next=pricing';
+    window.location.href = 'login?next=pricing';
     return;
   }
   const btn = document.getElementById('btn-' + plan);
@@ -272,8 +272,8 @@ async function startCheckout(plan) {
       headers: {'Content-Type':'application/json','Authorization':'Bearer '+token},
       body: JSON.stringify({
         plan,
-        success_url: SITE + '/payment-success.html',
-        cancel_url:  SITE + '/pricing.html'
+        success_url: SITE + '/payment-success',
+        cancel_url:  SITE + '/pricing'
       })
     });
     const data = await res.json();

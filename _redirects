@@ -1,2 +1,4 @@
-# Netlify equivalent of the .htaccess rule (Netlify ignores .htaccess).
-/ebook.html  /book.html  301
+# Netlify ignores .htaccess, and it cannot run PHP either, so the review copy
+# on Netlify no longer works now that every page is .php. The live site is
+# Hostinger/Apache; see .htaccess for the real rules.
+/ebook.html  /book  301

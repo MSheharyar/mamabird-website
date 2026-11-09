@@ -121,7 +121,7 @@ tr:last-child td{border-bottom:none;}
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Teacher Dashboard | Three Baby Birdies">
 <meta property="og:description" content="Teacher dashboard for Chirpy's Classroom.">
-<meta property="og:url" content="https://threebabybirdies.com/teacher.html">
+<meta property="og:url" content="https://threebabybirdies.com/teacher">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -246,7 +246,7 @@ tr:last-child td{border-bottom:none;}
 
 <!-- Loaded for the icon sprite only: layout.js guards its nav and
      footer injection on elements this page does not have. -->
-<script src="js/layout.js?v=e5312f39"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');
@@ -254,8 +254,8 @@ const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
 
 // Auth guard, valid, unexpired token + teacher role
 function tokenValid(t){ try{ const p=t.split('.')[1].replace(/-/g,'+').replace(/_/g,'/');const pad=p.length%4?'='.repeat(4-(p.length%4)):'';return JSON.parse(atob(p+pad)).exp*1000>Date.now(); }catch(e){ return false; } }
-if (!token || !user || !tokenValid(token)) { ['mb_token','mb_user','mb_child_id'].forEach(k=>localStorage.removeItem(k)); window.location.href='login.html'; }
-if (user && user.role !== 'teacher') { window.location.href = user.role === 'admin' ? 'admin.html' : 'app.html'; }
+if (!token || !user || !tokenValid(token)) { ['mb_token','mb_user','mb_child_id'].forEach(k=>localStorage.removeItem(k)); window.location.href='login'; }
+if (user && user.role !== 'teacher') { window.location.href = user.role === 'admin' ? 'admin' : 'app'; }
 document.getElementById('t-email').textContent = user?.email || '';
 
 let classes = [];
@@ -398,7 +398,7 @@ async function assignLesson(){
   if(r.ok){ closeModal('m-lesson'); showToast('Lesson assigned','success'); refreshDetail(); } else showToast(errMsg(r),'error');
 }
 function viewPlan(i){ const p=lessons[i]&&lessons[i].plan_data; document.getElementById('plan-body').innerHTML=renderPlan(p); openModal('m-plan'); }
-function teach(sid){ localStorage.setItem('mb_child_id', sid); window.location.href='app.html'; }
+function teach(sid){ localStorage.setItem('mb_child_id', sid); window.location.href='app'; }
 
 async function downloadReport(){
   try{
@@ -436,7 +436,7 @@ function renderPlan(p){
 function errMsg(r){ const d=r.data&&r.data.detail; return (d&&d.message)||d||'Something went wrong'; }
 function openModal(id){ document.getElementById(id).classList.add('open'); }
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
-function logout(){ ['mb_token','mb_user','mb_child_id'].forEach(k=>localStorage.removeItem(k)); window.location.href='login.html'; }
+function logout(){ ['mb_token','mb_user','mb_child_id'].forEach(k=>localStorage.removeItem(k)); window.location.href='login'; }
 function showToast(msg,type){ const t=document.getElementById('toast'); t.textContent=msg; t.className='toast '+type+' show'; setTimeout(()=>t.className='toast '+type,3000); }
 document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{ if(e.target===o) o.classList.remove('open'); }));
 

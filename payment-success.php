@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Welcome to Chirpy's Classroom! | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -41,7 +41,7 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--sky-light) 4
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Welcome to Chirpy's Classroom! | Three Baby Birdies">
 <meta property="og:description" content="Payment complete.">
-<meta property="og:url" content="https://threebabybirdies.com/payment-success.html">
+<meta property="og:url" content="https://threebabybirdies.com/payment-success">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -83,18 +83,18 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--sky-light) 4
     </div>
 
     <div class="success-actions">
-      <a href="chatbot.html" class="btn btn-sky btn-lg" style="justify-content:center;">
+      <a href="chatbot" class="btn btn-sky btn-lg" style="justify-content:center;">
         Start Learning with Chirpy
       </a>
-      <a href="index.html" class="btn btn-outline btn-sm" style="justify-content:center;">Back to Home</a>
+      <a href="/" class="btn btn-outline btn-sm" style="justify-content:center;">Back to Home</a>
     </div>
   </div>
 </div>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 <script>
 const user = JSON.parse(localStorage.getItem('mb_user') || 'null');
 if (user && user.email) document.getElementById('user-email').textContent = user.email;
-if (!localStorage.getItem('mb_token')) window.location.href = 'login.html';
+if (!localStorage.getItem('mb_token')) window.location.href = 'login';
 </script>
 </body></html>

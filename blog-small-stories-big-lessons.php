@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Small Stories, Big Lessons: Why Children’s Picture Books Matter More Than Ever | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -40,14 +40,14 @@
 </style>
 <meta name="description" content="In an age where children are surrounded by fast-paced entertainment and endless digital distractions, the simple joy of reading a picture book remains one…">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/blog-small-stories-big-lessons.html">
-<link rel="alternate" href="https://threebabybirdies.com/blog-small-stories-big-lessons.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/blog-small-stories-big-lessons.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/blog-small-stories-big-lessons">
+<link rel="alternate" href="https://threebabybirdies.com/blog-small-stories-big-lessons" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/blog-small-stories-big-lessons" hreflang="x-default">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Small Stories, Big Lessons: Why Children’s Picture Books Matter More Than Ever">
 <meta property="og:description" content="In an age where children are surrounded by fast-paced entertainment and endless digital distractions, the simple joy of reading a picture book remains one…">
-<meta property="og:url" content="https://threebabybirdies.com/blog-small-stories-big-lessons.html">
+<meta property="og:url" content="https://threebabybirdies.com/blog-small-stories-big-lessons">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Small Stories, Big Lessons: Why Children’s Picture Books Matter More Than Ever">
@@ -69,7 +69,7 @@
   "inLanguage": "en",
   "author":    { "@type": "Person", "name": "Iris Scarfone" },
   "publisher": { "@id": "https://threebabybirdies.com/#org" },
-  "mainEntityOfPage": "https://threebabybirdies.com/blog-small-stories-big-lessons.html",
+  "mainEntityOfPage": "https://threebabybirdies.com/blog-small-stories-big-lessons",
   "image": "https://threebabybirdies.com/assets/og-image.jpg"
 }
 </script>
@@ -113,17 +113,17 @@
     <div>
       <h3>Meet the birdies</h3>
       <p>A rhyming picture book for ages 2 to 6, and an AI learning friend to carry on after the last page.</p>
-      <a href="book.html" class="btn btn-red"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> Read the book</a>
+      <a href="book" class="btn btn-red"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> Read the book</a>
     </div>
   </div>
 </div>
 
 <div class="post-nav">
-  <a href="blog.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> All posts</a>
-  <a href="chatbot.html" class="btn btn-sky"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Try Chirpy free</a>
+  <a href="blog" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> All posts</a>
+  <a href="chatbot" class="btn btn-sky"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Try Chirpy free</a>
 </div>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 </body></html>

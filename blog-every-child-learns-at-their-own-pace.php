@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Every Child Learns at Their Own Pace: Why Encouragement Makes All the Difference | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -40,14 +40,14 @@
 </style>
 <meta name="description" content="One of the greatest joys of childhood is watching a young mind discover something new. Whether it’s taking a first step, saying a first word, riding a…">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace.html">
-<link rel="alternate" href="https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace">
+<link rel="alternate" href="https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace" hreflang="x-default">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Every Child Learns at Their Own Pace: Why Encouragement Makes All the Difference">
 <meta property="og:description" content="One of the greatest joys of childhood is watching a young mind discover something new. Whether it’s taking a first step, saying a first word, riding a…">
-<meta property="og:url" content="https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace.html">
+<meta property="og:url" content="https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Every Child Learns at Their Own Pace: Why Encouragement Makes All the Difference">
@@ -69,7 +69,7 @@
   "inLanguage": "en",
   "author":    { "@type": "Person", "name": "Iris Scarfone" },
   "publisher": { "@id": "https://threebabybirdies.com/#org" },
-  "mainEntityOfPage": "https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace.html",
+  "mainEntityOfPage": "https://threebabybirdies.com/blog-every-child-learns-at-their-own-pace",
   "image": "https://threebabybirdies.com/assets/og-image.jpg"
 }
 </script>
@@ -115,17 +115,17 @@
     <div>
       <h3>Meet the birdies</h3>
       <p>A rhyming picture book for ages 2 to 6, and an AI learning friend to carry on after the last page.</p>
-      <a href="book.html" class="btn btn-red"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> Read the book</a>
+      <a href="book" class="btn btn-red"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> Read the book</a>
     </div>
   </div>
 </div>
 
 <div class="post-nav">
-  <a href="blog.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> All posts</a>
-  <a href="chatbot.html" class="btn btn-sky"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Try Chirpy free</a>
+  <a href="blog" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> All posts</a>
+  <a href="chatbot" class="btn btn-sky"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Try Chirpy free</a>
 </div>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 </body></html>

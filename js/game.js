@@ -2,7 +2,7 @@
    THREE BABY BIRDIES, Chirpy's First Flight
    js/game.js
 
-   One implementation, two hosts: the standalone game.html page and the
+   One implementation, two hosts: the standalone game page and the
    modal on the homepage. Both call ChirpyFlight.create(container) and get
    back a handle; the module builds its own markup inside the container so
    neither page has to keep a copy of it in sync.

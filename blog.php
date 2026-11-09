@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Blog | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -59,14 +59,14 @@
 <!-- SEO / social / icons -->
 <meta name="description" content="Read-aloud tips, rhyming ideas and early-reading activities from the makers of Three Baby Birdies.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/blog.html">
-<link rel="alternate" href="https://threebabybirdies.com/blog.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/blog.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/blog">
+<link rel="alternate" href="https://threebabybirdies.com/blog" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/blog" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Blog | Three Baby Birdies">
 <meta property="og:description" content="Read-aloud tips, rhyming ideas and early-reading activities from the makers of Three Baby Birdies.">
-<meta property="og:url" content="https://threebabybirdies.com/blog.html">
+<meta property="og:url" content="https://threebabybirdies.com/blog">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -99,7 +99,7 @@
 <section class="section" style="background:#fff;">
   <div class="container">
     <div class="blog-grid">
-      <a class="blog-card reveal" href="blog-every-child-learns-at-their-own-pace.html">
+      <a class="blog-card reveal" href="blog-every-child-learns-at-their-own-pace">
         <div class="blog-thumb"><img src="assets/ribbon/learn-and-play.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
           <span class="blog-tag kb-green">Learning</span>
@@ -108,7 +108,7 @@
           <div class="blog-meta">Iris Scarfone <span>·</span> 4 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
         </div>
       </a>
-      <a class="blog-card reveal reveal-d1" href="blog-the-lasting-power-of-family-encouragement-in-a-child-s-journ.html">
+      <a class="blog-card reveal reveal-d1" href="blog-the-lasting-power-of-family-encouragement-in-a-child-s-journ">
         <div class="blog-thumb"><img src="assets/ribbon/baby-birdies.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
           <span class="blog-tag kb-yellow">Family</span>
@@ -117,7 +117,7 @@
           <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
         </div>
       </a>
-      <a class="blog-card reveal reveal-d2" href="blog-small-stories-big-lessons.html">
+      <a class="blog-card reveal reveal-d2" href="blog-small-stories-big-lessons">
         <div class="blog-thumb"><img src="assets/ribbon/read-aloud.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
           <span class="blog-tag kb-sky">Read-Aloud Tips</span>
@@ -126,7 +126,7 @@
           <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
         </div>
       </a>
-      <a class="blog-card reveal reveal-d3" href="blog-building-confidence-one-small-step-at-a-time.html">
+      <a class="blog-card reveal reveal-d3" href="blog-building-confidence-one-small-step-at-a-time">
         <div class="blog-thumb"><img src="assets/ribbon/reading-confidence.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
           <span class="blog-tag kb-red">Confidence</span>
@@ -135,7 +135,7 @@
           <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
         </div>
       </a>
-      <a class="blog-card reveal reveal-d3" href="blog-the-magic-of-rhyming-stories.html">
+      <a class="blog-card reveal reveal-d3" href="blog-the-magic-of-rhyming-stories">
         <div class="blog-thumb"><img src="assets/ribbon/rhyming-fun.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
           <span class="blog-tag kb-sky">Read-Aloud Tips</span>
@@ -144,7 +144,7 @@
           <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
         </div>
       </a>
-      <a class="blog-card reveal reveal-d3" href="blog-teaching-children-to-believe-in-themselves.html">
+      <a class="blog-card reveal reveal-d3" href="blog-teaching-children-to-believe-in-themselves">
         <div class="blog-thumb"><img src="assets/ribbon/challenges.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
           <span class="blog-tag kb-red">Confidence</span>
@@ -153,7 +153,7 @@
           <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
         </div>
       </a>
-      <a class="blog-card reveal reveal-d3" href="blog-encouragement-is-the-first-step-to-success.html">
+      <a class="blog-card reveal reveal-d3" href="blog-encouragement-is-the-first-step-to-success">
         <div class="blog-thumb"><img src="assets/ribbon/story-questions.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
           <span class="blog-tag kb-green">Learning</span>
@@ -162,7 +162,7 @@
           <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
         </div>
       </a>
-      <a class="blog-card reveal reveal-d3" href="blog-growing-through-kindness-and-perseverance.html">
+      <a class="blog-card reveal reveal-d3" href="blog-growing-through-kindness-and-perseverance">
         <div class="blog-thumb"><img src="assets/ribbon/momma-bird.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
           <span class="blog-tag kb-yellow">Family</span>
@@ -171,7 +171,7 @@
           <div class="blog-meta">Iris Scarfone <span>·</span> 5 min read<span class="blog-go"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span></div>
         </div>
       </a>
-      <a class="blog-card reveal reveal-d3" href="blog-stories-that-inspire-courage.html">
+      <a class="blog-card reveal reveal-d3" href="blog-stories-that-inspire-courage">
         <div class="blog-thumb"><img src="assets/ribbon/learning-games.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" width="160" height="160"></div>
         <div class="blog-body">
           <span class="blog-tag kb-green">Learning</span>
@@ -203,7 +203,7 @@
 </section>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
-<script src="js/newsletter.js?v=21decc7c"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
+<script src="js/newsletter.js?v=11e6b5d2"></script>
 </body></html>

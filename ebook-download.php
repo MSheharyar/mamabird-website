@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Download Your eBook | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -38,7 +38,7 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%);
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Download Your eBook | Three Baby Birdies">
 <meta property="og:description" content="Your Three Baby Birdies download.">
-<meta property="og:url" content="https://threebabybirdies.com/ebook-download.html">
+<meta property="og:url" content="https://threebabybirdies.com/ebook-download">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -104,8 +104,8 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%);
         </div>
         <div style="margin-top:20px;border-top:1px solid var(--cream-dark);padding-top:20px;text-align:center;">
           <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;margin-bottom:12px;color:var(--dark);">While you&rsquo;re here, try Chirpy&rsquo;s free classroom</div>
-          <a href="chatbot.html" class="btn btn-sky" style="margin-right:8px;"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Meet Chirpy</a>
-          <a href="pricing.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-cart"></use></svg> See plans</a>
+          <a href="chatbot" class="btn btn-sky" style="margin-right:8px;"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Meet Chirpy</a>
+          <a href="pricing" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-cart"></use></svg> See plans</a>
         </div>
       </div>
     </div>
@@ -123,7 +123,7 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%);
         <a href="mailto:iris@threebabybirdies.com?subject=eBook%20download%20issue" class="btn btn-red btn-lg dl-btn">
           Email us for help
         </a>
-        <a href="book.html" class="btn btn-outline dl-btn" style="margin-top:0;">← Back to the book</a>
+        <a href="book" class="btn btn-outline dl-btn" style="margin-top:0;">← Back to the book</a>
       </div>
     </div>
 
@@ -131,8 +131,8 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%);
 </div>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
 
