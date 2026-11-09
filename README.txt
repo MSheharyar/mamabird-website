@@ -83,3 +83,8 @@ KNOWN PLACEHOLDERS (to resolve before launch)
 [ ] Terms of Service page content
 [ ] Blog post full content pages
 
+
+DEPLOYING
+---------
+node scripts/deploy.mjs release   uploads the last commit to Hostinger, tests it, and can roll back.
+One-time setup and every command: docs/DEPLOY.md

@@ -2,3 +2,6 @@
 node_modules/
 .DS_Store
 *.log
+
+# Deploy settings for this PC (server address, key path). Never commit.
+.env.deploy
