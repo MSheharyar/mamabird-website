@@ -143,7 +143,7 @@ tr.parent-row:hover td{background:var(--cream);}
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Admin Dashboard | Three Baby Birdies">
 <meta property="og:description" content="Admin.">
-<meta property="og:url" content="https://threebabybirdies.com/admin.html">
+<meta property="og:url" content="https://threebabybirdies.com/admin">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -222,15 +222,15 @@ tr.parent-row:hover td{background:var(--cream);}
 
 <!-- Loaded for the icon sprite only: layout.js guards its nav and
      footer injection on elements this page does not have. -->
-<script src="js/layout.js?v=e5312f39"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');
 const user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
 
 // Auth guard, must be admin
-if (!token || !user) { window.location.href = 'login.html'; }
-if (user && user.role !== 'admin') { window.location.href = 'app.html'; }
+if (!token || !user) { window.location.href = 'login'; }
+if (user && user.role !== 'admin') { window.location.href = 'app'; }
 
 document.getElementById('admin-email').textContent = user?.email || '';
 
@@ -401,7 +401,7 @@ function api(method, path, body) {
 function logout() {
   localStorage.removeItem('mb_token');
   localStorage.removeItem('mb_user');
-  window.location.href = 'login.html';
+  window.location.href = 'login';
 }
 
 function showToast(msg, type) {

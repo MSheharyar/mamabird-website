@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>The Book | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -162,14 +162,14 @@
 <!-- SEO / social / icons -->
 <meta name="description" content="The full illustrated story of Three Baby Birdies as an instant PDF for $4.99, or on Kindle and in paperback. Written for ages 2–6 and made to be read out loud.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/book.html">
-<link rel="alternate" href="https://threebabybirdies.com/book.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/book.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/book">
+<link rel="alternate" href="https://threebabybirdies.com/book" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/book" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="The Book | Three Baby Birdies">
 <meta property="og:description" content="The full illustrated story of Three Baby Birdies as an instant PDF for $4.99, or on Kindle and in paperback. Written for ages 2–6 and made to be read out loud.">
-<meta property="og:url" content="https://threebabybirdies.com/book.html">
+<meta property="og:url" content="https://threebabybirdies.com/book">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -189,9 +189,9 @@
   "@graph": [
     {
       "@type": "Book",
-      "@id": "https://threebabybirdies.com/book.html#book",
+      "@id": "https://threebabybirdies.com/book#book",
       "name": "Three Baby Birdies",
-      "url": "https://threebabybirdies.com/book.html",
+      "url": "https://threebabybirdies.com/book",
       "author": {
         "@type": "Person",
         "name": "Iris Scarfone"
@@ -212,7 +212,7 @@
         "price": "4.99",
         "priceCurrency": "USD",
         "availability": "https://schema.org/InStock",
-        "url": "https://threebabybirdies.com/book.html",
+        "url": "https://threebabybirdies.com/book",
         "category": "Digital download (PDF)"
       }
     }
@@ -271,7 +271,7 @@
             </label>
             <label class="fmt-opt">
               <input type="radio" name="format" value="signed"
-                     data-cta="Order a Signed Copy" data-icon="pen" data-href="contact.html"
+                     data-cta="Order a Signed Copy" data-icon="pen" data-href="contact"
                      data-note="Signed by Iris &middot; arranged by email">
               <span class="fmt-body"><svg class="ic" aria-hidden="true"><use href="#i-pen"></use></svg><span class="fmt-name">Signed Copy</span><span class="fmt-price">By request</span></span>
             </label>
@@ -467,10 +467,10 @@
 
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
-<script src="js/chirpy3d.js?v=3721acde"></script>
-<script src="js/chirpy-voice.js?v=6aa5901d"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
+<script src="js/chirpy3d.js?v=26e9391e"></script>
+<script src="js/chirpy-voice.js?v=dfacdeff"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
 
@@ -566,8 +566,8 @@ async function startEbookCheckout() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        success_url: SITE + '/ebook-download.html',
-        cancel_url:  SITE + '/book.html',
+        success_url: SITE + '/ebook-download',
+        cancel_url:  SITE + '/book',
       }),
     });
     const data = await res.json();

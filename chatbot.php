@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Chirpy's Classroom | AI Learning for Ages 2 to 8</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -223,14 +223,14 @@
 <!-- SEO / social / icons -->
 <meta name="description" content="Chirpy's Classroom is an AI learning companion for ages 2–8, spelling, rhyming, numbers, grammar, puzzles and stories. Try it free, no signup needed.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/chatbot.html">
-<link rel="alternate" href="https://threebabybirdies.com/chatbot.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/chatbot.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/chatbot">
+<link rel="alternate" href="https://threebabybirdies.com/chatbot" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/chatbot" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Chirpy's Classroom | AI Learning for Ages 2 to 8">
 <meta property="og:description" content="Chirpy's Classroom is an AI learning companion for ages 2–8, spelling, rhyming, numbers, grammar, puzzles and stories. Try it free, no signup needed.">
-<meta property="og:url" content="https://threebabybirdies.com/chatbot.html">
+<meta property="og:url" content="https://threebabybirdies.com/chatbot">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -250,9 +250,9 @@
   "@graph": [
     {
       "@type": "SoftwareApplication",
-      "@id": "https://threebabybirdies.com/chatbot.html#app",
+      "@id": "https://threebabybirdies.com/chatbot#app",
       "name": "Chirpy's Classroom",
-      "url": "https://threebabybirdies.com/chatbot.html",
+      "url": "https://threebabybirdies.com/chatbot",
       "applicationCategory": "EducationalApplication",
       "operatingSystem": "Web, iOS, Android",
       "audience": {
@@ -318,8 +318,8 @@
       </div>
 
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
-        <a href="login.html" class="btn btn-red btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Start Learning Free<small>No card needed</small></a>
-        <a href="pricing.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> See Pricing</a>
+        <a href="login" class="btn btn-red btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Start Learning Free<small>No card needed</small></a>
+        <a href="pricing" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg> See Pricing</a>
       </div>
       <div class="kid-badges" style="margin-top:18px;">
         <span class="kid-badge kb-green"><svg class="ic" aria-hidden="true"><use href="#i-shield"></use></svg> Built with children&rsquo;s privacy in mind</span>
@@ -513,7 +513,7 @@
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Chirpy + Mama Bird</span></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Progress tracking</span></li>
         </ul>
-        <a href="login.html" class="btn btn-outline btn-sm" style="justify-content:center;">Start Free →</a>
+        <a href="login" class="btn btn-outline btn-sm" style="justify-content:center;">Start Free →</a>
       </div>
       <div class="plan-card featured reveal reveal-d1">
         <div class="plan-badge">Most Popular</div>
@@ -528,7 +528,7 @@
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Progress dashboard</span></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Lesson plan generator</span></li>
         </ul>
-        <a href="login.html" class="btn btn-sky btn-sm" style="justify-content:center;">Get Started →</a>
+        <a href="login" class="btn btn-sky btn-sm" style="justify-content:center;">Get Started →</a>
       </div>
       <div class="plan-card reveal reveal-d2">
         <div class="plan-name">Premium</div>
@@ -543,7 +543,7 @@
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Lesson plan generator</span></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>PDF progress exports</span></li>
         </ul>
-        <a href="login.html" class="btn btn-outline btn-sm" style="justify-content:center;">Get Started →</a>
+        <a href="login" class="btn btn-outline btn-sm" style="justify-content:center;">Get Started →</a>
       </div>
       <div class="plan-card reveal reveal-d3">
         <div class="plan-name">Classroom</div>
@@ -558,18 +558,18 @@
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Per-student PDF exports</span></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-check"></use></svg><span>Parent email summaries</span></li>
         </ul>
-        <a href="contact.html" class="btn btn-dark btn-sm" style="justify-content:center;">Contact Us →</a>
+        <a href="contact" class="btn btn-dark btn-sm" style="justify-content:center;">Contact Us →</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
-<script src="js/chirpy3d.js?v=3721acde"></script>
-<script src="js/chirpy-voice.js?v=6aa5901d"></script>
-<script src="js/chirpy-sfx.js?v=6ebb2188"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
+<script src="js/chirpy3d.js?v=26e9391e"></script>
+<script src="js/chirpy-voice.js?v=dfacdeff"></script>
+<script src="js/chirpy-sfx.js?v=666be356"></script>
 <style>
 .upsell-bubble {
   background:linear-gradient(135deg,#fff 0%,var(--sky-xlight) 100%);
@@ -706,11 +706,11 @@ function safeHtml(str) {
 
 const chatBody = document.getElementById('chat-body');
 
-// Logged-in users belong in app.html
+// Logged-in users belong in app
 const mb_token = localStorage.getItem('mb_token');
 const mb_user  = JSON.parse(localStorage.getItem('mb_user') || 'null');
 if (mb_token && mb_user) {
-  window.location.replace(mb_user.role === 'admin' ? 'admin.html' : 'app.html');
+  window.location.replace(mb_user.role === 'admin' ? 'admin' : 'app');
 }
 
 // Lock non-Spelling pills with a tooltip
@@ -773,8 +773,8 @@ function showUpsell() {
       <strong>Tweet tweet! 🐦 You're doing so well!</strong><br><br>
       That's your free preview for today. Create a free account to keep going, 3 months free, no card needed!<br><br>
       <div class="upsell-cta">
-        <a href="login.html" class="upsell-btn"><svg class="ic" aria-hidden="true"><use href="#i-gift"></use></svg> Start Learning Free<small>No card needed</small></a>
-        <a href="pricing.html" class="upsell-link">See all plans →</a>
+        <a href="login" class="upsell-btn"><svg class="ic" aria-hidden="true"><use href="#i-gift"></use></svg> Start Learning Free<small>No card needed</small></a>
+        <a href="pricing" class="upsell-link">See all plans →</a>
       </div>
     </div>`;
   chatBody.appendChild(div);
@@ -857,8 +857,8 @@ function switchChar(char) {
         <strong>Mama Bird comes with a free account.</strong><br><br>
         Sign up to unlock Mama Bird, lesson plan generation, all 6 subjects, and progress tracking.<br><br>
         <div class="upsell-cta">
-          <a href="login.html" class="upsell-btn" style="background:var(--green);">Start Free, 3 Months, No Card</a>
-          <a href="pricing.html" class="upsell-link">See all plans →</a>
+          <a href="login" class="upsell-btn" style="background:var(--green);">Start Free, 3 Months, No Card</a>
+          <a href="pricing" class="upsell-link">See all plans →</a>
         </div>
       </div>`;
     chatBody.appendChild(div);
@@ -900,8 +900,8 @@ function setSubject(el, subj) {
         <strong>Tweet tweet! 🐦 Let's do ${subj}.</strong><br><br>
         ${subj} is available with a free account, along with all 5 other subjects. Sign up in seconds, no card needed!<br><br>
         <div class="upsell-cta">
-          <a href="login.html" class="upsell-btn">Start Learning Free<small>No card needed</small></a>
-          <a href="pricing.html" class="upsell-link">See all plans →</a>
+          <a href="login" class="upsell-btn">Start Learning Free<small>No card needed</small></a>
+          <a href="pricing" class="upsell-link">See all plans →</a>
         </div>
       </div>`;
     chatBody.appendChild(div);

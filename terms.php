@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Terms of Service | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -52,14 +52,14 @@
 <!-- SEO / social / icons -->
 <meta name="description" content="Terms of Service for Three Baby Birdies and Chirpy's Classroom.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/terms.html">
-<link rel="alternate" href="https://threebabybirdies.com/terms.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/terms.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/terms">
+<link rel="alternate" href="https://threebabybirdies.com/terms" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/terms" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Terms of Service | Three Baby Birdies">
 <meta property="og:description" content="Terms of Service for Three Baby Birdies and Chirpy's Classroom.">
-<meta property="og:url" content="https://threebabybirdies.com/terms.html">
+<meta property="og:url" content="https://threebabybirdies.com/terms">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -118,7 +118,7 @@
 
     <div class="legal-section" id="acceptance">
       <h2>1. Acceptance of terms</h2>
-      <p>These Terms of Service ("Terms") form a binding legal agreement between you and Three Baby Birdies / Iris Scarfone ("we," "us," "our"). By accessing or using our website (threebabybirdies.com) or our AI-powered learning platform (Chirpy's Classroom), you agree to be bound by these Terms and our <a href="privacy.html" style="color:var(--sky-dark);">Privacy Policy</a>.</p>
+      <p>These Terms of Service ("Terms") form a binding legal agreement between you and Three Baby Birdies / Iris Scarfone ("we," "us," "our"). By accessing or using our website (threebabybirdies.com) or our AI-powered learning platform (Chirpy's Classroom), you agree to be bound by these Terms and our <a href="privacy" style="color:var(--sky-dark);">Privacy Policy</a>.</p>
       <p>If you do not agree to these Terms, do not use the service.</p>
     </div>
 
@@ -133,7 +133,7 @@
         <li>One account may manage multiple child profiles, but may not be shared between unrelated families.</li>
       </ul>
       <div class="highlight-box">
-        <p><strong>Parent PIN:</strong> Chirpy's Classroom includes an optional Parent PIN feature that locks the app so children cannot navigate away. We strongly recommend enabling it. <a href="chatbot.html" style="color:var(--sky-dark);">Set up your PIN in-app →</a></p>
+        <p><strong>Parent PIN:</strong> Chirpy's Classroom includes an optional Parent PIN feature that locks the app so children cannot navigate away. We strongly recommend enabling it. <a href="chatbot" style="color:var(--sky-dark);">Set up your PIN in-app →</a></p>
       </div>
     </div>
 
@@ -205,7 +205,7 @@
     <div class="legal-section" id="termination">
       <h2>8. Termination</h2>
       <p>We reserve the right to suspend or terminate any account that violates these Terms, with or without notice. Grounds for termination include but are not limited to: abuse of the content safety system, fraudulent billing, or any illegal activity.</p>
-      <p>You may delete your account at any time by emailing us. Upon deletion, your personal data will be removed within 30 days in accordance with our <a href="privacy.html" style="color:var(--sky-dark);">Privacy Policy</a>.</p>
+      <p>You may delete your account at any time by emailing us. Upon deletion, your personal data will be removed within 30 days in accordance with our <a href="privacy" style="color:var(--sky-dark);">Privacy Policy</a>.</p>
     </div>
 
     <div class="legal-section" id="liability">
@@ -229,6 +229,6 @@
 </section>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 </body></html>

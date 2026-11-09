@@ -31,10 +31,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ---- Active nav link (based on current page) ---- */
-  const page = location.pathname.split('/').pop() || 'index.html';
+  /* Links are extensionless (/book, about). Normalise the address the same
+     way so /book, /book/ and an old /book.php all mark the same link. */
+  const norm = p => p.replace(/^\/+|\/+$/g, '').replace(/\.(php|html)$/, '').replace(/^index$/, '');
+  const page = norm(location.pathname.split('/').filter(Boolean).pop() || '');
   document.querySelectorAll('.nav-links a, #mob-menu a').forEach(a => {
-    const href = a.getAttribute('href') || '';
-    if (href === page || (page === '' && href === 'index.html')) {
+    const href = norm(a.getAttribute('href') || '');
+    if (href === page) {
       a.classList.add('active');
     }
   });

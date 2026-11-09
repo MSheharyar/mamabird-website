@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Sign In / Register | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -94,14 +94,14 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
 <!-- SEO / social / icons -->
 <meta name="description" content="Sign in to Chirpy's Classroom, or create a free account.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/login.html">
-<link rel="alternate" href="https://threebabybirdies.com/login.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/login.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/login">
+<link rel="alternate" href="https://threebabybirdies.com/login" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/login" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Sign In / Register | Three Baby Birdies">
 <meta property="og:description" content="Sign in to Chirpy's Classroom, or create a free account.">
-<meta property="og:url" content="https://threebabybirdies.com/login.html">
+<meta property="og:url" content="https://threebabybirdies.com/login">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -197,7 +197,7 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
         </div>
         <div class="form-check">
           <input type="checkbox" id="agree">
-          <label for="agree">I agree to the <a href="terms.html" target="_blank" rel="noopener" style="color:var(--red);">Terms of Service</a> and <a href="privacy.html" target="_blank" rel="noopener" style="color:var(--red);">Privacy Policy</a>. I understand that children's data is handled in accordance with COPPA.</label>
+          <label for="agree">I agree to the <a href="terms" target="_blank" rel="noopener" style="color:var(--red);">Terms of Service</a> and <a href="privacy" target="_blank" rel="noopener" style="color:var(--red);">Privacy Policy</a>. I understand that children's data is handled in accordance with COPPA.</label>
         </div>
         <button type="submit" class="btn btn-red form-submit btn-lg">Start My Free 3-Month Trial</button>
         <div class="form-footer">Already have an account? <a href="#" onclick="switchTab('login');return false;">Sign in →</a></div>
@@ -206,13 +206,13 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
     </div>
   </div>
 </div>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
 let selectedRole = 'parent';
 
-function roleHome(role){ return role === 'admin' ? 'admin.html' : role === 'teacher' ? 'teacher.html' : 'app.html'; }
+function roleHome(role){ return role === 'admin' ? 'admin' : role === 'teacher' ? 'teacher' : 'app'; }
 
 // Redirect if already logged in
 if (localStorage.getItem('mb_token')) {
@@ -263,7 +263,7 @@ document.getElementById('form-login').addEventListener('submit', async function(
     localStorage.setItem('mb_token', data.token);
     localStorage.setItem('mb_user', JSON.stringify(data.user));
     const next = new URLSearchParams(window.location.search).get('next');
-    if (next) { window.location.href = next + '.html'; }
+    if (next && /^[a-z0-9-]+$/.test(next)) { window.location.href = next; }
     else { window.location.href = roleHome(data.user.role); }
   } catch(err) {
     showError('form-login', 'Connection error. Please try again.');

@@ -25,7 +25,7 @@ import sys
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # src="js/x.js", href="/css/main.css", with or without an existing stamp.
-# The leading slash is optional: 404.html must use root-relative paths
+# The leading slash is optional: 404.php must use root-relative paths
 # because it is served in place of any URL, at any depth.
 REF = re.compile(r'(?P<attr>\b(?:src|href)=")(?P<path>/?(?:js|css)/[A-Za-z0-9_./-]+\.(?:js|css))(?:\?v=[0-9a-f]+)?(?P<tail>")')
 
@@ -46,7 +46,7 @@ def stamp(rel):
 def main():
     missing, touched, refs = set(), [], 0
     for name in sorted(os.listdir(ROOT)):
-        if not name.endswith(".html"):
+        if not name.endswith(".php"):
             continue
         path = os.path.join(ROOT, name)
         src = io.open(path, encoding="utf-8").read()

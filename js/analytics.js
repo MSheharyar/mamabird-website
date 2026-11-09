@@ -23,8 +23,8 @@
      terms require this for child-directed properties, and neither is
      any use to us: nobody here is building ad audiences.
    - The query string never leaves the browser. Two pages carry secrets
-     in their URL -- reset-password.html?token= and
-     ebook-download.html?session_id= -- and GA4 records the full location
+     in their URL -- reset-password?token= and
+     ebook-download?session_id= -- and GA4 records the full location
      by default, which would file a live password-reset token in a
      reporting tool. Those two pages do not load this script at all, and
      stripping the query as well means the next page with a token in it
@@ -33,8 +33,8 @@
 
    WHERE IT IS NOT LOADED
    ----------------------
-   app.html, because that is the page a child is actually sitting on;
-   admin.html and teacher.html, because staff tools are not an audience;
+   app, because that is the page a child is actually sitting on;
+   admin and teacher, because staff tools are not an audience;
    and the two token-carrying pages above.
    ============================================================ */
 

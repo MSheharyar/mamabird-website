@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Find your child's starting point | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -131,14 +131,14 @@ body { background:var(--cream); }
 <!-- SEO / social / icons -->
 <meta name="description" content="Four questions, about a minute. Chirpy works out where your child should start and which subject to open first.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/quiz.html">
-<link rel="alternate" href="https://threebabybirdies.com/quiz.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/quiz.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/quiz">
+<link rel="alternate" href="https://threebabybirdies.com/quiz" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/quiz" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Find your child's starting point | Three Baby Birdies">
 <meta property="og:description" content="Four questions, about a minute. Chirpy works out where your child should start and which subject to open first.">
-<meta property="og:url" content="https://threebabybirdies.com/quiz.html">
+<meta property="og:url" content="https://threebabybirdies.com/quiz">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -182,9 +182,9 @@ body { background:var(--cream); }
 </main>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
-<script src="js/chirpy3d.js?v=3721acde"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
+<script src="js/chirpy3d.js?v=26e9391e"></script>
 <script>
 /* ============================================================
    Starting-point quiz.
@@ -446,9 +446,9 @@ body { background:var(--cream); }
           '<span class="q-chip"><svg class="ic"><use href="#i-book"></use></svg>All 6 subjects included</span>' +
         '</div>' +
         '<div class="q-plan">' + plan + '</div>' +
-        '<a href="chatbot.html?subject=' + encodeURIComponent(subj) + '" class="btn btn-red btn-lg" style="width:100%;justify-content:center;">' +
+        '<a href="chatbot?subject=' + encodeURIComponent(subj) + '" class="btn btn-red btn-lg" style="width:100%;justify-content:center;">' +
           '<svg class="ic"><use href="#i-sparkle"></use></svg>Start with ' + esc(SUBJECT_LABEL[subj]) + '</a>' +
-        '<p style="margin-top:14px;font-size:.8rem;"><a href="pricing.html" style="color:var(--sky-dark);text-decoration:underline;">See what the plans include</a></p>' +
+        '<p style="margin-top:14px;font-size:.8rem;"><a href="pricing" style="color:var(--sky-dark);text-decoration:underline;">See what the plans include</a></p>' +
       '</div>';
 
     // Carry the choice into the classroom the same way the subject tiles do.

@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Three Baby Birdies | Read-Aloud Picture Book, Ages 2–6</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <!-- Set before first paint so .reveal elements never flash in and back out.
      No observer, no class, and every .reveal simply stays visible. -->
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
-<link rel="stylesheet" href="css/game.css?v=1b50338d">
+<link rel="stylesheet" href="css/game.css?v=a683d385">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 /* ---- HOME-ONLY STYLES ---- */
@@ -446,8 +446,8 @@
       <h1 class="hero-title" style="margin-bottom:16px;">A nest of wonder<br><span class="accent">for little readers.</span></h1>
       
       <div class="hero-actions">
-        <a href="chatbot.html" class="btn btn-red">Try Chirpy Free</a>
-        <a href="book.html" class="btn btn-outline">Get the eBook</a>
+        <a href="chatbot" class="btn btn-red">Try Chirpy Free</a>
+        <a href="book" class="btn btn-outline">Get the eBook</a>
       </div>
       <p class="hero-play">
         <button type="button" class="btn-game" data-play-game>
@@ -458,7 +458,7 @@
         <span class="hero-play-note">No sign-up. It plays right here in your browser.</span>
       </p>
       <div class="hero-retailers">
-        Instant eBook download, or <a href="book.html">order a signed paperback</a>.<br>
+        Instant eBook download, or <a href="book">order a signed paperback</a>.<br>
         <!-- TODO: link "Barnes &amp; Noble" once Iris supplies the retailer URL. -->
         Also available at <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" target="_blank" rel="noopener">Amazon</a> and Barnes &amp; Noble.
       </div>
@@ -534,7 +534,7 @@
           <legend class="fmt-legend">Choose a format</legend>
           <label class="fmt-opt">
             <input type="radio" name="format" value="ebook" checked
-                   data-cta="Download the eBook" data-icon="down" data-href="book.html">
+                   data-cta="Download the eBook" data-icon="down" data-href="book">
             <span class="fmt-body"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg><span class="fmt-name">eBook</span><span class="fmt-price">$4.99 &middot; instant</span></span>
           </label>
           <label class="fmt-opt">
@@ -545,14 +545,14 @@
           </label>
           <label class="fmt-opt">
             <input type="radio" name="format" value="signed"
-                   data-cta="Order a Signed Copy" data-icon="pen" data-href="contact.html">
+                   data-cta="Order a Signed Copy" data-icon="pen" data-href="contact">
             <span class="fmt-body"><svg class="ic" aria-hidden="true"><use href="#i-pen"></use></svg><span class="fmt-name">Signed Copy</span><span class="fmt-price">By request</span></span>
           </label>
         </fieldset>
 
         <div class="buy-stack buy-stack-tight">
-          <a href="book.html" class="btn btn-red btn-lg" id="fmt-cta"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg><span id="fmt-cta-text">Download the eBook</span></a>
-          <a href="book.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> Read more about the book</a>
+          <a href="book" class="btn btn-red btn-lg" id="fmt-cta"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg><span id="fmt-cta-text">Download the eBook</span></a>
+          <a href="book" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> Read more about the book</a>
         </div>
       </div>
     </div>
@@ -652,37 +652,37 @@
 
     <!-- Subject tiles grid -->
     <div class="subject-tiles reveal" style="margin-bottom:80px;">
-      <a href="chatbot.html?subject=spelling" class="subject-tile tile-sky">
+      <a href="chatbot?subject=spelling" class="subject-tile tile-sky">
         <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-abc"></use></svg></span>
         <div class="subject-tile-name">Spelling</div>
         <div class="subject-tile-desc">Words, letters and phonics</div>
         <span class="subject-tile-cue">Explore <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </a>
-      <a href="chatbot.html?subject=rhyming" class="subject-tile tile-green">
+      <a href="chatbot?subject=rhyming" class="subject-tile tile-green">
         <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-note"></use></svg></span>
         <div class="subject-tile-name">Rhyming</div>
         <div class="subject-tile-desc">Hearing the sounds in words</div>
         <span class="subject-tile-cue">Explore <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </a>
-      <a href="chatbot.html?subject=math" class="subject-tile tile-red">
+      <a href="chatbot?subject=math" class="subject-tile tile-red">
         <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-math"></use></svg></span>
         <div class="subject-tile-name">Math</div>
         <div class="subject-tile-desc">Numbers and bird math</div>
         <span class="subject-tile-cue">Explore <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </a>
-      <a href="chatbot.html?subject=grammar" class="subject-tile tile-yellow">
+      <a href="chatbot?subject=grammar" class="subject-tile tile-yellow">
         <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-pencil"></use></svg></span>
         <div class="subject-tile-name">Grammar</div>
         <div class="subject-tile-desc">Building sentences</div>
         <span class="subject-tile-cue">Explore <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </a>
-      <a href="chatbot.html?subject=puzzles" class="subject-tile tile-purple">
+      <a href="chatbot?subject=puzzles" class="subject-tile tile-purple">
         <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-puzzle"></use></svg></span>
         <div class="subject-tile-name">Puzzles</div>
         <div class="subject-tile-desc">Riddles and word games</div>
         <span class="subject-tile-cue">Explore <svg class="ic" aria-hidden="true"><use href="#i-arrow"></use></svg></span>
       </a>
-      <a href="chatbot.html?subject=literature" class="subject-tile tile-orange">
+      <a href="chatbot?subject=literature" class="subject-tile tile-orange">
         <span class="subject-tile-ic"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg></span>
         <div class="subject-tile-name">Stories</div>
         <div class="subject-tile-desc">Making up stories together</div>
@@ -722,7 +722,7 @@
     </div>
 
     <div class="classroom-cta reveal">
-      <a href="chatbot.html" class="btn btn-red btn-xl"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Start Your Free 3-Month Trial</a>
+      <a href="chatbot" class="btn btn-red btn-xl"><svg class="ic" aria-hidden="true"><use href="#i-sparkle"></use></svg> Start Your Free 3-Month Trial</a>
       <div class="classroom-cta-trust"><svg class="ic" aria-hidden="true"><use href="#i-lock"></use></svg> No credit card needed</div>
       <div class="classroom-cta-fine">3 months free &middot; all 6 subjects &middot; Chirpy and Mama Bird included</div>
     </div>
@@ -781,7 +781,7 @@
 
     <div class="coppa-note reveal">
       <svg class="ic" aria-hidden="true"><use href="#i-shield"></use></svg>
-      <span>Designed with children&rsquo;s privacy in mind. How we handle their data is set out in our <a href="coppa.html">COPPA notice</a>.</span>
+      <span>Designed with children&rsquo;s privacy in mind. How we handle their data is set out in our <a href="coppa">COPPA notice</a>.</span>
     </div>
   </div>
 </section>
@@ -852,8 +852,8 @@
         <div class="ebook-promo-sub">The full illustrated story, yours to keep. Read it on any tablet, phone or computer, the moment you have paid.</div>
         <div class="ebook-price">$4.99 <small>$9.99</small> <span class="ebook-off">50% off</span></div>
         <div class="ebook-buttons">
-          <a href="book.html" class="btn btn-yellow btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Download the eBook</a>
-          <a href="contact.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-pen"></use></svg> Get a Signed Copy</a>
+          <a href="book" class="btn btn-yellow btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-down"></use></svg> Download the eBook</a>
+          <a href="contact" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-pen"></use></svg> Get a Signed Copy</a>
         </div>
         <div class="trust-row">
           <span class="trust-item"><svg class="ic" aria-hidden="true"><use href="#i-lock"></use></svg> Secure payment</span>
@@ -883,7 +883,7 @@
           <span class="cred-tag"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> M.S. Reading Education</span>
           <span class="cred-tag"><svg class="ic" aria-hidden="true"><use href="#i-abc"></use></svg> M.L.S. Library Science</span>
         </div>
-        <a href="about.html" class="btn btn-red" style="display:inline-flex;"><svg class="ic" aria-hidden="true"><use href="#i-birds"></use></svg> Meet Iris &amp; Frank</a>
+        <a href="about" class="btn btn-red" style="display:inline-flex;"><svg class="ic" aria-hidden="true"><use href="#i-birds"></use></svg> Meet Iris &amp; Frank</a>
       </div>
       <div style="display:flex;justify-content:center;">
         <div class="author-photo-frame reveal reveal-d1">
@@ -906,8 +906,8 @@
     <h2 style="color:#fff;margin-bottom:14px;font-size:clamp(2rem,4vw,2.9rem);">Not sure where your child should start?</h2>
     <p style="color:rgba(255,255,255,.92);max-width:560px;margin:0 auto 30px;font-size:1.15rem;">Answer four quick questions and Chirpy will suggest the right reading level and subjects to begin with.</p>
     <div style="display:flex;justify-content:center;gap:14px;flex-wrap:wrap;">
-      <a href="quiz.html" class="btn btn-yellow btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-target"></use></svg> Find My Child&rsquo;s Starting Point</a>
-      <a href="chatbot.html" class="quiz-skip">Skip, just open the classroom</a>
+      <a href="quiz" class="btn btn-yellow btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-target"></use></svg> Find My Child&rsquo;s Starting Point</a>
+      <a href="chatbot" class="quiz-skip">Skip, just open the classroom</a>
     </div>
     <p class="quiz-fine"><svg class="ic" aria-hidden="true"><use href="#i-clock"></use></svg> Takes about a minute &middot; no sign-up required</p>
   </div>
@@ -998,7 +998,7 @@
     <b>Chirpy&rsquo;s Classroom</b>
     <span>Free for 3 months &middot; no card needed</span>
   </div>
-  <a href="chatbot.html" class="btn btn-red">Try free</a>
+  <a href="chatbot" class="btn btn-red">Try free</a>
 </div>
 
 <div class="cf-modal" id="gameModal" hidden role="dialog" aria-modal="true" aria-labelledby="gameModalTitle">
@@ -1008,19 +1008,19 @@
       <button type="button" class="cf-close" id="gameClose" aria-label="Close the game">&#10005;</button>
     </div>
     <div id="gameStage"></div>
-    <p class="cf-modal-foot"><a href="game.html">Open the game on its own page</a></p>
+    <p class="cf-modal-foot"><a href="game">Open the game on its own page</a></p>
   </div>
 </div>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
-<script src="js/chirpy3d.js?v=3721acde"></script>
-<script src="js/chirpy-sfx.js?v=6ebb2188"></script>
-<script src="js/game.js?v=4036b3f2"></script>
-<script src="js/newsletter.js?v=21decc7c"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
+<script src="js/chirpy3d.js?v=26e9391e"></script>
+<script src="js/chirpy-sfx.js?v=666be356"></script>
+<script src="js/game.js?v=dfb2af29"></script>
+<script src="js/newsletter.js?v=11e6b5d2"></script>
 <script>
 
 // Subject tile links, pass subject to chatbot
-document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
+document.querySelectorAll('a[href^="chatbot?subject="]').forEach(a => {
   a.addEventListener('click', e => {
     const subj = new URLSearchParams(a.search).get('subject');
     if (subj) sessionStorage.setItem('chatbot_subject', subj);
@@ -1039,7 +1039,7 @@ document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
     cta.setAttribute('href', input.dataset.href);
     var use = cta.querySelector('use');
     if (use) use.setAttribute('href', '#i-' + input.dataset.icon);
-    // Amazon is somebody else's site; book.html and contact.html are ours.
+    // Amazon is somebody else's site; book and contact are ours.
     var external = /^https?:/.test(input.dataset.href);
     if (external) { cta.target = '_blank'; cta.rel = 'noopener'; }
     else { cta.removeAttribute('target'); cta.removeAttribute('rel'); }
@@ -1052,7 +1052,7 @@ document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
   if (checked) apply(checked);
 })();
 
-// Demo question -> carried into the live demo on chatbot.html
+// Demo question -> carried into the live demo on chatbot
 (function () {
   var form  = document.getElementById('session-ask');
   var input = document.getElementById('session-q');
@@ -1063,7 +1063,7 @@ document.querySelectorAll('a[href^="chatbot.html?subject="]').forEach(a => {
     if (q) {
       try { sessionStorage.setItem('chatbot_question', q.slice(0, 400)); } catch (err) {}
     }
-    window.location.href = 'chatbot.html';
+    window.location.href = 'chatbot';
   });
 })();
 

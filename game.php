@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>Chirpy's First Flight | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
-<link rel="stylesheet" href="css/game.css?v=1b50338d">
+<link rel="stylesheet" href="css/game.css?v=a683d385">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 .game-hero { padding-top:var(--nav-h); background:linear-gradient(160deg,var(--sky-xlight) 0%,var(--sky-light) 45%,var(--cream) 100%); }
@@ -39,14 +39,14 @@
 <!-- SEO / social / icons -->
 <meta name="description" content="A gentle flying game for little ones. Help Chirpy flap between the branches. Free to play, nothing to sign up for.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/game.html">
-<link rel="alternate" href="https://threebabybirdies.com/game.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/game.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/game">
+<link rel="alternate" href="https://threebabybirdies.com/game" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/game" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="Chirpy's First Flight | Three Baby Birdies">
 <meta property="og:description" content="A gentle flying game for little ones. Help Chirpy flap between the branches. Free to play, nothing to sign up for.">
-<meta property="og:url" content="https://threebabybirdies.com/game.html">
+<meta property="og:url" content="https://threebabybirdies.com/game">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -100,7 +100,7 @@
         </div>
 
         <div style="margin-top:var(--sp-md);text-align:center;">
-          <a href="chatbot.html" class="btn btn-sky btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Meet Chirpy in the Classroom</a>
+          <a href="chatbot" class="btn btn-sky btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-chat"></use></svg> Meet Chirpy in the Classroom</a>
         </div>
       </div>
     </div>
@@ -108,10 +108,10 @@
 </section>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
-<script src="js/chirpy-sfx.js?v=6ebb2188"></script>
-<script src="js/game.js?v=4036b3f2"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
+<script src="js/chirpy-sfx.js?v=666be356"></script>
+<script src="js/game.js?v=dfb2af29"></script>
 <script>
   ChirpyFlight.create(document.getElementById('stage'));
 </script>

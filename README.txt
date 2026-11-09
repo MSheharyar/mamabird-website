@@ -5,19 +5,21 @@ Prepared by Muhammad Sheharyar Ghori · June 2026
 
 HOW TO RUN
 ----------
-Just open index.html in any browser. No server needed.
-All pages link to each other via relative paths.
+Every page is a .php file and needs a PHP-capable server (Hostinger/Apache).
+Locally:  php -S localhost:8000 router.php   then open http://localhost:8000/
+URLs have no extension: /book serves book.php (rules in .htaccess).
+Run  python tools/stamp_assets.py  after changing anything in css/ or js/.
 
 FILE STRUCTURE
 --------------
-index.html        Homepage (hero, book, about, chatbot CTA, testimonials, newsletter)
-about.html        About the author & family story
-book.html         Dedicated book page (excerpt, meta, buy options)
-blog.html         Blog listing (6 sample posts)
-chatbot.html      Chirpy's Classroom — FULLY INTERACTIVE demo (works without backend)
-login.html        Sign In / Register (tabbed, with role selector)
-contact.html      Contact form with reason selector
-pricing.html      4-tier pricing page with FAQ
+index.php        Homepage (hero, book, about, chatbot CTA, testimonials, newsletter)
+about.php        About the author & family story
+book.php         Dedicated book page (excerpt, meta, buy options)
+blog.php         Blog listing (6 sample posts)
+chatbot.php      Chirpy's Classroom — FULLY INTERACTIVE demo (works without backend)
+login.php        Sign In / Register (tabbed, with role selector)
+contact.php      Contact form with reason selector
+pricing.php      4-tier pricing page with FAQ
 css/main.css      ALL design tokens, shared components, nav, footer
 js/main.js        Shared JS (nav scroll, mobile menu, active link detection)
 assets/           Drop real images here (book cover, author photos)
@@ -39,12 +41,12 @@ IMAGES TO REPLACE
 All placeholder emoji (🐦 author photo, book cover SVG) need real assets from Iris.
 - Author photo: goes in .author-photo-box (replace the 🐦 emoji with an <img> tag)
 - Book cover:   SVG illustration on hero can be replaced with <img src="assets/cover.jpg">
-- Book display: Same on book.html hero section
+- Book display: Same on book.php hero section
 - Blog thumbs:  Replace the big emoji in .blog-thumb with actual images
 
 CHATBOT PAGE
 ------------
-chatbot.html has a FULLY WORKING JavaScript demo of the chat interface.
+chatbot.php has a FULLY WORKING JavaScript demo of the chat interface.
 - Character switching (Chirpy / Mama Bird) works
 - Subject switching works and loads different opening messages
 - Chirpy responds to user input with scripted educational responses
@@ -68,7 +70,7 @@ WORDPRESS EMBEDDING (for Tachhattan)
 When embedding as WordPress plugin:
 - Wrap the entire widget in Shadow DOM to prevent Iris theme CSS conflicts
 - Prefix all CSS classes with .mb- if Shadow DOM isn't used
-- The chatbot widget CSS is self-contained in chatbot.html's <style> block
+- The chatbot widget CSS is self-contained in chatbot.php's <style> block
 
 KNOWN PLACEHOLDERS (to resolve before launch)
 ----------------------------------------------

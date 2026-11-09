@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<script src="js/analytics.js?v=e50b2442" defer></script>
+<script src="js/analytics.js?v=8c5c278c" defer></script>
 <title>About | Three Baby Birdies</title>
-<link rel="stylesheet" href="css/main.css?v=cc0082f0">
+<link rel="stylesheet" href="css/main.css?v=bfb0077b">
 <script>if('IntersectionObserver' in window)document.documentElement.classList.add('js-reveal');</script>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
@@ -54,14 +54,14 @@
 <!-- SEO / social / icons -->
 <meta name="description" content="The story behind Three Baby Birdies, written by Iris Scarfone and illustrated by Ronald Scarfone.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-<link rel="canonical" href="https://threebabybirdies.com/about.html">
-<link rel="alternate" href="https://threebabybirdies.com/about.html" hreflang="en-US">
-<link rel="alternate" href="https://threebabybirdies.com/about.html" hreflang="x-default">
+<link rel="canonical" href="https://threebabybirdies.com/about">
+<link rel="alternate" href="https://threebabybirdies.com/about" hreflang="en-US">
+<link rel="alternate" href="https://threebabybirdies.com/about" hreflang="x-default">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Three Baby Birdies">
 <meta property="og:title" content="About | Three Baby Birdies">
 <meta property="og:description" content="The story behind Three Baby Birdies, written by Iris Scarfone and illustrated by Ronald Scarfone.">
-<meta property="og:url" content="https://threebabybirdies.com/about.html">
+<meta property="og:url" content="https://threebabybirdies.com/about">
 <meta property="og:image" content="https://threebabybirdies.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -81,7 +81,7 @@
   "@graph": [
     {
       "@type": "AboutPage",
-      "url": "https://threebabybirdies.com/about.html",
+      "url": "https://threebabybirdies.com/about",
       "mainEntity": {
         "@type": "Person",
         "name": "Iris Scarfone",
@@ -185,7 +185,7 @@
     <p>Every page of Three Baby Birdies was written with these principles in mind. Pick up a copy and experience it with a child you love.</p>
     <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px;">
       <a href="https://www.amazon.com/Three-Baby-Birdies-Iris-Scarfone-ebook/dp/B0GYWM1YGT/" target="_blank" rel="noopener" class="btn btn-red btn-lg"><svg class="ic" aria-hidden="true"><use href="#i-cart"></use></svg> Buy on Amazon</a>
-      <a href="book.html" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> See all the ways to read it</a>
+      <a href="book" class="btn btn-outline"><svg class="ic" aria-hidden="true"><use href="#i-book"></use></svg> See all the ways to read it</a>
     </div>
   </div>
 </section>
@@ -193,6 +193,6 @@
 <div class="wave" style="--wave-from:var(--sky-light);--wave-to:#1A0F0A;" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
 
 <footer id="footer"></footer>
-<script src="js/layout.js?v=e5312f39"></script>
-<script src="js/main.js?v=ebc19fcc"></script>
+<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/main.js?v=2bcf66a4"></script>
 </body></html>
