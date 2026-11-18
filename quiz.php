@@ -155,9 +155,9 @@ body { background:var(--cream); }
 <!-- /SEO -->
 </head>
 <body>
+<?php include __DIR__ . '/includes/icons.php'; ?>
 
-<nav id="nav"></nav>
-<div id="mob-menu"></div>
+<?php include __DIR__ . '/includes/nav.php'; ?>
 
 <main class="quiz-page">
   <div class="quiz-shell">
@@ -181,8 +181,8 @@ body { background:var(--cream); }
   </div>
 </main>
 
-<footer id="footer"></footer>
-<script src="js/layout.js?v=c1ea5b7c"></script>
+<?php include __DIR__ . '/includes/footer.php'; ?>
+<script src="js/layout.js?v=303b5c32"></script>
 <script src="js/main.js?v=2bcf66a4"></script>
 <script src="js/chirpy3d.js?v=26e9391e"></script>
 <script>

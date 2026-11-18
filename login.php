@@ -118,9 +118,9 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
 <!-- /SEO -->
 </head>
 <body>
+<?php include __DIR__ . '/includes/icons.php'; ?>
 
-<nav id="nav"></nav>
-<div id="mob-menu"></div>
+<?php include __DIR__ . '/includes/nav.php'; ?>
 
 <div class="auth-page">
   <div class="auth-wrap">
@@ -206,7 +206,7 @@ body { background:linear-gradient(155deg,#FDECEA 0%,#F9D0CF 35%,var(--cream) 70%
     </div>
   </div>
 </div>
-<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/layout.js?v=303b5c32"></script>
 <script src="js/main.js?v=2bcf66a4"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';

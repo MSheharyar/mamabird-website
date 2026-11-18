@@ -18,8 +18,9 @@ RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
 # or bookmark pointing at it working, whatever extension it carries.
 RewriteRule ^ebook(\.html|\.php)?/?$ /book [R=301,L]
 
-# The tools folder and the local dev router are not pages.
-RewriteRule ^(tools/|router\.php$) - [R=404,L]
+# The tools folder, the shared page includes and the local dev router
+# are not pages.
+RewriteRule ^(tools/|includes/|router\.php$) - [R=404,L]
 
 # ---- Clean URLs -----------------------------------------------------
 # 1. Old addresses -> extensionless, with a 301 so Google, adverts, emails

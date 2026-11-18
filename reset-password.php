@@ -36,9 +36,9 @@
 <!-- /SEO -->
 </head>
 <body>
+<?php include __DIR__ . '/includes/icons.php'; ?>
 
-<nav id="nav"></nav>
-<div id="mob-menu"></div>
+<?php include __DIR__ . '/includes/nav.php'; ?>
 
 <main class="rp-page">
   <div class="rp-card">
@@ -67,8 +67,8 @@
   </div>
 </main>
 
-<footer id="footer"></footer>
-<script src="js/layout.js?v=c1ea5b7c"></script>
+<?php include __DIR__ . '/includes/footer.php'; ?>
+<script src="js/layout.js?v=303b5c32"></script>
 <script src="js/main.js?v=2bcf66a4"></script>
 <script>
 (function () {

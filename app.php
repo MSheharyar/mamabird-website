@@ -350,7 +350,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 }
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
 
-/* The sprite comes from js/layout.js, which these pages load only for that.
+/* The sprite comes from includes/icons.php.
    Same class and behaviour as the marketing side: an icon takes the size
    and the colour of the text it sits in. */
 .icon-sprite { position:absolute; width:0; height:0; overflow:hidden; }
@@ -393,6 +393,7 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 <!-- /SEO -->
 </head>
 <body>
+<?php include __DIR__ . '/includes/icons.php'; ?>
 <h1 class="visually-hidden">Chirpy's Classroom</h1>
 
 <!-- ── HEADER ── -->
@@ -606,9 +607,6 @@ body{font-family:var(--font-body);background:var(--cream);color:var(--dark);disp
 
 <div class="toast" id="toast"></div>
 
-<!-- Loaded for the icon sprite only: layout.js guards its nav and
-     footer injection on elements this page does not have. -->
-<script src="js/layout.js?v=c1ea5b7c"></script>
 <script src="js/chirpy3d.js?v=26e9391e"></script>
 <script src="js/chirpy-voice.js?v=dfacdeff"></script>
 <script src="js/chirpy-sfx.js?v=666be356"></script>

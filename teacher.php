@@ -95,7 +95,7 @@ tr:last-child td{border-bottom:none;}
 .loading-bar{text-align:center;padding:36px;color:var(--mid);font-family:var(--font-display);font-weight:600;}
 @media(max-width:600px){th{font-size:.66rem;}td{font-size:.78rem;}}
 
-/* The sprite comes from js/layout.js, which these pages load only for that.
+/* The sprite comes from includes/icons.php.
    Same class and behaviour as the marketing side: an icon takes the size
    and the colour of the text it sits in. */
 .icon-sprite { position:absolute; width:0; height:0; overflow:hidden; }
@@ -138,6 +138,7 @@ tr:last-child td{border-bottom:none;}
 <!-- /SEO -->
 </head>
 <body>
+<?php include __DIR__ . '/includes/icons.php'; ?>
 
 <header class="admin-header">
   <div class="header-logo">Three Baby Birdies</div>
@@ -244,9 +245,6 @@ tr:last-child td{border-bottom:none;}
 
 <div class="toast" id="toast"></div>
 
-<!-- Loaded for the icon sprite only: layout.js guards its nav and
-     footer injection on elements this page does not have. -->
-<script src="js/layout.js?v=c1ea5b7c"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');

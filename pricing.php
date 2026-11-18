@@ -105,9 +105,9 @@
 <!-- /SEO -->
 </head>
 <body>
+<?php include __DIR__ . '/includes/icons.php'; ?>
 
-<nav id="nav"></nav>
-<div id="mob-menu"></div>
+<?php include __DIR__ . '/includes/nav.php'; ?>
 
 <div class="page-hero">
   <div class="page-hero-inner">
@@ -239,8 +239,8 @@
 
 <div class="wave" style="--wave-from:var(--sky-light);--wave-to:#1A0F0A;" aria-hidden="true"><svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,26 C180,58 380,4 620,20 C860,36 1080,62 1440,24 L1440,60 L0,60 Z"/></svg></div>
 
-<footer id="footer"></footer>
-<script src="js/layout.js?v=c1ea5b7c"></script>
+<?php include __DIR__ . '/includes/footer.php'; ?>
+<script src="js/layout.js?v=303b5c32"></script>
 <script src="js/main.js?v=2bcf66a4"></script>
 <script src="js/chirpy3d.js?v=26e9391e"></script>
 <script>

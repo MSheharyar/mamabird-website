@@ -55,8 +55,8 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%);
 <!-- /SEO -->
 </head>
 <body>
-<nav id="nav"></nav>
-<div id="mob-menu"></div>
+<?php include __DIR__ . '/includes/icons.php'; ?>
+<?php include __DIR__ . '/includes/nav.php'; ?>
 
 <div class="dl-page">
   <div class="dl-card">
@@ -130,8 +130,8 @@ body { background:linear-gradient(155deg,var(--sky-xlight) 0%,var(--cream) 60%);
   </div>
 </div>
 
-<footer id="footer"></footer>
-<script src="js/layout.js?v=c1ea5b7c"></script>
+<?php include __DIR__ . '/includes/footer.php'; ?>
+<script src="js/layout.js?v=303b5c32"></script>
 <script src="js/main.js?v=2bcf66a4"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';

@@ -22,6 +22,9 @@ contact.php      Contact form with reason selector
 pricing.php      4-tier pricing page with FAQ
 css/main.css      ALL design tokens, shared components, nav, footer
 js/main.js        Shared JS (nav scroll, mobile menu, active link detection)
+includes/         Nav + mobile menu, footer and icon sprite, rendered into
+                  every page by PHP. Edit the nav or footer here, once.
+js/layout.js      Only swaps "Sign In" for "My Classroom" when signed in
 assets/           Drop real images here (book cover, author photos)
 
 DESIGN TOKENS (in css/main.css :root)

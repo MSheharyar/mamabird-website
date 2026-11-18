@@ -425,9 +425,9 @@
 <!-- /SEO -->
 </head>
 <body>
+<?php include __DIR__ . '/includes/icons.php'; ?>
 
-<nav id="nav"></nav>
-<div id="mob-menu"></div>
+<?php include __DIR__ . '/includes/nav.php'; ?>
 
 <!-- HERO -->
 <section id="hero">
@@ -991,7 +991,7 @@
   </div>
 </section>
 
-<footer id="footer"></footer>
+<?php include __DIR__ . '/includes/footer.php'; ?>
 <div class="sticky-cta">
   <img src="assets/chirpy.png" alt="" aria-hidden="true" class="mascot" loading="lazy" decoding="async" width="280" height="276">
   <div class="sticky-cta-text">
@@ -1011,7 +1011,7 @@
     <p class="cf-modal-foot"><a href="game">Open the game on its own page</a></p>
   </div>
 </div>
-<script src="js/layout.js?v=c1ea5b7c"></script>
+<script src="js/layout.js?v=303b5c32"></script>
 <script src="js/main.js?v=2bcf66a4"></script>
 <script src="js/chirpy3d.js?v=26e9391e"></script>
 <script src="js/chirpy-sfx.js?v=666be356"></script>

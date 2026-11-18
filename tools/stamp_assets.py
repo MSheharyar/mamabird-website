@@ -38,7 +38,11 @@ def stamp(rel):
         if not os.path.isfile(full):
             _cache[rel] = None
         else:
-            h = hashlib.md5(io.open(full, "rb").read()).hexdigest()[:8]
+            # Hash with LF endings: git stores LF and the host deploys that,
+            # while a Windows checkout has CRLF. Without this, stamping on
+            # Windows changes every stamp although no file has changed.
+            data = io.open(full, "rb").read().replace(b"\r\n", b"\n")
+            h = hashlib.md5(data).hexdigest()[:8]
             _cache[rel] = h
     return _cache[rel]
 

@@ -117,7 +117,7 @@ tr.parent-row:hover td{background:var(--cream);}
 @media(max-width:600px){.stats-grid{grid-template-columns:1fr 1fr;}.admin-tabs{flex-wrap:wrap;border-radius:var(--r-lg);}th{display:none;}}
 .visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;}
 
-/* The sprite comes from js/layout.js, which these pages load only for that.
+/* The sprite comes from includes/icons.php.
    Same class and behaviour as the marketing side: an icon takes the size
    and the colour of the text it sits in. */
 .icon-sprite { position:absolute; width:0; height:0; overflow:hidden; }
@@ -160,6 +160,7 @@ tr.parent-row:hover td{background:var(--cream);}
 <!-- /SEO -->
 </head>
 <body>
+<?php include __DIR__ . '/includes/icons.php'; ?>
 <h1 class="visually-hidden">Three Baby Birdies admin</h1>
 
 <header class="admin-header">
@@ -220,9 +221,6 @@ tr.parent-row:hover td{background:var(--cream);}
 
 <div class="toast" id="toast"></div>
 
-<!-- Loaded for the icon sprite only: layout.js guards its nav and
-     footer injection on elements this page does not have. -->
-<script src="js/layout.js?v=c1ea5b7c"></script>
 <script>
 const API = 'https://api.threebabybirdies.com';
 const token = localStorage.getItem('mb_token');
